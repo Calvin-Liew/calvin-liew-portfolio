@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Container from '../layout/Container';
 import Button from '../ui/Button';
 import SocialLinks from '../ui/SocialLinks';
+import AnimatedBackground from '../ui/AnimatedBackground';
 
 export default function Hero() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -30,6 +31,9 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Animated Background Layer */}
+      <AnimatedBackground />
+
       <Container className="relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Greeting + Name */}
@@ -54,7 +58,7 @@ export default function Hero() {
               View My Work
             </Button>
             <Button
-              href="mailto:calvin.liew@mail.utoronto.ca"
+              href="#contact"
               variant="secondary"
               size="lg"
             >

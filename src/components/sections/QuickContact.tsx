@@ -4,14 +4,18 @@ import Container from '../layout/Container';
 import Section from '../layout/Section';
 import Button from '../ui/Button';
 import SocialLinks from '../ui/SocialLinks';
+import AnimatedBackground from '../ui/AnimatedBackground';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export default function QuickContact() {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <Section background="surface">
-      <Container>
+    <Section background="surface" id="contact" className="relative overflow-hidden">
+      {/* Animated Background Layer */}
+      <AnimatedBackground />
+
+      <Container className="relative z-10">
         <div
           ref={ref as React.RefObject<HTMLDivElement>}
           className={`max-w-3xl mx-auto text-center transition-all duration-1000 ${
@@ -34,7 +38,7 @@ export default function QuickContact() {
               Send me an Email
             </Button>
             <Button
-              href="https://www.linkedin.com/in/calvinliew/"
+              href="https://www.linkedin.com/in/calvin-liew-/"
               variant="secondary"
               size="lg"
             >

@@ -6,6 +6,7 @@ import Section from '../layout/Section';
 import Card from '../ui/Card';
 import Badge from '../ui/Badge';
 import Button from '../ui/Button';
+import AnimatedBackground from '../ui/AnimatedBackground';
 import { projects } from '@/data/projects';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
@@ -14,8 +15,11 @@ export default function FeaturedProjects() {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <Section background="surface">
-      <Container>
+    <Section background="surface" className="relative overflow-hidden">
+      {/* Animated Background Layer */}
+      <AnimatedBackground />
+
+      <Container className="relative z-10">
         <div
           ref={ref as React.RefObject<HTMLDivElement>}
           className={`mb-12 transition-all duration-1000 ${

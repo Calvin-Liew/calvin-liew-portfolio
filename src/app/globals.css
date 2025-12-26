@@ -1,22 +1,26 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   /* Light Mode (Secondary) */
   --background-light: #ffffff;
   --foreground-light: #0a0a0a;
   --surface-light: #f5f5f5;
 
-  /* Dark Mode (Primary) - Corporate Dark */
-  --background-dark: #121212;
-  --foreground-dark: #ffffff;
-  --surface-dark: #1a1a1a;
+  /* Dark Mode (Primary) - Cosmic Dark */
+  --background-dark: #0a0a14;
+  --foreground-dark: #f0f0ff;
+  --surface-dark: #12121f;
 
-  /* Corporate Accent Palette */
-  --accent-primary: #ffffff;
-  --accent-secondary: #a3a3a3;
-  --accent-tertiary: #525252;
-  --border-color: #252525;
-  --border-light: #2d2d2d;
+  /* Cosmic Accent Palette */
+  --accent-primary: #f0f0ff;
+  --accent-secondary: #c0c0e8;
+  --accent-tertiary: #9090c0;
+  --border-color: #1f1f35;
+  --border-light: #2a2a45;
 
   /* Cosmic Gradient Colors */
   --cosmic-purple: #a78bfa;
@@ -38,7 +42,7 @@
   --primary: var(--accent-primary);
   --secondary: var(--accent-secondary);
   --accent: var(--accent-tertiary);
-  --muted: #737373;
+  --muted: #8080a8;
 
   /* Default to dark mode */
   --background: var(--background-dark);

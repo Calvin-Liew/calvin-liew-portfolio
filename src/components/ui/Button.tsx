@@ -32,7 +32,7 @@ export default function Button({
 
   const variantClasses = {
     primary: 'bg-foreground hover:bg-foreground/90 text-background hover:shadow-lg hover:shadow-foreground/20 active:scale-95',
-    secondary: 'bg-transparent border-2 border-border-light hover:border-cosmic-purple hover:bg-cosmic-purple/5 text-foreground hover:shadow-md hover:shadow-cosmic-purple/20 active:scale-95',
+    secondary: 'bg-transparent border-2 border-cosmic-cyan/50 hover:border-cosmic-cyan hover:bg-cosmic-cyan/10 text-foreground hover:shadow-lg hover:shadow-cosmic-cyan/40 active:scale-95',
     gradient: 'bg-linear-to-r from-cosmic-purple to-cosmic-blue hover:from-cosmic-violet hover:to-cosmic-cyan text-white hover:shadow-lg hover:shadow-cosmic-purple/50 active:scale-95'
   };
 

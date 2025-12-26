@@ -8,7 +8,7 @@ interface CardProps {
 
 export default function Card({ children, className = '', hover = true }: CardProps) {
   const hoverClasses = hover
-    ? 'hover:-translate-y-1 hover:border-foreground/30 hover:shadow-xl hover:shadow-cosmic-purple/10'
+    ? 'hover:-translate-y-1 hover:border-cosmic-purple/40 hover:shadow-2xl hover:shadow-cosmic-purple/30'
     : '';
 
   return (

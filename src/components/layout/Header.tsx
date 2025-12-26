@@ -17,14 +17,14 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border-light">
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/10 border-b border-cosmic-purple/20">
       <Container>
         <nav className="flex items-center justify-between py-5" aria-label="Global">
           {/* Logo/Name */}
           <div className="flex lg:shrink-0">
             <Link
               href="/"
-              className="text-xl font-semibold text-foreground hover:text-secondary transition-colors"
+              className="text-xl font-semibold gradient-text hover:scale-105 transition-all duration-300 drop-shadow-[0_0_8px_rgba(167,139,250,0.4)]"
               aria-label="Home"
             >
               Calvin Liew
