@@ -8,10 +8,10 @@ import Button from '../ui/Button';
 
 const navigation = [
   { name: 'Home', href: '/' },
+  { name: 'About', href: '/about' },
   { name: 'Projects', href: '/projects' },
   { name: 'Blog', href: '/blog' },
   { name: 'Experience', href: '/experience' },
-  { name: 'About', href: '/about' },
 ];
 
 export default function Header() {
