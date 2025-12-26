@@ -14,12 +14,11 @@ A modern, clean portfolio website built with Next.js 15, TypeScript, and Tailwin
 ## Pages
 
 - **Home** (`/`): Hero section, featured projects, skills overview, and contact
+- **Profile** (`/profile`): About me, skills, work experience, education, and contact
 - **Projects** (`/projects`): All projects with filtering capabilities
 - **Project Detail** (`/projects/[id]`): Individual project pages with full details
 - **Blog** (`/blog`): List of blog posts
 - **Blog Post** (`/blog/[slug]`): Individual blog post pages
-- **Experience** (`/experience`): Work experience and education
-- **About** (`/about`): About me, skills, and contact information
 
 ## Getting Started
 
@@ -62,10 +61,9 @@ portfolio-site/
 │   ├── app/                    # Next.js app router pages
 │   │   ├── layout.tsx          # Root layout with header/footer
 │   │   ├── page.tsx            # Homepage
+│   │   ├── profile/            # Profile page (about + experience)
 │   │   ├── projects/           # Projects pages
-│   │   ├── blog/               # Blog pages
-│   │   ├── experience/         # Experience page
-│   │   └── about/              # About page
+│   │   └── blog/               # Blog pages
 │   ├── components/
 │   │   ├── layout/             # Header, Footer, Container, Section
 │   │   ├── ui/                 # Reusable UI components

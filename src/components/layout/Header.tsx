@@ -8,10 +8,9 @@ import Button from '../ui/Button';
 
 const navigation = [
   { name: 'Home', href: '/' },
-  { name: 'About', href: '/about' },
+  { name: 'Profile', href: '/profile' },
   { name: 'Projects', href: '/projects' },
   { name: 'Blog', href: '/blog' },
-  { name: 'Experience', href: '/experience' },
 ];
 
 export default function Header() {
@@ -67,8 +66,7 @@ export default function Header() {
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden lg:flex lg:items-center lg:gap-4">
-            <SocialLinks variant="header" />
+          <div className="hidden lg:flex lg:items-center">
             <Button
               href="mailto:calvin.liew@mail.utoronto.ca"
               variant="gradient"
