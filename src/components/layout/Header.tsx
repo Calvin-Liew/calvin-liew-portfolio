@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import Container from './Container';
 import SocialLinks from '../ui/SocialLinks';
 import Button from '../ui/Button';
@@ -15,6 +16,14 @@ const navigation = [
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href: string) => {
+    if (href === '/') {
+      return pathname === '/';
+    }
+    return pathname.startsWith(href);
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/10 border-b border-cosmic-purple/20">
@@ -58,7 +67,12 @@ export default function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-base font-medium text-secondary hover:text-foreground transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-linear-to-r after:from-cosmic-purple after:to-cosmic-cyan after:transition-all after:duration-300 hover:after:w-full"
+                aria-current={isActive(item.href) ? 'page' : undefined}
+                className={`text-base font-medium transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:transition-all after:duration-300 ${
+                  isActive(item.href)
+                    ? 'text-cosmic-purple pointer-events-none after:w-full after:bg-gradient-to-r after:from-cosmic-purple after:to-cosmic-cyan'
+                    : 'text-secondary hover:text-foreground after:w-0 after:bg-gradient-to-r after:from-cosmic-purple after:to-cosmic-cyan hover:after:w-full'
+                }`}
               >
                 {item.name}
               </Link>
@@ -85,8 +99,13 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="block px-3 py-2 text-base font-medium text-secondary hover:text-foreground hover:bg-cosmic-purple/5 rounded-md transition-all"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={() => !isActive(item.href) && setMobileMenuOpen(false)}
+                  aria-current={isActive(item.href) ? 'page' : undefined}
+                  className={`block px-3 py-2 text-base font-medium rounded-md transition-all ${
+                    isActive(item.href)
+                      ? 'bg-gradient-to-r from-cosmic-purple/10 to-cosmic-cyan/10 text-cosmic-purple pointer-events-none'
+                      : 'text-secondary hover:text-foreground hover:bg-cosmic-purple/5'
+                  }`}
                 >
                   {item.name}
                 </Link>
