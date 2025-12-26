@@ -20,23 +20,23 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: {
-    default: "Calvin Liew - Product Manager & Designer",
+    default: "Calvin Liew - Product Analyst & Designer",
     template: "%s | Calvin Liew"
   },
-  description: "Product Manager and Designer building intelligent products at the intersection of technology, design, and business strategy. Experience in product management, UI/UX design, and data analysis.",
-  keywords: ["Product Manager", "Product Designer", "UI/UX Designer", "Portfolio", "Calvin Liew", "University of Toronto", "Sanofi"],
+  description: "Product Analyst and Designer building intelligent products at the intersection of technology, design, and business strategy. Experience in UI/UX design, data analysis, and product development.",
+  keywords: ["Product Analyst", "Product Designer", "UI/UX Designer", "Portfolio", "Calvin Liew", "University of Toronto", "Sanofi", "Data Analysis"],
   authors: [{ name: "Calvin Liew" }],
   openGraph: {
     type: "website",
     locale: "en_US",
     siteName: "Calvin Liew Portfolio",
-    title: "Calvin Liew - Product Manager & Designer",
-    description: "Product Manager and Designer building intelligent products at the intersection of technology, design, and business strategy.",
+    title: "Calvin Liew - Product Analyst & Designer",
+    description: "Product Analyst and Designer building intelligent products at the intersection of technology, design, and business strategy.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Calvin Liew - Product Manager & Designer",
-    description: "Product Manager and Designer building intelligent products at the intersection of technology, design, and business strategy.",
+    title: "Calvin Liew - Product Analyst & Designer",
+    description: "Product Analyst and Designer building intelligent products at the intersection of technology, design, and business strategy.",
   },
 };
 

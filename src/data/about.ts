@@ -2,19 +2,19 @@ import { AboutData } from '@/types';
 
 export const aboutData: AboutData = {
   name: 'Calvin Liew',
-  title: 'Product Manager & Designer',
+  title: 'Product Analyst & Designer',
   tagline: 'Building intelligent products at the intersection of technology, design, and business strategy',
-  introduction: 'I\'m a Product Manager and Designer passionate about creating user-centered solutions that drive meaningful impact. With experience spanning product management, UI/UX design, and data analysis, I bring a unique perspective to building products that solve real problems. Currently at Sanofi, I leverage AI and automation to optimize software operations and drive innovation.',
+  introduction: 'I\'m a Product Analyst and Designer passionate about creating user-centered solutions that drive meaningful impact. With experience spanning UI/UX design, data analysis, and product development, I bring a unique perspective to building products that solve real problems. Currently at Sanofi, I leverage AI and automation to optimize software operations and drive innovation.',
   email: 'calvin.liew@mail.utoronto.ca',
   socialLinks: [
     {
       platform: 'LinkedIn',
-      url: 'https://www.linkedin.com/in/calvinliew/',
+      url: 'https://www.linkedin.com/in/calvin-liew-/',
       icon: 'linkedin'
     },
     {
       platform: 'GitHub',
-      url: 'https://github.com/calvinliew/calvin-liew-portfolio',
+      url: 'https://github.com/Calvin-Liew',
       icon: 'github'
     },
     {

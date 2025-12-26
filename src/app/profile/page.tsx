@@ -9,7 +9,7 @@ import { experiences } from '@/data/experience';
 
 export const metadata: Metadata = {
   title: 'Profile',
-  description: 'Calvin Liew - Product Manager and Designer. Learn about my background, skills, and professional experience in product management, UI/UX design, and technology.',
+  description: 'Calvin Liew - Product Analyst and Designer. Learn about my background, skills, and professional experience in data analysis, UI/UX design, and technology.',
 };
 
 export default function ProfilePage() {
@@ -67,7 +67,7 @@ export default function ProfilePage() {
             Professional Experience
           </h2>
           <p className="text-lg text-secondary mb-8">
-            My professional journey in product management, design, and technology.
+            My professional journey in product analysis, design, and technology.
           </p>
 
           <div className="space-y-8">
