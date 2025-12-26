@@ -41,48 +41,6 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        {/* Skills Section */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold text-primary mb-8">
-            Skills & Expertise
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {aboutData.skills.map((skillGroup) => (
-              <div key={skillGroup.category}>
-                <h3 className="text-lg font-semibold text-primary mb-4 border-b border-border-light pb-2">
-                  {skillGroup.category}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {skillGroup.items.map((skill) => (
-                    <Badge key={skill} variant="skill">{skill}</Badge>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Experience Section */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold text-primary mb-4">
-            Professional Experience
-          </h2>
-          <p className="text-lg text-secondary mb-8">
-            My professional journey in product analysis, design, and technology.
-          </p>
-
-          <div className="space-y-8">
-            {experiences.map((experience) => (
-              <ExperienceCard key={experience.id} experience={experience} />
-            ))}
-          </div>
-        </div>
-
-        {/* Education Section */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <Education />
-        </div>
-
         {/* Resume Section */}
         <div className="max-w-4xl mx-auto mb-16">
           <h2 className="text-3xl font-bold text-primary mb-8">
@@ -137,6 +95,48 @@ export default function ProfilePage() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Skills Section */}
+        <div className="max-w-4xl mx-auto mb-16">
+          <h2 className="text-3xl font-bold text-primary mb-8">
+            Skills & Expertise
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {aboutData.skills.map((skillGroup) => (
+              <div key={skillGroup.category}>
+                <h3 className="text-lg font-semibold text-primary mb-4 border-b border-border-light pb-2">
+                  {skillGroup.category}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {skillGroup.items.map((skill) => (
+                    <Badge key={skill} variant="skill">{skill}</Badge>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Experience Section */}
+        <div className="max-w-4xl mx-auto mb-16">
+          <h2 className="text-3xl font-bold text-primary mb-4">
+            Professional Experience
+          </h2>
+          <p className="text-lg text-secondary mb-8">
+            My professional journey in product analysis, design, and technology.
+          </p>
+
+          <div className="space-y-8">
+            {experiences.map((experience) => (
+              <ExperienceCard key={experience.id} experience={experience} />
+            ))}
+          </div>
+        </div>
+
+        {/* Education Section */}
+        <div className="max-w-4xl mx-auto mb-16">
+          <Education />
         </div>
 
         {/* Contact Section */}
