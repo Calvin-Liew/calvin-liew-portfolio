@@ -26,6 +26,12 @@ export const metadata: Metadata = {
   description: "Product Manager and Designer building intelligent products at the intersection of technology, design, and business strategy. Experience in product management, UI/UX design, and data analysis.",
   keywords: ["Product Manager", "Product Designer", "UI/UX Designer", "Portfolio", "Calvin Liew", "University of Toronto", "Sanofi"],
   authors: [{ name: "Calvin Liew" }],
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "32x32", type: "image/x-icon" },
+    ],
+  },
   openGraph: {
     type: "website",
     locale: "en_US",

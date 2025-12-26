@@ -24,7 +24,7 @@ export default function Header() {
           <div className="flex lg:shrink-0">
             <Link
               href="/"
-              className="text-base font-semibold text-foreground hover:text-secondary transition-colors"
+              className="text-xl font-semibold text-foreground hover:text-secondary transition-colors"
               aria-label="Home"
             >
               Calvin Liew
