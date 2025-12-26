@@ -6,6 +6,7 @@ import ExperienceCard from '@/components/experience/ExperienceCard';
 import Education from '@/components/sections/Education';
 import { aboutData } from '@/data/about';
 import { experiences } from '@/data/experience';
+import { Download, FileText } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Profile',
@@ -80,6 +81,62 @@ export default function ProfilePage() {
         {/* Education Section */}
         <div className="max-w-4xl mx-auto mb-16">
           <Education />
+        </div>
+
+        {/* Resume Section */}
+        <div className="max-w-4xl mx-auto mb-16">
+          <h2 className="text-3xl font-bold text-primary mb-8">
+            Resume
+          </h2>
+
+          <div className="bg-surface rounded-lg border border-border-light p-6">
+            <div className="flex items-start gap-4">
+              {/* Icon */}
+              <div className="flex-shrink-0">
+                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-cosmic-purple/10 to-cosmic-cyan/10 flex items-center justify-center">
+                  <FileText className="w-6 h-6 text-cosmic-purple" />
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="flex-grow">
+                <h3 className="text-xl font-semibold text-primary mb-2">
+                  Calvin Liew - Resume
+                </h3>
+                <p className="text-secondary mb-4">
+                  Download my latest resume to learn more about my experience in product analysis, UI/UX design, and data analytics.
+                </p>
+
+                {/* Action Buttons */}
+                <div className="flex flex-wrap gap-3">
+                  {/* Download Button */}
+                  <a
+                    href="/resume/resume.pdf"
+                    download="CalvinLiew_Resume.pdf"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-border-light hover:border-cosmic-purple bg-transparent hover:bg-cosmic-purple/5 text-foreground font-medium transition-all duration-300 hover:shadow-md hover:shadow-cosmic-purple/20 active:scale-95"
+                    aria-label="Download resume"
+                  >
+                    <Download className="w-5 h-5" />
+                    <span className="hidden sm:inline">Download Resume</span>
+                    <span className="inline sm:hidden">Download</span>
+                  </a>
+
+                  {/* View Button (Opens in new tab) */}
+                  <a
+                    href="/resume/resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-transparent hover:bg-surface-hover text-secondary hover:text-cosmic-purple font-medium transition-all duration-300"
+                    aria-label="View resume in new tab"
+                  >
+                    <FileText className="w-5 h-5" />
+                    <span className="hidden sm:inline">View Resume</span>
+                    <span className="inline sm:hidden">View</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Contact Section */}
