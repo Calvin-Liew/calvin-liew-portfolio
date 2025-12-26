@@ -12,7 +12,7 @@ export const projects: Project[] = [
     links: [
       {
         type: 'live',
-        url: 'https://observablehq.com/d/4e3c9e6f8b3a4c5d',
+        url: 'https://calvin-liew.github.io/data-explorers-fear-analytics/',
         label: 'The Anatomy of Fear: How Horror Films Terrify Us'
       }
     ],
@@ -29,13 +29,8 @@ export const projects: Project[] = [
     links: [
       {
         type: 'demo',
-        url: 'https://www.youtube.com/watch?v=demo',
+        url: 'https://mgmc11-google-drive-companion-demo.netlify.app/',
         label: 'Drive Companion Demo'
-      },
-      {
-        type: 'figma',
-        url: 'https://www.figma.com/proto/project',
-        label: 'Figma Prototype'
       }
     ],
     featured: true
@@ -51,7 +46,7 @@ export const projects: Project[] = [
     links: [
       {
         type: 'live',
-        url: 'https://musicpathways.utsc.utoronto.ca',
+        url: 'https://calvin-liew-music-pathways.netlify.app/',
         label: 'The Music Pathways Project Product Redesign'
       }
     ],
@@ -68,7 +63,7 @@ export const projects: Project[] = [
     links: [
       {
         type: 'live',
-        url: 'https://observablehq.com/d/night-shift',
+        url: 'https://calvin-liew.github.io/a4-sleep-analytics/',
         label: "The Night Shift: Why Your Job Doesn't Define Your Sleep"
       }
     ],
@@ -85,15 +80,15 @@ export const projects: Project[] = [
     links: [
       {
         type: 'figma',
-        url: 'https://www.figma.com/proto/matchify',
+        url: 'https://www.figma.com/design/nkmVIyQnZzKT01rF20G9n1/Matchify-Project--Copy-?node-id=0-1&p=f&t=qmd4JXc07v1CpX4R-0',
         label: 'Matchify Figma Design Project'
-      },
-      {
-        type: 'live',
-        url: 'https://matchify-project.com',
-        label: 'Matchify Project Overview'
       }
     ],
+    caseStudy: {
+      fileName: 'matchify.pdf',
+      title: 'Matchify Case Study',
+      fileSize: '11 MB'
+    },
     featured: false
   },
   {
@@ -107,15 +102,15 @@ export const projects: Project[] = [
     links: [
       {
         type: 'figma',
-        url: 'https://www.figma.com/proto/tutorly',
+        url: 'https://www.figma.com/design/ssRCJVnGktqLf6BZCVj1ph/Tutorly-Project?t=Mx5ibMOFH3m6BehJ-0',
         label: 'Tutorly Figma Design Project'
-      },
-      {
-        type: 'live',
-        url: 'https://tutorly-project.com',
-        label: 'Tutorly Project Overview'
       }
     ],
+    caseStudy: {
+      fileName: 'tutorly.pdf',
+      title: 'Tutorly Case Study',
+      fileSize: '16 MB'
+    },
     featured: false
   },
   {
@@ -134,7 +129,7 @@ export const projects: Project[] = [
       },
       {
         type: 'demo',
-        url: 'https://www.youtube.com/watch?v=food-resq-demo',
+        url: 'https://www.youtube.com/watch?v=W53-djMHqHI',
         label: 'Food ResQ Demo for Hack the Valley 8'
       }
     ],

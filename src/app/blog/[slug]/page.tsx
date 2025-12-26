@@ -46,7 +46,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <Container>
         <Link
           href="/blog"
-          className="inline-flex items-center text-accent hover:text-primary font-medium mb-8 transition-colors"
+          className="inline-flex items-center text-cosmic-purple hover:text-cosmic-cyan font-medium mb-8 transition-colors"
         >
           <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -84,7 +84,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </header>
 
           <div
-            className="prose prose-lg max-w-none prose-headings:text-primary prose-a:text-accent prose-a:no-underline hover:prose-a:text-primary prose-strong:text-primary"
+            className="prose prose-lg max-w-none prose-headings:text-primary prose-a:text-cosmic-purple prose-a:no-underline hover:prose-a:text-cosmic-cyan prose-strong:text-primary"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
         </article>

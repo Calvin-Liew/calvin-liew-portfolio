@@ -42,7 +42,7 @@ export default function BlogCard({ post }: BlogCardProps) {
             </div>
           )}
 
-          <div className="text-accent text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all group-hover:text-cosmic-purple">
+          <div className="text-cosmic-purple text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all group-hover:text-cosmic-cyan">
             Read Article
             <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

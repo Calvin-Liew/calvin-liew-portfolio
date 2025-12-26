@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Container from '@/components/layout/Container';
 import Section from '@/components/layout/Section';
 import Badge from '@/components/ui/Badge';
+import CaseStudyViewer from '@/components/projects/CaseStudyViewer';
 import { projects } from '@/data/projects';
 
 interface ProjectPageProps {
@@ -46,7 +47,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         {/* Back button */}
         <Link
           href="/projects"
-          className="inline-flex items-center text-accent hover:text-primary font-medium mb-8 transition-colors"
+          className="inline-flex items-center text-cosmic-purple hover:text-cosmic-cyan font-medium mb-8 transition-colors"
         >
           <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -100,7 +101,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-accent hover:text-primary font-medium transition-colors"
+                    className="inline-flex items-center gap-2 text-cosmic-purple hover:text-cosmic-cyan font-medium transition-colors"
                   >
                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -109,6 +110,18 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   </a>
                 ))}
               </div>
+            </div>
+          )}
+
+          {/* Case Study Section */}
+          {project.caseStudy && (
+            <div className="mb-10">
+              <CaseStudyViewer
+                fileName={project.caseStudy.fileName}
+                title={project.caseStudy.title || `${project.title} Case Study`}
+                projectTitle={project.title}
+                fileSize={project.caseStudy.fileSize}
+              />
             </div>
           )}
         </div>

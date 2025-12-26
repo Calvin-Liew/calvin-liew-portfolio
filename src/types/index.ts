@@ -8,6 +8,12 @@ export interface ProjectLink {
   label?: string;
 }
 
+export interface CaseStudy {
+  fileName: string;
+  title?: string;
+  fileSize?: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -19,6 +25,7 @@ export interface Project {
   links?: ProjectLink[];
   image?: string;
   featured?: boolean;
+  caseStudy?: CaseStudy;
 }
 
 export interface Experience {
