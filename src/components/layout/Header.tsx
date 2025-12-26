@@ -21,7 +21,7 @@ export default function Header() {
       <Container>
         <nav className="flex items-center justify-between py-5" aria-label="Global">
           {/* Logo/Name */}
-          <div className="flex lg:flex-1">
+          <div className="flex lg:shrink-0">
             <Link
               href="/"
               className="text-base font-semibold text-foreground hover:text-secondary transition-colors"
@@ -53,7 +53,7 @@ export default function Header() {
           </div>
 
           {/* Desktop navigation */}
-          <div className="hidden lg:flex lg:gap-x-10">
+          <div className="hidden lg:flex lg:flex-1 lg:justify-center lg:gap-x-10">
             {navigation.map((item) => (
               <Link
                 key={item.name}
@@ -66,7 +66,7 @@ export default function Header() {
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden lg:flex lg:items-center">
+          <div className="hidden lg:flex lg:items-center lg:ml-8 lg:shrink-0">
             <Button
               href="mailto:calvin.liew@mail.utoronto.ca"
               variant="gradient"
