@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# large files (PDFs stored locally, not in git)
+/public/case-studies/*.pdf
