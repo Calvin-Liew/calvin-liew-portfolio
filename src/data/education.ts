@@ -7,7 +7,7 @@ export const education: Education = {
   dates: 'Sep 2022 - Aug 2026',
   gpa: '3.92/4.0',
   honors: [
-    'Sustained Dean\'s List (three consecutive years, 2022–2025)',
+    'Sustained Dean\'s List (three consecutive years, 2022-2025)',
     'BBA (Co-op) Program',
     'Specialist in Management & Information Technology',
     'Minor in Computer Science'
