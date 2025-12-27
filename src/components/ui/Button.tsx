@@ -10,6 +10,8 @@ interface ButtonProps {
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
   ariaLabel?: string;
+  target?: '_blank' | '_self';
+  rel?: string;
 }
 
 export default function Button({
@@ -20,7 +22,9 @@ export default function Button({
   className = '',
   onClick,
   type = 'button',
-  ariaLabel
+  ariaLabel,
+  target,
+  rel
 }: ButtonProps) {
   const baseClasses = 'inline-flex items-center justify-center rounded-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-foreground focus:ring-offset-2 focus:ring-offset-background';
 
@@ -39,6 +43,22 @@ export default function Button({
   const classes = `${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${className}`;
 
   if (href) {
+    const isExternal = href.startsWith('http') || href.startsWith('//');
+
+    if (isExternal) {
+      return (
+        <a
+          href={href}
+          className={classes}
+          aria-label={ariaLabel}
+          target={target}
+          rel={rel || (target === '_blank' ? 'noopener noreferrer' : undefined)}
+        >
+          {children}
+        </a>
+      );
+    }
+
     return (
       <Link href={href} className={classes} aria-label={ariaLabel}>
         {children}

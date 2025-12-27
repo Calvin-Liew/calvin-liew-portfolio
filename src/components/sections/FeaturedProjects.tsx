@@ -5,8 +5,10 @@ import Container from '../layout/Container';
 import Section from '../layout/Section';
 import Card from '../ui/Card';
 import Badge from '../ui/Badge';
+import MetaBadge from '../ui/MetaBadge';
 import Button from '../ui/Button';
 import AnimatedBackground from '../ui/AnimatedBackground';
+import { BookOpen, Building2, Calendar } from 'lucide-react';
 import { projects } from '@/data/projects';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
@@ -37,15 +39,23 @@ export default function FeaturedProjects() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
           {featuredProjects.map((project) => (
             <Link key={project.id} href={`/projects/${project.id}`}>
-              <Card className="h-full">
+              <Card className="h-full relative">
+                {/* Floating category badge - top right */}
+                <Badge variant="category" className="absolute top-4 right-4 z-10">
+                  {project.category}
+                </Badge>
+
                 <div className="mb-4">
-                  <Badge variant="category" className="mb-3">
-                    {project.category}
-                  </Badge>
                   <h3 className="text-xl font-semibold text-primary mb-2 line-clamp-2">
                     {project.title}
                   </h3>
-                  <p className="text-sm text-secondary mb-3">{project.organization} • {project.dates}</p>
+                  <div className="flex flex-wrap items-center gap-2 mb-3">
+                    {project.courseCode && (
+                      <MetaBadge icon={BookOpen} text={project.courseCode} truncate />
+                    )}
+                    <MetaBadge icon={Building2} text={project.organization} />
+                    <MetaBadge icon={Calendar} text={project.dates} />
+                  </div>
                 </div>
                 <p className="text-secondary line-clamp-3 mb-4">
                   {project.description}

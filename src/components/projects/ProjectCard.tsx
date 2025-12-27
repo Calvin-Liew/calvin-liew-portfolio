@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import Card from '../ui/Card';
 import Badge from '../ui/Badge';
+import MetaBadge from '../ui/MetaBadge';
+import { BookOpen, Building2, Calendar } from 'lucide-react';
 import { Project } from '@/types';
 
 interface ProjectCardProps {
@@ -10,17 +12,23 @@ interface ProjectCardProps {
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Link href={`/projects/${project.id}`} className="group">
-      <Card className="h-full flex flex-col">
+      <Card className="h-full flex flex-col relative">
+        {/* Floating category badge - top right */}
+        <Badge variant="category" className="absolute top-4 right-4 z-10">
+          {project.category}
+        </Badge>
+
         <div className="mb-4">
-          <Badge variant="category" className="mb-3">
-            {project.category}
-          </Badge>
           <h3 className="text-xl font-semibold text-primary mb-2 line-clamp-2 group-hover:bg-linear-to-r group-hover:from-cosmic-purple group-hover:to-cosmic-cyan group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
             {project.title}
           </h3>
-          <p className="text-sm text-secondary mb-3">
-            {project.organization} • {project.dates}
-          </p>
+          <div className="flex flex-wrap items-center gap-2 mb-3">
+            {project.courseCode && (
+              <MetaBadge icon={BookOpen} text={project.courseCode} truncate />
+            )}
+            <MetaBadge icon={Building2} text={project.organization} />
+            <MetaBadge icon={Calendar} text={project.dates} />
+          </div>
         </div>
 
         <p className="text-secondary line-clamp-4 mb-4 flex-grow">
