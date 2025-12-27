@@ -82,7 +82,7 @@ export default function Header() {
           {/* Desktop CTA */}
           <div className="hidden lg:flex lg:items-center lg:ml-8 lg:shrink-0">
             <Button
-              href="mailto:calvin.liew@mail.utoronto.ca"
+              href="/profile#contact"
               variant="gradient"
               size="sm"
             >

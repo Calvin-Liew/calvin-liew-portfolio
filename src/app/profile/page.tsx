@@ -140,7 +140,7 @@ export default function ProfilePage() {
         </div>
 
         {/* Contact Section */}
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto" id="contact">
           <div className="bg-surface rounded-lg p-8">
             <h2 className="text-3xl font-bold text-primary mb-6">
               Let's Connect
