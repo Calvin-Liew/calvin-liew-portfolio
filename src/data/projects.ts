@@ -687,8 +687,8 @@ export const projects: Project[] = [
     category: 'Product Management',
     dates: 'Oct 2023 - Oct 2023',
     organization: 'Hack The Valley 8',
-    description: 'Led the product design of Food ResQ, a web application developed during Hack The Valley 8 to combat local food waste. Led the business pitch which earned full marks for strategic vision, and designed entire UI/UX to ensure fast, accessible experience for both donors and recipients. Supported development process and managed backend planning to ensure technical architecture met core user needs. Bridged gap between business logic and technical execution, ensuring product was both feasible and impactful. Secured 6th place overall out of dozens of competing teams, demonstrating ability to build functional, high-stakes solution under intense time constraints.',
-    skills: ['User Interface Design', 'Project Management', 'Product Management', 'Software Design', 'Figma', 'User Experience (UX)', 'Large Language Models (LLM)', 'Generative AI', 'Hackathon'],
+    description: 'Led the product design and UI/UX for Food ResQ, an AI-powered fridge management app developed during Hack The Valley 8 to combat household food waste. Designed complete user experience for tracking fridge inventory via MongoDB database and generating flexible recipe recommendations using ChatGPT. Created intuitive interface for quickly adding ingredients (even unmeasured or unknown foods), built using React.js and Bootstrap frontend with Flask backend. Managed API integration with OpenAI for consistent recipe generation and wrote detailed prompts to retrieve formatted cooking instructions. Secured 6th place overall and won Best Use of MongoDB Atlas, demonstrating ability to deliver polished demo under 36-hour hackathon constraints.',
+    skills: ['React.js', 'Flask', 'MongoDB', 'OpenAI API', 'Prompt Engineering', 'UI/UX Design', 'Figma', 'Bootstrap', 'Product Management', 'Hackathon'],
     links: [
       {
         type: 'devpost',
@@ -703,8 +703,8 @@ export const projects: Project[] = [
     ],
     extendedContent: {
       overview: {
-        title: 'Fighting Food Waste Through AI and Community',
-        content: 'Food ResQ tackles the dual crisis of food waste and food insecurity by connecting restaurants, grocery stores, and individuals who have surplus food with community members who need it. Built in 36 hours during Hack The Valley 8, the platform combines AI-powered recipe recommendations with a simple food redistribution marketplace. Rather than letting perfectly good food go to waste, Food ResQ transforms surplus ingredients into meal opportunities through intelligent recipe suggestions, while simultaneously creating a bridge between those with excess food and those who could benefit from it. This project demonstrates how technology can address real social and environmental challenges with practical, scalable solutions.'
+        title: 'AI-Powered Recipe Recommendations to Reduce Food Waste',
+        content: 'Food ResQ uses a MongoDB database to track ingredients in your fridge and generates flexible, delicious recipes using ChatGPT to help you finish leftover food before it spoils. Built in 36 hours during Hack The Valley 8, the platform leverages AI to transform neglected ingredients (like half a carrot, half an onion, or a quarter pound of ground pork) into creative meal ideas. The app excels at handling unknown foods and ingredients you\'re too lazy to measure precisely, using LLM flexibility to generate practical recipes with step-by-step instructions. Users can input their fridge contents, and the AI recommends recipes that prioritize ingredients closer to expiry, ensuring nothing goes to waste. This project demonstrates how combining databases, AI APIs, and thoughtful UX design can solve real household sustainability challenges.'
       },
       motivation: {
         title: 'From Personal Frustration to Solution',
@@ -712,52 +712,60 @@ export const projects: Project[] = [
       },
       features: [
         {
-          title: 'Two-Sided Marketplace',
-          description: 'Donors (restaurants, grocery stores, individuals) can quickly list surplus food with photos, descriptions, quantities, and pickup details. Recipients browse available food by location, dietary preferences, and urgency. The platform handles matching, notifications, and pickup coordination, removing logistical barriers that typically prevent food redistribution. Simple posting flow designed for speed, critical for time-sensitive surplus food.',
-          insight: 'Designed for ease and speed because surplus food has a short window before it spoils. The simpler the posting process, the more likely busy restaurant staff or individuals will use it instead of defaulting to throwing food away.'
+          title: 'Fridge Inventory Database',
+          description: 'MongoDB database stores user fridge contents with flexible schema supporting varied ingredient types, quantities, and expiry dates. Users can quickly add ingredients without precise measurements ("half a carrot", "some ground pork") or even unknown foods. The database tracks what\'s in your fridge over time, providing the foundation for smart recipe recommendations.',
+          insight: 'Built with flexibility in mind because home cooking is messy. Users don\'t want to weigh every ingredient or look up exact names. The loose schema accommodates real-world fridge chaos while still enabling intelligent recipe matching.'
         },
         {
-          title: 'AI Recipe Recommendations',
-          description: 'Users input ingredients they have at home, and the LLM-powered system generates creative recipes to use those ingredients before they expire. The AI considers dietary restrictions, cuisine preferences, cooking skill level, and available kitchen equipment. Recipes include step-by-step instructions, cooking times, and substitution suggestions for missing ingredients.',
-          insight: 'Addresses waste prevention at the source: households. By helping people cook with what they already have, the platform reduces grocery overpurchasing and ingredient spoilage, tackling food waste upstream before it becomes surplus.'
+          title: 'ChatGPT-Powered Recipe Generation',
+          description: 'OpenAI API integration generates creative, practical recipes using whatever ingredients you have on hand. Detailed prompt engineering ensures recipes include step-by-step instructions, cooking times, and substitution suggestions. The AI handles inconsistent ingredient data gracefully, turning "half an onion" and "quarter pound pork" into delicious meal ideas.',
+          insight: 'LLM flexibility is the killer feature. Traditional recipe databases require exact ingredient matches, but ChatGPT improvises brilliantly with partial ingredients, unknown quantities, and unusual combinations. This makes the app genuinely useful for real kitchens.'
         },
         {
-          title: 'Location-Based Discovery',
-          description: 'Map interface shows nearby available food, reducing transportation barriers and ensuring recipients can easily access surplus donations. Filters by pickup times, food categories (produce, prepared meals, pantry items), and dietary needs (vegetarian, gluten-free, etc.). Real-time availability updates prevent wasted trips for already-claimed food.',
-          insight: 'Geographic proximity is critical for food redistribution. People won\'t travel across the city for a bag of vegetables. Local matching increases utilization rates and makes the platform practical for everyday use, not just special occasions.'
+          title: 'Expiry Priority Algorithm',
+          description: 'Smart recommendation system prioritizes ingredients closer to expiry, ensuring older food gets used first. When generating recipes, the AI receives expiry context and weights suggestions toward ingredients about to spoil. Future feature: automated notifications reminding users to cook specific ingredients before they go bad.',
+          insight: 'Prevents the "out of sight, out of mind" problem. Users forget what\'s buried in their fridge, but the app remembers and actively suggests recipes before ingredients spoil. This proactive approach drives higher engagement and real waste reduction.'
         },
         {
-          title: 'Fast, Accessible UI/UX',
-          description: 'Minimal friction interface designed for quick posting and browsing. Large touch targets for mobile use, clear calls-to-action, photo-first listings (people want to see the food), and one-tap claiming process. Accessibility considerations include high contrast, readable fonts, and screen reader compatibility to ensure the platform serves diverse communities.',
-          insight: 'In a hackathon, every design decision must justify itself. Prioritized speed and clarity over feature richness because food redistribution needs to be faster than throwing food away. If the UI adds friction, the behavior change won\'t stick.'
+          title: 'Receipt Scanning Vision (Planned)',
+          description: 'Planned feature to automatically add ingredients via receipt scanning, eliminating manual data entry. Users snap a photo of their grocery receipt, and computer vision extracts item names and quantities to populate the fridge database. Makes onboarding frictionless and encourages consistent inventory tracking.',
+          insight: 'Manual ingredient entry is the biggest friction point. Receipt scanning removes this barrier entirely, making the app as easy as "take a photo after shopping." Planned for next iteration to drive adoption and daily usage.'
         },
         {
-          title: 'Business Pitch Strategy',
-          description: 'Earned full marks for strategic vision by framing Food ResQ as both environmental solution (reducing landfill methane emissions) and social impact tool (addressing food insecurity). Business model outlined freemium approach: free for individuals and small donors, premium features for large organizations (analytics, bulk posting, tax receipt generation). Emphasized scalability through partnerships with food banks and municipal waste programs.',
-          insight: 'Technical execution matters, but hackathon judges evaluate viability and impact. The pitch connected Food ResQ to existing infrastructure (food banks, waste reduction targets) and demonstrated clear paths to sustainability beyond the prototype phase.'
+          title: 'React + Flask Architecture',
+          description: 'Clean separation between React.js/Bootstrap frontend and Flask Python backend. Frontend handles user interactions and recipe display, while backend manages MongoDB operations, OpenAI API calls, and prompt engineering. Professional dev-ops practices with Kanban board planning and detailed API documentation prevented refactor headaches during the 36-hour sprint.',
+          insight: 'Good architecture saved the hackathon. After an initial database schema mistake, the modular design allowed complete refactor without breaking everything. Documented APIs and clear separation of concerns meant the team could parallelize work efficiently.'
         }
       ],
       tools: [
         {
+          name: 'React.js & Bootstrap',
+          purpose: 'Built responsive frontend with modern component architecture. React handled state management for fridge inventory and recipe display, while Bootstrap provided mobile-friendly styling and UI components. Team had to relearn React during the hackathon, making solid component design critical for staying on schedule.'
+        },
+        {
+          name: 'Flask (Python Backend)',
+          purpose: 'Python Flask server managed API routes, MongoDB database operations, and OpenAI integration. Chose Flask for rapid prototyping speed and Python\'s excellent library ecosystem for data handling. Backend refactor mid-hackathon tested Flask\'s flexibility and modular design principles.'
+        },
+        {
+          name: 'MongoDB Atlas',
+          purpose: 'NoSQL database stored user fridge inventories with flexible schema supporting varied ingredient formats. Won "Best Use of MongoDB Atlas" prize for demonstrating how document database flexibility enables real-world messy data (unmeasured quantities, unknown foods, partial ingredients) without rigid schemas.'
+        },
+        {
+          name: 'OpenAI API (ChatGPT)',
+          purpose: 'Core feature powering recipe generation. Engineered detailed prompts to retrieve formatted recipe data including ingredients, steps, cooking times, and substitutions. Learned nuances of writing prompts for consistent LLM outputs and handling API inconsistency challenges during testing.'
+        },
+        {
           name: 'Figma',
-          purpose: 'Designed complete web application UI including donor posting flow, recipient browsing interface, map-based discovery, AI recipe generator, and user profile/history. Created rapid mockups to align team on vision before development started, crucial for 36-hour timeline.'
+          purpose: 'Designed complete UI/UX for fridge inventory management, ingredient addition flow, and recipe recommendation display. Created high-fidelity mockups to align team vision before development, preventing feature creep and ensuring focused 36-hour execution.'
         },
         {
-          name: 'Large Language Models',
-          purpose: 'Integrated LLM API for intelligent recipe generation based on user-provided ingredients. Engineered prompts to produce practical, culturally diverse recipes with clear instructions. Handled edge cases like incomplete ingredient lists and dietary restrictions through prompt design.'
-        },
-        {
-          name: 'Product Management',
-          purpose: 'Prioritized feature development under extreme time constraints. Made strategic cuts (removed chat feature, simplified user verification) to ensure core value proposition shipped. Coordinated between design, frontend, and backend to maintain progress and resolve blockers.'
-        },
-        {
-          name: 'Hackathon Strategy',
-          purpose: 'Led team through iterative build-pitch-refine cycle. Allocated time for polished demo video and presentation rehearsal despite tight deadline. Focused storytelling on impact metrics (food waste statistics, social equity) to connect emotionally with judges beyond technical implementation.'
+          name: 'Kanban Board & Documentation',
+          purpose: 'Professional dev-ops practices with task planning board and detailed API documentation. After initial database schema failure, the team stopped, documented everything, and planned properly. This saved countless hours debugging and enabled efficient parallel development.'
         }
       ],
       impact: {
-        title: 'Competition Success and Real-World Potential',
-        content: 'Food ResQ secured 6th place overall out of dozens of competing teams at Hack The Valley 8, one of Canada\'s largest university hackathons. This placement validated both the technical execution and the social impact potential of the concept. Judges specifically praised the dual-solution approach (addressing food waste through both redistribution and recipe AI) and the clarity of the business model for long-term sustainability.\n\nFrom a learning perspective, Food ResQ taught critical lessons about building under pressure, ruthless feature prioritization, and the importance of storytelling in product presentations. The hackathon environment forced decisions about what truly matters. We couldn\'t build everything, so we built what demonstrated value fastest. The project reinforced that successful products solve real problems simply, and that technical sophistication matters less than user impact. The AI recipe feature could have been far more complex, but a simple, working version that genuinely helped users beat a sophisticated prototype that never shipped.\n\nThis project directly applies to product management and startup environments where speed, resourcefulness, and strategic thinking under constraints are essential. Food ResQ demonstrates the ability to identify meaningful problems, rapidly prototype solutions, coordinate cross-functional teams, and pitch value propositions persuasively (all core competencies for building products that matter). The food waste domain also showcases understanding of social impact technology, where product decisions must balance business viability with genuine community benefit.'
+        title: 'Hackathon Success and Technical Learnings',
+        content: 'Food ResQ secured 6th place overall at Hack The Valley 8 and won Best Use of MongoDB Atlas for demonstrating how NoSQL flexibility handles real-world messy data. The judges praised our polished demo, professional presentation, and practical approach to household sustainability. Submitting for Best AI Hack and Best Sustainability Hack themes positioned the project at the intersection of emerging technology and environmental impact.\n\nFrom a technical perspective, Food ResQ taught critical lessons about good API design and planning. We messed up our database schema early on, requiring a complete refactor mid-hackathon. This failure forced the team to drop immediate work, think through solutions together, and document everything properly. The experience reinforced that upfront planning saves massive headaches during implementation. We also learned the nuances of CORS technology when connecting frontend to backend, and discovered how to write detailed prompts for retrieving consistently formatted data from LLMs despite API inconsistency challenges.\n\nThe team\'s professional dev-ops practices made the difference. Our Kanban board saved hours during task planning and implementation. After the initial failure, we documented APIs thoroughly and maintained clear separation between React frontend and Flask backend, allowing parallel development without stepping on each other\'s toes. The accomplishment we\'re most proud of: we finished a stunning demo that actually works. Future plans include receipt scanning for automatic ingredient entry, expiry-based notifications, and freemium monetization with premium LLM access for less than a coffee per month. This project demonstrates ability to rapidly prototype AI-powered solutions, recover from technical setbacks, and deliver polished products under extreme time constraints.'
       }
     },
     featured: false
