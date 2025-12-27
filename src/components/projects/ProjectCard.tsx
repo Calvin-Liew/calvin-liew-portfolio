@@ -20,10 +20,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </Badge>
 
         <div className="mb-4">
-          <h3 className="text-xl font-semibold text-primary mb-2 line-clamp-2 group-hover:bg-linear-to-r group-hover:from-cosmic-purple group-hover:to-cosmic-cyan group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+          <h3 className="text-xl font-semibold text-primary mb-2 line-clamp-2 pr-28 group-hover:bg-linear-to-r group-hover:from-cosmic-purple group-hover:to-cosmic-cyan group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
             {project.title}
           </h3>
-          <div className="flex flex-wrap items-center gap-1.5 mb-3">
+          <div className="flex flex-wrap items-center gap-2 mb-3">
             {project.courseCode && (() => {
               const { code, fullName } = abbreviateCourseCode(project.courseCode);
               return (
@@ -40,11 +40,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               text={project.organization}
               variant="compact"
             />
-            <MetaBadge
-              icon={Calendar}
-              text={project.dates}
-              variant="compact"
-            />
+            <div className="flex items-center gap-1.5 text-xs text-secondary">
+              <Calendar className="w-3 h-3" aria-hidden="true" />
+              <span>{project.dates}</span>
+            </div>
           </div>
         </div>
 

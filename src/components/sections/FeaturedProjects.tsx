@@ -47,10 +47,10 @@ export default function FeaturedProjects() {
                 </Badge>
 
                 <div className="mb-4">
-                  <h3 className="text-xl font-semibold text-primary mb-2 line-clamp-2">
+                  <h3 className="text-xl font-semibold text-primary mb-2 line-clamp-2 pr-28">
                     {project.title}
                   </h3>
-                  <div className="flex flex-wrap items-center gap-1.5 mb-3">
+                  <div className="flex flex-wrap items-center gap-2 mb-3">
                     {project.courseCode && (() => {
                       const { code, fullName } = abbreviateCourseCode(project.courseCode);
                       return (
@@ -67,11 +67,10 @@ export default function FeaturedProjects() {
                       text={project.organization}
                       variant="compact"
                     />
-                    <MetaBadge
-                      icon={Calendar}
-                      text={project.dates}
-                      variant="compact"
-                    />
+                    <div className="flex items-center gap-1.5 text-xs text-secondary">
+                      <Calendar className="w-3 h-3" aria-hidden="true" />
+                      <span>{project.dates}</span>
+                    </div>
                   </div>
                 </div>
                 <p className="text-secondary line-clamp-3 mb-4">
