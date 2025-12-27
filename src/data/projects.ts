@@ -683,7 +683,7 @@ export const projects: Project[] = [
   },
   {
     id: 'food-resq',
-    title: 'Food ResQ: Connecting Food with Communities',
+    title: 'Food ResQ: Smart Recipes from Fridge Scraps',
     category: 'Product Management',
     dates: 'Oct 2023 - Oct 2023',
     organization: 'Hack The Valley 8',
