@@ -56,7 +56,7 @@ export default function FeaturedProjects() {
                 </time>
 
                 <div className="mb-4 pt-6">
-                  <h3 className="text-xl font-semibold text-primary mb-2 line-clamp-2 pr-28">
+                  <h3 className="text-xl font-semibold text-primary mb-2 line-clamp-3 pr-28">
                     {project.title}
                   </h3>
                   <div className="flex flex-wrap items-center gap-2 mb-3">
