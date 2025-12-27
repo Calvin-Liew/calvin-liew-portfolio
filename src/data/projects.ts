@@ -370,7 +370,7 @@ export const projects: Project[] = [
       ],
       tools: [
         {
-          name: 'CBBE (Customer-Based Brand Equity) Framework',
+          name: 'CBBE Framework',
           purpose: 'Applied Keller\'s pyramid to build awareness, meaning, judgments, feelings, and engagement. Used to guide decisions on brand salience (making career clusters visible), brand performance (functional guidance), brand imagery (associations with mentorship and support), and brand resonance (driving return visits and deeper exploration).'
         },
         {
@@ -382,11 +382,11 @@ export const projects: Project[] = [
           purpose: 'Analyzed search costs, cognitive load, and information processing barriers to redesign the user journey. Integrated visual feedback with natural language queries to reduce effort, support different learning styles, and make career exploration feel manageable rather than overwhelming.'
         },
         {
-          name: 'Figma & Interactive Prototyping',
+          name: 'Figma Prototyping',
           purpose: 'Designed complete interface system including homepage banner, pathways explorer, chatbot integration, and Tempo mascot. Created high-fidelity prototype demonstrating animated interactions, visual hierarchy, and typographic emphasis to strengthen brand salience and emotional resonance.'
         },
         {
-          name: 'AI-Assisted Illustration (Tempo Mascot)',
+          name: 'AI Illustration (Tempo)',
           purpose: 'Used iterative AI prompting to develop Tempo character through multiple rounds: exploring metronome shapes and LED expressions, aligning with U of T color palette (deep teal blue, crimson accents), refining glow animation, and polishing final design for clarity at all sizes.'
         },
         {
