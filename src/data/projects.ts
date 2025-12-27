@@ -289,7 +289,7 @@ export const projects: Project[] = [
   },
   {
     id: 'music-pathways-redesign',
-    title: 'The Music Pathways Product Redesign',
+    title: 'Music Pathways: Transforming Career Discovery Through Brand Strategy',
     category: 'UI/UX Design',
     dates: 'Nov 2025 - Nov 2025',
     organization: 'University of Toronto',
