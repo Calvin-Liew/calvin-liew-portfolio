@@ -413,8 +413,100 @@ export const projects: Project[] = [
         type: 'live',
         url: 'https://calvin-liew.github.io/a4-sleep-analytics/',
         label: "The Night Shift: Why Your Job Doesn't Define Your Sleep"
+      },
+      {
+        type: 'github',
+        url: 'https://github.com/Calvin-Liew/a4-sleep-analytics',
+        label: 'View Source Code on GitHub'
       }
     ],
+    extendedContent: {
+      overview: {
+        title: 'Why Your Job Doesn\'t Define Your Sleep',
+        content: 'Every night, millions of us close our eyes hoping for rest, yet sleep remains frustratingly out of reach for so many. What determines whether we wake refreshed or exhausted? This story explores three powerful forces shaping our sleep. First, we examine how our careers and the stress they bring follow us into our bedrooms. Then, we trace the surprising pathways between our daily movement and the quality of our dreams. Finally, we dive into the intimate relationship between our bodies, our beating hearts, and the disorders that steal our sleep. Together, these perspectives reveal a fundamental truth: your job title does not define your sleep quality. Individual lifestyle choices, physical activity, and health factors matter far more than your profession when it comes to rest.'
+      },
+      datasets: [
+        {
+          name: 'Sleep Health Dataset',
+          description: 'Real-world data capturing the lived experiences of individuals across diverse professions, including sleep duration, stress levels, physical activity, BMI categories, heart rate measurements, and sleep disorder classifications.',
+          records: '374 individuals'
+        }
+      ],
+      methodology: {
+        title: 'Three-Chapter Visual Story',
+        steps: [
+          {
+            phase: 'Chapter I: The Dataset',
+            description: 'Established the scope of investigation with 374 people studied across 11 occupations. Calculated key statistics: 7.1h average sleep, 5.4 average stress level, sleep range of 5.8h to 8.5h, and stress range of 3 to 8. Provided foundational context for understanding data patterns before diving into specific analyses.'
+          },
+          {
+            phase: 'Chapter II: Jobs & Stress (Bubble Landscape)',
+            description: 'Built interactive bubble chart plotting sleep duration (x-axis) vs stress levels (y-axis) for each occupation. Bubble size represents number of people, color indicates stress intensity (blue = calm, gray = neutral, orange = tense). Enabled hover and click interactions to reveal individual experiences within professions, demonstrating within-profession variance.'
+          },
+          {
+            phase: 'Chapter III: The Flow of Activity to Rest (Sankey Diagram)',
+            description: 'Created Sankey diagram showing flows from physical activity levels (Low, Medium, High) to sleep quality outcomes (Poor 5-6h, Average 7h, Good 8-10h). Flow width represents number of people following each path. Revealed that 54.9% of high activity individuals achieve good sleep vs 22.7% of low activity individuals.'
+          },
+          {
+            phase: 'Chapter IV: The Dream Lab',
+            description: 'Engineered interactive physiological mapping tool exploring relationships between BMI categories, heart rate, and sleep disorders. Each dot represents an individual, pulsing in sync with their resting heart rate (64-86 bpm range). Included filters for sleep disorder types, heart rate range, BMI categories, plus animation controls for speed, heartbeat pulse, motion trails, constellations, density aura, and deep sleep mode.'
+          }
+        ]
+      },
+      keyFindings: [
+        {
+          title: 'The Individual Matters Most',
+          description: 'Your profession does not define your sleep. The bubble chart shows that Nurse spans from 5.9 to 8.2 hours of sleep despite being the same profession—a 2.3 hour span with stress levels varying 5.0 points (3.0 to 8.0). The Sankey diagram reveals that even high activity flows to multiple sleep outcomes. The Dream Lab demonstrates that BMI categories cannot predict individual disorders. Focus on personal lifestyle choices over workplace labels.'
+        },
+        {
+          title: 'Physical Activity Creates Pathways to Better Sleep',
+          description: 'The Sankey diagram reveals a strong connection between movement and rest. High activity individuals achieve good sleep quality 54.9% of the time (39 out of 71 people), compared to just 22.7% for those with low activity (34 out of 150 people). This 32.2 percentage point difference demonstrates that regular physical activity creates measurable pathways to better sleep quality regardless of profession.'
+        },
+        {
+          title: 'Heart Rate and BMI Predict Sleep Disorders',
+          description: 'The Dream Lab reveals that most people with no sleep disorder sit in Normal BMI with lowest heart rates (68-70 bpm). Insomnia spreads across Normal and Overweight with 3-5 bpm higher rates. Sleep apnea clusters in Obese BMI with highest heart rates—often 10+ bpm above the none group. Heart rate rises with BMI, but disorder status is the stronger separator, creating a practical screening flag.'
+        }
+      ],
+      visualizations: [
+        {
+          title: 'Bubble Landscape (Jobs & Stress)',
+          description: 'Interactive scatter plot with sleep duration on x-axis (5.8-8.6h) and stress level on y-axis (3.0-8.0). Each occupation represented as a bubble where size = number of people and color = stress intensity (blue to orange gradient). Includes hover tooltips and click interactions to reveal individual data points within professions.',
+          insight: 'Demonstrated within-profession variation is substantial: Nurse (73 people) shows 2.3h sleep span and 5.0 point stress span, proving the same job title can span from restful to high-stress zones based on individual circumstances.'
+        },
+        {
+          title: 'Activity-to-Sleep Sankey Diagram',
+          description: 'Flow diagram connecting three activity levels (Low: 150 people, Medium: 153 people, High: 71 people) to three sleep quality buckets (Poor 5-6h: 117 people, Average 7h: 77 people, Good 8-10h: 180 people). Flow width visually represents the number of people following each pathway from activity to sleep outcome.',
+          insight: 'High activity individuals show 54.9% good sleep rate vs 22.7% for low activity—a clear visual demonstration that movement creates stronger pathways to quality rest.'
+        },
+        {
+          title: 'The Dream Lab (Physiological Mapping)',
+          description: 'Animated scatter plot with BMI categories (Normal, Overweight, Obese) on x-axis and heart rate (64-86 bpm) on y-axis. Each dot represents an individual and pulses at their resting heart rate speed. Color-coded by sleep disorder: None (blue), Insomnia (orange), Sleep Apnea (red). Interactive filters and animation controls (speed, pulse, trails, constellations, density aura, deep sleep mode).',
+          insight: 'Sleep apnea dominated the high BMI + high heart rate corner (Obese + 10+ bpm above baseline), creating a practical screening flag that body composition and cardiovascular health strongly correlate with sleep disorder risk.'
+        }
+      ],
+      tools: [
+        {
+          name: 'D3.js',
+          purpose: 'Built all three interactive visualizations: bubble chart with dynamic sizing and color encoding, Sankey diagram with flowing pathways, and animated physiological scatter plot with pulsing heartbeat effects synchronized to individual resting heart rates.'
+        },
+        {
+          name: 'JavaScript',
+          purpose: 'Implemented interaction logic for hover tooltips, click events to drill down into occupation data, filter controls for Dream Lab (sleep disorder, heart rate range, BMI), and animation toggles for visual effects (motion trails, constellations, density aura).'
+        },
+        {
+          name: 'Statistical Analysis',
+          purpose: 'Calculated key metrics: average sleep (7.1h), average stress (5.4), within-profession variance (Nurse: 2.3h sleep span, 5.0 stress span), activity-to-sleep flow percentages (54.9% high activity → good sleep vs 22.7% low activity), and heart rate differences across BMI and disorder groups.'
+        },
+        {
+          name: 'GitHub Pages',
+          purpose: 'Deployed interactive three-chapter data story to calvin-liew.github.io/a4-sleep-analytics for live demonstration. Configured static hosting for D3.js visualizations with smooth animations and responsive interactions across devices.'
+        }
+      ],
+      impact: {
+        title: 'Three Truths from the Data',
+        content: 'When we examine the patterns across all three perspectives—profession, activity flow, and physiological health—three distinct narratives emerge that reveal the hidden forces shaping our sleep.\n\n01 • The Individual Matters Most: Your profession does not define your sleep. The bubble chart shows that Nurse spans from 5.9 to 8.2 hours despite being the same profession. Focus on personal lifestyle choices over workplace labels. Individual habits matter more than job titles.\n\n02 • The Body Tells the Story: Physical activity directly improves sleep quality. The Sankey diagram shows high activity creates stronger pathways to good sleep (54.9% vs 22.7%). The Dream Lab reveals how heart rate and body composition correlate with sleep disorders. Increase daily movement, manage weight, and monitor cardiovascular health for measurable sleep improvements.\n\n03 • The Path Forward: Take control through evidence-based choices. Start with small changes: walk more each day, prioritize stress management, and consult healthcare providers about sleep conditions. The data shows these actions create real differences regardless of profession. Behind every bubble, every flow, and every pulse lies a real person navigating the universal challenge of finding rest in a restless world.'
+      }
+    },
     featured: true
   },
   {
