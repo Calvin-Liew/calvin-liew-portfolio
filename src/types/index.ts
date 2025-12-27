@@ -65,6 +65,7 @@ export interface ExtendedContent {
   methodology?: Methodology;
   keyFindings?: KeyFinding[];
   visualizations?: Visualization[];
+  features?: Visualization[];
   tools?: Tool[];
   impact?: ContentSection;
 }

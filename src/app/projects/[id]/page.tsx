@@ -199,6 +199,27 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 </div>
               )}
 
+              {/* Features Section */}
+              {project.extendedContent.features && project.extendedContent.features.length > 0 && (
+                <div>
+                  <h2 className="text-2xl font-semibold text-primary mb-6">Key Features</h2>
+                  <div className="space-y-4">
+                    {project.extendedContent.features.map((feature, index) => (
+                      <div key={index} className="p-5 rounded-lg bg-gradient-to-br from-cosmic-purple/5 to-cosmic-cyan/5 border border-cosmic-purple/20">
+                        <h3 className="font-semibold text-primary mb-2">{feature.title}</h3>
+                        <p className="text-sm text-secondary leading-relaxed mb-2">{feature.description}</p>
+                        <div className="flex items-start gap-2 text-xs">
+                          <svg className="w-4 h-4 text-cosmic-purple flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          <span className="text-cosmic-purple font-medium">{feature.insight}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* Visualizations Section */}
               {project.extendedContent.visualizations && project.extendedContent.visualizations.length > 0 && (
                 <div>

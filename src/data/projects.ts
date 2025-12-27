@@ -179,15 +179,20 @@ export const projects: Project[] = [
     title: 'Google Drive Companion: Transitioning Storage from Passive to Proactive',
     category: 'Product Management',
     dates: 'Sep 2025 - Nov 2025',
-    organization: 'University of Toronto Scarborough',
+    organization: 'University of Toronto',
     courseCode: 'MGMC11H3 - Product Management and Branding',
-    description: 'Led the product strategy and high-fidelity prototype for Google Drive Companion, an AI-driven extension designed to transform Google Drive from a reactive storage solution into a proactive intelligence platform. Applied Product Management frameworks like VRIN analysis and Resource-Based View to justify in-house development. Engineered a context-aware design system featuring "Welcome Dashboard" and "Panel Preview" UI. Designed high-impact features like the Syllabus-to-Schedule Pack using NLP to parse course outlines and auto-populate Google Calendar. Built proactive logic including Risk and Deadline Alerts to create an automated "Work Rhythm Optimizer".',
+    description: 'Designed Google Drive Companion, an AI-powered productivity assistant that transforms Google Drive from passive storage into a proactive intelligence platform. Built intelligent features including automated Syllabus-to-Schedule parsing (converts course outlines to Google Calendar), Smart Reading Packs (condenses PDFs into summaries and flashcards), and AI Meeting Chief of Staff (auto-captures decisions and action items). Conducted user research with 100+ students and professionals, revealing that emotional benefits (reduced anxiety, increased confidence) drive 70% more adoption than time-saving alone. Created dual-persona design system serving both academic and workplace users, addressing the $65.94B AI productivity market gap where competitors require manual file uploads while Companion seamlessly integrates within the Drive ecosystem.',
     skills: ['Product Management', 'Product Design', 'Prototyping', 'Agentic Design', 'Agents', 'User Interface Design', 'Rapid Prototyping', 'Large Language Models (LLM)'],
     links: [
       {
         type: 'demo',
         url: 'https://mgmc11-google-drive-companion-demo.netlify.app/',
         label: 'Drive Companion Demo'
+      },
+      {
+        type: 'github',
+        url: 'https://github.com/Calvin-Liew/mgmc11-google-companion-prototype',
+        label: 'View Prototype Repository'
       }
     ],
     featured: true,
@@ -218,7 +223,7 @@ export const projects: Project[] = [
           description: 'Comparative analysis showed users prefer fewer, deeply integrated features over extensive standalone tools. ChatGPT and Notion offer powerful capabilities but require manual setup and ongoing maintenance. Companion\'s value proposition—automatically processing Drive files without uploads, syncing with Calendar, and surfacing insights within existing workflows—tested significantly higher in desirability scores. Users want intelligence that adapts to their existing habits rather than requiring behavior change.'
         }
       ],
-      visualizations: [
+      features: [
         {
           title: 'Syllabus-to-Schedule Pack',
           description: 'Automatically processes course syllabi to generate weekly folder structures, populate Google Calendar with all deadlines, and create structured to-do lists organized by week. When instructors change assignment dates, Companion dynamically adjusts the entire schedule and alerts the student.',
