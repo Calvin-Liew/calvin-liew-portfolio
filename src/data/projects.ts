@@ -192,7 +192,7 @@ export const projects: Project[] = [
       {
         type: 'github',
         url: 'https://github.com/Calvin-Liew/mgmc11-google-companion-prototype',
-        label: 'View Prototype Repository'
+        label: 'View Source Code on GitHub'
       }
     ],
     featured: true,
