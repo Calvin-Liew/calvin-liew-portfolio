@@ -693,14 +693,73 @@ export const projects: Project[] = [
       {
         type: 'devpost',
         url: 'https://devpost.com/software/food-resq',
-        label: 'Food ResQ: AI Recommended Recipes To Reduce Food Waste'
+        label: 'View Devpost Submission'
       },
       {
         type: 'demo',
         url: 'https://www.youtube.com/watch?v=W53-djMHqHI',
-        label: 'Food ResQ Demo for Hack the Valley 8'
+        label: 'Watch Demo Video'
       }
     ],
+    extendedContent: {
+      overview: {
+        title: 'Fighting Food Waste Through AI and Community',
+        content: 'Food ResQ tackles the dual crisis of food waste and food insecurity by connecting restaurants, grocery stores, and individuals who have surplus food with community members who need it. Built in 36 hours during Hack The Valley 8, the platform combines AI-powered recipe recommendations with a simple food redistribution marketplace. Rather than letting perfectly good food go to waste, Food ResQ transforms surplus ingredients into meal opportunities through intelligent recipe suggestions, while simultaneously creating a bridge between those with excess food and those who could benefit from it. This project demonstrates how technology can address real social and environmental challenges with practical, scalable solutions.'
+      },
+      motivation: {
+        title: 'Why Food Waste Matters',
+        content: 'In Canada alone, over 58% of food produced is lost or wasted—that\'s 35.5 million tonnes annually, worth $49 billion. Meanwhile, 1 in 7 Canadians experiences food insecurity. This paradox inspired Food ResQ: what if we could connect surplus food with people who need it before it reaches the landfill? Hackathons demand solving real problems fast, and food waste is both urgent and solvable through technology. By building a platform that makes redistribution as easy as posting on social media, Food ResQ removes the friction that prevents individuals and businesses from donating excess food. The AI recipe feature adds a second solution path—helping people use ingredients they already have before they spoil, reducing waste at the household level.'
+      },
+      features: [
+        {
+          title: 'Two-Sided Marketplace',
+          description: 'Donors (restaurants, grocery stores, individuals) can quickly list surplus food with photos, descriptions, quantities, and pickup details. Recipients browse available food by location, dietary preferences, and urgency. The platform handles matching, notifications, and pickup coordination, removing logistical barriers that typically prevent food redistribution. Simple posting flow designed for speed—critical for time-sensitive surplus food.',
+          insight: 'Designed for ease and speed because surplus food has a short window before it spoils. The simpler the posting process, the more likely busy restaurant staff or individuals will use it instead of defaulting to throwing food away.'
+        },
+        {
+          title: 'AI Recipe Recommendations',
+          description: 'Users input ingredients they have at home, and the LLM-powered system generates creative recipes to use those ingredients before they expire. The AI considers dietary restrictions, cuisine preferences, cooking skill level, and available kitchen equipment. Recipes include step-by-step instructions, cooking times, and substitution suggestions for missing ingredients.',
+          insight: 'Addresses waste prevention at the source—households. By helping people cook with what they already have, the platform reduces grocery overpurchasing and ingredient spoilage, tackling food waste upstream before it becomes surplus.'
+        },
+        {
+          title: 'Location-Based Discovery',
+          description: 'Map interface shows nearby available food, reducing transportation barriers and ensuring recipients can easily access surplus donations. Filters by pickup times, food categories (produce, prepared meals, pantry items), and dietary needs (vegetarian, gluten-free, etc.). Real-time availability updates prevent wasted trips for already-claimed food.',
+          insight: 'Geographic proximity is critical for food redistribution—people won\'t travel across the city for a bag of vegetables. Local matching increases utilization rates and makes the platform practical for everyday use, not just special occasions.'
+        },
+        {
+          title: 'Fast, Accessible UI/UX',
+          description: 'Minimal friction interface designed for quick posting and browsing. Large touch targets for mobile use, clear calls-to-action, photo-first listings (people want to see the food), and one-tap claiming process. Accessibility considerations include high contrast, readable fonts, and screen reader compatibility to ensure the platform serves diverse communities.',
+          insight: 'In a hackathon, every design decision must justify itself. Prioritized speed and clarity over feature richness because food redistribution needs to be faster than throwing food away. If the UI adds friction, the behavior change won\'t stick.'
+        },
+        {
+          title: 'Business Pitch Strategy',
+          description: 'Earned full marks for strategic vision by framing Food ResQ as both environmental solution (reducing landfill methane emissions) and social impact tool (addressing food insecurity). Business model outlined freemium approach: free for individuals and small donors, premium features for large organizations (analytics, bulk posting, tax receipt generation). Emphasized scalability through partnerships with food banks and municipal waste programs.',
+          insight: 'Technical execution matters, but hackathon judges evaluate viability and impact. The pitch connected Food ResQ to existing infrastructure (food banks, waste reduction targets) and demonstrated clear paths to sustainability beyond the prototype phase.'
+        }
+      ],
+      tools: [
+        {
+          name: 'Figma',
+          purpose: 'Designed complete web application UI including donor posting flow, recipient browsing interface, map-based discovery, AI recipe generator, and user profile/history. Created rapid mockups to align team on vision before development started, crucial for 36-hour timeline.'
+        },
+        {
+          name: 'Large Language Models',
+          purpose: 'Integrated LLM API for intelligent recipe generation based on user-provided ingredients. Engineered prompts to produce practical, culturally diverse recipes with clear instructions. Handled edge cases like incomplete ingredient lists and dietary restrictions through prompt design.'
+        },
+        {
+          name: 'Product Management',
+          purpose: 'Prioritized feature development under extreme time constraints. Made strategic cuts (removed chat feature, simplified user verification) to ensure core value proposition shipped. Coordinated between design, frontend, and backend to maintain progress and resolve blockers.'
+        },
+        {
+          name: 'Hackathon Strategy',
+          purpose: 'Led team through iterative build-pitch-refine cycle. Allocated time for polished demo video and presentation rehearsal despite tight deadline. Focused storytelling on impact metrics (food waste statistics, social equity) to connect emotionally with judges beyond technical implementation.'
+        }
+      ],
+      impact: {
+        title: 'Competition Success and Real-World Potential',
+        content: 'Food ResQ secured 6th place overall out of dozens of competing teams at Hack The Valley 8, one of Canada\'s largest university hackathons. This placement validated both the technical execution and the social impact potential of the concept. Judges specifically praised the dual-solution approach—addressing food waste through both redistribution and recipe AI—and the clarity of the business model for long-term sustainability.\n\nFrom a learning perspective, Food ResQ taught critical lessons about building under pressure, ruthless feature prioritization, and the importance of storytelling in product presentations. The hackathon environment forced decisions about what truly matters—we couldn\'t build everything, so we built what demonstrated value fastest. The project reinforced that successful products solve real problems simply, and that technical sophistication matters less than user impact. The AI recipe feature could have been far more complex, but a simple, working version that genuinely helped users beat a sophisticated prototype that never shipped.\n\nThis project directly applies to product management and startup environments where speed, resourcefulness, and strategic thinking under constraints are essential. Food ResQ demonstrates the ability to identify meaningful problems, rapidly prototype solutions, coordinate cross-functional teams, and pitch value propositions persuasively—all core competencies for building products that matter. The food waste domain also showcases understanding of social impact technology, where product decisions must balance business viability with genuine community benefit.'
+      }
+    },
     featured: false
   }
 ];
