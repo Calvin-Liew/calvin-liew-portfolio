@@ -529,6 +529,70 @@ export const projects: Project[] = [
       title: 'Matchify Case Study',
       fileSize: '11 MB'
     },
+    extendedContent: {
+      overview: {
+        title: 'Connecting People Through Musical Identity',
+        content: 'Matchify reimagines social connection by placing music at the center of human relationships. Rather than relying on geographic proximity or mutual friends, Matchify connects users through their authentic musical identity—the artists they love, the genres that move them, and the listening habits that define their daily lives. By integrating seamlessly with Spotify, the platform transforms passive listening data into active social discovery, helping users find friends, collaborators, and communities who truly understand their musical perspective. This project explores how music can serve as both a conversation starter and a foundation for meaningful connection in an increasingly digital world.'
+      },
+      motivation: {
+        title: 'Why Music-Based Social Discovery?',
+        content: 'Traditional social platforms prioritize who you already know or where you live, but music reveals who you are. Your Spotify Wrapped isn\'t just data—it\'s a window into your personality, your mood patterns, your cultural identity. Matchify was born from the recognition that shared musical taste creates instant common ground and authentic conversation. In a world where meeting new people often feels forced or superficial, music offers a natural, judgment-free entry point for connection. Whether you\'re looking for concert buddies, jam session partners, or simply people who "get" your playlist, Matchify makes those discoveries feel organic and exciting.'
+      },
+      features: [
+        {
+          title: 'Spotify-Powered Onboarding',
+          description: 'Streamlined authentication flow that connects users\' Spotify accounts in seconds. The system instantly imports top artists, favorite genres, recently played tracks, and listening patterns to build a comprehensive musical profile without requiring manual data entry. Users can review and customize their imported data before going live.',
+          insight: 'Reduces onboarding friction by 90% compared to manual profile creation. Users skip tedious form-filling and immediately see their musical identity visualized, creating instant engagement and personalization from the first interaction.'
+        },
+        {
+          title: 'Musical Identity Profiles',
+          description: 'Visually rich user profiles that showcase musical personality through artist grids, genre breakdowns, top tracks, and listening statistics. Profiles display both current favorites and all-time classics, giving potential matches a complete picture of musical taste evolution over time. Customizable privacy controls let users choose what to share publicly vs. with matches only.',
+          insight: 'Transforms abstract listening data into concrete conversation starters. The visual design emphasizes discovery over comparison, encouraging users to explore differences in taste rather than only seeking perfect matches, broadening potential connections.'
+        },
+        {
+          title: 'Smart Matching Algorithm',
+          description: 'Recommendation engine that analyzes artist overlap, genre compatibility, listening intensity patterns, and discovery behaviors to suggest potential matches. The algorithm balances similarity (shared favorites) with complementarity (compatible but different tastes) to create diverse, interesting connections. Users can filter matches by music preferences, location, or activity interests.',
+          insight: 'Goes beyond simple "you both like Taylor Swift" matching by considering listening context, niche artist appreciation, and genre exploration patterns. Creates matches that feel serendipitous yet meaningful, like meeting someone at a concert you both traveled across the city to attend.'
+        },
+        {
+          title: 'Integrated Messaging Interface',
+          description: 'In-app chat system designed specifically for music-centered conversations. Features include sharing Spotify links with inline previews, collaborative playlist creation, concert planning tools, and music trivia icebreakers. Messages can include song recommendations, artist deep dives, or genre exploration challenges to keep conversations engaging and music-focused.',
+          insight: 'Keeps conversations anchored to the shared interest that brought users together. The music-specific features prevent conversations from stalling and provide natural conversation pivots when topics run dry, increasing message response rates and connection quality.'
+        },
+        {
+          title: 'Granular Privacy Settings',
+          description: 'Comprehensive privacy controls allowing users to manage visibility of listening history, location data, profile information, and online status. Options include hiding specific artists or genres, creating "private mode" listening sessions that don\'t affect matching, and controlling who can initiate contact. Settings dashboard explains data usage transparently.',
+          insight: 'Addresses the vulnerability users feel when sharing music taste—arguably more personal than photos. By giving users control over their musical exposure, the platform builds trust and encourages authentic self-presentation rather than curated "cool" personas.'
+        },
+        {
+          title: 'Intuitive Navigation System',
+          description: 'Bottom tab navigation with four core sections: Discover (match browsing), Messages (conversations), Profile (your musical identity), and Explore (community features like local concerts, trending artists, playlist challenges). Each section uses music-inspired visual metaphors—waveforms, vinyl records, equalizers—to create cohesive brand identity while maintaining clarity.',
+          insight: 'Balances feature complexity with ease of use. Users can quickly jump between discovering new matches, maintaining existing conversations, and refining their profile without getting lost in nested menus. The music-themed UI feels playful without sacrificing usability.'
+        }
+      ],
+      tools: [
+        {
+          name: 'Figma',
+          purpose: 'Designed complete mobile interface system including onboarding flows, profile templates, match browsing screens, messaging interface, and settings dashboard. Created high-fidelity prototype demonstrating Spotify authentication, swipe gestures, and animated transitions between states.'
+        },
+        {
+          name: 'Spotify API Integration',
+          purpose: 'Leveraged Spotify Web API for OAuth authentication, user profile data retrieval (top artists, tracks, genres), listening history analysis, and playlist management. Designed data mapping strategy to transform Spotify\'s JSON responses into meaningful visual profile elements.'
+        },
+        {
+          name: 'User Research',
+          purpose: 'Conducted interviews with music enthusiasts to understand how they discover new music, form music-based friendships, and use existing social platforms. Identified pain points around superficial connections and desire for music-centered communities, informing core feature prioritization.'
+        },
+        {
+          name: 'Mobile Design Patterns',
+          purpose: 'Applied iOS and Android design conventions for gesture-based navigation (swipe to match/pass), bottom sheet modals (profile details), tab bars (primary navigation), and notification systems. Ensured platform-appropriate interactions while maintaining consistent brand identity.'
+        }
+      ],
+      impact: {
+        title: 'Recognition and Learning',
+        content: 'Matchify was selected to be showcased at ARIA 2024 (Academic Research and Innovation Affair), University of Toronto\'s premier research and innovation event, where it was presented alongside cutting-edge academic projects from across disciplines. This recognition validated the project\'s innovation in combining social connection with music technology, demonstrating that leveraging existing APIs like Spotify can create novel user experiences without reinventing the wheel.\n\nFrom a design learning perspective, Matchify taught critical lessons about balancing personalization with privacy, feature richness with simplicity, and algorithmic matching with serendipitous discovery. The project reinforced that successful social platforms must solve a genuine human need—in this case, the desire to connect over shared passions—rather than simply implementing trendy features. The Spotify integration showcased how thoughtful API usage can bootstrap complex functionality, allowing designers to focus on unique value propositions rather than rebuilding basic infrastructure.\n\nThis project directly applies to product design and UX careers where understanding user motivation, designing for trust and vulnerability, and creating delightful interactions are paramount. Matchify demonstrates the ability to research user needs, translate insights into features, and prototype complete mobile experiences that balance technical feasibility with emotional resonance.'
+      }
+    },
     featured: false
   },
   {
@@ -550,6 +614,70 @@ export const projects: Project[] = [
       fileName: 'tutorly.pdf',
       title: 'Tutorly Case Study',
       fileSize: '16 MB'
+    },
+    extendedContent: {
+      overview: {
+        title: 'Bridging Students Through Personalized Peer Learning',
+        content: 'Tutorly reimagines academic support by connecting students directly with peers who excel in subjects where they struggle. Rather than relying on expensive professional tutors or impersonal study groups, Tutorly creates personalized one-on-one learning relationships based on academic strengths, learning styles, and scheduling compatibility. The platform transforms peer tutoring from an ad-hoc arrangement into a structured, trackable, and rewarding experience for both tutors and learners. By empowering students to teach and learn from each other, Tutorly builds academic communities where knowledge flows freely, confidence grows mutually, and success becomes collaborative rather than competitive.'
+      },
+      motivation: {
+        title: 'Why Peer-to-Peer Learning?',
+        content: 'Students often understand their peers\' struggles better than professional instructors because they recently overcame the same challenges. A classmate who aced calculus last semester remembers exactly where the confusion happens and can explain concepts in relatable language without academic jargon. Yet finding the right peer tutor is frustratingly difficult—you might not know who\'s strong in organic chemistry, when they\'re available, or if they even want to help. Tutorly was born from recognizing this matching problem as a design challenge. By creating a platform where students can advertise their strengths, discover learning opportunities, and track progress together, Tutorly makes peer tutoring accessible, reliable, and mutually beneficial. It transforms "Can you help me with this?" from a awkward ask into a structured learning relationship that benefits both parties.'
+      },
+      features: [
+        {
+          title: 'Personalized Recommendation System',
+          description: 'Matching algorithm that analyzes student profiles (courses taken, grades, tutoring preferences, learning styles) to suggest ideal tutor-learner pairings. The system considers subject expertise depth, teaching experience, availability overlap, campus proximity, and personality compatibility indicators. Recommendations prioritize quality matches over quantity, presenting 3-5 high-fit suggestions rather than overwhelming users with options.',
+          insight: 'Reduces the friction of finding the "right" tutor from hours of searching to seconds of browsing. By considering both academic fit and interpersonal compatibility, the algorithm creates matches that feel personalized and thoughtful, increasing the likelihood of successful long-term tutoring relationships.'
+        },
+        {
+          title: 'Integrated Messaging Interface',
+          description: 'In-app chat system designed specifically for academic communication. Features include sharing course materials (PDFs, images, links), scheduling session times with calendar integration, setting learning goals collaboratively, and asking quick questions between sessions. Message threads are organized by subject to keep conversations focused and searchable.',
+          insight: 'Keeps all tutoring-related communication in one place, preventing messages from getting lost in crowded personal inboxes or group chats. The academic focus encourages productive conversations and reduces social awkwardness around asking for help, making students more likely to reach out when stuck.'
+        },
+        {
+          title: 'Progress Tracking Dashboard',
+          description: 'Visual analytics showing completed sessions, hours tutored/learned, subjects covered, and performance trends over time. Tutors can log session notes, attach practice problems, and mark concept mastery milestones. Learners see their growth trajectory visualized through charts tracking topic confidence before and after sessions. Both parties can export progress reports for academic portfolios or resume building.',
+          insight: 'Transforms informal study help into trackable achievements. Tutors gain tangible evidence of teaching impact (useful for resumes, grad school applications), while learners can monitor improvement and identify persistent weak spots. The data-driven approach adds legitimacy and motivation to peer tutoring relationships.'
+        },
+        {
+          title: 'User Research-Driven Personas',
+          description: 'Developed through comprehensive interviews with both struggling students and high-achieving peers willing to tutor. Created detailed personas representing different user motivations: "The Struggling Learner" (needs affordable, patient help), "The Altruistic Tutor" (wants to give back to community), "The Resume Builder" (seeks teaching experience for career goals), and "The Subject Enthusiast" (loves their major and enjoys explaining it). Each persona informed specific design decisions around messaging tone, feature prioritization, and incentive structures.',
+          insight: 'Ensured the platform serves both sides of the marketplace equally. By understanding diverse motivations—some tutors want money, others want experience, some want social connection—the design accommodates multiple use cases without forcing a single rigid model of peer tutoring.'
+        },
+        {
+          title: 'Iterative Usability Testing',
+          description: 'Conducted multiple rounds of testing with University of Toronto students using progressively refined prototypes. Early tests revealed navigation confusion around "Find a Tutor" vs "Become a Tutor" entry points, leading to redesigned onboarding that asks user intent upfront. Later tests identified need for "Quick Question" feature allowing brief help requests without committing to full tutoring relationships. Final testing validated simplified messaging interface and progress dashboard clarity.',
+          insight: 'User feedback directly shaped core functionality. Students needed lower-commitment options before diving into formal tutoring, leading to tiered engagement model (quick questions → trial session → ongoing relationship). Testing also revealed students value tutor profiles showing personality and approachability, not just academic credentials, informing profile template design.'
+        },
+        {
+          title: 'Mobile-First Design System',
+          description: 'Complete UI design prioritizing mobile experience where students naturally seek help—on the bus, between classes, late-night study sessions. Design system includes reusable components: subject tag pills (color-coded by discipline), availability calendars (optimized for small screens), tutor profile cards (scannable at a glance), and session booking flows (three taps maximum). Maintains consistency across iOS and Android while respecting platform conventions for gestures and navigation patterns.',
+          insight: 'Recognized that students won\'t open laptops to ask quick tutoring questions—they pull out their phones. The mobile-first approach ensures Tutorly fits naturally into student workflows, making it as easy to book a tutoring session as ordering food delivery, reducing barriers to seeking academic help.'
+        }
+      ],
+      tools: [
+        {
+          name: 'Figma',
+          purpose: 'Designed complete mobile application including dual onboarding flows (tutor vs learner), personalized match browsing screens, detailed tutor profiles, integrated messaging interface, session booking calendar, and progress tracking dashboard. Created interactive prototype demonstrating full user journeys from signup to completed tutoring relationship.'
+        },
+        {
+          name: 'User Research Methods',
+          purpose: 'Conducted semi-structured interviews with 15+ students across different academic disciplines and performance levels. Used affinity mapping to synthesize pain points, created user journey maps highlighting emotional highs and lows of seeking tutoring help, and developed personas representing diverse student motivations and needs.'
+        },
+        {
+          name: 'Usability Testing',
+          purpose: 'Ran moderated usability tests with 8 participants across 3 testing rounds. Used think-aloud protocol to identify navigation confusion, friction points in booking flow, and unclear messaging. Iterated designs based on feedback, measuring task completion rates and time-on-task improvements between versions.'
+        },
+        {
+          name: 'Wireframing',
+          purpose: 'Started with low-fidelity sketches to explore multiple layout options for key screens (match browsing, tutor profiles, messaging). Progressed to mid-fidelity wireframes for testing information architecture and interaction patterns before committing to visual design. Used rapid iteration to test 5+ navigation structures before selecting final approach.'
+        }
+      ],
+      impact: {
+        title: 'Academic Recognition and Career Relevance',
+        content: 'Tutorly achieved a final evaluation score above 85% in the UX design course and was selected for showcase at the University of Toronto Scarborough Undergraduate Research Symposium 2024, where it was presented to faculty, students, and industry professionals. This recognition validated the project\'s user-centered approach, demonstrating that thorough research, iterative testing, and thoughtful design can solve real student pain points in measurable ways.\n\nFrom a learning perspective, Tutorly taught critical lessons about designing for two-sided marketplaces where both user groups (tutors and learners) must find value simultaneously. The project reinforced that successful platforms require deep empathy for users\' emotional states—seeking academic help is vulnerable and anxiety-inducing, while offering to tutor risks rejection or imposter syndrome. Designing for these sensitivities meant crafting encouraging copy, low-commitment entry points, and features that celebrate small wins to reduce stigma around struggling academically.\n\nThis project directly applies to UX and product design careers where conducting user research, translating insights into features, and iterating based on feedback are core skills. Tutorly demonstrates the ability to navigate complex user needs, design intuitive mobile experiences, and create systems that foster meaningful human connections—all critical competencies for building products that genuinely improve users\' lives. The peer tutoring domain also showcases understanding of education technology, a rapidly growing field where thoughtful design can democratize access to learning support.'
+      }
     },
     featured: false
   },
