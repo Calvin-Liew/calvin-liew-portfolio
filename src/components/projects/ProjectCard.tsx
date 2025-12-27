@@ -19,7 +19,16 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           {project.category}
         </Badge>
 
-        <div className="mb-4">
+        {/* Floating date timestamp - top left */}
+        <time
+          className="absolute top-4 left-4 z-10 text-xs text-secondary/70 flex items-center gap-1.5"
+          dateTime={project.dates}
+        >
+          <Calendar className="w-3 h-3" aria-hidden="true" />
+          <span>{project.dates}</span>
+        </time>
+
+        <div className="mb-4 pt-6">
           <h3 className="text-xl font-semibold text-primary mb-2 line-clamp-2 pr-28 group-hover:bg-linear-to-r group-hover:from-cosmic-purple group-hover:to-cosmic-cyan group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
             {project.title}
           </h3>
@@ -40,10 +49,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               text={project.organization}
               variant="compact"
             />
-            <div className="flex items-center gap-1.5 text-xs text-secondary">
-              <Calendar className="w-3 h-3" aria-hidden="true" />
-              <span>{project.dates}</span>
-            </div>
           </div>
         </div>
 
