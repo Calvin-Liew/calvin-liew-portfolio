@@ -97,23 +97,23 @@ export const projects: Project[] = [
       },
       keyFindings: [
         {
-          title: 'The Power Law: Elite Signals Drive Fear',
+          title: 'Elite Signals Drive Fear',
           description: 'Analysis of 11,204 signal occurrences revealed a stark hierarchy: the top 10 signals (scream, blood, kill, knife, death, shadow, fear, dark, silent, night) account for 68% of all fear spikes above 0.70, despite representing only 5% of the 207-term lexicon. Elite signals like "scream" appear in just 9% of scenes but generate an average fear boost of +0.37 when present. In contrast, atmospheric terms like "dark" appear in 38% of scenes but add only +0.18 fear. Effective horror strategically deploys rare, powerful triggers at climactic moments rather than scattering dozens of weak signals.'
         },
         {
-          title: 'Tension Exceeds Fear: Sustained Unease Over Constant Terror',
+          title: 'Sustained Unease Over Constant Terror',
           description: 'Across all 9,760 scenes, average tension (0.52) consistently exceeded average fear (0.41). 73% of scenes showed tension > fear, with only 18% showing fear > tension, and 9% balanced. This pattern suggests horror works by maintaining sustained unease (tension) punctuated by shock moments (fear spikes), rather than delivering constant terror. The best films alternate calm and chaos: valleys make peaks feel higher, sustaining audience engagement better than nonstop intensity.'
         },
         {
-          title: 'Silence Amplifies Dread: The Dialogue-Tension Correlation',
+          title: 'Silence Amplifies Dread',
           description: 'Scenes with dialogue ratios < 0.30 (action-heavy/silent) showed 23% higher average tension scores (0.58) compared to dialogue-heavy scenes > 0.70 (0.47). The correlation coefficient between dialogue density and tension was -0.34, providing quantitative support for the theory that atmospheric silence amplifies dread. Horror effectiveness often depends on what characters don\'t say—letting sounds, visuals, and pauses do the work.'
         },
         {
-          title: 'Fear Peak Architecture: Strategic Timing Across Runtime',
+          title: 'Strategic Fear Timing Across Runtime',
           description: 'Analyzing fear spike timing across 129 films revealed clustering patterns: 12% of spikes occur in the first quarter (setup), 31% in the second quarter (rising action), 28% in the third quarter (confrontation), and 29% in the final quarter (climax). Most films reserve their highest fear peak (> 0.80) for the 75-90% runtime window. Horror follows predictable pacing structures, with tension building gradually before explosive peaks near the end.'
         },
         {
-          title: 'Signal Effectiveness Rankings: What Actually Works',
+          title: 'Signal Effectiveness Rankings',
           description: 'Quantified impact scores for top signals: Scream (+0.37 fear, +0.31 tension) | Kill (+0.34 fear, +0.26 tension) | Blood (+0.29 fear, +0.28 tension) | Knife (+0.28 fear, +0.27 tension) | Death (+0.23 fear, +0.24 tension). These measurements reveal which specific words and moments generate the strongest emotional responses, providing actionable insights for screenwriters and directors about where to deploy their most powerful horror elements.'
         }
       ],
@@ -257,27 +257,27 @@ export const projects: Project[] = [
       ],
       tools: [
         {
-          name: 'Google Gemini (AI Foundation)',
+          name: 'Google Gemini',
           purpose: 'Powers all natural language understanding, document summarization, and intelligent suggestions. Leverages Google\'s multimodal capabilities to process text, understand context, and generate actionable insights from Drive files without requiring external API calls.'
         },
         {
-          name: 'Figma & Interactive Prototyping',
+          name: 'Figma Prototyping',
           purpose: 'Designed complete user interface system including student and professional personas, feature flows, and interactive demo. Created high-fidelity mockups demonstrating Companion Dashboard, Panel Preview, and all key feature screens for stakeholder validation.'
         },
         {
-          name: 'Product Management Frameworks',
+          name: 'Product Frameworks',
           purpose: 'Applied VRIN analysis (Valuable, Rare, Inimitable, Non-substitutable) to validate competitive advantage, Resource-Based View model for make-vs-buy decisions, and brand positioning frameworks to differentiate from ChatGPT, Copilot, and Notion.'
         },
         {
-          name: 'User Research Methods',
+          name: 'User Research',
           purpose: 'Conducted qualitative interviews with students and professionals, quantitative surveys measuring feature desirability and privacy concerns, and usability testing with prototype screens. Research informed feature prioritization and onboarding flow design.'
         },
         {
-          name: 'Google TPUs & Cloud Infrastructure',
+          name: 'Cloud Infrastructure',
           purpose: 'Utilized custom Tensor Processing Units and global data center network for efficient AI model training and real-time inference. Ensures low-latency responses and scalability to millions of users while maintaining strict privacy and security standards.'
         },
         {
-          name: 'Google Workspace Integration',
+          name: 'Workspace Integration',
           purpose: 'Seamlessly connects with Drive, Docs, Sheets, Calendar, and Meet through native APIs. Enables Companion to access user files with permission, sync deadlines across platforms, and surface intelligence within existing workflows without requiring app-switching.'
         }
       ],
@@ -301,6 +301,11 @@ export const projects: Project[] = [
         type: 'live',
         url: 'https://calvin-liew-music-pathways.netlify.app/',
         label: 'The Music Pathways Project Product Redesign'
+      },
+      {
+        type: 'github',
+        url: 'https://github.com/Calvin-Liew/mgmc11-the-music-pathways-project-redesign',
+        label: 'View Source Code on GitHub'
       }
     ],
     featured: true,
@@ -315,19 +320,19 @@ export const projects: Project[] = [
       },
       keyFindings: [
         {
-          title: 'Static Resources Create Cognitive Barriers',
+          title: 'Cognitive Barriers from Static PDFs',
           description: 'Students struggled to navigate dense PDF job family documents, requiring them to manually search, interpret unfamiliar terminology, and make career connections without visual support. This cognitive load discouraged exploration and reinforced narrow perceptions of music careers.'
         },
         {
-          title: 'Performance-Centric Imagery Limits Brand Meaning',
+          title: 'Performance Imagery Limits Brand Scope',
           description: 'The original homepage featured a single static image of a band, leading many students to assume TMPP was primarily a performance platform. This visual framing contradicted the project\'s actual scope and limited brand salience across the full range of music career pathways.'
         },
         {
-          title: 'Isolated Chatbots Fail to Build Brand Equity',
+          title: 'Isolated Chatbots Fail to Engage',
           description: 'The original keyword-based chatbot operated separately from career resources, providing text-only responses without visual feedback. This disconnected experience failed to build brand meaning, reduce search costs, or create memorable interactions that drive engagement.'
         },
         {
-          title: 'Students Need Emotional Confidence, Not Just Information',
+          title: 'Emotional Confidence Over Information',
           description: 'Research revealed that students value tools that reduce anxiety and build confidence over those that simply provide efficiency. By reframing the brand promise around empowerment and discovery, the redesign moves up the means-end chain from functional information to emotional support and future possibility.'
         }
       ],
