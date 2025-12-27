@@ -692,7 +692,7 @@ export const projects: Project[] = [
     links: [
       {
         type: 'devpost',
-        url: 'https://devpost.com/software/food-resq',
+        url: 'https://devpost.com/software/food-resq-ai-recommended-recipes-to-reduce-food-waste',
         label: 'View Devpost Submission'
       },
       {
@@ -707,8 +707,8 @@ export const projects: Project[] = [
         content: 'Food ResQ tackles the dual crisis of food waste and food insecurity by connecting restaurants, grocery stores, and individuals who have surplus food with community members who need it. Built in 36 hours during Hack The Valley 8, the platform combines AI-powered recipe recommendations with a simple food redistribution marketplace. Rather than letting perfectly good food go to waste, Food ResQ transforms surplus ingredients into meal opportunities through intelligent recipe suggestions, while simultaneously creating a bridge between those with excess food and those who could benefit from it. This project demonstrates how technology can address real social and environmental challenges with practical, scalable solutions.'
       },
       motivation: {
-        title: 'Why Food Waste Matters',
-        content: 'In Canada alone, over 58% of food produced is lost or wasted (that\'s 35.5 million tonnes annually, worth $49 billion). Meanwhile, 1 in 7 Canadians experiences food insecurity. This paradox inspired Food ResQ: what if we could connect surplus food with people who need it before it reaches the landfill? Hackathons demand solving real problems fast, and food waste is both urgent and solvable through technology. By building a platform that makes redistribution as easy as posting on social media, Food ResQ removes the friction that prevents individuals and businesses from donating excess food. The AI recipe feature adds a second solution path, helping people use ingredients they already have before they spoil, reducing waste at the household level.'
+        title: 'From Personal Frustration to Solution',
+        content: 'I was cooking at home one day and kept noticing we had half a carrot, half an onion, and like a quarter pound of ground pork lying around all the time. More often than not it was from me cooking a fun dish that my mother would have to somehow clean up over the week. So I wanted to create an app that would help me use those ingredients I had neglected, so that even if both my mother and I forgot about them, we would not contribute to food waste. This personal frustration became the spark for Food ResQ. In Canada, over 58% of food produced is wasted (35.5 million tonnes annually, worth $49 billion), while 1 in 7 Canadians experiences food insecurity. What started as a solution to finish leftover ingredients in my fridge evolved into a platform that tackles food waste at both household and community levels through AI recipe recommendations and food redistribution.'
       },
       features: [
         {
