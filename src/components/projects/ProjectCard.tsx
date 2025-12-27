@@ -29,7 +29,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </time>
 
         <div className="mb-4 pt-6">
-          <h3 className="text-xl font-semibold text-primary mb-2 line-clamp-3 pr-28 group-hover:bg-linear-to-r group-hover:from-cosmic-purple group-hover:to-cosmic-cyan group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+          <h3 className="text-2xl font-bold text-primary mb-2 line-clamp-3 pr-28 group-hover:bg-linear-to-r group-hover:from-cosmic-purple group-hover:to-cosmic-cyan group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
             {project.title}
           </h3>
           <div className="flex flex-wrap items-center gap-2 mb-3">
