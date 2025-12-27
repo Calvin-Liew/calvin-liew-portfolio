@@ -11,6 +11,7 @@ import AnimatedBackground from '../ui/AnimatedBackground';
 import { BookOpen, Building2, Calendar } from 'lucide-react';
 import { projects } from '@/data/projects';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { abbreviateCourseCode } from '@/utils/abbreviateCourseCode';
 
 export default function FeaturedProjects() {
   const featuredProjects = projects.filter(p => p.featured).slice(0, 3);
@@ -49,12 +50,28 @@ export default function FeaturedProjects() {
                   <h3 className="text-xl font-semibold text-primary mb-2 line-clamp-2">
                     {project.title}
                   </h3>
-                  <div className="flex flex-wrap items-center gap-2 mb-3">
-                    {project.courseCode && (
-                      <MetaBadge icon={BookOpen} text={project.courseCode} truncate />
-                    )}
-                    <MetaBadge icon={Building2} text={project.organization} />
-                    <MetaBadge icon={Calendar} text={project.dates} />
+                  <div className="flex flex-wrap items-center gap-1.5 mb-3">
+                    {project.courseCode && (() => {
+                      const { code, fullName } = abbreviateCourseCode(project.courseCode);
+                      return (
+                        <MetaBadge
+                          icon={BookOpen}
+                          text={code}
+                          title={fullName}
+                          variant="compact"
+                        />
+                      );
+                    })()}
+                    <MetaBadge
+                      icon={Building2}
+                      text={project.organization}
+                      variant="compact"
+                    />
+                    <MetaBadge
+                      icon={Calendar}
+                      text={project.dates}
+                      variant="compact"
+                    />
                   </div>
                 </div>
                 <p className="text-secondary line-clamp-3 mb-4">

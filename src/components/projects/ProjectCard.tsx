@@ -4,6 +4,7 @@ import Badge from '../ui/Badge';
 import MetaBadge from '../ui/MetaBadge';
 import { BookOpen, Building2, Calendar } from 'lucide-react';
 import { Project } from '@/types';
+import { abbreviateCourseCode } from '@/utils/abbreviateCourseCode';
 
 interface ProjectCardProps {
   project: Project;
@@ -22,12 +23,28 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <h3 className="text-xl font-semibold text-primary mb-2 line-clamp-2 group-hover:bg-linear-to-r group-hover:from-cosmic-purple group-hover:to-cosmic-cyan group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
             {project.title}
           </h3>
-          <div className="flex flex-wrap items-center gap-2 mb-3">
-            {project.courseCode && (
-              <MetaBadge icon={BookOpen} text={project.courseCode} truncate />
-            )}
-            <MetaBadge icon={Building2} text={project.organization} />
-            <MetaBadge icon={Calendar} text={project.dates} />
+          <div className="flex flex-wrap items-center gap-1.5 mb-3">
+            {project.courseCode && (() => {
+              const { code, fullName } = abbreviateCourseCode(project.courseCode);
+              return (
+                <MetaBadge
+                  icon={BookOpen}
+                  text={code}
+                  title={fullName}
+                  variant="compact"
+                />
+              );
+            })()}
+            <MetaBadge
+              icon={Building2}
+              text={project.organization}
+              variant="compact"
+            />
+            <MetaBadge
+              icon={Calendar}
+              text={project.dates}
+              variant="compact"
+            />
           </div>
         </div>
 

@@ -76,6 +76,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 icon={BookOpen}
                 text={project.courseCode}
                 variant="emphasized"
+                title={project.courseCode}
               />
             )}
             <MetaBadge icon={Building2} text={project.organization} />
