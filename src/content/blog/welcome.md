@@ -5,9 +5,7 @@ excerpt: "Welcome to my portfolio website! Learn about my journey in product man
 tags: ["Product Management", "Design", "Career"]
 ---
 
-# Welcome to My Portfolio
-
-I'm excited to share my work and insights with you through this portfolio website. This space showcases my journey in product management, design, and technology.
+I'm excited to share my work and insights with you through this portfolio website. This space showcases my journey in product analysis, design, and technology.
 
 ## What You'll Find Here
 

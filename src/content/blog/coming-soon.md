@@ -5,9 +5,7 @@ excerpt: "Stay tuned for more insights on product management, design, and techno
 tags: ["Announcement"]
 ---
 
-# More Content Coming Soon
-
-Thank you for your interest in my blog! I'm currently working on creating valuable content that shares insights from my experience in product management, design, and technology.
+Thank you for your interest in my blog! I'm currently working on creating valuable content that shares insights from my experience in product analysis, design, and technology.
 
 ## Upcoming Topics
 

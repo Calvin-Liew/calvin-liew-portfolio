@@ -84,7 +84,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </header>
 
           <div
-            className="prose prose-lg max-w-none prose-headings:text-primary prose-a:text-cosmic-purple prose-a:no-underline hover:prose-a:text-cosmic-cyan prose-strong:text-primary"
+            className="prose prose-lg max-w-none
+                       prose-headings:text-primary prose-headings:font-bold prose-headings:tracking-tight
+                       prose-h1:text-4xl prose-h1:mb-8 prose-h1:mt-12
+                       prose-h2:text-3xl prose-h2:mb-6 prose-h2:mt-10 prose-h2:border-b prose-h2:border-border-light prose-h2:pb-2
+                       prose-h3:text-2xl prose-h3:mb-4 prose-h3:mt-8
+                       prose-p:text-secondary prose-p:leading-relaxed prose-p:mb-6
+                       prose-a:text-cosmic-purple prose-a:no-underline prose-a:font-medium hover:prose-a:text-cosmic-cyan prose-a:transition-colors
+                       prose-strong:text-primary prose-strong:font-semibold
+                       prose-ul:my-6 prose-ul:space-y-2
+                       prose-ol:my-6 prose-ol:space-y-2
+                       prose-li:text-secondary prose-li:leading-relaxed
+                       prose-code:text-cosmic-purple prose-code:bg-surface prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm
+                       prose-pre:bg-surface prose-pre:border prose-pre:border-border-light
+                       prose-blockquote:border-l-cosmic-purple prose-blockquote:bg-surface prose-blockquote:italic
+                       prose-hr:border-border-light prose-hr:my-8"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
         </article>
