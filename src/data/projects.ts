@@ -176,7 +176,7 @@ export const projects: Project[] = [
   },
   {
     id: 'google-drive-companion',
-    title: 'Drive Companion: Transforming Cloud Storage into AI Productivity Hub',
+    title: 'Drive Companion: AI-Powered Productivity for Cloud Storage',
     category: 'Product Management',
     dates: 'Sep 2025 - Nov 2025',
     organization: 'University of Toronto',
@@ -289,7 +289,7 @@ export const projects: Project[] = [
   },
   {
     id: 'music-pathways-redesign',
-    title: 'Music Pathways: Transforming Career Discovery Through Brand Strategy',
+    title: 'Music Pathways: Strategic Brand Design for Career Discovery',
     category: 'UI/UX Design',
     dates: 'Nov 2025 - Nov 2025',
     organization: 'University of Toronto',
@@ -402,7 +402,7 @@ export const projects: Project[] = [
   },
   {
     id: 'night-shift',
-    title: 'The Night Shift: Data-Driven Insights on Sleep, Stress, and Lifestyle',
+    title: 'The Night Shift: Visualizing Sleep, Stress, and Health',
     category: 'Data Analysis',
     dates: 'Oct 2025 - Nov 2025',
     organization: 'University of Toronto',
@@ -441,7 +441,7 @@ export const projects: Project[] = [
   },
   {
     id: 'tutorly',
-    title: 'Tutorly: Connecting Students for Personalized Peer Learning Experiences',
+    title: 'Tutorly: Matching Students for Personalized Peer Learning',
     category: 'UI/UX Design',
     dates: 'May 2024 - Aug 2024',
     organization: 'University of Toronto',
@@ -463,7 +463,7 @@ export const projects: Project[] = [
   },
   {
     id: 'food-resq',
-    title: 'Food ResQ: Reducing Waste by Connecting Surplus Food with Communities',
+    title: 'Food ResQ: Connecting Surplus Food with Local Communities',
     category: 'Product Management',
     dates: 'Oct 2023 - Oct 2023',
     organization: 'Hack The Valley 8',
