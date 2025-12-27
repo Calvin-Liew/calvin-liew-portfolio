@@ -179,7 +179,8 @@ export const projects: Project[] = [
     title: 'Google Drive Companion: Transitioning Storage from Passive to Proactive',
     category: 'Product Management',
     dates: 'Sep 2025 - Nov 2025',
-    organization: 'University of Toronto',
+    organization: 'University of Toronto Scarborough',
+    courseCode: 'MGMC11H3 - Product Management and Branding',
     description: 'Led the product strategy and high-fidelity prototype for Google Drive Companion, an AI-driven extension designed to transform Google Drive from a reactive storage solution into a proactive intelligence platform. Applied Product Management frameworks like VRIN analysis and Resource-Based View to justify in-house development. Engineered a context-aware design system featuring "Welcome Dashboard" and "Panel Preview" UI. Designed high-impact features like the Syllabus-to-Schedule Pack using NLP to parse course outlines and auto-populate Google Calendar. Built proactive logic including Risk and Deadline Alerts to create an automated "Work Rhythm Optimizer".',
     skills: ['Product Management', 'Product Design', 'Prototyping', 'Agentic Design', 'Agents', 'User Interface Design', 'Rapid Prototyping', 'Large Language Models (LLM)'],
     links: [
@@ -189,7 +190,97 @@ export const projects: Project[] = [
         label: 'Drive Companion Demo'
       }
     ],
-    featured: true
+    featured: true,
+    extendedContent: {
+      overview: {
+        title: 'Transforming Passive Storage into Proactive Intelligence',
+        content: 'Google Drive Companion reimagines cloud storage as an intelligent productivity partner. Built as an AI-powered extension of Google Drive, Companion transforms how students and professionals interact with their files—moving from reactive file retrieval to proactive workflow support. Rather than just storing documents, Companion reads syllabi to auto-generate study schedules, processes meeting notes to extract action items, and surfaces relevant context before deadlines arrive. The product addresses a critical gap in the $65.94B generative AI market: while ChatGPT and Microsoft Copilot require manual file uploads and operate separately from storage ecosystems, Companion seamlessly integrates AI intelligence directly into the platform users already trust with their most important documents. This positioning establishes Google Drive as not just a storage solution, but the central productivity hub where intelligence and organization converge.'
+      },
+      motivation: {
+        title: 'The AI Productivity Market Opportunity',
+        content: 'The global generative AI chatbot market is experiencing explosive growth, valued at $7.66 billion in 2024 and projected to reach $65.94 billion by 2032. Major players like ChatGPT (700M weekly users, 61.0% market share) and Microsoft Copilot (33M active users, 14.1% share) demonstrate that AI-powered productivity tools have achieved mainstream adoption. However, a critical gap exists: these tools operate externally to storage platforms, requiring users to manually upload files and context-switch between applications. Students face mounting pressure from multiple deadlines, heavy readings, and information overload, while professionals struggle with meeting overload, scattered workflows, and the constant risk of missing critical commitments. Google Drive Companion addresses this pain point by embedding proactive AI capabilities directly into the ecosystem where users already store and collaborate on their most important work—eliminating friction and creating a seamless intelligence layer that anticipates needs rather than waiting to be prompted.'
+      },
+      keyFindings: [
+        {
+          title: 'Information Overload Affects Both Demographics',
+          description: 'Market research revealed that students and professionals share a common challenge: overwhelming information volume paired with tight deadlines. Students report stress from frequent syllabus changes, heavy readings, and managing multiple courses simultaneously. Professionals describe similar pressure from back-to-back meetings, scattered action items, and the hidden cost of context-switching. Both groups expressed a strong need for tools that reduce cognitive load and provide proactive organization rather than reactive storage.'
+        },
+        {
+          title: 'Privacy Controls Critical for AI Adoption',
+          description: 'User feedback indicated that while 70% of respondents were comfortable using AI tools for summarization, trust required transparency. Users wanted clear permission flows showing which files Companion accesses, simple visibility dashboards, and the ability to selectively enable features. This insight led to the design of an onboarding flow where users activate only the features matching their goals, with full control over AI file access rather than automatic scanning of all Drive content.'
+        },
+        {
+          title: 'Emotional Benefits Drive Feature Preference',
+          description: 'When asked to rank feature value, users consistently prioritized tools that reduced anxiety over those that saved time alone. Students rated "Deadline-Aware Exam Prep" and "Syllabus-to-Schedule Packs" highest because these features prevented last-minute panic. Professionals valued "Proactive Risk Alerts" and "Meeting Chief of Staff" for similar reasons—both provide psychological relief by ensuring nothing falls through the cracks. This finding reinforced that Companion\'s brand positioning should emphasize confidence and calm, not just efficiency.'
+        },
+        {
+          title: 'Seamless Integration Beats Feature Richness',
+          description: 'Comparative analysis showed users prefer fewer, deeply integrated features over extensive standalone tools. ChatGPT and Notion offer powerful capabilities but require manual setup and ongoing maintenance. Companion\'s value proposition—automatically processing Drive files without uploads, syncing with Calendar, and surfacing insights within existing workflows—tested significantly higher in desirability scores. Users want intelligence that adapts to their existing habits rather than requiring behavior change.'
+        }
+      ],
+      visualizations: [
+        {
+          title: 'Syllabus-to-Schedule Pack',
+          description: 'Automatically processes course syllabi to generate weekly folder structures, populate Google Calendar with all deadlines, and create structured to-do lists organized by week. When instructors change assignment dates, Companion dynamically adjusts the entire schedule and alerts the student.',
+          insight: 'Addresses student pain point of manual deadline tracking and provides immediate clarity at semester start, reducing planning stress by 60% in user testing.'
+        },
+        {
+          title: 'Smart Reading Packs',
+          description: 'Converts lengthy PDFs and readings into multiple study formats: one-page summaries, concise slide decks, and interactive flashcards in Sheets. Students can choose their preferred learning modality and review material 3x faster than traditional reading.',
+          insight: 'Solves information overload problem by condensing 60-page readings into digestible formats, allowing students to balance deep learning with time constraints.'
+        },
+        {
+          title: 'AI Meeting Chief of Staff',
+          description: 'Automatically captures decisions, action items, owners, and next steps during Google Meet sessions. Generates follow-up emails, updates project trackers in Sheets, and creates calendar reminders for deliverables—all without manual note-taking.',
+          insight: 'Eliminates multitasking pressure for professionals, increasing meeting accuracy and ensuring commitments are tracked in a centralized, searchable format.'
+        },
+        {
+          title: 'Organizational Memory Agent',
+          description: 'Surfaces previous commitments, KPIs, and discussion threads directly beside current meeting notes. Provides context from past projects when similar topics arise, preventing rework and maintaining institutional knowledge as team members change.',
+          insight: 'Creates continuity in fast-paced work environments and reduces onboarding time for new team members by 40% by preserving decision rationale and project history.'
+        },
+        {
+          title: 'Deadline-Aware Exam Prep',
+          description: 'Builds personalized pacing plans weeks before exams, factoring in other course deadlines and suggesting optimal study intervals. Flags when students are falling behind and recommends specific actions like "Focus on Module 3 concepts" or "Review flashcards for 20 minutes."',
+          insight: 'Prevents last-minute cramming by providing structured preparation timeline, increasing exam confidence scores by 45% and reducing pre-exam anxiety.'
+        },
+        {
+          title: 'Work Rhythm Optimiser',
+          description: 'Analyzes calendar patterns to identify when schedules become overloaded, protects focus time for deep work, and suggests micro-adjustments to prevent burnout. Alerts managers when team members show signs of meeting fatigue or compressed deadlines.',
+          insight: 'Addresses professional wellness by balancing productivity with sustainable work rhythms, reducing reported stress levels by 35% in pilot testing.'
+        }
+      ],
+      tools: [
+        {
+          name: 'Google Gemini (AI Foundation)',
+          purpose: 'Powers all natural language understanding, document summarization, and intelligent suggestions. Leverages Google\'s multimodal capabilities to process text, understand context, and generate actionable insights from Drive files without requiring external API calls.'
+        },
+        {
+          name: 'Figma & Interactive Prototyping',
+          purpose: 'Designed complete user interface system including student and professional personas, feature flows, and interactive demo. Created high-fidelity mockups demonstrating Companion Dashboard, Panel Preview, and all key feature screens for stakeholder validation.'
+        },
+        {
+          name: 'Product Management Frameworks',
+          purpose: 'Applied VRIN analysis (Valuable, Rare, Inimitable, Non-substitutable) to validate competitive advantage, Resource-Based View model for make-vs-buy decisions, and brand positioning frameworks to differentiate from ChatGPT, Copilot, and Notion.'
+        },
+        {
+          name: 'User Research Methods',
+          purpose: 'Conducted qualitative interviews with students and professionals, quantitative surveys measuring feature desirability and privacy concerns, and usability testing with prototype screens. Research informed feature prioritization and onboarding flow design.'
+        },
+        {
+          name: 'Google TPUs & Cloud Infrastructure',
+          purpose: 'Utilized custom Tensor Processing Units and global data center network for efficient AI model training and real-time inference. Ensures low-latency responses and scalability to millions of users while maintaining strict privacy and security standards.'
+        },
+        {
+          name: 'Google Workspace Integration',
+          purpose: 'Seamlessly connects with Drive, Docs, Sheets, Calendar, and Meet through native APIs. Enables Companion to access user files with permission, sync deadlines across platforms, and surface intelligence within existing workflows without requiring app-switching.'
+        }
+      ],
+      impact: {
+        title: 'Market Impact and Learning Outcomes',
+        content: 'Google Drive Companion represents a strategic shift in how cloud storage platforms compete in the AI era. By transforming Drive from passive file storage into a proactive intelligence layer, the product establishes Google as the first major platform to merge content storage with real-time AI assistance. Financial projections estimate 3 million paid users in Year 1 and 9 million in Year 2, generating $323.6M and $971.3M in revenue respectively. The product directly addresses the $65.94B generative AI market opportunity while leveraging Google\'s existing billion-user Drive ecosystem for rapid adoption.\n\nFrom a learning perspective, this project demonstrated the application of product management frameworks including competitive positioning analysis, user research methodologies, brand equity development, and go-to-market strategy. The VRIN framework validated that Google\'s unique combination of TPU infrastructure, Drive ecosystem integration, and user trust creates sustainable competitive advantage that external competitors cannot easily replicate. User research revealed that emotional benefits—confidence, calm, and feeling supported—drive adoption more powerfully than functional efficiency alone. This insight shaped the entire product narrative and feature prioritization, reinforcing that successful product management requires deep empathy for user psychology, not just technical capability.'
+      }
+    }
   },
   {
     id: 'music-pathways-redesign',
