@@ -293,8 +293,9 @@ export const projects: Project[] = [
     category: 'UI/UX Design',
     dates: 'Nov 2025 - Nov 2025',
     organization: 'University of Toronto',
-    description: 'Completed a solo product redesign for The Music Pathways Project to address critical accessibility gaps for music students. Designed an Interactive Pathways Explorer to replace traditional job family documents with an animated digital map. Developed Tempo, an AI-assisted mascot serving as a functional UI guide. Integrated a natural language chatbot with visual interface where user queries trigger real-time visual feedback within the career map. Complete overhaul of the homepage from static banner to interactive entry point, demonstrating ability to apply product strategy and user-centered design to solve complex information architecture challenges.',
-    skills: ['Product Management', 'Product Design', 'UI/UX', 'Interactive Design', 'Agentic Design', 'Agent Interface'],
+    courseCode: 'MGMC11H3 - Product Management and Branding',
+    description: 'Redesigned The Music Pathways Project to transform how music students discover career pathways beyond traditional performance and teaching. Created Tempo, a character mascot designed as a friendly metronome that serves as the face of an AI-powered chatbot, making career exploration feel personal and approachable. Built an Interactive Pathways Explorer that replaced static PDF documents with an animated career map, integrating natural language queries with real-time visual highlighting to reduce cognitive load and support different learning styles. Developed brand strategy using CBBE framework and positioning principles, including dual brand mantras ("Illuminate Pathways. Redefine Music. Empower Futures.") and the tagline "Discover where music can take you." Completely redesigned homepage from static text-heavy layout to dynamic interactive entry point, applying consumer behavior principles to reduce search costs and build brand salience, resulting in stronger engagement and emotional resonance with students exploring diverse music careers.',
+    skills: ['Product Management', 'Product Design', 'UI/UX', 'Interactive Design', 'Agentic Design', 'Agent Interface', 'Brand Strategy', 'CBBE Framework', 'Consumer Behavior'],
     links: [
       {
         type: 'live',
@@ -302,7 +303,97 @@ export const projects: Project[] = [
         label: 'The Music Pathways Project Product Redesign'
       }
     ],
-    featured: true
+    featured: true,
+    extendedContent: {
+      overview: {
+        title: 'Reframing Music Career Perceptions Through Strategic Design',
+        content: 'The Music Pathways Project addresses a critical gap between student perceptions of music careers and the reality of today\'s diverse industry. Many students assume their only options are performance, teaching, or leaving music entirely—missing opportunities in sound design, music technology, digital content creation, community arts, arts management, and music therapy. This redesign applies MGMC11 branding frameworks to strengthen the project\'s identity, emotional resonance, and digital presence, transforming a static information resource into an interactive guidance system. The redesigned platform features an animated career pathways visualization, an integrated AI chatbot powered by the Tempo mascot, and a completely reimagined homepage that positions music careers as modern, interdisciplinary, and accessible. By reducing cognitive load through visual feedback and natural language interaction, the redesign creates strong brand associations tied to clarity, support, and exploration—ultimately building deeper student engagement and brand resonance.'
+      },
+      motivation: {
+        title: 'From Static PDFs to Interactive Career Discovery',
+        content: 'The original Music Pathways website presented career information through dense PDFs and a keyword-based chatbot that operated in isolation. This created functional, cognitive, and time-related barriers: students had to scroll through static text, manually sort unfamiliar job titles, and make sense of terminology without visual context. The single static image of a band on the homepage reinforced narrow perceptions that TMPP was primarily a performance platform, limiting both brand salience and meaning. This redesign addresses these consumer behavior challenges by transforming the platform from a passive information hub into an active guidance system. The integration of visual exploration with conversational AI reduces search costs, supports self-directed and guided learning, and makes the full scope of music careers immediately visible. By replacing static resources with dynamic, interactive experiences, the redesign elevates brand judgments (perceived quality, credibility, relevance) and brand feelings (curiosity, excitement, confidence), creating a foundation for stronger long-term brand resonance.'
+      },
+      keyFindings: [
+        {
+          title: 'Static Resources Create Cognitive Barriers',
+          description: 'Students struggled to navigate dense PDF job family documents, requiring them to manually search, interpret unfamiliar terminology, and make career connections without visual support. This cognitive load discouraged exploration and reinforced narrow perceptions of music careers.'
+        },
+        {
+          title: 'Performance-Centric Imagery Limits Brand Meaning',
+          description: 'The original homepage featured a single static image of a band, leading many students to assume TMPP was primarily a performance platform. This visual framing contradicted the project\'s actual scope and limited brand salience across the full range of music career pathways.'
+        },
+        {
+          title: 'Isolated Chatbots Fail to Build Brand Equity',
+          description: 'The original keyword-based chatbot operated separately from career resources, providing text-only responses without visual feedback. This disconnected experience failed to build brand meaning, reduce search costs, or create memorable interactions that drive engagement.'
+        },
+        {
+          title: 'Students Need Emotional Confidence, Not Just Information',
+          description: 'Research revealed that students value tools that reduce anxiety and build confidence over those that simply provide efficiency. By reframing the brand promise around empowerment and discovery, the redesign moves up the means-end chain from functional information to emotional support and future possibility.'
+        }
+      ],
+      features: [
+        {
+          title: 'Tempo Character Mascot',
+          description: 'Designed a friendly, human-like metronome character with LED facial expressions, soft rhythmic glow, and U of T-inspired color palette (deep teal blue body for trust and academic credibility, crimson accents for energy and creativity). Tempo serves as the face of the integrated chatbot, making career exploration feel personal and supportive rather than technical.',
+          insight: 'Builds brand performance and imagery by creating immediate associations with mentorship, guidance, and support. Meets Keller\'s offensive criteria: memorable shape, meaningful symbolism tied to learning and progress, and genuinely likable personality that makes TMPP feel approachable.'
+        },
+        {
+          title: 'Interactive Pathways Explorer',
+          description: 'Replaced static PDF job family documents with an animated digital career map that visualizes music career clusters through motion, color, and clear groupings. Students can explore pathways at a glance, seeing how categories fit together and discovering roles they hadn\'t previously considered.',
+          insight: 'Reduces search costs and cognitive load by making information processing easier. Increases category salience by making the full scope of music careers immediately obvious, enriching brand meaning through strong associations tied to clarity and visual discovery.'
+        },
+        {
+          title: 'Integrated AI Chatbot with Visual Feedback',
+          description: 'Fully integrated the chatbot with the pathways visualization so student queries like "What careers combine music and wellness?" trigger real-time highlighting of relevant clusters. This mix of natural language interaction and animated feedback supports different learning styles and allows both self-directed and guided exploration.',
+          insight: 'Transforms the platform from passive information to active guidance. Improves brand judgments by increasing perceived quality and relevance, while elevating brand feelings by sparking curiosity, excitement, and confidence. Creates memorable, meaningful, and likable interactions that drive return visits.'
+        },
+        {
+          title: 'Redesigned Homepage Banner',
+          description: 'Replaced static text-heavy layout and single band image with dynamic visualization cycling through music career clusters. New banner features the tagline "Discover where music can take you" with typographic emphasis on "can take you," anchored by navy gradient background and subtle branching lines metaphor for exploration.',
+          insight: 'Increases brand salience by transforming the homepage from a flat, text-heavy page to an interactive entry point. Builds strong, favorable, and unique associations by linking the brand to exploration, possibility, and future growth through clear visual hierarchy and motion.'
+        },
+        {
+          title: 'Dual Brand Mantras',
+          description: 'Created two internal brand mantras to guide consistent tone, personality, and aesthetics: "Illuminate Pathways. Redefine Music. Empower Futures." (analytical, future-focused) and "Discover Pathways. Connect Music. Inspire Futures." (warmer, community-based). Both satisfy Keller\'s offensive criteria by being memorable, meaningful, and likable.',
+          insight: 'Provides clear internal guiding principles that keep brand meaning consistent across all touchpoints. "Illuminate/Discover Pathways" reflects brand function, "Redefine/Connect Music" acts as descriptive modifier, and "Empower/Inspire Futures" serves as emotional modifier moving up the means-end chain from information to confidence and possibility.'
+        },
+        {
+          title: 'Student-Centered Tagline',
+          description: 'Developed tagline "Discover where music can take you" to be concise, emotionally motivating, and directly aligned with student needs. The phrase follows means-end logic: "Discover" signals functional exploration, while "where music can take you" implies transformation and self-development.',
+          insight: 'Frames the brand as a guide that helps students explore real career pathways (function), positions TMPP as a place to learn and explore rather than focus narrowly on performance (descriptive modifier), and feels positive and hopeful (emotional modifier). Easy to remember, meaningful to student goals, and likable due to optimistic tone.'
+        }
+      ],
+      tools: [
+        {
+          name: 'CBBE (Customer-Based Brand Equity) Framework',
+          purpose: 'Applied Keller\'s pyramid to build awareness, meaning, judgments, feelings, and engagement. Used to guide decisions on brand salience (making career clusters visible), brand performance (functional guidance), brand imagery (associations with mentorship and support), and brand resonance (driving return visits and deeper exploration).'
+        },
+        {
+          name: 'Brand Positioning & Mantras',
+          purpose: 'Developed dual brand mantras and tagline to establish clear points of parity (academic credibility, research-based resources) and points of difference (interactive visualization, AI-integrated chatbot, mascot-driven personality). Ensured offensive criteria (memorable, meaningful, likable) guided all brand element decisions.'
+        },
+        {
+          name: 'Consumer Behavior Principles',
+          purpose: 'Analyzed search costs, cognitive load, and information processing barriers to redesign the user journey. Integrated visual feedback with natural language queries to reduce effort, support different learning styles, and make career exploration feel manageable rather than overwhelming.'
+        },
+        {
+          name: 'Figma & Interactive Prototyping',
+          purpose: 'Designed complete interface system including homepage banner, pathways explorer, chatbot integration, and Tempo mascot. Created high-fidelity prototype demonstrating animated interactions, visual hierarchy, and typographic emphasis to strengthen brand salience and emotional resonance.'
+        },
+        {
+          name: 'AI-Assisted Illustration (Tempo Mascot)',
+          purpose: 'Used iterative AI prompting to develop Tempo character through multiple rounds: exploring metronome shapes and LED expressions, aligning with U of T color palette (deep teal blue, crimson accents), refining glow animation, and polishing final design for clarity at all sizes.'
+        },
+        {
+          name: 'Netlify Deployment',
+          purpose: 'Deployed redesigned prototype to calvin-liew-music-pathways.netlify.app for live demonstration and user testing. Configured build optimization, client-side routing, and performance settings to ensure smooth animated interactions and responsive design across devices.'
+        }
+      ],
+      impact: {
+        title: 'Brand Strategy Meets User-Centered Design',
+        content: 'The Music Pathways redesign demonstrates how strategic branding frameworks can drive meaningful UX improvements. By applying CBBE principles, the project transformed from a static information resource into an interactive guidance system that builds brand salience (career clusters become immediately visible), brand meaning (associations with clarity, support, exploration), brand judgments (higher perceived quality and credibility), brand feelings (curiosity, excitement, confidence), and ultimately brand resonance (longer site visits, return engagement). The integration of Tempo as a character mascot created a unique brand element that satisfies Keller\'s offensive criteria—memorable shape, meaningful symbolism, likable personality—while also serving a functional role as the face of the AI chatbot. The conversion of static PDFs to an animated pathways explorer directly addressed consumer behavior challenges by reducing search costs, cognitive load, and time-related barriers, making career discovery feel exploratory rather than overwhelming.\n\nFrom a learning perspective, this project reinforced how classroom frameworks translate into real design decisions. The brand mantras provided clear internal guidance that shaped tone, aesthetics, and feature prioritization. Positioning principles helped establish points of parity (academic credibility, research-based resources) and points of difference (interactive visualization, AI integration, mascot-driven personality). Consumer behavior models revealed why the original static layout created friction and how visual feedback combined with natural language interaction could reduce effort while supporting different learning styles. This experience aligns directly with my career goals in UX, product design, and product management—fields where research, storytelling, and user-centered thinking converge to create thoughtful digital experiences. Working on initiatives like TMPP showed me how strategic frameworks can guide interface decisions, build brand equity, and ultimately create products that feel both purposeful and impactful.'
+      }
+    }
   },
   {
     id: 'night-shift',
