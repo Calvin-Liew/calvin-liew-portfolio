@@ -289,7 +289,7 @@ export const projects: Project[] = [
   },
   {
     id: 'music-pathways-redesign',
-    title: 'Music Pathways: Strategic Brand Design for Career Discovery',
+    title: 'Music Pathways: Brand Design for Career Discovery',
     category: 'UI/UX Design',
     dates: 'Nov 2025 - Nov 2025',
     organization: 'University of Toronto',
@@ -419,7 +419,7 @@ export const projects: Project[] = [
   },
   {
     id: 'matchify',
-    title: 'Matchify: Connecting People Through Shared Musical Identity',
+    title: 'Matchify: Connecting People Through Music',
     category: 'UI/UX Design',
     dates: 'Jun 2024 - Aug 2024',
     organization: 'Independent Project',
@@ -441,7 +441,7 @@ export const projects: Project[] = [
   },
   {
     id: 'tutorly',
-    title: 'Tutorly: Matching Students for Personalized Peer Learning',
+    title: 'Tutorly: Matching Students for Peer Learning',
     category: 'UI/UX Design',
     dates: 'May 2024 - Aug 2024',
     organization: 'University of Toronto',
@@ -463,7 +463,7 @@ export const projects: Project[] = [
   },
   {
     id: 'food-resq',
-    title: 'Food ResQ: Connecting Surplus Food with Local Communities',
+    title: 'Food ResQ: Connecting Food with Communities',
     category: 'Product Management',
     dates: 'Oct 2023 - Oct 2023',
     organization: 'Hack The Valley 8',
