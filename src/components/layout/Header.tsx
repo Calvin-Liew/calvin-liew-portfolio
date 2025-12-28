@@ -62,7 +62,9 @@ export default function Header() {
 
   // Close menu when pathname changes (navigation occurred)
   useEffect(() => {
+    console.log('Pathname changed to:', pathname);
     if (mobileMenuOpen) {
+      console.log('Closing menu due to pathname change');
       closeMenu();
     }
   }, [pathname]);
@@ -183,6 +185,7 @@ export default function Header() {
                   <Link
                     key={item.name}
                     href={item.href}
+                    onClick={() => console.log('Link clicked:', item.name, item.href)}
                     aria-current={isActive(item.href) ? 'page' : undefined}
                     className={`block px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 touch-target-enhanced ${
                       isActive(item.href)
