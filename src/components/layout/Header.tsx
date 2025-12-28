@@ -149,7 +149,7 @@ export default function Header() {
           role="dialog"
           aria-modal="true"
           aria-label="Mobile navigation menu"
-          style={{ backgroundColor: 'rgb(10, 10, 20)' }}
+          style={{ backgroundColor: 'rgba(10, 10, 20, 1)', opacity: 1 }}
           className={`fixed inset-y-0 right-0 z-50 w-[280px] sm:w-[320px] border-l border-cosmic-purple/30 shadow-2xl flex flex-col ${
             isClosing ? 'animate-slide-out-right' : 'animate-slide-in-right'
           }`}
