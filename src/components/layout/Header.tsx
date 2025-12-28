@@ -33,7 +33,7 @@ export default function Header() {
           <div className="flex lg:shrink-0">
             <Link
               href="/"
-              className="text-xl font-semibold gradient-text hover:scale-105 transition-all duration-300 drop-shadow-[0_0_8px_rgba(167,139,250,0.4)]"
+              className="text-2xl font-semibold text-white hover:scale-105 transition-all duration-300 drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]"
               aria-label="Home"
             >
               Calvin Liew

@@ -37,8 +37,8 @@ export default function Hero() {
       <Container className="relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Greeting + Name */}
-          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold mb-6 leading-none tracking-tight animate-fade-in-up gradient-text">
-            Hey, I'm Calvin Liew.
+          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold mb-6 leading-none tracking-tight animate-fade-in-up">
+            Hey, I'm <span className="text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.8)]">Calvin Liew</span>.
           </h1>
 
           {/* Engaging description */}
