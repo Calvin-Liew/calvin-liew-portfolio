@@ -69,6 +69,15 @@ export default function Header() {
     }
   }, [pathname]);
 
+  // Debug: Log when menu opens
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      console.log('Mobile menu opened');
+      console.log('Navigation items:', navigation);
+      console.log('Current pathname:', pathname);
+    }
+  }, [mobileMenuOpen]);
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/10 border-b border-cosmic-purple/20">
       <Container>
@@ -187,11 +196,7 @@ export default function Header() {
                     href={item.href}
                     onClick={() => console.log('Link clicked:', item.name, item.href)}
                     aria-current={isActive(item.href) ? 'page' : undefined}
-                    className={`block px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 touch-target-enhanced ${
-                      isActive(item.href)
-                        ? 'bg-gradient-to-r from-cosmic-purple/20 to-cosmic-cyan/20 text-cosmic-purple border border-cosmic-purple/30'
-                        : 'text-secondary hover:text-foreground hover:bg-cosmic-purple/5 border border-transparent'
-                    }`}
+                    className="block px-4 py-3 text-2xl font-bold bg-red-500 text-white border-4 border-yellow-400 rounded-lg"
                   >
                     {item.name}
                   </Link>
