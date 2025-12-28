@@ -60,6 +60,13 @@ export default function Header() {
     };
   }, [mobileMenuOpen]);
 
+  // Close menu when pathname changes (navigation occurred)
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      closeMenu();
+    }
+  }, [pathname]);
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/10 border-b border-cosmic-purple/20">
       <Container>
@@ -176,7 +183,6 @@ export default function Header() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    onClick={closeMenu}
                     aria-current={isActive(item.href) ? 'page' : undefined}
                     className={`block px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 touch-target-enhanced ${
                       isActive(item.href)
@@ -197,7 +203,6 @@ export default function Header() {
                 variant="gradient"
                 size="md"
                 className="w-full justify-center"
-                onClick={closeMenu}
               >
                 Get in Touch
               </Button>
