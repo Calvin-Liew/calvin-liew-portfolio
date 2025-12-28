@@ -66,7 +66,7 @@ export default function Header() {
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
         mobileMenuOpen
           ? 'bg-background border-b border-cosmic-purple/30'
-          : 'bg-background/0 backdrop-blur-sm'
+          : 'bg-background/80 backdrop-blur-md border-b border-border-light/30'
       }`}>
         <Container>
           <nav className="flex items-center justify-between py-5" aria-label="Global">
