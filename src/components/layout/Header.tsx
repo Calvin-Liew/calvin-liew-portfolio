@@ -149,16 +149,16 @@ export default function Header() {
           role="dialog"
           aria-modal="true"
           aria-label="Mobile navigation menu"
-          className={`fixed inset-y-0 right-0 z-50 w-[280px] sm:w-[320px] bg-surface border-l border-border-light shadow-2xl flex flex-col ${
+          className={`fixed inset-y-0 right-0 z-50 w-[280px] sm:w-[320px] bg-[#0a0a14] border-l border-cosmic-purple/30 shadow-2xl flex flex-col ${
             isClosing ? 'animate-slide-out-right' : 'animate-slide-in-right'
           }`}
         >
-          {/* Header - Fixed height */}
-          <div className="flex items-center justify-between p-6 border-b border-border-light flex-shrink-0">
-            <span className="text-lg font-semibold text-foreground">Menu</span>
+          {/* Header - With subtle gradient */}
+          <div className="flex items-center justify-between p-6 border-b border-cosmic-purple/20 flex-shrink-0 bg-gradient-to-b from-cosmic-purple/5 to-transparent">
+            <span className="text-xl font-bold text-white">Menu</span>
             <button
               type="button"
-              className="touch-target-enhanced inline-flex items-center justify-center rounded-lg p-2 text-secondary hover:text-cosmic-purple hover:bg-cosmic-purple/10 transition-all duration-200"
+              className="touch-target-enhanced inline-flex items-center justify-center rounded-lg p-2 text-gray-400 hover:text-white hover:bg-cosmic-purple/20 transition-all duration-200"
               onClick={closeMenu}
               aria-label="Close menu"
             >
@@ -168,8 +168,8 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Navigation - Flexible, scrollable */}
-          <nav className="flex-1 overflow-y-auto p-6" aria-label="Mobile navigation">
+          {/* Navigation - Guaranteed visible with min-height */}
+          <nav className="flex-1 overflow-y-auto p-6 min-h-[200px]" aria-label="Mobile navigation">
             <div className="space-y-2">
               {navigation.map((item) => (
                 <Link
@@ -177,10 +177,10 @@ export default function Header() {
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
                   aria-current={isActive(item.href) ? 'page' : undefined}
-                  className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors ${
+                  className={`block px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
                     isActive(item.href)
-                      ? 'bg-cosmic-purple/20 text-cosmic-purple border border-cosmic-purple/30'
-                      : 'text-foreground hover:bg-cosmic-purple/10'
+                      ? 'bg-gradient-to-r from-cosmic-purple/20 to-cosmic-cyan/20 text-white border border-cosmic-purple/50 shadow-sm'
+                      : 'text-gray-200 hover:text-white hover:bg-cosmic-purple/15 hover:border hover:border-cosmic-purple/30'
                   }`}
                 >
                   {item.name}
@@ -189,21 +189,21 @@ export default function Header() {
             </div>
           </nav>
 
-          {/* Footer - Fixed height */}
-          <div className="flex-shrink-0 border-t border-border-light">
-            <div className="p-6">
+          {/* Footer - With subtle gradient */}
+          <div className="flex-shrink-0 border-t border-cosmic-purple/20 bg-gradient-to-t from-cosmic-purple/5 to-transparent">
+            <div className="p-6 space-y-4">
               <Button
                 href="/profile#contact"
                 variant="gradient"
-                className="w-full"
+                className="w-full justify-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Get in Touch
               </Button>
             </div>
             <div className="px-6 pb-6">
-              <p className="text-sm text-secondary mb-3">Connect</p>
-              <SocialLinks variant="header" className="justify-start gap-3" />
+              <p className="text-sm text-gray-400 mb-3 font-medium">Connect with me</p>
+              <SocialLinks variant="header" className="justify-start gap-4" />
             </div>
           </div>
         </div>
