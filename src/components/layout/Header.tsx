@@ -176,7 +176,7 @@ export default function Header() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    onClick={() => !isActive(item.href) && closeMenu()}
+                    onClick={closeMenu}
                     aria-current={isActive(item.href) ? 'page' : undefined}
                     className={`block px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 touch-target-enhanced ${
                       isActive(item.href)
