@@ -3,7 +3,7 @@ import { FilterState } from '@/types/filters';
 
 interface ActiveFiltersChipsProps {
   filters: FilterState;
-  onRemove: (type: 'category' | 'semester' | 'skill', value: string) => void;
+  onRemove: (type: 'category' | 'skill', value: string) => void;
   onClearAll: () => void;
 }
 
@@ -14,7 +14,6 @@ export default function ActiveFiltersChips({
 }: ActiveFiltersChipsProps) {
   const activeFilters = [
     ...filters.categories.map(v => ({ type: 'category' as const, value: v, label: v })),
-    ...filters.semesters.map(v => ({ type: 'semester' as const, value: v, label: v })),
     ...filters.skills.map(v => ({ type: 'skill' as const, value: v, label: v }))
   ];
 

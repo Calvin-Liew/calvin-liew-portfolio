@@ -1,27 +1,21 @@
 import { Project } from '@/types';
 import { FilterState, SortOption } from '@/types/filters';
-import { parseDateToSemester } from './dateToSemester';
 
 export function filterProjects(
   projects: Project[],
   filters: FilterState
 ): Project[] {
   return projects.filter(project => {
-    // Category filter (OR within categories - match ANY selected)
+    // Category filter (OR - match ANY selected)
     const categoryMatch = filters.categories.length === 0 ||
       filters.categories.includes(project.category);
 
-    // Semester filter (OR within semesters - match ANY selected)
-    const projectSemester = parseDateToSemester(project.dates).label;
-    const semesterMatch = filters.semesters.length === 0 ||
-      filters.semesters.includes(projectSemester);
-
-    // Skills filter (OR within skills - project must have ANY selected skill)
+    // Skills filter (OR - project must have ANY selected skill)
     const skillsMatch = filters.skills.length === 0 ||
       filters.skills.some(skill => project.skills.includes(skill));
 
-    // AND logic: must pass all active filter types
-    return categoryMatch && semesterMatch && skillsMatch;
+    // AND logic between filter types
+    return categoryMatch && skillsMatch;
   });
 }
 
@@ -33,18 +27,11 @@ export function sortProjects(
 
   switch (sortBy) {
     case 'recent':
-      return sorted.sort((a, b) => {
-        const dateA = parseDateToSemester(a.dates).sortKey;
-        const dateB = parseDateToSemester(b.dates).sortKey;
-        return dateB.localeCompare(dateA); // Newest first
-      });
+      // Sort by date string (projects already have dates)
+      return sorted.sort((a, b) => b.dates.localeCompare(a.dates));
 
     case 'oldest':
-      return sorted.sort((a, b) => {
-        const dateA = parseDateToSemester(a.dates).sortKey;
-        const dateB = parseDateToSemester(b.dates).sortKey;
-        return dateA.localeCompare(dateB); // Oldest first
-      });
+      return sorted.sort((a, b) => a.dates.localeCompare(b.dates));
 
     case 'alphabetical':
       return sorted.sort((a, b) => a.title.localeCompare(b.title));

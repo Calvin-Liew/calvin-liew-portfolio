@@ -4,11 +4,9 @@ import { useState, useEffect, useMemo } from 'react';
 import ProjectCard from './ProjectCard';
 import { Project } from '@/types';
 import { FilterState, SortOption } from '@/types/filters';
-import { extractUniqueSemesters, extractSkillsWithCount, extractCategoriesWithCount } from '@/utils/filterHelpers';
+import { extractSkillsWithCount, extractCategoriesWithCount } from '@/utils/filterHelpers';
 import { filterProjects, sortProjects } from '@/utils/filterProjects';
-import { parseDateToSemester } from '@/utils/dateToSemester';
 import CategoryFilter from './filters/CategoryFilter';
-import SemesterFilter from './filters/SemesterFilter';
 import SkillsFilter from './filters/SkillsFilter';
 import SortDropdown from './filters/SortDropdown';
 import ActiveFiltersChips from './filters/ActiveFiltersChips';
@@ -20,17 +18,11 @@ interface ProjectsClientProps {
 export default function ProjectsClient({ projects }: ProjectsClientProps) {
   const [filters, setFilters] = useState<FilterState>({
     categories: [],
-    semesters: [],
     skills: [],
     sortBy: 'recent'
   });
 
   // Extract filter options with useMemo
-  const availableSemesters = useMemo(
-    () => extractUniqueSemesters(projects),
-    [projects]
-  );
-
   const availableSkills = useMemo(
     () => extractSkillsWithCount(projects),
     [projects]
@@ -57,7 +49,6 @@ export default function ProjectsClient({ projects }: ProjectsClientProps) {
     const params = new URLSearchParams(window.location.search);
     setFilters({
       categories: params.get('categories')?.split(',').filter(Boolean) || [],
-      semesters: params.get('semesters')?.split(',').filter(Boolean) || [],
       skills: params.get('skills')?.split(',').filter(Boolean) || [],
       sortBy: (params.get('sort') as SortOption) || 'recent'
     });
@@ -67,7 +58,6 @@ export default function ProjectsClient({ projects }: ProjectsClientProps) {
   useEffect(() => {
     const params = new URLSearchParams();
     if (filters.categories.length) params.set('categories', filters.categories.join(','));
-    if (filters.semesters.length) params.set('semesters', filters.semesters.join(','));
     if (filters.skills.length) params.set('skills', filters.skills.join(','));
     if (filters.sortBy !== 'recent') params.set('sort', filters.sortBy);
 
@@ -86,15 +76,6 @@ export default function ProjectsClient({ projects }: ProjectsClientProps) {
     }));
   };
 
-  const toggleSemester = (semester: string) => {
-    setFilters(prev => ({
-      ...prev,
-      semesters: prev.semesters.includes(semester)
-        ? prev.semesters.filter(s => s !== semester)
-        : [...prev.semesters, semester]
-    }));
-  };
-
   const toggleSkill = (skill: string) => {
     setFilters(prev => ({
       ...prev,
@@ -104,24 +85,17 @@ export default function ProjectsClient({ projects }: ProjectsClientProps) {
     }));
   };
 
-  const removeFilter = (type: 'category' | 'semester' | 'skill', value: string) => {
+  const removeFilter = (type: 'category' | 'skill', value: string) => {
     if (type === 'category') toggleCategory(value);
-    if (type === 'semester') toggleSemester(value);
     if (type === 'skill') toggleSkill(value);
   };
 
   const clearAllFilters = () => {
     setFilters({
       categories: [],
-      semesters: [],
       skills: [],
       sortBy: filters.sortBy
     });
-  };
-
-  // Helper for project counts
-  const getSemesterProjectCount = (semester: string) => {
-    return projects.filter(p => parseDateToSemester(p.dates).label === semester).length;
   };
 
   return (
@@ -134,13 +108,6 @@ export default function ProjectsClient({ projects }: ProjectsClientProps) {
               selectedCategories={filters.categories}
               onToggle={toggleCategory}
               projectCounts={categoryCounts}
-            />
-
-            <SemesterFilter
-              selectedSemesters={filters.semesters}
-              onToggle={toggleSemester}
-              availableSemesters={availableSemesters}
-              getProjectCount={getSemesterProjectCount}
             />
 
             <SkillsFilter
