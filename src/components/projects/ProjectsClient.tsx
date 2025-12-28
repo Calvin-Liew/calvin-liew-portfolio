@@ -101,23 +101,38 @@ export default function ProjectsClient({ projects }: ProjectsClientProps) {
   return (
     <div className="space-y-8">
       {/* Filter Panel */}
-      <div className="bg-surface border border-border-light rounded-xl p-6 space-y-6">
+      <div className="relative bg-surface/50 backdrop-blur-md border border-border-light rounded-xl p-6 space-y-6
+                      shadow-[0_8px_32px_rgba(167,139,250,0.15)]
+                      before:absolute before:inset-0 before:-z-10 before:rounded-xl
+                      before:bg-linear-to-br before:from-cosmic-purple/5 before:via-transparent before:to-cosmic-blue/5
+                      hover:shadow-[0_12px_40px_rgba(167,139,250,0.25)]
+                      hover:border-cosmic-purple/30
+                      transition-all duration-500">
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+          {/* Left: Filter Group */}
           <div className="flex-1 space-y-6">
-            <CategoryFilter
-              selectedCategories={filters.categories}
-              onToggle={toggleCategory}
-              projectCounts={categoryCounts}
-            />
+            <div className="space-y-6 divide-y divide-border-light/50">
+              <CategoryFilter
+                selectedCategories={filters.categories}
+                onToggle={toggleCategory}
+                projectCounts={categoryCounts}
+              />
 
-            <SkillsFilter
-              selectedSkills={filters.skills}
-              onToggle={toggleSkill}
-              availableSkills={availableSkills}
-            />
+              <div className="pt-6">
+                <SkillsFilter
+                  selectedSkills={filters.skills}
+                  onToggle={toggleSkill}
+                  availableSkills={availableSkills}
+                />
+              </div>
+            </div>
           </div>
 
-          <div className="lg:pt-6">
+          {/* Right: Sort Section */}
+          <div className="lg:pt-6 lg:pl-6 lg:border-l lg:border-border-light
+                          relative before:absolute before:inset-y-0 before:left-0 before:w-px
+                          before:bg-linear-to-b before:from-transparent before:via-cosmic-purple/30 before:to-transparent
+                          before:hidden lg:before:block">
             <SortDropdown
               sortBy={filters.sortBy}
               onChange={(sort) => setFilters(prev => ({ ...prev, sortBy: sort }))}
