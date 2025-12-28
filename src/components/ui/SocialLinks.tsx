@@ -37,11 +37,11 @@ export default function SocialLinks({
             href={link.url}
             target={link.platform !== 'Email' ? '_blank' : undefined}
             rel={link.platform !== 'Email' ? 'noopener noreferrer' : undefined}
-            className="group relative p-2 rounded-lg border border-border-light bg-surface hover:border-cosmic-purple hover:bg-cosmic-purple/10 transition-all duration-300"
-            aria-label={link.platform}
+            className="group relative touch-target-enhanced p-3 rounded-lg border border-border-light bg-surface hover:border-cosmic-purple hover:bg-cosmic-purple/10 transition-all duration-300 hover:scale-105"
+            aria-label={`${link.platform}: ${link.url}`}
           >
             <Icon
-              className="w-5 h-5 text-secondary group-hover:text-cosmic-purple transition-colors"
+              className="w-6 h-6 text-secondary group-hover:text-cosmic-purple transition-colors"
             />
             {showLabels && (
               <span className="ml-2 text-sm text-secondary group-hover:text-cosmic-purple">

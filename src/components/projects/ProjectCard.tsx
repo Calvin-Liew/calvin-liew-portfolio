@@ -14,12 +14,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Link href={`/projects/${project.id}`} className="group">
       <Card className="h-full flex flex-col relative">
-        {/* Floating category badge - top right */}
-        <Badge variant="category" className="absolute top-4 right-4 z-10">
-          {project.category}
-        </Badge>
-
-        {/* Floating date timestamp - top left */}
+        {/* Date timestamp - always top left on all screens */}
         <time
           className="absolute top-4 left-4 z-10 text-xs text-secondary/70 flex items-center gap-1.5"
           dateTime={project.dates}
@@ -28,10 +23,27 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <span>{project.dates}</span>
         </time>
 
+        {/* Category badge - top right on desktop, in body on mobile */}
+        <Badge
+          variant="category"
+          className="absolute top-4 right-4 z-10 hidden sm:inline-flex"
+          aria-label={`Category: ${project.category}`}
+        >
+          {project.category}
+        </Badge>
+
         <div className="mb-4 pt-6">
-          <h3 className="text-2xl font-bold text-primary mb-2 line-clamp-3 pr-28 group-hover:bg-linear-to-r group-hover:from-cosmic-purple group-hover:to-cosmic-cyan group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+          <h3 className="text-2xl font-bold text-primary mb-2 line-clamp-3 sm:pr-28 group-hover:bg-linear-to-r group-hover:from-cosmic-purple group-hover:to-cosmic-cyan group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
             {project.title}
           </h3>
+
+          {/* Category badge in body - mobile only */}
+          <div className="sm:hidden mb-3">
+            <Badge variant="category" aria-label={`Category: ${project.category}`}>
+              {project.category}
+            </Badge>
+          </div>
+
           <div className="flex flex-wrap items-center gap-2 mb-3">
             {project.courseCode && (() => {
               const { code, fullName } = abbreviateCourseCode(project.courseCode);

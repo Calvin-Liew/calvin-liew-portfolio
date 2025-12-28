@@ -260,3 +260,87 @@ body {
     }
   }
 }
+
+/* Side Menu Slide Animations */
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out-right {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes backdrop-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes backdrop-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Animation classes */
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-slide-out-right {
+  animation: slide-out-right 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-backdrop-in {
+  animation: backdrop-fade-in 0.3s ease-out forwards;
+}
+
+.animate-backdrop-out {
+  animation: backdrop-fade-out 0.3s ease-out forwards;
+}
+
+/* Mobile Menu Backdrop */
+.mobile-menu-backdrop {
+  background: rgba(10, 10, 20, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Improved touch targets for mobile */
+@media (max-width: 767px) {
+  .touch-target-enhanced {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+/* Ensure smooth animations on mobile */
+@media (prefers-reduced-motion: no-preference) {
+  .mobile-menu-slide {
+    will-change: transform;
+  }
+
+  .mobile-menu-backdrop {
+    will-change: opacity;
+  }
+}

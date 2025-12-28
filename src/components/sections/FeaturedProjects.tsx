@@ -41,12 +41,7 @@ export default function FeaturedProjects() {
           {featuredProjects.map((project) => (
             <Link key={project.id} href={`/projects/${project.id}`}>
               <Card className="h-full relative">
-                {/* Floating category badge - top right */}
-                <Badge variant="category" className="absolute top-4 right-4 z-10">
-                  {project.category}
-                </Badge>
-
-                {/* Floating date timestamp - top left */}
+                {/* Date timestamp - always top left */}
                 <time
                   className="absolute top-4 left-4 z-10 text-xs text-secondary/70 flex items-center gap-1.5"
                   dateTime={project.dates}
@@ -55,10 +50,27 @@ export default function FeaturedProjects() {
                   <span>{project.dates}</span>
                 </time>
 
+                {/* Category badge - top right on desktop, in body on mobile */}
+                <Badge
+                  variant="category"
+                  className="absolute top-4 right-4 z-10 hidden sm:inline-flex"
+                  aria-label={`Category: ${project.category}`}
+                >
+                  {project.category}
+                </Badge>
+
                 <div className="mb-4 pt-6">
-                  <h3 className="text-2xl font-bold text-primary mb-2 line-clamp-3 pr-28">
+                  <h3 className="text-2xl font-bold text-primary mb-2 line-clamp-3 sm:pr-28">
                     {project.title}
                   </h3>
+
+                  {/* Category badge in body - mobile only */}
+                  <div className="sm:hidden mb-3">
+                    <Badge variant="category" aria-label={`Category: ${project.category}`}>
+                      {project.category}
+                    </Badge>
+                  </div>
+
                   <div className="flex flex-wrap items-center gap-2 mb-3">
                     {project.courseCode && (() => {
                       const { code, fullName } = abbreviateCourseCode(project.courseCode);
