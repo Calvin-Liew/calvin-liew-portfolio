@@ -1,0 +1,85 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with cosmic gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1a1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a0a0f;stop-opacity:1" />
+    </linearGradient>
+
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Glow effect -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="10" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+
+  <!-- Decorative circles with opacity -->
+  <circle cx="200" cy="150" r="150" fill="#8b5cf6" opacity="0.1"/>
+  <circle cx="1000" cy="480" r="120" fill="#06b6d4" opacity="0.1"/>
+  <circle cx="900" cy="200" r="80" fill="#8b5cf6" opacity="0.05"/>
+
+  <!-- Accent line on left -->
+  <rect x="0" y="0" width="6" height="630" fill="url(#accentGradient)"/>
+
+  <!-- Main content container -->
+  <g transform="translate(100, 0)">
+    <!-- Name -->
+    <text x="0" y="200" font-family="Space Grotesk, sans-serif" font-size="96" font-weight="700" fill="#ffffff" filter="url(#glow)">
+      Calvin Liew
+    </text>
+
+    <!-- Title with gradient -->
+    <text x="0" y="280" font-family="Space Grotesk, sans-serif" font-size="48" font-weight="600" fill="url(#accentGradient)">
+      Product Analyst &amp; Designer
+    </text>
+
+    <!-- Subtitle -->
+    <text x="0" y="340" font-family="Inter, sans-serif" font-size="28" font-weight="400" fill="#a1a1aa" opacity="0.9">
+      Building intelligent products at the intersection of
+    </text>
+    <text x="0" y="380" font-family="Inter, sans-serif" font-size="28" font-weight="400" fill="#a1a1aa" opacity="0.9">
+      technology, design, and business strategy
+    </text>
+
+    <!-- Divider line -->
+    <line x1="0" y1="440" x2="400" y2="440" stroke="url(#accentGradient)" stroke-width="3" opacity="0.6"/>
+
+    <!-- Skills/Keywords -->
+    <g transform="translate(0, 480)">
+      <!-- Skill badges -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="140" height="40" rx="20" fill="#8b5cf6" opacity="0.2"/>
+        <text x="70" y="27" font-family="Inter, sans-serif" font-size="16" font-weight="500" fill="#c4b5fd" text-anchor="middle">UI/UX Design</text>
+      </g>
+
+      <g transform="translate(160, 0)">
+        <rect x="0" y="0" width="160" height="40" rx="20" fill="#06b6d4" opacity="0.2"/>
+        <text x="80" y="27" font-family="Inter, sans-serif" font-size="16" font-weight="500" fill="#67e8f9" text-anchor="middle">Data Analysis</text>
+      </g>
+
+      <g transform="translate(340, 0)">
+        <rect x="0" y="0" width="180" height="40" rx="20" fill="#8b5cf6" opacity="0.2"/>
+        <text x="90" y="27" font-family="Inter, sans-serif" font-size="16" font-weight="500" fill="#c4b5fd" text-anchor="middle">AI-Powered Tools</text>
+      </g>
+    </g>
+
+  </g>
+
+  <!-- Decorative corner accent -->
+  <g transform="translate(1050, 50)" opacity="0.3">
+    <line x1="0" y1="0" x2="100" y2="0" stroke="url(#accentGradient)" stroke-width="2"/>
+    <line x1="100" y1="0" x2="100" y2="100" stroke="url(#accentGradient)" stroke-width="2"/>
+  </g>
+</svg>
