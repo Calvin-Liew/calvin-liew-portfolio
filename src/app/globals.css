@@ -287,36 +287,57 @@ body {
 @keyframes backdrop-fade-in {
   from {
     opacity: 0;
+    backdrop-filter: blur(0px);
   }
   to {
     opacity: 1;
+    backdrop-filter: blur(8px);
   }
 }
 
 @keyframes backdrop-fade-out {
   from {
     opacity: 1;
+    backdrop-filter: blur(8px);
   }
   to {
     opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+}
+
+/* Navigation Item Stagger Animation */
+@keyframes fade-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
 /* Animation classes */
 .animate-slide-in-right {
-  animation: slide-in-right 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: slide-in-right 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 .animate-slide-out-right {
-  animation: slide-out-right 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: slide-out-right 0.25s cubic-bezier(0.4, 0, 1, 1) forwards;
 }
 
 .animate-backdrop-in {
-  animation: backdrop-fade-in 0.3s ease-out forwards;
+  animation: backdrop-fade-in 0.35s ease-out forwards;
 }
 
 .animate-backdrop-out {
-  animation: backdrop-fade-out 0.3s ease-out forwards;
+  animation: backdrop-fade-out 0.35s ease-out forwards;
+}
+
+.animate-fade-slide-in {
+  animation: fade-slide-in 0.3s ease-out forwards;
+  animation-play-state: running;
 }
 
 /* Mobile Menu Backdrop */
@@ -324,6 +345,53 @@ body {
   background: rgba(10, 10, 20, 0.8);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+}
+
+/* Full-Screen Menu Animations */
+@keyframes menu-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes menu-fade-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes fade-in-delayed {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-menu-fade-in {
+  animation: menu-fade-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-menu-fade-out {
+  animation: menu-fade-out 0.2s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+.animate-fade-in-delayed {
+  animation: fade-in-delayed 0.4s ease-out forwards;
+  opacity: 0;
 }
 
 /* Improved touch targets for mobile */
