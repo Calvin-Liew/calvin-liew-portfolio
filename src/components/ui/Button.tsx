@@ -53,6 +53,7 @@ export default function Button({
           aria-label={ariaLabel}
           target={target}
           rel={rel || (target === '_blank' ? 'noopener noreferrer' : undefined)}
+          onClick={onClick}
         >
           {children}
         </a>
@@ -60,7 +61,7 @@ export default function Button({
     }
 
     return (
-      <Link href={href} className={classes} aria-label={ariaLabel}>
+      <Link href={href} className={classes} aria-label={ariaLabel} onClick={onClick}>
         {children}
       </Link>
     );
