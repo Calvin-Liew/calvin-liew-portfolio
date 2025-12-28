@@ -60,23 +60,6 @@ export default function Header() {
     };
   }, [mobileMenuOpen]);
 
-  // Close menu when pathname changes (navigation occurred)
-  useEffect(() => {
-    console.log('Pathname changed to:', pathname);
-    if (mobileMenuOpen) {
-      console.log('Closing menu due to pathname change');
-      closeMenu();
-    }
-  }, [pathname]);
-
-  // Debug: Log when menu opens
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      console.log('Mobile menu opened');
-      console.log('Navigation items:', navigation);
-      console.log('Current pathname:', pathname);
-    }
-  }, [mobileMenuOpen]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/10 border-b border-cosmic-purple/20">
@@ -166,12 +149,12 @@ export default function Header() {
           role="dialog"
           aria-modal="true"
           aria-label="Mobile navigation menu"
-          className={`fixed top-0 right-0 bottom-0 z-50 w-[280px] sm:w-[320px] bg-surface border-l border-border-light shadow-2xl mobile-menu-slide ${
+          className={`fixed inset-y-0 right-0 z-50 w-[280px] sm:w-[320px] bg-surface border-l border-border-light shadow-2xl flex flex-col ${
             isClosing ? 'animate-slide-out-right' : 'animate-slide-in-right'
           }`}
         >
-          {/* Menu Header with Close Button */}
-          <div className="flex items-center justify-between p-6 border-b border-border-light">
+          {/* Header - Fixed height */}
+          <div className="flex items-center justify-between p-6 border-b border-border-light flex-shrink-0">
             <span className="text-lg font-semibold text-foreground">Menu</span>
             <button
               type="button"
@@ -185,40 +168,41 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Scrollable Menu Content */}
-          <div className="overflow-y-auto h-[calc(100%-80px)] overscroll-contain">
-            {/* Navigation Links */}
-            <nav className="px-6 py-6" aria-label="Mobile navigation">
-              <div className="space-y-2">
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    onClick={() => console.log('Link clicked:', item.name, item.href)}
-                    aria-current={isActive(item.href) ? 'page' : undefined}
-                    className="block px-4 py-3 text-2xl font-bold bg-red-500 text-white border-4 border-yellow-400 rounded-lg"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            </nav>
+          {/* Navigation - Flexible, scrollable */}
+          <nav className="flex-1 overflow-y-auto p-6" aria-label="Mobile navigation">
+            <div className="space-y-2">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  aria-current={isActive(item.href) ? 'page' : undefined}
+                  className={`block px-4 py-3 rounded-lg text-base font-medium transition-colors ${
+                    isActive(item.href)
+                      ? 'bg-cosmic-purple/20 text-cosmic-purple border border-cosmic-purple/30'
+                      : 'text-foreground hover:bg-cosmic-purple/10'
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          </nav>
 
-            {/* CTA Button */}
-            <div className="px-6 pb-6">
+          {/* Footer - Fixed height */}
+          <div className="flex-shrink-0 border-t border-border-light">
+            <div className="p-6">
               <Button
                 href="/profile#contact"
                 variant="gradient"
-                size="md"
-                className="w-full justify-center"
+                className="w-full"
+                onClick={() => setMobileMenuOpen(false)}
               >
                 Get in Touch
               </Button>
             </div>
-
-            {/* Social Links */}
-            <div className="px-6 py-6 border-t border-border-light">
-              <p className="text-sm font-medium text-foreground mb-4">Connect with me</p>
+            <div className="px-6 pb-6">
+              <p className="text-sm text-secondary mb-3">Connect</p>
               <SocialLinks variant="header" className="justify-start gap-3" />
             </div>
           </div>
