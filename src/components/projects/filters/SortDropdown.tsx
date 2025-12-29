@@ -32,7 +32,7 @@ export default function SortDropdown({ sortBy, onChange }: SortDropdownProps) {
         className="px-4 py-2.5
                    bg-surface/80 backdrop-blur-sm
                    border border-border-light rounded-lg
-                   text-sm font-medium
+                   text-sm font-medium text-foreground
                    hover:border-cosmic-purple hover:bg-cosmic-purple/5
                    hover:shadow-[0_0_15px_rgba(167,139,250,0.25)]
                    focus:outline-none focus:ring-2 focus:ring-cosmic-purple/50
@@ -43,7 +43,7 @@ export default function SortDropdown({ sortBy, onChange }: SortDropdownProps) {
                    bg-size-[12px] bg-position-[calc(100%-12px)_center] bg-no-repeat pr-10"
       >
         {options.map(({ value, label }) => (
-          <option key={value} value={value}>{label}</option>
+          <option key={value} value={value} className="bg-surface text-foreground">{label}</option>
         ))}
       </select>
     </div>

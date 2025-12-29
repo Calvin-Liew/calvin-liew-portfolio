@@ -79,7 +79,7 @@ export default function SkillsFilter({
                   className="w-full pl-10 pr-4 py-2
                              bg-surface-dark/50 backdrop-blur-sm
                              border border-border-light rounded-lg
-                             text-sm placeholder:text-secondary/60
+                             text-sm text-foreground placeholder:text-secondary/60
                              focus:outline-none focus:ring-2 focus:ring-cosmic-purple/50
                              focus:border-cosmic-purple/50
                              focus:shadow-[0_0_12px_rgba(167,139,250,0.2)]
@@ -108,7 +108,7 @@ export default function SkillsFilter({
                                  text-cosmic-purple focus:ring-cosmic-purple focus:ring-offset-0
                                  accent-cosmic-purple"
                     />
-                    <span className={`text-sm flex-1 transition-colors ${isSelected ? 'text-cosmic-purple font-semibold' : ''}`}>
+                    <span className={`text-sm flex-1 transition-colors ${isSelected ? 'text-cosmic-purple font-semibold' : 'text-foreground'}`}>
                       {skill}
                     </span>
                     <span className={`text-xs px-2 py-0.5 rounded-full transition-all duration-200
