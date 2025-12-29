@@ -48,6 +48,12 @@ export const metadata: Metadata = {
     description: "Product Analyst and Designer building intelligent products at the intersection of technology, design, and business strategy.",
     images: ['/og-image.png'],
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+  },
 };
 
 export default function RootLayout({
