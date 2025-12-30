@@ -37,10 +37,10 @@ export default function FeaturedProjects() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 auto-rows-fr">
           {featuredProjects.map((project) => (
             <Link key={project.id} href={`/projects/${project.id}`} className="block h-full">
-              <Card className="h-full relative">
+              <Card className="h-full flex flex-col relative">
                 {/* Date timestamp - always top left */}
                 <time
                   className="absolute top-4 left-4 z-10 text-xs text-secondary/70 flex items-center gap-1.5"
