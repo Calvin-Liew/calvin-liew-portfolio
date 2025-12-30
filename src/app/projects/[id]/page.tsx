@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import Container from '@/components/layout/Container';
 import Section from '@/components/layout/Section';
 import Badge from '@/components/ui/Badge';
@@ -203,9 +204,23 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               {project.extendedContent.features && project.extendedContent.features.length > 0 && (
                 <div>
                   <h2 className="text-2xl font-semibold text-primary mb-6">Key Features</h2>
-                  <div className="space-y-4">
+                  <div className="space-y-6">
                     {project.extendedContent.features.map((feature, index) => (
                       <div key={index} className="p-5 rounded-lg bg-gradient-to-br from-cosmic-purple/5 to-cosmic-cyan/5 border border-cosmic-purple/20">
+                        {/* Feature Image */}
+                        {feature.image && (
+                          <div className="relative w-full mb-4 rounded-lg overflow-hidden bg-surface-dark border border-border-light">
+                            <Image
+                              src={feature.image}
+                              alt={feature.imageAlt || feature.title}
+                              width={1200}
+                              height={675}
+                              className="w-full h-auto object-contain"
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                            />
+                          </div>
+                        )}
+
                         <h3 className="font-semibold text-primary mb-2">{feature.title}</h3>
                         <p className="text-sm text-secondary leading-relaxed mb-2">{feature.description}</p>
                         <div className="flex items-start gap-2 text-xs">
@@ -224,9 +239,23 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               {project.extendedContent.visualizations && project.extendedContent.visualizations.length > 0 && (
                 <div>
                   <h2 className="text-2xl font-semibold text-primary mb-6">Visualizations Created</h2>
-                  <div className="space-y-4">
+                  <div className="space-y-6">
                     {project.extendedContent.visualizations.map((viz, index) => (
                       <div key={index} className="p-5 rounded-lg bg-gradient-to-br from-cosmic-purple/5 to-cosmic-cyan/5 border border-cosmic-purple/20">
+                        {/* Visualization Image */}
+                        {viz.image && (
+                          <div className="relative w-full mb-4 rounded-lg overflow-hidden bg-surface-dark border border-border-light">
+                            <Image
+                              src={viz.image}
+                              alt={viz.imageAlt || viz.title}
+                              width={1200}
+                              height={675}
+                              className="w-full h-auto object-contain"
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                            />
+                          </div>
+                        )}
+
                         <h3 className="font-semibold text-primary mb-2">{viz.title}</h3>
                         <p className="text-sm text-secondary leading-relaxed mb-2">{viz.description}</p>
                         <div className="flex items-start gap-2 text-xs">

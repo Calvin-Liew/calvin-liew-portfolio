@@ -50,6 +50,8 @@ export interface Visualization {
   title: string;
   description: string;
   insight: string;
+  image?: string;
+  imageAlt?: string;
 }
 
 export interface Tool {
