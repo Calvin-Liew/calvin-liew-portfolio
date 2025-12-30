@@ -37,9 +37,9 @@ export default function FeaturedProjects() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 items-stretch">
           {featuredProjects.map((project) => (
-            <Link key={project.id} href={`/projects/${project.id}`}>
+            <Link key={project.id} href={`/projects/${project.id}`} className="block h-full">
               <Card className="h-full relative">
                 {/* Date timestamp - always top left */}
                 <time

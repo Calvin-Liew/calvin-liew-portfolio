@@ -13,7 +13,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <Link href={`/projects/${project.id}`} className="group">
+    <Link href={`/projects/${project.id}`} className="group block h-full">
       <Card className="h-full flex flex-col relative overflow-hidden">
         {/* Hero Image */}
         {project.image && (
@@ -49,7 +49,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         )}
 
         {/* Content section */}
-        <div className={`flex flex-col grow ${project.image ? 'pt-4' : ''}`}>
+        <div className="flex flex-col grow">
           {/* Date and category badges - only show if no image */}
           {!project.image && (
             <>
@@ -71,7 +71,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             </>
           )}
 
-          <div className={`mb-4 ${!project.image ? 'pt-6' : ''}`}>
+          <div className="mb-4 pt-4">
             <h3 className="text-2xl font-bold text-primary mb-2 line-clamp-3 sm:pr-28 group-hover:bg-linear-to-r group-hover:from-cosmic-purple group-hover:to-cosmic-cyan group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
               {project.title}
             </h3>
