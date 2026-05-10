@@ -46,7 +46,7 @@ export default async function BlogPage() {
           <p className="text-lg text-ink-soft max-w-3xl">
             Notes on{' '}
             <MarkerHighlight className="font-medium text-ink">
-              product, design, and technology
+              AI, product, and strategy
             </MarkerHighlight>
             . Updated whenever I have something worth saying.
           </p>

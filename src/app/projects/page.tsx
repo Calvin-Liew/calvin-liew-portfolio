@@ -42,9 +42,9 @@ export default function ProjectsPage() {
             </span>
           </h1>
           <p className="text-lg text-ink-soft max-w-3xl">
-            A full collection of work in{' '}
+            A full collection of work across{' '}
             <MarkerHighlight className="font-medium text-ink">
-              product, design, and data
+              AI agents, product, and data
             </MarkerHighlight>
             . Filter by category or skill to dig in.
           </p>
