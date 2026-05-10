@@ -14,8 +14,7 @@ interface CaseStudyViewerProps {
 export default function CaseStudyViewer({
   fileName,
   title,
-  projectTitle,
-  fileSize
+  fileSize,
 }: CaseStudyViewerProps) {
   const pdfUrl = `/case-studies/${fileName}`;
   const [isLoading, setIsLoading] = useState(true);
@@ -23,30 +22,31 @@ export default function CaseStudyViewer({
 
   return (
     <div className="case-study-section">
-      {/* Section Header */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-3">
-          <FileText className="w-6 h-6 text-cosmic-purple" />
-          <h2 className="text-2xl font-semibold text-primary">
-            Case Study
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6">
+        <div>
+          <h2 className="font-display italic text-3xl sm:text-4xl text-ink leading-tight">
+            <span>
+              Case study<span className="text-terracotta not-italic">.</span>
+            </span>
           </h2>
           {fileSize && (
-            <span className="text-sm text-secondary">
+            <p
+              className="text-base text-terracotta inline-block mt-1"
+              style={{
+                fontFamily: 'var(--font-kalam), cursive',
+                transform: 'rotate(-2deg)',
+              }}
+            >
               ({fileSize})
-            </span>
+            </p>
           )}
         </div>
 
-        {/* Download Button */}
         <a
           href={pdfUrl}
           download={fileName}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-lg
-                     border-2 border-border-light hover:border-cosmic-purple
-                     bg-transparent hover:bg-cosmic-purple/5
-                     text-foreground font-medium transition-all duration-300
-                     hover:shadow-md hover:shadow-cosmic-purple/20
-                     active:scale-95"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-ink text-paper hover:bg-ink-soft hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 font-medium"
           aria-label={`Download ${title}`}
         >
           <Download className="w-5 h-5" />
@@ -55,53 +55,39 @@ export default function CaseStudyViewer({
         </a>
       </div>
 
-      {/* Desktop/Tablet PDF Viewer */}
+      {/* Desktop iframe */}
       <div className="hidden md:block relative">
-        <div
-          className="relative overflow-hidden rounded-lg
-                     border border-border-light
-                     hover:border-cosmic-purple/40
-                     transition-all duration-300
-                     bg-surface"
-        >
-          {/* Loading Skeleton */}
+        <div className="relative overflow-hidden rounded-xl border border-border bg-paper-deeper shadow-paper">
           {isLoading && !hasError && (
-            <div className="absolute inset-0 flex items-center justify-center
-                            bg-surface z-10">
+            <div className="absolute inset-0 flex items-center justify-center bg-paper-deeper z-10">
               <div className="text-center">
-                <div className="animate-pulse text-cosmic-purple mb-2">
+                <div className="animate-pulse text-terracotta mb-2">
                   <FileText className="w-12 h-12 mx-auto" />
                 </div>
-                <p className="text-secondary">Loading case study...</p>
+                <p className="text-ink-soft">Loading case study...</p>
               </div>
             </div>
           )}
 
-          {/* Error State */}
           {hasError && (
-            <div className="flex items-center justify-center h-[600px]
-                            bg-surface">
+            <div className="flex items-center justify-center h-[600px] bg-paper-deeper">
               <div className="text-center">
-                <FileText className="w-12 h-12 mx-auto mb-4 text-secondary" />
-                <p className="text-secondary mb-4">
+                <FileText className="w-12 h-12 mx-auto mb-4 text-ink-soft" />
+                <p className="text-ink-soft mb-4">
                   Unable to display PDF viewer
                 </p>
                 <a
                   href={pdfUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg
-                             bg-cosmic-purple hover:bg-cosmic-violet
-                             text-white font-medium transition-all duration-300
-                             hover:shadow-lg hover:shadow-cosmic-purple/50"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-ink text-paper hover:bg-ink-soft hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 font-medium"
                 >
-                  Open in New Tab
+                  Open in new tab
                 </a>
               </div>
             </div>
           )}
 
-          {/* PDF Iframe */}
           {!hasError && (
             <iframe
               src={pdfUrl}
@@ -118,7 +104,7 @@ export default function CaseStudyViewer({
         </div>
       </div>
 
-      {/* Mobile CTA Card */}
+      {/* Mobile fallback */}
       <div className="block md:hidden">
         <MobileCaseStudyCard
           pdfUrl={pdfUrl}

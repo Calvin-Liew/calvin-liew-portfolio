@@ -1,7 +1,7 @@
 'use client';
 
-import { Github, Linkedin, Mail } from 'lucide-react';
 import { aboutData } from '@/data/about';
+import { HandGithub, HandLinkedIn, HandMail } from './HandDrawn';
 
 interface SocialLinksProps {
   variant?: 'default' | 'header' | 'footer';
@@ -9,16 +9,16 @@ interface SocialLinksProps {
   className?: string;
 }
 
-const iconMap = {
-  GitHub: Github,
-  LinkedIn: Linkedin,
-  Email: Mail,
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  GitHub: HandGithub,
+  LinkedIn: HandLinkedIn,
+  Email: HandMail,
 };
 
 export default function SocialLinks({
   variant = 'default',
   showLabels = false,
-  className = ''
+  className = '',
 }: SocialLinksProps) {
   const variantClasses = {
     default: 'flex gap-4',
@@ -29,22 +29,23 @@ export default function SocialLinks({
   return (
     <div className={`${variantClasses[variant]} ${className}`}>
       {aboutData.socialLinks.map((link) => {
-        const Icon = iconMap[link.platform as keyof typeof iconMap];
+        const Icon = iconMap[link.platform];
+        if (!Icon) return null;
 
         return (
           <a
             key={link.platform}
             href={link.url}
             target={link.platform !== 'Email' ? '_blank' : undefined}
-            rel={link.platform !== 'Email' ? 'noopener noreferrer' : undefined}
-            className="group relative touch-target-enhanced p-3 rounded-lg border border-border-light bg-surface hover:border-cosmic-purple hover:bg-cosmic-purple/10 transition-all duration-300 hover:scale-105"
+            rel={
+              link.platform !== 'Email' ? 'noopener noreferrer' : undefined
+            }
+            className="group relative touch-target-enhanced p-3 rounded-lg border border-border bg-paper-deeper/60 hover:border-terracotta hover:bg-terracotta-wash hover:-translate-y-0.5 transition-all duration-300"
             aria-label={`${link.platform}: ${link.url}`}
           >
-            <Icon
-              className="w-6 h-6 text-secondary group-hover:text-cosmic-purple transition-colors"
-            />
+            <Icon className="w-6 h-6 text-ink-soft group-hover:text-terracotta transition-colors" />
             {showLabels && (
-              <span className="ml-2 text-sm text-secondary group-hover:text-cosmic-purple">
+              <span className="ml-2 text-sm text-ink-soft group-hover:text-terracotta">
                 {link.platform}
               </span>
             )}

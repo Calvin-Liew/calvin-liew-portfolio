@@ -17,14 +17,18 @@ export default function MetaBadge({
   truncate = false,
   className = '',
   ariaLabel,
-  title
+  title,
 }: MetaBadgeProps) {
-  const baseClasses = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-all duration-200';
+  const baseClasses =
+    'inline-flex items-center gap-1.5 rounded-md text-xs font-medium transition-colors duration-200';
 
   const variantClasses = {
-    default: 'bg-gradient-to-r from-cosmic-purple/5 to-cosmic-cyan/5 border border-cosmic-purple/20 text-secondary hover:border-cosmic-purple/40 hover:scale-105',
-    emphasized: 'bg-gradient-to-r from-cosmic-purple/10 to-cosmic-cyan/10 border border-cosmic-purple/30 text-primary hover:border-cosmic-purple/50 hover:scale-105',
-    compact: 'bg-gradient-to-r from-cosmic-purple/5 to-cosmic-cyan/5 border border-cosmic-purple/15 text-secondary text-[11px] px-2 py-0.5 hover:border-cosmic-purple/30 hover:scale-105'
+    default:
+      'px-2.5 py-1 bg-paper border border-border text-ink-soft hover:border-ink/40 hover:text-ink',
+    emphasized:
+      'px-3 py-1.5 bg-paper-deeper border border-border-strong text-ink hover:border-terracotta',
+    compact:
+      'px-2 py-0.5 bg-paper border border-border text-ink-soft text-[11px] hover:border-ink/40 hover:text-ink',
   };
 
   const textClasses = truncate ? 'truncate max-w-[180px]' : '';
@@ -35,7 +39,7 @@ export default function MetaBadge({
       aria-label={ariaLabel || text}
       title={title}
     >
-      <Icon className="w-3 h-3 flex-shrink-0" aria-hidden="true" />
+      <Icon className="w-3 h-3 flex-shrink-0 text-terracotta" aria-hidden="true" />
       <span className={textClasses}>{text}</span>
     </span>
   );
