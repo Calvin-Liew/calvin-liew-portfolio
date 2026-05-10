@@ -48,7 +48,7 @@ export default function FeaturedProjects() {
             </span>
           </h2>
           <p className="text-base sm:text-lg text-ink-soft max-w-2xl">
-            Recent work I&apos;m proud of, across product, design, and data.
+            Recent work I&apos;m proud of, across AI agents, product, and data.
           </p>
         </div>
 
