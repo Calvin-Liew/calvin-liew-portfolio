@@ -4,6 +4,11 @@ import React from 'react';
 interface ButtonProps {
   children: React.ReactNode;
   href?: string;
+  /**
+   * primary    — solid ink, paper text (default CTA)
+   * secondary  — paper background with ink/terracotta border
+   * gradient   — solid terracotta (legacy alias kept so older code keeps working)
+   */
   variant?: 'primary' | 'secondary' | 'gradient';
   size?: 'sm' | 'md' | 'lg';
   className?: string;
@@ -24,27 +29,30 @@ export default function Button({
   type = 'button',
   ariaLabel,
   target,
-  rel
+  rel,
 }: ButtonProps) {
-  const baseClasses = 'inline-flex items-center justify-center rounded-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-foreground focus:ring-offset-2 focus:ring-offset-background';
+  const baseClasses =
+    'relative inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-ink/40 focus:ring-offset-2 focus:ring-offset-paper select-none';
 
   const sizeClasses = {
-    sm: 'px-4 py-2 text-sm',
-    md: 'px-6 py-3 text-base',
-    lg: 'px-8 py-4 text-lg'
+    sm: 'px-4 py-2 text-sm rounded-md',
+    md: 'px-6 py-3 text-base rounded-lg',
+    lg: 'px-8 py-4 text-lg rounded-xl',
   };
 
-  const variantClasses = {
-    primary: 'bg-foreground hover:bg-foreground/90 text-background hover:shadow-lg hover:shadow-foreground/20 active:scale-95',
-    secondary: 'bg-transparent border-2 border-cosmic-cyan/50 hover:border-cosmic-cyan hover:bg-cosmic-cyan/10 text-foreground hover:shadow-lg hover:shadow-cosmic-cyan/40 active:scale-95',
-    gradient: 'bg-linear-to-r from-cosmic-purple to-cosmic-blue hover:from-cosmic-violet hover:to-cosmic-cyan text-white hover:shadow-lg hover:shadow-cosmic-purple/50 active:scale-95'
+  const variantClasses: Record<NonNullable<ButtonProps['variant']>, string> = {
+    primary:
+      'bg-ink text-paper hover:bg-ink-soft hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]',
+    secondary:
+      'bg-paper text-ink border-2 border-ink/85 hover:border-terracotta hover:text-terracotta hover:bg-terracotta-wash hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]',
+    gradient:
+      'bg-terracotta text-paper hover:bg-terracotta-deep hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]',
   };
 
   const classes = `${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${className}`;
 
   if (href) {
     const isExternal = href.startsWith('http') || href.startsWith('//');
-
     if (isExternal) {
       return (
         <a
@@ -59,7 +67,6 @@ export default function Button({
         </a>
       );
     }
-
     return (
       <Link href={href} className={classes} aria-label={ariaLabel} onClick={onClick}>
         {children}
@@ -68,12 +75,7 @@ export default function Button({
   }
 
   return (
-    <button
-      type={type}
-      onClick={onClick}
-      className={classes}
-      aria-label={ariaLabel}
-    >
+    <button type={type} onClick={onClick} className={classes} aria-label={ariaLabel}>
       {children}
     </button>
   );

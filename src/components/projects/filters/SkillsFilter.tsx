@@ -13,7 +13,7 @@ interface SkillsFilterProps {
 export default function SkillsFilter({
   selectedSkills,
   onToggle,
-  availableSkills
+  availableSkills,
 }: SkillsFilterProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
@@ -24,66 +24,64 @@ export default function SkillsFilter({
 
   return (
     <div className="space-y-3">
-      <h3 className="text-sm font-semibold text-secondary uppercase tracking-wide mb-3
-                     flex items-center gap-2">
-        <span className="relative z-10">Skills</span>
+      <div className="flex items-center gap-3">
+        <h3
+          className="text-xl text-ink-soft inline-block leading-none"
+          style={{
+            fontFamily: 'var(--font-kalam), cursive',
+            fontWeight: 700,
+            transform: 'rotate(-2deg)',
+          }}
+        >
+          <span>skills</span>
+          <span className="text-terracotta">.</span>
+        </h3>
         {selectedSkills.length > 0 && (
-          <span className="inline-flex items-center justify-center w-5 h-5 text-xs font-bold
-                           bg-linear-to-r from-cosmic-purple to-cosmic-blue text-white rounded-full
-                           shadow-[0_0_12px_rgba(167,139,250,0.5)] animate-pulse">
+          <span className="inline-flex items-center justify-center min-w-[20px] h-5 text-xs font-semibold bg-terracotta text-paper rounded-full px-1.5">
             {selectedSkills.length}
           </span>
         )}
-        <div className="flex-1 h-px bg-linear-to-r from-cosmic-purple/30 via-transparent to-transparent"></div>
-      </h3>
+      </div>
 
       <div className="relative">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="w-full px-4 py-2.5 bg-surface/80 border border-border-light rounded-lg
-                     text-left text-sm transition-all duration-300
-                     flex items-center justify-between
-                     hover:border-cosmic-purple hover:shadow-[0_0_15px_rgba(167,139,250,0.25)]
-                     hover:bg-cosmic-purple/5
-                     focus:outline-none focus:ring-2 focus:ring-cosmic-purple/50 focus:ring-offset-2 focus:ring-offset-surface"
+          className="w-full md:w-auto md:min-w-[220px] px-4 py-2.5 bg-paper border border-border rounded-lg text-left text-sm transition-all duration-200 flex items-center justify-between gap-3 hover:border-ink/40 focus:outline-none focus:ring-2 focus:ring-terracotta/40"
           aria-expanded={isOpen}
           aria-controls="skills-dropdown"
         >
-          <span className={`transition-colors ${selectedSkills.length > 0 ? 'text-cosmic-purple font-semibold' : 'text-secondary'}`}>
+          <span
+            className={`transition-colors ${
+              selectedSkills.length > 0
+                ? 'text-ink font-medium'
+                : 'text-ink-soft'
+            }`}
+          >
             {selectedSkills.length === 0
               ? 'Select skills...'
-              : `${selectedSkills.length} skill${selectedSkills.length > 1 ? 's' : ''} selected`
-            }
+              : `${selectedSkills.length} skill${selectedSkills.length > 1 ? 's' : ''} selected`}
           </span>
-          <ChevronDown className={`w-4 h-4 transition-all duration-300 ${isOpen ? 'rotate-180 text-cosmic-purple' : 'text-secondary'}`} />
+          <ChevronDown
+            className={`w-4 h-4 transition-transform duration-200 ${
+              isOpen ? 'rotate-180 text-terracotta' : 'text-ink-soft'
+            }`}
+          />
         </button>
 
         {isOpen && (
           <div
             id="skills-dropdown"
-            className="absolute z-20 mt-2 w-full
-                       bg-surface/95 backdrop-blur-md
-                       border border-cosmic-purple/30 rounded-lg
-                       shadow-[0_8px_32px_rgba(167,139,250,0.3),0_0_0_1px_rgba(167,139,250,0.1)]
-                       max-h-64 overflow-hidden
-                       animate-fade-in-up"
+            className="absolute z-20 mt-2 w-full bg-paper border border-border-strong rounded-lg shadow-lg max-h-64 overflow-hidden animate-fade-in-up"
           >
-            <div className="p-3 border-b border-border-light">
+            <div className="p-3 border-b border-border">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-secondary" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-soft" />
                 <input
                   type="text"
                   placeholder="Search skills..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2
-                             bg-surface-dark/50 backdrop-blur-sm
-                             border border-border-light rounded-lg
-                             text-sm text-foreground placeholder:text-secondary/60
-                             focus:outline-none focus:ring-2 focus:ring-cosmic-purple/50
-                             focus:border-cosmic-purple/50
-                             focus:shadow-[0_0_12px_rgba(167,139,250,0.2)]
-                             transition-all duration-300"
+                  className="w-full pl-10 pr-4 py-2 bg-paper-deeper border border-border rounded-lg text-sm text-ink placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-terracotta/40 focus:border-terracotta transition-all duration-200"
                 />
               </div>
             </div>
@@ -94,27 +92,32 @@ export default function SkillsFilter({
                 return (
                   <label
                     key={skill}
-                    className="flex items-center px-4 py-2.5
-                               hover:bg-linear-to-r hover:from-cosmic-purple/10 hover:to-cosmic-blue/5
-                               cursor-pointer transition-all duration-200
-                               border-l-2 border-transparent
-                               hover:border-l-cosmic-purple"
+                    className={`flex items-center px-4 py-2.5 cursor-pointer transition-colors duration-150 border-l-2 ${
+                      isSelected
+                        ? 'bg-terracotta-wash border-l-terracotta'
+                        : 'border-l-transparent hover:bg-paper-deeper hover:border-l-ink/30'
+                    }`}
                   >
                     <input
                       type="checkbox"
                       checked={isSelected}
                       onChange={() => onToggle(skill)}
-                      className="mr-3 w-4 h-4 rounded border-border-light
-                                 text-cosmic-purple focus:ring-cosmic-purple focus:ring-offset-0
-                                 accent-cosmic-purple"
+                      className="mr-3 w-4 h-4 rounded border-border accent-terracotta"
                     />
-                    <span className={`text-sm flex-1 transition-colors ${isSelected ? 'text-cosmic-purple font-semibold' : 'text-foreground'}`}>
+                    <span
+                      className={`text-sm flex-1 transition-colors ${
+                        isSelected ? 'text-ink font-medium' : 'text-ink-soft'
+                      }`}
+                    >
                       {skill}
                     </span>
-                    <span className={`text-xs px-2 py-0.5 rounded-full transition-all duration-200
-                                      ${isSelected
-                                        ? 'bg-cosmic-purple/20 text-cosmic-purple font-semibold'
-                                        : 'bg-surface text-secondary'}`}>
+                    <span
+                      className={`text-xs px-2 py-0.5 rounded-md transition-colors duration-150 ${
+                        isSelected
+                          ? 'text-terracotta font-medium'
+                          : 'text-muted'
+                      }`}
+                    >
                       {count}
                     </span>
                   </label>

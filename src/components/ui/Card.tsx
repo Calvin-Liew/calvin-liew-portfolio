@@ -1,32 +1,48 @@
 import React from 'react';
+import { Doodle } from './HandDrawn';
 
 interface CardProps {
   children: React.ReactNode;
   className?: string;
   hover?: boolean;
+  /** Slight rotation in degrees (e.g. -1, 0.5) for the pinned-to-paper feel */
+  tilt?: number;
+  /** Optional corner doodle (top-right) */
+  corner?: 'lightbulb' | 'coffee' | 'magnifier' | 'pencil' | 'paperplane' | 'sparkle';
 }
 
-export default function Card({ children, className = '', hover = true }: CardProps) {
+export default function Card({
+  children,
+  className = '',
+  hover = true,
+  tilt,
+  corner,
+}: CardProps) {
   const hoverClasses = hover
-    ? 'hover:-translate-y-1 hover:border-cosmic-purple/40 hover:shadow-2xl hover:shadow-cosmic-purple/30'
+    ? 'hover:-translate-y-1 hover:shadow-lg hover:border-ink/30'
     : '';
 
   return (
     <div
+      style={tilt ? { transform: `rotate(${tilt}deg)` } : undefined}
       className={`
-        relative overflow-hidden
-        bg-surface
-        border border-border-light
-        rounded-lg p-6
+        group relative
+        bg-paper-deeper
+        border border-border
+        rounded-xl p-6
+        shadow-paper
         transition-all duration-300
-        before:absolute before:inset-0 before:-z-10
-        before:bg-linear-to-br before:from-cosmic-purple/0 before:via-cosmic-blue/0 before:to-cosmic-cyan/0
-        hover:before:from-cosmic-purple/10 hover:before:via-cosmic-blue/5 hover:before:to-cosmic-cyan/10
-        before:transition-all before:duration-500
         ${hoverClasses}
         ${className}
-      `}
+      `.replace(/\s+/g, ' ')}
     >
+      {corner && (
+        <Doodle
+          name={corner}
+          className="absolute top-4 right-4 w-7 h-7 text-ink-soft group-hover:text-terracotta transition-colors duration-300"
+          color="currentColor"
+        />
+      )}
       {children}
     </div>
   );

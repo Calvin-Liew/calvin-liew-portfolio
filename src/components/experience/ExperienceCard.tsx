@@ -1,4 +1,3 @@
-import Card from '../ui/Card';
 import Badge from '../ui/Badge';
 import { Experience } from '@/types';
 
@@ -6,39 +5,72 @@ interface ExperienceCardProps {
   experience: Experience;
 }
 
+// "Sep 2025 - Present" -> "sep 2025 → present"
+function formatDates(input: string) {
+  return input.toLowerCase().replace(/\s*[-–—]\s*/, ' → ');
+}
+
 export default function ExperienceCard({ experience }: ExperienceCardProps) {
   return (
-    <Card hover={false}>
-      <div className="mb-4">
-        <h3 className="text-2xl font-semibold text-primary mb-2">
-          {experience.title}
-        </h3>
-        <div className="text-lg text-secondary font-medium mb-1">
-          {experience.company}
-        </div>
-        <div className="flex flex-wrap gap-2 text-sm text-secondary">
-          <span>{experience.location}</span>
-          <span>•</span>
-          <span>{experience.dates}</span>
-          {experience.type && (
-            <>
-              <span>•</span>
-              <span>{experience.type}</span>
-            </>
-          )}
-        </div>
+    <article className="relative pl-10">
+      {/* Timeline dot */}
+      <span
+        aria-hidden
+        className="absolute left-0 top-1.5 -translate-x-1/2 w-3 h-3 rounded-full bg-terracotta ring-4 ring-paper"
+      />
+
+      {/* Date in Kalam */}
+      <time
+        className="text-base text-terracotta inline-block mb-2"
+        style={{
+          fontFamily: 'var(--font-kalam), cursive',
+          transform: 'rotate(-1.5deg)',
+        }}
+        dateTime={experience.dates}
+      >
+        {formatDates(experience.dates)}
+      </time>
+
+      {/* Role title */}
+      <h3 className="font-display text-2xl text-ink mb-1 leading-tight">
+        {experience.title}
+      </h3>
+
+      {/* Company in Fraunces italic */}
+      <div className="font-display italic text-lg text-ink-soft mb-2">
+        {experience.company}
       </div>
 
-      <ul className="space-y-3 mb-6">
+      {/* Location · Type */}
+      <div className="text-sm text-muted mb-5">
+        <span>{experience.location}</span>
+        {experience.type && (
+          <>
+            {' '}
+            <span className="text-terracotta">·</span>{' '}
+            <span>{experience.type}</span>
+          </>
+        )}
+      </div>
+
+      {/* Description bullets */}
+      <ul className="space-y-2.5 mb-5">
         {experience.description.map((item, index) => (
-          <li key={index} className="flex gap-3 text-secondary">
-            <span className="text-accent mt-1.5">•</span>
+          <li
+            key={index}
+            className="flex gap-2.5 text-base text-ink-soft leading-relaxed"
+          >
+            <span
+              aria-hidden
+              className="mt-2 w-1 h-1 flex-shrink-0 rounded-full bg-terracotta"
+            />
             <span>{item}</span>
           </li>
         ))}
       </ul>
 
-      <div className="flex flex-wrap gap-2">
+      {/* Skills */}
+      <div className="flex flex-wrap gap-1.5">
         {experience.skills.slice(0, 8).map((skill) => (
           <Badge key={skill}>{skill}</Badge>
         ))}
@@ -46,6 +78,6 @@ export default function ExperienceCard({ experience }: ExperienceCardProps) {
           <Badge>+{experience.skills.length - 8} more</Badge>
         )}
       </div>
-    </Card>
+    </article>
   );
 }

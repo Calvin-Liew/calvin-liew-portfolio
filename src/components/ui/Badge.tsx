@@ -6,18 +6,22 @@ interface BadgeProps {
   className?: string;
 }
 
-export default function Badge({ children, variant = 'default', className = '' }: BadgeProps) {
-  const baseClasses = 'inline-flex items-center px-3 py-1 rounded-full text-xs font-medium transition-all duration-200';
-
-  const variantClasses = {
-    default: 'bg-surface border border-border-light text-secondary hover:scale-105 hover:border-cosmic-purple/50 hover:text-cosmic-purple transition-colors',
-    category: 'bg-linear-to-r from-cosmic-purple/10 to-cosmic-blue/10 border border-cosmic-purple/20 text-foreground hover:from-cosmic-purple/20 hover:to-cosmic-blue/20 hover:border-cosmic-purple/40 hover:scale-105',
-    skill: 'bg-transparent border border-border-light text-secondary hover:border-cosmic-purple hover:bg-cosmic-purple/5 hover:text-cosmic-purple hover:scale-105'
+export default function Badge({
+  children,
+  variant = 'default',
+  className = '',
+}: BadgeProps) {
+  const variants: Record<NonNullable<BadgeProps['variant']>, string> = {
+    // Subtle paper tag — used for skill chips on project cards
+    default:
+      'inline-flex items-center px-2.5 py-1 rounded-md bg-paper border border-border text-xs text-ink-soft hover:border-ink/40 hover:text-ink transition-colors',
+    // Marker-highlight wash behind text, no container — used for project category
+    category:
+      'marker-highlight inline-block px-1.5 text-sm font-medium text-ink',
+    // Terracotta-hover skill chip — used in skills lists where applicable
+    skill:
+      'inline-flex items-center px-2.5 py-1 rounded-md bg-paper border border-border text-xs text-ink-soft hover:border-terracotta hover:text-terracotta transition-colors',
   };
 
-  return (
-    <span className={`${baseClasses} ${variantClasses[variant]} ${className}`}>
-      {children}
-    </span>
-  );
+  return <span className={`${variants[variant]} ${className}`}>{children}</span>;
 }

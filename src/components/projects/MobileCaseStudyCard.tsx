@@ -1,4 +1,5 @@
-import { FileText, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
+import { Doodle } from '../ui/HandDrawn';
 
 interface MobileCaseStudyCardProps {
   pdfUrl: string;
@@ -6,58 +7,34 @@ interface MobileCaseStudyCardProps {
   fileName: string;
 }
 
-export default function MobileCaseStudyCard({
-  pdfUrl,
-  title,
-  fileName
-}: MobileCaseStudyCardProps) {
+export default function MobileCaseStudyCard({ pdfUrl }: MobileCaseStudyCardProps) {
   return (
-    <div
-      className="relative overflow-hidden rounded-lg
-                 border border-border-light bg-surface p-8
-                 text-center"
-    >
-      {/* Icon */}
-      <div className="mb-4">
-        <div className="inline-flex items-center justify-center
-                        w-16 h-16 rounded-full
-                        bg-gradient-to-br from-cosmic-purple/20 to-cosmic-blue/20
-                        border border-cosmic-purple/30">
-          <FileText className="w-8 h-8 text-cosmic-purple" />
-        </div>
+    <div className="relative bg-paper-deeper border border-border rounded-xl shadow-paper p-8 text-center">
+      {/* Doodle */}
+      <div className="mb-4 flex justify-center">
+        <Doodle
+          name="paperplane"
+          className="w-12 h-12 text-terracotta"
+          color="currentColor"
+        />
       </div>
 
-      {/* Text */}
-      <h3 className="text-lg font-semibold text-primary mb-2">
-        View Full Case Study
+      <h3 className="font-display text-xl text-ink mb-2">
+        View full case study
       </h3>
-      <p className="text-secondary text-sm mb-6">
-        Open the complete case study in your browser&apos;s PDF viewer
+      <p className="text-sm text-ink-soft mb-6">
+        Open the complete case study in your browser&apos;s PDF viewer.
       </p>
 
-      {/* CTA Button */}
       <a
         href={pdfUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 px-8 py-4 rounded-lg
-                   bg-gradient-to-r from-cosmic-purple to-cosmic-blue
-                   hover:from-cosmic-violet hover:to-cosmic-cyan
-                   text-white font-medium transition-all duration-300
-                   hover:shadow-lg hover:shadow-cosmic-purple/50
-                   active:scale-95"
+        className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-ink text-paper hover:bg-ink-soft hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 font-medium"
       >
-        View Case Study
+        View case study
         <ExternalLink className="w-5 h-5" />
       </a>
-
-      {/* Gradient Border Effect */}
-      <div
-        className="absolute inset-0 rounded-lg opacity-0 hover:opacity-100
-                   transition-opacity duration-300 pointer-events-none
-                   bg-gradient-to-br from-cosmic-purple/10 via-cosmic-blue/5
-                   to-cosmic-cyan/10"
-      />
     </div>
   );
 }

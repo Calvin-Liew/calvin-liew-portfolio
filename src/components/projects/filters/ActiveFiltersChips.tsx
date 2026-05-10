@@ -10,41 +10,57 @@ interface ActiveFiltersChipsProps {
 export default function ActiveFiltersChips({
   filters,
   onRemove,
-  onClearAll
+  onClearAll,
 }: ActiveFiltersChipsProps) {
   const activeFilters = [
-    ...filters.categories.map(v => ({ type: 'category' as const, value: v, label: v })),
-    ...filters.skills.map(v => ({ type: 'skill' as const, value: v, label: v }))
+    ...filters.categories.map((v) => ({
+      type: 'category' as const,
+      value: v,
+      label: v,
+    })),
+    ...filters.skills.map((v) => ({
+      type: 'skill' as const,
+      value: v,
+      label: v,
+    })),
   ];
 
   if (activeFilters.length === 0) return null;
 
   return (
     <div className="flex flex-wrap items-center gap-2 pb-4">
-      <span className="text-sm font-semibold text-secondary">Active:</span>
+      <span
+        className="text-base text-terracotta inline-block mr-1"
+        style={{
+          fontFamily: 'var(--font-kalam), cursive',
+          transform: 'rotate(-2deg)',
+        }}
+      >
+        active —
+      </span>
 
       {activeFilters.map(({ type, value, label }) => (
         <button
           key={`${type}-${value}`}
           onClick={() => onRemove(type, value)}
-          className="group flex items-center gap-1.5 px-3 py-1.5
-                     bg-cosmic-purple/10 border border-cosmic-purple/30 rounded-full
-                     hover:bg-cosmic-purple/20 hover:border-cosmic-purple/50
-                     transition-all duration-200"
+          className="group inline-flex items-center gap-1.5 px-3 py-1.5 bg-terracotta-wash border border-terracotta/40 rounded-md hover:border-terracotta hover:bg-terracotta/10 transition-colors duration-200"
           aria-label={`Remove ${type} filter: ${label}`}
         >
-          <span className="text-sm font-medium text-cosmic-purple">{label}</span>
-          <X className="w-3.5 h-3.5 text-cosmic-purple group-hover:scale-110 transition-transform" />
+          <span className="text-sm font-medium text-ink">{label}</span>
+          <X className="w-3.5 h-3.5 text-terracotta group-hover:scale-110 transition-transform" />
         </button>
       ))}
 
       {activeFilters.length > 1 && (
         <button
           onClick={onClearAll}
-          className="text-sm font-medium text-secondary hover:text-cosmic-purple
-                     underline decoration-dotted transition-colors ml-2"
+          className="text-base text-terracotta hover:text-terracotta-deep ml-2 inline-block"
+          style={{
+            fontFamily: 'var(--font-kalam), cursive',
+            transform: 'rotate(-2deg)',
+          }}
         >
-          Clear all
+          clear all &rarr;
         </button>
       )}
     </div>

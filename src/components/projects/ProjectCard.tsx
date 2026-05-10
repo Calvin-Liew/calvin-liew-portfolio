@@ -1,91 +1,94 @@
 import Link from 'next/link';
 import Card from '../ui/Card';
 import Badge from '../ui/Badge';
-import MetaBadge from '../ui/MetaBadge';
-import { BookOpen, Building2, Calendar } from 'lucide-react';
+import { HandUnderline } from '../ui/HandDrawn';
 import { Project } from '@/types';
 import { abbreviateCourseCode } from '@/utils/abbreviateCourseCode';
 
 interface ProjectCardProps {
   project: Project;
+  index?: number;
 }
 
-export default function ProjectCard({ project }: ProjectCardProps) {
+const cornerCycle: Array<
+  'lightbulb' | 'magnifier' | 'sparkle' | 'pencil' | 'paperplane' | 'coffee'
+> = ['lightbulb', 'magnifier', 'sparkle', 'pencil', 'paperplane', 'coffee'];
+
+// "Sep 2025 - Dec 2025" -> "sep 2025 → dec 2025"
+function formatDates(input: string) {
+  return input.toLowerCase().replace(/\s*[-–—]\s*/, ' → ');
+}
+
+export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
+  const corner = cornerCycle[index % cornerCycle.length];
   return (
-    <Link href={`/projects/${project.id}`} className="group">
-      <Card className="h-full flex flex-col relative">
-        {/* Date timestamp - always top left on all screens */}
+    <Link href={`/projects/${project.id}`} className="block">
+      <Card corner={corner} className="h-full flex flex-col">
+        {/* Date in Kalam */}
         <time
-          className="absolute top-4 left-4 z-10 text-xs text-secondary/70 flex items-center gap-1.5"
+          className="text-base text-terracotta inline-block mb-3"
+          style={{
+            fontFamily: 'var(--font-kalam), cursive',
+            transform: 'rotate(-1.5deg)',
+          }}
           dateTime={project.dates}
         >
-          <Calendar className="w-3 h-3" aria-hidden="true" />
-          <span>{project.dates}</span>
+          {formatDates(project.dates)}
         </time>
 
-        {/* Category badge - top right on desktop, in body on mobile */}
-        <Badge
-          variant="category"
-          className="absolute top-4 right-4 z-10 hidden sm:inline-flex"
-          aria-label={`Category: ${project.category}`}
-        >
-          {project.category}
-        </Badge>
-
-        <div className="mb-4 pt-6">
-          <h3 className="text-2xl font-bold text-primary mb-2 line-clamp-3 sm:pr-28 group-hover:bg-linear-to-r group-hover:from-cosmic-purple group-hover:to-cosmic-cyan group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
-            {project.title}
-          </h3>
-
-          {/* Category badge in body - mobile only */}
-          <div className="sm:hidden mb-3">
-            <Badge variant="category" aria-label={`Category: ${project.category}`}>
-              {project.category}
-            </Badge>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-2 mb-3">
-            {project.courseCode && (() => {
-              const { code, fullName } = abbreviateCourseCode(project.courseCode);
-              return (
-                <MetaBadge
-                  icon={BookOpen}
-                  text={code}
-                  title={fullName}
-                  variant="compact"
-                />
-              );
-            })()}
-            <MetaBadge
-              icon={Building2}
-              text={project.organization}
-              variant="compact"
-            />
-          </div>
+        {/* Category as marker-highlight */}
+        <div className="mb-4">
+          <Badge variant="category">{project.category}</Badge>
         </div>
 
-        <p className="text-secondary line-clamp-4 mb-4 flex-grow">
+        {/* Title — Fraunces italic, hand-drawn underline on hover */}
+        <h3 className="font-display italic text-xl sm:text-2xl text-ink mb-3 leading-snug relative">
+          <span className="relative z-10">{project.title}</span>
+          <HandUnderline className="absolute -bottom-1 left-0 w-full h-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+        </h3>
+
+        {/* Org / course code */}
+        <div className="text-sm text-muted mb-4">
+          <span>{project.organization}</span>
+          {project.courseCode &&
+            (() => {
+              const { code } = abbreviateCourseCode(project.courseCode);
+              return (
+                <>
+                  {' '}
+                  <span className="text-terracotta">·</span>{' '}
+                  <span>{code}</span>
+                </>
+              );
+            })()}
+        </div>
+
+        {/* Description */}
+        <p className="text-sm text-ink-soft leading-relaxed line-clamp-4 mb-5 flex-grow">
           {project.description}
         </p>
 
+        {/* Skills */}
         <div className="mt-auto">
-          <div className="flex flex-wrap gap-2 mb-4">
+          <div className="flex flex-wrap gap-1.5 mb-4">
             {project.skills.slice(0, 4).map((skill) => (
-              <Badge key={skill} variant="skill">{skill}</Badge>
+              <Badge key={skill}>{skill}</Badge>
             ))}
             {project.skills.length > 4 && (
-              <Badge variant="skill">+{project.skills.length - 4} more</Badge>
+              <Badge>+{project.skills.length - 4} more</Badge>
             )}
           </div>
 
-          {project.links && project.links.length > 0 && (
-            <div className="text-cosmic-purple text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all group-hover:text-cosmic-cyan">
-              View Project
-              <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </div>
-          )}
+          {/* "view project →" Kalam call-out */}
+          <span
+            className="text-base text-terracotta inline-flex items-center group-hover:translate-x-1 transition-transform duration-200"
+            style={{
+              fontFamily: 'var(--font-kalam), cursive',
+              transform: 'rotate(-2deg)',
+            }}
+          >
+            view project &rarr;
+          </span>
         </div>
       </Card>
     </Link>
