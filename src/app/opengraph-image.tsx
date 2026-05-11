@@ -5,7 +5,7 @@ import { join } from 'node:path';
 // OG image for social shares. Matches the site's hero: cream paper,
 // handwritten "Calvin / Liew." stacked, terracotta period accent.
 
-export const alt = "Calvin Liew — Product Analyst & Designer";
+export const alt = "Calvin Liew — AI Workflows Product Analyst";
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -114,7 +114,7 @@ export default async function Image() {
             marginLeft: 24,
           }}
         >
-          Product Analyst &amp; Designer
+          AI Workflows Product Analyst
         </div>
 
         {/* Bottom-right marker phrase */}
@@ -130,7 +130,7 @@ export default async function Image() {
             transformOrigin: 'bottom right',
           }}
         >
-          design, data, strategy
+          AI agents, data, strategy
         </div>
       </div>
     ),

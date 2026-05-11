@@ -69,16 +69,15 @@ export default function Hero() {
             {/* LEFT: subhead, paragraph, CTAs, socials */}
             <div className="max-w-xl animate-fade-in-up animation-delay-400">
               <p className="text-xl sm:text-2xl text-ink-soft leading-snug mb-6 text-balance">
-                I shape products at the intersection of{' '}
+                I ship products at the intersection of{' '}
                 <MarkerHighlight className="font-medium text-ink" delay={400}>
-                  design, data, and strategy
+                  AI agents, data, and product strategy
                 </MarkerHighlight>
                 .
               </p>
 
               <p className="text-base text-muted leading-relaxed mb-8 max-w-lg text-pretty">
-                Right now I&apos;m using AI &amp; automation to make software operations
-                actually work for the people relying on them.
+                Right now I&apos;m leading <span className="text-ink font-medium">SupRM Intelligence</span> at Sanofi &mdash; an AI agent that turns scattered supplier data into real-time risk, performance, and QBR insight for 30+ stakeholders.
               </p>
 
               {/* "start here" annotation */}
@@ -137,7 +136,7 @@ export default function Hero() {
 
                 {/* Role + company */}
                 <p className="text-base text-ink leading-snug mb-1 font-medium">
-                  Product Analyst &amp; Designer
+                  AI Workflows Product Analyst
                 </p>
                 <p className="text-sm text-ink-soft mb-4">
                   at <span className="font-medium text-ink">Sanofi</span>
@@ -150,7 +149,7 @@ export default function Hero() {
                   className="text-base text-terracotta leading-snug"
                   style={{ fontFamily: 'var(--font-kalam), cursive' }}
                 >
-                  shipping AI tools that actually make software ops work.
+                  shipping SupRM Intelligence &mdash; an AI agent for supplier relationships.
                 </p>
 
                 {/* "On my mind" footer */}
@@ -159,7 +158,7 @@ export default function Hero() {
                     On my mind
                   </p>
                   <p className="text-sm text-ink-soft">
-                    Where AI fits inside real product workflows.
+                    Where AI agents fit inside enterprise workflows.
                   </p>
                 </div>
               </div>

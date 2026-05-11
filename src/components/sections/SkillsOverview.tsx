@@ -18,10 +18,10 @@ const categoryMeta: Record<
   string,
   { label: string; doodle: DoodleName }
 > = {
+  'AI & Data': { label: 'ai & data', doodle: 'sparkle' },
   'Product Management': { label: 'product', doodle: 'paperplane' },
-  Design: { label: 'design', doodle: 'lightbulb' },
   Technical: { label: 'technical', doodle: 'pencil' },
-  'Data & AI': { label: 'data', doodle: 'magnifier' },
+  Design: { label: 'design', doodle: 'lightbulb' },
 };
 
 export default function SkillsOverview() {
@@ -49,8 +49,8 @@ export default function SkillsOverview() {
             </span>
           </h2>
           <p className="text-base sm:text-lg text-ink-soft max-w-2xl">
-            What I bring to the table. Designed to ladder from rough idea
-            &nbsp;&rarr;&nbsp; shipped product.
+            What I bring to AI product work. Designed to ladder from raw data
+            &nbsp;&rarr;&nbsp; shipped agent.
           </p>
         </div>
 

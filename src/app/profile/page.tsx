@@ -26,12 +26,12 @@ export const metadata: Metadata = {
 
 const toolkitMeta: Record<
   string,
-  { label: string; doodle: 'paperplane' | 'lightbulb' | 'pencil' | 'magnifier' }
+  { label: string; doodle: 'paperplane' | 'lightbulb' | 'pencil' | 'magnifier' | 'sparkle' }
 > = {
+  'AI & Data': { label: 'ai & data', doodle: 'sparkle' },
   'Product Management': { label: 'product', doodle: 'paperplane' },
-  Design: { label: 'design', doodle: 'lightbulb' },
   Technical: { label: 'technical', doodle: 'pencil' },
-  'Data & AI': { label: 'data', doodle: 'magnifier' },
+  Design: { label: 'design', doodle: 'lightbulb' },
 };
 
 export default function ProfilePage() {
@@ -58,21 +58,23 @@ export default function ProfilePage() {
               <p>{aboutData.introduction}</p>
 
               <p>
-                I believe in the power of combining{' '}
+                I believe the best AI products come from combining{' '}
                 <MarkerHighlight className="font-medium text-ink">
-                  data-driven insights with human-centered design
+                  agentic systems, strong product strategy, and clean data
                 </MarkerHighlight>
-                . Whether I&apos;m optimizing software spend at Sanofi,
-                designing interactive data visualizations, or prototyping
-                AI-powered tools, I focus on creating solutions that are both
-                technically sound and deeply user-friendly.
+                . At Sanofi I&apos;ve built automated supplier intelligence
+                models on Snowflake + external APIs, shipped dashboards used
+                by 30+ stakeholders for strategic sourcing, and led product
+                development on AI agents that replace manual workflows with
+                real-time insight.
               </p>
 
               <p>
                 My background in Management Information Technology and Computer
-                Science at the University of Toronto has given me a skill set
-                that bridges business strategy, technical implementation, and
-                design thinking.
+                Science at the University of Toronto bridges business
+                strategy, data engineering, and product thinking. Design and
+                UX are part of the toolkit too &mdash; they make AI products
+                feel as good to use as they are to demo.
               </p>
             </div>
           </header>
