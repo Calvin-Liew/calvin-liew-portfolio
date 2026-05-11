@@ -8,168 +8,248 @@ export const projects: Project[] = [
     dates: 'Sep 2025 - Dec 2025',
     organization: 'University of Toronto',
     courseCode: 'CSC316H1 - Data Visualization and Advanced Programming',
-    description: 'Built an interactive data visualization project analyzing 129 horror film screenplays to discover the "power law of horror" using AI and statistical analysis. Developed a hybrid GPT-4o-mini/GPT-4o parsing pipeline that processed 10,000 scenes to extract 11,204 horror signals, achieving 99.97% success rate while reducing costs by 96.5%. Created 8 custom D3.js visualizations including a real-time Fear Monitor with BPM animation, Sankey flow diagrams for signal analysis, Markov chain transition matrices for pacing patterns, and interactive bubble charts revealing that elite signals like "scream" and "blood" drive 68% of fear responses despite representing only 5% of detected elements. Demonstrated advanced skills in AI prompt engineering, parallel processing with Python, data pipeline architecture, and responsive visualization design.',
-    skills: ['Large Language Models (LLM)', 'Generative AI', 'D3.js', 'Agile Methodologies', 'Python (Programming Language)', 'Data Science', 'Data Visualization'],
+    description: 'An interactive data visualization study of how horror films generate fear. Analyzed 129 horror screenplays across 9,760 scenes and 11,204 horror signals using a GPT-4o-mini + GPT-4o pipeline (99.97% success rate, $2.28 total cost), then built nine custom D3.js visualizations into a scrollytelling site that reveals horror\'s power law: a tiny set of elite signals like scream and blood drive most of the actual scares.',
+    skills: ['Large Language Models (LLM)', 'Generative AI', 'D3.js', 'Python (Programming Language)', 'Data Science', 'Data Visualization', 'Prompt Engineering'],
+    image: '/projects/anatomy-of-fear/00-hero.png',
     links: [
       {
         type: 'live',
         url: 'https://calvin-liew.github.io/data-explorers-fear-analytics/',
-        label: 'The Anatomy of Fear: How Horror Films Terrify Us'
+        label: 'Live site'
       },
       {
         type: 'github',
         url: 'https://github.com/Calvin-Liew/data-explorers-fear-analytics',
-        label: 'View Source Code on GitHub'
+        label: 'Source on GitHub'
       }
     ],
     extendedContent: {
+      stats: [
+        { value: '129', label: 'screenplays' },
+        { value: '9,760', label: 'scenes' },
+        { value: '11,204', label: 'horror signals' },
+        { value: '$2.28', label: 'total LLM cost' },
+      ],
+      pullQuote: 'The top 10 signals account for 68% of fear spikes, despite making up just 5% of the 207-term lexicon.',
       overview: {
         title: 'The Power Law of Horror',
-        content: 'We discovered horror follows a power law: while atmospheric elements like "dark" and "night" set mood, elite signals like "scream" and "blood" drive the actual scares. Analysis of 11,204 signal occurrences across 9,760 scenes from 129 horror films revealed that the top 10 signals account for 68% of all fear spikes, despite representing only 5% of our 207-term lexicon. Using a GPT-4o-mini AI parser, we transformed raw screenplays into interactive D3.js visualizations that reveal how horror works. The central question: How can the "craft of horror" be quantified and represented visually?'
+        content: 'Horror follows a power law. Atmospheric elements like "dark" and "night" set the mood, but a handful of elite signals (scream, blood, kill, knife, death) drive most of the actual scares. Across 11,204 signal occurrences in 9,760 scenes, the top 10 signals accounted for 68% of all fear spikes, despite making up just 5% of our 207-term lexicon. The site turns that finding into nine interactive D3.js visualizations.'
       },
       motivation: {
-        title: 'Why Horror? Why Now?',
-        content: 'Horror films are uniquely suited to data analysis because their effectiveness depends on mood, emotion, and suspense rather than narrative logic. Unlike other genres, horror success can be measured through quantifiable signals: darkness, screams, blood, and psychological dread. In an era where streaming platforms like Netflix and Prime Video make data-driven production decisions worth billions, understanding what actually scares audiences has never more valuable. Our visualizations contribute to both academic film studies and the practical question facing studios: what patterns separate horror classics from forgettable entries?'
+        title: 'Why Horror?',
+        content: 'Horror is uniquely suited to data analysis because its effectiveness lives in mood, pacing, and signal rather than plot logic. Streaming platforms make billion-dollar decisions on what scares people, and yet most analysis is qualitative. We wanted to see if you could quantify the craft of horror (which words, beats, and structures actually work) and present that visually for screenwriters, directors, and curious viewers.'
       },
-      datasets: [
-        {
-          name: 'scenes_detailed.csv',
-          description: 'Master dataset (5.8MB) with full scene breakdowns: film_title, scene_index, heading, location, time_of_day, characters, dialogue/action statistics, 207 binary horror signal columns, and AI-generated emotion scores (tension, fear, sentiment). Used for cross-film scene-level analysis and correlation studies.',
-          records: '9,760 scenes'
-        },
-        {
-          name: 'horror_signals.csv',
-          description: 'Signal detection results (4.0MB) tracking 207 horror terms organized into 6 families (Audio, Visual, Pace, Threat, Setting, Psyche). Schema: film_title, scene_index, signal_family, signal_term, frequency. Used for lexicon effectiveness analysis and validating the power law discovery.',
-          records: '11,204 signals detected'
-        },
-        {
-          name: 'emotional_analysis.csv',
-          description: 'AI-generated emotional profiles (1.7MB) for every scene with normalized scores: tension (0-1), fear (0-1), sentiment (-1 to +1), plus scene summaries. 99.97% coverage across all scenes. Used for fear journey tracking, BPM calculations in the Vital Signs visualization, and identifying peak terror moments.',
-          records: '9,760 assessments'
-        },
-        {
-          name: 'dialogue_analysis.csv',
-          description: 'Linguistic structure analysis (845KB) measuring dialogue density, action-to-dialogue ratios, question rates, and exclamation rates for pacing studies. Reveals the negative correlation (-0.34) between dialogue and tension that supports the "silence amplifies dread" hypothesis.',
-          records: '129 films analyzed'
-        },
-        {
-          name: 'imdb_179_horror.csv',
-          description: 'IMDb metadata (306B) with standardized film titles (punctuation removed, lowercase conversion), ratings, votes, metascores, director, cast, genre, and duration. Film title alignment uses "standardized title + year" format. Used for the Rating Constellation visualization correlating horror metrics with audience reception.',
-          records: '179 films'
-        }
-      ],
+      pythonPipeline: {
+        flow: [
+          { label: 'Raw screenplay .txt files', detail: '129 IMSDb scripts' },
+          { label: 'Scene segmentation', detail: 'regex on INT./EXT./FADE markers' },
+          { label: 'Scene chunking', detail: '4 scenes per call · ~2k-token budget' },
+          { label: 'GPT-4o-mini → GPT-4o → fallback', detail: 'three-tier hybrid extraction' },
+          { label: 'JSON schema validation', detail: 'jsonschema, 0 to 1 scores, required fields' },
+          { label: 'Flatten to CSV', detail: 'flatten_scene_row(), 5 master tables' },
+          { label: 'D3 visualization datasets', detail: '6 viz-ready files in cleaner_datasets/' },
+        ],
+        sourceFiles: [
+          {
+            name: 'hybrid_horror_parser.py',
+            purpose: 'Core AI parser. OpenAI calls, JSON validation, fallback logic, scene flattening, and CSV export.'
+          },
+          {
+            name: 'run_full_analysis.py',
+            purpose: 'Production wrapper. Points the parser at data/horror_screenplays/ and writes timestamped outputs.'
+          },
+          {
+            name: 'requirements.txt',
+            purpose: 'Python dependencies (openai, pandas, jsonschema, etc.).'
+          },
+          {
+            name: 'config.env.example',
+            purpose: 'Safe local API-key template. The actual key sits in config.env (gitignored).'
+          },
+        ],
+        sampleJsonCaption: 'What the AI returns per scene',
+        sampleJson: `{
+  "scene_index": 0,
+  "heading": "INT. BASEMENT - NIGHT",
+  "location": "BASEMENT",
+  "time_of_day": "NIGHT",
+  "characters": ["LAURIE", "MICHAEL"],
+  "dialogue_stats": {
+    "lines": 12,
+    "words": 140,
+    "question_rate": 0.25,
+    "exclamation_rate": 0.08,
+    "avg_line_words": 11.7
+  },
+  "action_stats": {
+    "words": 210,
+    "stage_directions": 9
+  },
+  "horror_signals": {
+    "night": 1,
+    "dark": 2,
+    "blood": 0,
+    "scream": 1
+  },
+  "tension_score": 0.82,
+  "fear_emotion": 0.74,
+  "sentiment": -0.63,
+  "scene_summary": "A character moves through a dark basement while a threat closes in."
+}`,
+      },
       methodology: {
-        title: 'Hybrid AI Analysis Pipeline',
+        title: 'The Python Pipeline',
         steps: [
           {
-            phase: 'Screenplay Acquisition & Quality Control',
-            description: 'Sourced 129 horror screenplays from the Internet Movie Script Database (IMSDb). Applied deduplication using difflib similarity scoring to remove alternate versions and drafts. Performed scene boundary validation and content integrity checks to ensure proper screenplay formatting. Final corpus: 129 deduplicated, QC-validated screenplays ready for parsing.'
+            phase: 'Why AI here?',
+            description: 'Hand-coding 129 screenplays scene by scene (recording location, time of day, characters, dialogue/action mix, horror vocabulary, emotional tone) is consistent at small scale but slow and unrepeatable at corpus scale. The pipeline uses an LLM to produce structured computational annotations across all 9,760 scenes with the same prompt, then validates each response against a strict JSON schema so the data downstream looks the same whether it came from gpt-4o-mini, gpt-4o, or a conservative fallback row.'
           },
           {
-            phase: 'Heuristic Scene Segmentation',
-            description: 'Developed multi-pattern regex detection for scene boundaries (INT./EXT., FADE IN/OUT, SCENE NUM, CONTINUED). Enforced maximum scene length (1,200 words) with smart continuation handling. Applied minimum length requirements to filter noise. Robust parsing handled different screenplay formatting conventions. Result: 9,760 scenes extracted with proper boundary detection.'
+            phase: 'Screenplay ingestion + scene segmentation',
+            description: 'Walked the input directory to collect 129 .txt screenplays (skipping the `downloaded_files.json` metadata file). The `split_scenes_heuristic()` parser normalizes line endings and scans for screenplay markers (INT./EXT., FADE IN/OUT, CUT TO, DISSOLVE TO, numbered scene dividers, CONTINUED), filters anything under 50 words to remove fragments and page artifacts, and truncates scenes above 2,000 words before model batching. Result: 9,760 cleanly-bounded scenes ready for AI analysis.'
           },
           {
-            phase: 'Hybrid AI Content Analysis',
-            description: 'Deployed GPT-4o-mini as primary model (33x cheaper input, 25x cheaper output) with GPT-4o fallback for complex scenes. Achieved 99.97% success rate across all scenes with only 0.035% requiring fallback. Total processing cost: $2.28 (96.5% savings vs. GPT-4o-only). Processing time: ~2.6 hours for full corpus. Used parallel processing via ThreadPoolExecutor (3 workers) with chunk-based processing (4 scenes per API call) and retry mechanisms with exponential backoff.'
+            phase: 'Hybrid AI strategy: three-tier fallback',
+            description: 'Tier 1: GPT-4o-mini with temperature 0, max_tokens 1500, response_format JSON object, handling 99.965% of scenes. Tier 2: GPT-4o fallback only after Tier 1 fails twice on retry, picking up the remaining edge cases. Tier 3: a conservative fallback record (Unknown location/time, zeroed signals, tension/fear=0.5, sentiment=0) preserves row structure when both models fail. Real-world fallback rate: 0.035% across 9,760 scenes.'
           },
           {
-            phase: 'Structured Data Extraction',
-            description: 'Engineered custom prompts for consistent structured JSON output including scene headings, locations, time of day, characters, dialogue/action statistics, horror signal counts from 207-term lexicon, and emotional scores (tension 0-1, fear 0-1, sentiment -1 to +1). Applied JSON validation against predefined schema with automatic fallback data generation for rare parsing failures.'
+            phase: 'Parallel processing for throughput',
+            description: 'ThreadPoolExecutor at the script level (max_workers=6) plus a second ThreadPoolExecutor inside each script for chunks (max_workers=3). Scenes are batched at up to 4 per chunk with a ~2,000-token budget per request, estimated at one token per four characters. Full 129-film corpus processes in under three hours for $2.28 total, 96.5% cheaper than running GPT-4o on everything.'
           },
           {
-            phase: 'Horror Signal Detection',
-            description: 'Applied fixed lexicon of 207 horror-related terms organized into 6 signal families: Audio (scream, silence, music, whisper), Visual (blood, shadow, dark, mirror), Pace (sudden, rapid, chase, running), Threat (knife, danger, monster, killer), Setting (night, isolated, abandoned, forest), and Psyche (dread, trapped, panic, paranoid). Used case-insensitive matching with variation recognition and context-aware counting to avoid false positives. Result: 11,204 horror signals detected across all scenes.'
+            phase: 'Prompt engineering + JSON validation',
+            description: 'The prompt builder injects film title, scene indices, and raw text (each scene truncated to 300 words inside the prompt) alongside a compact example object and a hard instruction: "Return ONLY valid JSON. No explanations, no markdown, no extra text." Post-call cleanup trims whitespace, strips anything before the first `{` and after the last `}`, then runs `json.loads()`. A `jsonschema` validator enforces required fields, integer scene indices, string-array characters, non-negative dialogue/action counts, fear/tension in 0–1, sentiment in −1 to 1, and no extra top-level fields. Same-model retry up to twice before advancing tiers.'
           },
           {
-            phase: 'Emotional Scoring & Normalization',
-            description: 'Generated AI-estimated scores for tension (slow-burning suspense), fear (sudden shocks), and sentiment (emotional valence) on normalized 0-1 scales. Applied cross-validation with manual scene analysis samples, statistical validation of score distributions, and outlier detection for unreasonably high/low scores to ensure data quality.'
+            phase: 'Horror signal detection: 6-family lexicon',
+            description: 'Each scene is scored against a fixed lexicon of 207 horror terms collapsing to 187 unique hs_* columns across six families: Atmosphere & Setting (night, dark, fog, basement, cabin, woods, cemetery, abandoned), Sound & Voice (scream, whisper, moan, gasp, shriek, howl, heartbeat, footsteps), Threats & Violence (blood, knife, gun, weapon, blade, chainsaw, stab, brutal, death), Supernatural (ghost, demon, possessed, spirit, witch, curse, haunted), Psychological (fear, panic, dread, paranoid, disturbed, terrifying), and Movement (chase, run, stalk, pursue, hide, escape, trapped). Top signals by raw count: night 3,694, blood 1,460, death 1,213, scream 1,187. Top by fear impact: scream +0.691, blood +0.562, death +0.438, night +0.297.'
           },
           {
-            phase: 'Data Validation & Quality Assurance',
-            description: 'Performed cross-film consistency checks for scene numbering, signal frequency validation against raw text, and manual spot-checks on random scene samples. Implemented progress tracking with success rate monitoring (99.97% achieved). Final missing data rate: 0.035% (minimal fallback needed), demonstrating pipeline robustness.'
+            phase: 'Emotional scoring on calibrated 0–1 scales',
+            description: 'Tension is rubric-anchored: 0–0.2 calm, 0.3–0.5 unease, 0.6–0.8 high, 0.9–1.0 extreme suspense. Fear follows the same rubric (little/none → intense terror). Sentiment runs −1 to +1. API temperature is held at 0 throughout, since this is an extraction task: consistency matters more than creative variation. Production averages across all 129 films: tension 0.436, fear 0.310.'
           },
           {
-            phase: 'IMDb Metadata Integration',
-            description: 'Merged screenplay data with IMDb ratings, votes, reviews, cast, and duration. Standardized film titles by removing punctuation, converting to lowercase, and stripping subtitles. Aligned datasets using "standardized title + year" format. Conducted correlation analysis between horror metrics and audience reception for the Rating Constellation visualization.'
+            phase: 'Dialogue + action structural analysis',
+            description: 'Alongside emotion, the model estimates structural metrics per scene: dialogue lines, dialogue words, question rate, exclamation rate, average line length, action words, and stage-direction count. Lets us separate talk-heavy scenes from action-heavy ones and powers the "silence amplifies dread" correlation later in the analysis (−0.34 between dialogue density and tension).'
+          },
+          {
+            phase: 'Flattening + visualization-ready datasets',
+            description: '`flatten_scene_row()` converts the nested JSON into flat CSV columns (`dialogue_stats.lines` → `dialogue_lines`, `horror_signals.blood` → `hs_blood`, character arrays joined by pipes). Five master CSVs come out: scenes_detailed (9,760×204), horror_signals (9,760×190), emotional_analysis (9,760×7), dialogue_analysis (9,760×8), and a 1-row analysis_summary with run totals. These get cleaned into six viz-ready files (viz1_horror_signals_by_film, viz2a_tension_journey, viz2b_fear_journey, viz3_horror_effectiveness, viz4_film_comparison, viz5_horror_categories) for D3 consumption.'
+          },
+          {
+            phase: 'IMDb metadata integration',
+            description: 'Joined screenplay data with IMDb ratings, votes, cast, and duration using a standardized "title + year" join key. Powers the Rating Constellation correlation between horror craft and audience reception, exposing the −0.245 correlation that says technical horror chops don\'t guarantee a high IMDb score.'
           }
         ]
       },
       keyFindings: [
         {
-          title: 'Elite Signals Drive Fear',
-          description: 'Analysis of 11,204 signal occurrences revealed a stark hierarchy: the top 10 signals (scream, blood, kill, knife, death, shadow, fear, dark, silent, night) account for 68% of all fear spikes above 0.70, despite representing only 5% of the 207-term lexicon. Elite signals like "scream" appear in just 9% of scenes but generate an average fear boost of +0.37 when present. In contrast, atmospheric terms like "dark" appear in 38% of scenes but add only +0.18 fear. Effective horror strategically deploys rare, powerful triggers at climactic moments rather than scattering dozens of weak signals.'
+          stat: '68%',
+          title: 'Elite signals drive fear',
+          description: 'The top 10 signals (scream, blood, kill, knife, death, shadow, fear, dark, silent, night) account for 68% of fear spikes above 0.70, yet make up only 5% of the lexicon. "Scream" appears in 9% of scenes but adds +0.37 fear. "Dark" appears in 38% but adds only +0.18. Strategic deployment beats scattering.'
         },
         {
-          title: 'Sustained Unease Over Constant Terror',
-          description: 'Across all 9,760 scenes, average tension (0.52) consistently exceeded average fear (0.41). 73% of scenes showed tension > fear, with only 18% showing fear > tension, and 9% balanced. This pattern suggests horror works by maintaining sustained unease (tension) punctuated by shock moments (fear spikes), rather than delivering constant terror. The best films alternate calm and chaos: valleys make peaks feel higher, sustaining audience engagement better than nonstop intensity.'
+          stat: '73%',
+          title: 'Sustained unease beats constant terror',
+          description: 'Average tension (0.52) consistently exceeds average fear (0.41). 73% of scenes lead with tension over fear. Effective horror maintains baseline unease and punctuates it with shock moments. Valleys make peaks feel higher.'
         },
         {
-          title: 'Silence Amplifies Dread',
-          description: 'Scenes with dialogue ratios < 0.30 (action-heavy/silent) showed 23% higher average tension scores (0.58) compared to dialogue-heavy scenes > 0.70 (0.47). The correlation coefficient between dialogue density and tension was -0.34, providing quantitative support for the theory that atmospheric silence amplifies dread. Horror effectiveness often depends on what characters don\'t say. Letting sounds, visuals, and pauses do the work.'
+          stat: '−0.34',
+          title: 'Silence amplifies dread',
+          description: 'Scenes with low dialogue ratios (< 0.30) showed 23% higher tension than dialogue-heavy scenes (> 0.70). Correlation: −0.34. Letting sounds, visuals, and pauses do the work outperforms exposition.'
         },
         {
-          title: 'Strategic Fear Timing Across Runtime',
-          description: 'Analyzing fear spike timing across 129 films revealed clustering patterns: 12% of spikes occur in the first quarter (setup), 31% in the second quarter (rising action), 28% in the third quarter (confrontation), and 29% in the final quarter (climax). Most films reserve their highest fear peak (> 0.80) for the 75-90% runtime window. Horror follows predictable pacing structures, with tension building gradually before explosive peaks near the end.'
-        },
-        {
-          title: 'Signal Effectiveness Rankings',
-          description: 'Quantified impact scores for top signals: Scream (+0.37 fear, +0.31 tension) | Kill (+0.34 fear, +0.26 tension) | Blood (+0.29 fear, +0.28 tension) | Knife (+0.28 fear, +0.27 tension) | Death (+0.23 fear, +0.24 tension). These measurements reveal which specific words and moments generate the strongest emotional responses, providing actionable insights for screenwriters and directors about where to deploy their most powerful horror elements.'
+          stat: '75–90%',
+          title: 'Fear clusters toward the climax',
+          description: 'Across 129 films, 28% of fear spikes happen in the third quarter and 29% in the final quarter. Most films reserve their highest fear peak (> 0.80) for the 75–90% runtime window. Horror follows surprisingly consistent pacing.'
         }
       ],
       visualizations: [
         {
-          title: 'Scene 1: Signal Intake (Sankey Flow Diagram)',
-          description: 'Custom Sankey implementation showing how signal families (Audio, Visual, Pace, Threat, Setting, Psyche) branch into individual terms. Stream thickness represents frequency across all films; node brightness shows fear impact. Interactive threshold slider filters signals by frequency.',
-          insight: 'Visualizes the power law: atmospheric signals like "night" appear frequently but generate low fear per occurrence, while elite signals like "scream" are rare but create strong fear spikes'
+          title: 'Blood Flow of Horror',
+          description: 'Sankey diagram tracing how the six signal families (Audio, Visual, Pace, Threat, Setting, Psyche) branch into individual horror terms. Stream thickness encodes frequency; node brightness encodes fear impact.',
+          insight: 'Visualizes the power law on first glance: atmospheric signals flood the screen while elite ones thread through narrowly.',
+          image: '/projects/anatomy-of-fear/01-blood-flow.png',
+          imageFit: 'contain'
         },
         {
-          title: 'Scene 2: Vital Signs Monitor (Fear Journey with BPM)',
-          description: 'Real-time BPM counter converts fear intensity to simulated heartbeat (pulse rate). Skull markers highlight peak terror moments (fear > 0.70). Film comparison dropdown allows viewing individual films or average patterns. Line chart tracks fear evolution scene by scene.',
-          insight: 'Strategic pacing beats constant terror. Most films hover at moderate fear levels (0.3-0.5) with occasional spikes, especially near the end. Effective horror alternates calm and chaos'
+          title: 'Heartbeat of Terror',
+          description: 'Fear progression across normalized film runtime, animated as a live BPM monitor. Skull markers flag peak terror moments (fear > 0.70).',
+          insight: 'Most films hover at moderate fear (0.3–0.5) with rare spikes near the climax. Pacing beats intensity.',
+          image: '/projects/anatomy-of-fear/02-fear-journey.png',
+          imageFit: 'contain'
         },
         {
-          title: 'Scene 3: The Graveyard (Spike Timeline)',
-          description: 'Multi-film timeline with tombstone markers for fear spikes (> 0.40) and lantern markers for tension spikes (> 0.40). Dynamic film addition/removal controls and fear vs. tension toggle. Each film gets its own row showing when terror hits.',
-          insight: 'Best scares combine tension buildup + fear spike: lanterns surrounding or preceding tombstones create maximum impact. Jump scares alone (tombstones without lanterns) fade fast'
+          title: 'Mapping the Spikes',
+          description: 'Multi-film timeline with tombstone markers for fear spikes and lantern markers for tension spikes. Compare any subset of films side by side.',
+          insight: 'Lanterns clustered around tombstones create the best scares; jump scares without buildup fade fast.',
+          image: '/projects/anatomy-of-fear/03-spikes.png',
+          imageFit: 'contain'
         },
         {
-          title: 'Scene 4: Fear Transition Matrix (Markov Chain)',
-          description: '3x3 probability matrix showing transitions between Calm, Unease, and Panic states. Cell darkness indicates transition likelihood. Diagonal shows staying in same state; off-diagonal shows state changes. Reveals the "grammar" of horror pacing.',
-          insight: 'Horror prefers gradual climbs (Calm→Unease→Panic) over sudden jumps. Once scenes reach Panic, they tend to stay there. This pattern of careful ramp-up followed by sustained intensity creates more effective scares'
+          title: 'The Ladder of Fear',
+          description: '3×3 Markov transition matrix between Calm, Unease, and Panic states. Cell darkness encodes transition probability.',
+          insight: 'Horror prefers gradual climbs (Calm → Unease → Panic) over sudden jumps. Once a scene reaches Panic, it tends to stay there.',
+          image: '/projects/anatomy-of-fear/04-state-machine.png',
+          imageFit: 'contain'
         },
         {
-          title: 'Scene 5: Signal Autopsy (Bubble Chart)',
-          description: 'Interactive bubble chart where position shows impact (fear/tension delta when signal present vs. absent), size shows frequency, and color shows shock vs. tension profile (red = shock-heavy, blue = tension-heavy). Click bubbles for detailed signal dossiers.',
-          insight: 'Elite signals are rare but potent: "scream" appears in 9% of scenes but adds +0.37 fear. Common atmospheric signals like "dark" appear in 38% but add only +0.18. Strategic deployment wins over scattered usage'
+          title: 'What Actually Works',
+          description: 'Bubble chart plotting signal frequency against emotional impact. Color encodes shock-heavy (red) vs tension-heavy (blue).',
+          insight: 'A clear split between common atmospheric signals and rare-but-powerful elites, and any bubble unlocks a full dossier on its signal.',
+          image: '/projects/anatomy-of-fear/05-effectiveness.png',
+          imageFit: 'contain'
         },
         {
-          title: 'Scene 6: Impact Dripline (Ranked Bar Chart)',
-          description: 'Ranked visualization sorting all signals by combined fear + tension impact. Sharp drop-off curve reveals the power law structure. Dropdown allows sorting by impact or alphabetically.',
-          insight: 'Top 10 signals drive majority of fear despite being only 5% of the lexicon. The steep curve shows horror follows a power law, not a normal distribution'
+          title: 'Impact Dripline',
+          description: 'Ranked bar chart sorting all 207 signals by combined fear + tension impact. The steep drop-off curve makes the power law impossible to miss.',
+          insight: 'Horror impact follows a power law, not a normal distribution: a small head, a long tail.',
+          image: '/projects/anatomy-of-fear/06-dripline.png',
+          imageFit: 'contain'
         },
         {
-          title: 'Scene 7: Rating Constellation (Scatter Plot)',
-          description: 'X-axis shows horror impact score (signal effectiveness, fear transitions, peak fear); Y-axis shows IMDb rating (0-10). Point size indicates higher ratings. Correlation line and filtering by year/rating range. Identifies outliers and patterns.',
-          insight: 'Technical horror craftsmanship doesn\'t guarantee audience acclaim (correlation: -0.245). Many highly rated films succeed despite low technical scores, proving story and character matter as much as craft'
+          title: 'Does Scary Equal Good?',
+          description: 'Scatter of horror impact score against IMDb rating across all 129 films, with correlation line and rating-range filters.',
+          insight: 'Technical horror craft does not guarantee audience acclaim (correlation: −0.245). Story and character carry more weight than craft alone.',
+          image: '/projects/anatomy-of-fear/07-rating-impact.png',
+          imageFit: 'contain'
         },
         {
-          title: 'Scene 8: Horror Recipe Cards (Radar Chart)',
-          description: '6-axis radar showing each film\'s unique balance across signal families (Audio, Visual, Pace, Threat, Setting, Psyche). User preference sliders allow setting ideal horror mix, then system recommends matching films. Reveals specialist vs. generalist approaches.',
-          insight: 'No single recipe wins. Diversity thrives. Supernatural films lean on Psyche/Setting; Slashers lean on Pace/Threat. Spiky shapes indicate specialist approach, round shapes indicate generalist. Both can succeed'
+          title: 'Horror Fingerprint',
+          description: '6-axis radar comparing each film\'s balance across the six signal families. Slider-driven recommender suggests films matching your preferred horror mix.',
+          insight: 'No single recipe wins. Supernatural films lean Psyche/Setting; slashers lean Pace/Threat. Specialists and generalists both succeed.',
+          image: '/projects/anatomy-of-fear/08-radar.png',
+          imageFit: 'contain'
+        },
+        {
+          title: 'Film Dossiers',
+          description: 'Browsable gallery of every analyzed film with quick access to its full breakdown: runtime fear curve, top signals, family balance, IMDb context.',
+          insight: 'A jumping-off point for deep dives: sort, filter, and compare across the whole corpus.',
+          image: '/projects/anatomy-of-fear/09-movie-gallery.png',
+          imageFit: 'contain'
         }
       ],
       tools: [
-        { name: 'D3.js v7', purpose: 'Built custom interactive visualizations including Sankey diagrams for signal flow analysis, real-time BPM animations for the fear monitor, and responsive charts that work seamlessly across desktop and mobile devices.' },
-        { name: 'GPT-4o-mini AI Parser', purpose: 'Designed cost-efficient AI pipeline using GPT-4o-mini as primary parser (99.97% success rate) with GPT-4o fallback for complex scenes. Achieved $2.28 total cost (96.5% savings) and processed 129 films in 2.6 hours using parallel processing.' },
-        { name: 'Python Data Pipeline', purpose: 'Built end-to-end data processing pipeline with Pandas for data aggregation, NumPy for statistical analysis, and custom validation scripts. Implemented screenplay deduplication, scene boundary detection, and quality monitoring throughout the pipeline.' },
-        { name: 'Observable Framework', purpose: 'Created interactive scrollytelling narrative with 8 distinct visualization scenes. Implemented client-side data caching for performance optimization and ensured responsive design across all device sizes for accessible data exploration.' },
-        { name: 'Vega-Lite', purpose: 'Prototyped declarative visualization specifications for rapid iteration and testing. Converted successful designs to production-ready D3.js implementations, including radar charts for horror recipe analysis and scatter plots for rating correlations.' },
-        { name: 'ColorBrewer & Chroma.js', purpose: 'Applied perceptually uniform color scales for data encoding (red for shock signals, blue for tension). Ensured all visualizations meet accessibility standards with colorblind-safe palettes while maintaining the cosmic purple/cyan brand theme.' }
+        { name: 'D3.js v7', purpose: 'Custom interactive visualizations: Sankey, radar, live BPM animation, all responsive across desktop and mobile.' },
+        { name: 'GPT-4o-mini + GPT-4o', purpose: 'Hybrid LLM pipeline. Primary parser at 99.97% success; fallback only on the hardest 0.035% of scenes. Total cost $2.28.' },
+        { name: 'Python (pandas, NumPy)', purpose: 'End-to-end data pipeline: deduplication, scene boundary detection, signal counting, validation, IMDb joins.' },
+        { name: 'Observable Framework', purpose: 'Scrollytelling narrative wrapping the nine visualization scenes with client-side data caching.' },
+        { name: 'Playwright', purpose: 'Automated screenshot capture for documentation and the visualization gallery.' }
       ],
       impact: {
         title: 'Real-World Applications',
-        content: 'For film students and researchers: use the 8 interactive scenes to study pacing strategies of iconic films, compare horror recipes across decades (1980s slashers vs. 2010s psychological horror), and quantify narrative patterns previously described only qualitatively.\n\nFor screenwriters and directors: leverage the power law by using atmospheric signals to maintain baseline tension, then deploy elite signals at climactic moments; study the fear transition matrix to understand effective pacing (gradual climbs vs. sudden jumps); use the recipe radar to position your film within or against genre conventions.\n\nFor streaming platforms and studios: correlate horror metrics with audience ratings to predict reception, identify underserved horror recipes (gaps in the radar chart patterns), and enable data-driven marketing by highlighting films with unique signal profiles.\n\nAcademic contribution: demonstrates AI-powered screenplay analysis at scale (129 films, 10K scenes), provides reusable pipeline (prompt templates, lexicon, emotion scoring framework), and shows how interactive D3.js visualizations transform text data into explorable insights.'
+        content: 'For screenwriters and directors: a quantitative reference for how to deploy elite signals at climactic moments and what fear-pacing structures actually land.\n\nFor film students and researchers: the nine scenes turn qualitative film theory into something you can interact with. Compare slashers to psychological horror, study how 1980s pacing differs from 2010s, see where outliers sit.\n\nFor streaming platforms: a template for correlating craft signals with audience reception, identifying underserved horror recipes, and surfacing films with unique signal fingerprints.\n\nMethodologically: the project demonstrates a reusable LLM screenplay-analysis pipeline (prompt templates, lexicon, emotion scoring framework) that scaled to 129 films and 10K scenes for under three dollars.'
+      },
+      limitations: {
+        title: 'What this is, and what it isn\'t',
+        items: [
+          'AI-generated scores are computational annotations, not human-coded ground truth. Treat them as comparative signals, not exact measurements.',
+          'Different model versions of gpt-4o-mini / gpt-4o can produce slightly different outputs for the same scene. The committed CSVs are pinned to one production run.',
+          'OCR errors and inconsistent screenplay formatting affect scene splitting; some scenes break in non-ideal places.',
+          'Signal counting is lexical, so a word like "dark" gets a hit whether it\'s literal, metaphorical, or atmospheric. Context is approximated, not understood.',
+          'Fear and tension are inherently subjective. The 0–1 rubrics were calibrated against samples, but reasonable raters could still disagree on edge cases.',
+          'The corpus is 129 horror screenplays from one source (IMSDb). Findings are descriptive of this collection, not the genre in full.',
+        ]
       }
     },
     featured: true
@@ -652,7 +732,7 @@ export const projects: Project[] = [
         },
         {
           title: 'Mobile-First Design System',
-          description: 'Complete UI design prioritizing mobile experience where students naturally seek help—on the bus, between classes, late-night study sessions. Design system includes reusable components: subject tag pills (color-coded by discipline), availability calendars (optimized for small screens), tutor profile cards (scannable at a glance), and session booking flows (three taps maximum). Maintains consistency across iOS and Android while respecting platform conventions for gestures and navigation patterns.',
+          description: 'Complete UI design prioritizing mobile experience where students naturally seek help, on the bus, between classes, late-night study sessions. Design system includes reusable components: subject tag pills (color-coded by discipline), availability calendars (optimized for small screens), tutor profile cards (scannable at a glance), and session booking flows (three taps maximum). Maintains consistency across iOS and Android while respecting platform conventions for gestures and navigation patterns.',
           insight: 'Recognized that students won\'t open laptops to ask quick tutoring questions. They pull out their phones. The mobile-first approach ensures Tutorly fits naturally into student workflows, making it as easy to book a tutoring session as ordering food delivery, reducing barriers to seeking academic help.'
         }
       ],
