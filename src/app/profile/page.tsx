@@ -73,8 +73,8 @@ export default function ProfilePage() {
                 My background in Management Information Technology and Computer
                 Science at the University of Toronto bridges business
                 strategy, data engineering, and product thinking. Design and
-                UX are part of the toolkit too &mdash; they make AI products
-                feel as good to use as they are to demo.
+                UX are part of the toolkit too. They make AI products feel
+                as good to use as they are to demo.
               </p>
             </div>
           </header>
@@ -111,7 +111,7 @@ export default function ProfilePage() {
               </div>
               <div className="flex-grow">
                 <h3 className="font-display text-xl text-ink mb-1">
-                  Calvin Liew &mdash; Resume
+                  Calvin Liew, Resume
                 </h3>
                 <p className="text-sm text-ink-soft mb-5">
                   My latest experience in product, design, and data, all in one

@@ -4,7 +4,7 @@ export const aboutData: AboutData = {
   name: 'Calvin Liew',
   title: 'AI Workflows Product Analyst',
   tagline: 'Building AI agents at the intersection of data, product strategy, and enterprise workflows',
-  introduction: 'I\'m an AI Workflows Product Analyst focused on shipping AI agents and data-driven products. Currently at Sanofi, I lead the development of SupRM Intelligence — an AI-powered supplier relationship agent delivering real-time vendor risk, project status, KPI insights, supplier governance, and QBR preparation for 30+ stakeholders. I bring product strategy, data engineering, and design thinking together to ship agentic workflows that move real business outcomes.',
+  introduction: 'I\'m an AI Workflows Product Analyst focused on shipping AI agents and data-driven products. Currently at Sanofi, I lead the development of SupRM Intelligence, an AI-powered supplier relationship agent delivering real-time vendor risk, project status, KPI insights, supplier governance, and QBR preparation for 30+ stakeholders. I bring product strategy, data engineering, and design thinking together to ship agentic workflows that move real business outcomes.',
   email: 'calvin.liew@mail.utoronto.ca',
   socialLinks: [
     {

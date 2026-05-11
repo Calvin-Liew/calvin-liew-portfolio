@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import Container from '@/components/layout/Container';
 import Section from '@/components/layout/Section';
 import Badge from '@/components/ui/Badge';
@@ -32,20 +33,41 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   };
 }
 
-// Reusable section heading: Fraunces italic with terracotta period
-function SectionHeading({ children }: { children: React.ReactNode }) {
+// Editorial section heading: "chapter 03 — " Kalam eyebrow + Fraunces italic title with terracotta period
+function ChapterHeading({
+  number,
+  children,
+  eyebrow,
+}: {
+  number?: string;
+  children: React.ReactNode;
+  eyebrow?: string;
+}) {
   return (
-    <h2 className="font-display italic text-3xl sm:text-4xl text-ink mb-6 leading-tight">
-      {children}
-      <span className="text-terracotta not-italic">.</span>
-    </h2>
+    <div className="mb-8">
+      {(eyebrow || number) && (
+        <p
+          className="text-base sm:text-lg text-terracotta mb-2 inline-block"
+          style={{
+            fontFamily: 'var(--font-kalam), cursive',
+            transform: 'rotate(-2deg)',
+          }}
+        >
+          {eyebrow ?? `chapter ${number} —`}
+        </p>
+      )}
+      <h2 className="font-display italic text-3xl sm:text-4xl text-ink leading-tight">
+        {children}
+        <span className="text-terracotta not-italic">.</span>
+      </h2>
+    </div>
   );
 }
 
-// Subtle hand-drawn divider between sections
-function SectionDivider() {
+// Subtle hand-drawn divider — used between chapters with extra breathing room
+function ChapterDivider() {
   return (
-    <div aria-hidden className="my-12">
+    <div aria-hidden className="my-16">
       <svg viewBox="0 0 800 8" preserveAspectRatio="none" className="w-full h-2">
         <path
           d="M 4 4 Q 200 1, 400 4 T 796 3"
@@ -67,6 +89,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     notFound();
   }
 
+  // Track chapter numbering so each section gets a "chapter NN —" eyebrow
+  let chapter = 0;
+  const nextChapter = () => String(++chapter).padStart(2, '0');
+
   return (
     <Section>
       <Container>
@@ -74,7 +100,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           {/* Back link */}
           <Link
             href="/projects"
-            className="inline-flex items-center text-base text-terracotta hover:text-terracotta-deep hover:-translate-x-1 transition-all duration-200 mb-10"
+            className="inline-flex items-center text-base text-terracotta hover:text-terracotta-deep hover:-translate-x-1 transition-all duration-200 mb-12"
             style={{
               fontFamily: 'var(--font-kalam), cursive',
               transform: 'rotate(-2deg)',
@@ -84,8 +110,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </Link>
 
           {/* Header */}
-          <header className="mb-10">
-            <div className="mb-4">
+          <header className="mb-12">
+            <div className="mb-5">
               <Badge variant="category">{project.category}</Badge>
             </div>
 
@@ -108,15 +134,30 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               <MetaBadge icon={Calendar} text={project.dates} />
             </div>
 
-            {/* Lead description */}
-            <p className="text-lg sm:text-xl text-ink-soft leading-relaxed">
+            {/* Lead description with drop cap on first letter */}
+            <p className="text-lg sm:text-xl text-ink-soft leading-relaxed first-letter:font-display first-letter:italic first-letter:text-terracotta first-letter:text-6xl sm:first-letter:text-7xl first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:leading-[0.85]">
               {project.description}
             </p>
           </header>
 
+          {/* Hero image */}
+          {project.image && (
+            <figure className="mb-14 relative overflow-hidden rounded-xl border border-border bg-paper-deeper shadow-paper">
+              <Image
+                src={project.image}
+                alt={`${project.title} — hero image`}
+                width={1600}
+                height={900}
+                sizes="(max-width: 768px) 100vw, 896px"
+                className="w-full h-auto"
+                priority
+              />
+            </figure>
+          )}
+
           {/* Project links */}
           {project.links && project.links.length > 0 && (
-            <div className="mb-12 flex flex-wrap gap-3">
+            <div className="mb-14 flex flex-wrap gap-3">
               {project.links.map((link, index) => {
                 const isPrimary = link.type === 'live' || index === 0;
                 return (
@@ -137,8 +178,33 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
           )}
 
+          {/* Stats strip */}
+          {project.extendedContent?.stats &&
+            project.extendedContent.stats.length > 0 && (
+              <section className="mb-14">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 py-8 px-6 sm:px-10 bg-paper-deeper border border-border rounded-2xl shadow-paper">
+                  {project.extendedContent.stats.map((stat, i) => (
+                    <div key={i} className="text-center sm:text-left">
+                      <p className="font-display italic text-3xl sm:text-4xl lg:text-5xl text-terracotta leading-none mb-2">
+                        {stat.value}
+                      </p>
+                      <p
+                        className="text-sm sm:text-base text-ink-soft inline-block"
+                        style={{
+                          fontFamily: 'var(--font-kalam), cursive',
+                          transform: 'rotate(-1deg)',
+                        }}
+                      >
+                        {stat.label}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
           {/* Skills */}
-          <section className="mb-12">
+          <section className="mb-2">
             <h2 className="text-sm uppercase tracking-wider text-muted mb-4">
               Skills used
             </h2>
@@ -155,11 +221,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               {/* Overview */}
               {project.extendedContent.overview && (
                 <>
-                  <SectionDivider />
+                  <ChapterDivider />
                   <section>
-                    <SectionHeading>
+                    <ChapterHeading number={nextChapter()}>
                       {project.extendedContent.overview.title}
-                    </SectionHeading>
+                    </ChapterHeading>
                     <p className="text-lg text-ink-soft leading-relaxed">
                       {project.extendedContent.overview.content}
                     </p>
@@ -170,11 +236,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               {/* Motivation */}
               {project.extendedContent.motivation && (
                 <>
-                  <SectionDivider />
+                  <ChapterDivider />
                   <section>
-                    <SectionHeading>
+                    <ChapterHeading number={nextChapter()}>
                       {project.extendedContent.motivation.title}
-                    </SectionHeading>
+                    </ChapterHeading>
                     <p className="text-lg text-ink-soft leading-relaxed">
                       {project.extendedContent.motivation.content}
                     </p>
@@ -182,13 +248,26 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 </>
               )}
 
+              {/* Pull quote — magazine-style breakout */}
+              {project.extendedContent.pullQuote && (
+                <aside className="my-16">
+                  <blockquote className="relative border-l-4 border-terracotta pl-6 sm:pl-10 py-2">
+                    <p className="font-display italic text-2xl sm:text-3xl lg:text-4xl text-ink leading-snug">
+                      &ldquo;{project.extendedContent.pullQuote}&rdquo;
+                    </p>
+                  </blockquote>
+                </aside>
+              )}
+
               {/* Datasets */}
               {project.extendedContent.datasets &&
                 project.extendedContent.datasets.length > 0 && (
                   <>
-                    <SectionDivider />
+                    <ChapterDivider />
                     <section>
-                      <SectionHeading>Datasets</SectionHeading>
+                      <ChapterHeading number={nextChapter()}>
+                        Datasets
+                      </ChapterHeading>
                       <div className="space-y-4">
                         {project.extendedContent.datasets.map(
                           (dataset, index) => (
@@ -221,14 +300,149 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   </>
                 )}
 
-              {/* Methodology */}
+              {/* Methodology — wraps a visual pipeline section + numbered deep-dive steps */}
               {project.extendedContent.methodology && (
                 <>
-                  <SectionDivider />
+                  <ChapterDivider />
                   <section>
-                    <SectionHeading>
+                    <ChapterHeading number={nextChapter()}>
                       {project.extendedContent.methodology.title}
-                    </SectionHeading>
+                    </ChapterHeading>
+
+                    {/* Visual pipeline pieces — flow diagram + source files + sample JSON */}
+                    {project.extendedContent.pythonPipeline && (
+                      <div className="mb-14 space-y-12">
+                        {/* Flow diagram — vertical chain of paper-deeper boxes with terracotta arrows */}
+                        {project.extendedContent.pythonPipeline.flow &&
+                          project.extendedContent.pythonPipeline.flow.length >
+                            0 && (
+                            <div>
+                              <p
+                                className="text-base text-terracotta mb-5 inline-block"
+                                style={{
+                                  fontFamily: 'var(--font-kalam), cursive',
+                                  transform: 'rotate(-2deg)',
+                                }}
+                              >
+                                how the data flows &mdash;
+                              </p>
+                              <div className="space-y-3 max-w-xl">
+                                {project.extendedContent.pythonPipeline.flow.map(
+                                  (stage, i, arr) => (
+                                    <div key={i}>
+                                      <div className="bg-paper-deeper border border-border rounded-lg shadow-paper px-4 py-3">
+                                        <p className="font-display text-base text-ink leading-snug">
+                                          {stage.label}
+                                        </p>
+                                        {stage.detail && (
+                                          <p className="text-sm text-muted mt-0.5">
+                                            {stage.detail}
+                                          </p>
+                                        )}
+                                      </div>
+                                      {i < arr.length - 1 && (
+                                        <div
+                                          aria-hidden
+                                          className="flex justify-center py-1"
+                                        >
+                                          <svg
+                                            viewBox="0 0 24 24"
+                                            className="w-5 h-5 text-terracotta"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeWidth={1.8}
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                          >
+                                            <path d="M12 5 V19" />
+                                            <path d="M6 14 L12 19 L18 14" />
+                                          </svg>
+                                        </div>
+                                      )}
+                                    </div>
+                                  )
+                                )}
+                              </div>
+                            </div>
+                          )}
+
+                        {/* Two-column: source files + sample JSON */}
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                          {/* Source files */}
+                          {project.extendedContent.pythonPipeline.sourceFiles &&
+                            project.extendedContent.pythonPipeline.sourceFiles
+                              .length > 0 && (
+                              <div className="bg-paper-deeper border border-border rounded-xl shadow-paper p-6">
+                                <p
+                                  className="text-base text-terracotta mb-4 inline-block"
+                                  style={{
+                                    fontFamily: 'var(--font-kalam), cursive',
+                                    transform: 'rotate(-2deg)',
+                                  }}
+                                >
+                                  python source files &mdash;
+                                </p>
+                                <ul className="space-y-4">
+                                  {project.extendedContent.pythonPipeline.sourceFiles.map(
+                                    (file, i) => (
+                                      <li key={i}>
+                                        <p className="font-mono text-sm text-ink mb-1">
+                                          {file.name}
+                                        </p>
+                                        <p className="text-sm text-ink-soft leading-relaxed">
+                                          {file.purpose}
+                                        </p>
+                                      </li>
+                                    )
+                                  )}
+                                </ul>
+                              </div>
+                            )}
+
+                          {/* Sample JSON — paper-deeper card with terracotta left rule for "code on paper" feel */}
+                          {project.extendedContent.pythonPipeline.sampleJson && (
+                            <div className="bg-paper-deeper border border-border rounded-xl shadow-paper p-6 overflow-hidden relative">
+                              <span
+                                aria-hidden
+                                className="absolute left-0 top-6 bottom-6 w-1 bg-terracotta/60 rounded-r"
+                              />
+                              {project.extendedContent.pythonPipeline
+                                .sampleJsonCaption && (
+                                <p
+                                  className="text-base text-terracotta mb-4 inline-block"
+                                  style={{
+                                    fontFamily: 'var(--font-kalam), cursive',
+                                    transform: 'rotate(-2deg)',
+                                  }}
+                                >
+                                  {
+                                    project.extendedContent.pythonPipeline
+                                      .sampleJsonCaption
+                                  }
+                                </p>
+                              )}
+                              <pre className="font-mono text-xs sm:text-sm text-ink-soft leading-relaxed overflow-x-auto whitespace-pre pl-2">
+                                {
+                                  project.extendedContent.pythonPipeline
+                                    .sampleJson
+                                }
+                              </pre>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Step-by-step deep dive */}
+                    <p
+                      className="text-base text-terracotta mb-5 inline-block"
+                      style={{
+                        fontFamily: 'var(--font-kalam), cursive',
+                        transform: 'rotate(-2deg)',
+                      }}
+                    >
+                      the deep dive &mdash;
+                    </p>
                     <ol className="space-y-6">
                       {project.extendedContent.methodology.steps.map(
                         (step, index) => (
@@ -255,20 +469,27 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 </>
               )}
 
-              {/* Key findings */}
+              {/* Key findings — stat-led cards */}
               {project.extendedContent.keyFindings &&
                 project.extendedContent.keyFindings.length > 0 && (
                   <>
-                    <SectionDivider />
+                    <ChapterDivider />
                     <section>
-                      <SectionHeading>Key findings</SectionHeading>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <ChapterHeading number={nextChapter()}>
+                        Key findings
+                      </ChapterHeading>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                         {project.extendedContent.keyFindings.map(
                           (finding, index) => (
                             <div
                               key={index}
-                              className="bg-paper-deeper border border-border rounded-xl p-5 shadow-paper"
+                              className="bg-paper-deeper border border-border rounded-xl p-6 shadow-paper"
                             >
+                              {finding.stat && (
+                                <p className="font-display italic text-4xl sm:text-5xl text-terracotta leading-none mb-3">
+                                  {finding.stat}
+                                </p>
+                              )}
                               <h3 className="font-display text-lg text-ink mb-2 leading-snug">
                                 {finding.title}
                               </h3>
@@ -287,9 +508,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               {project.extendedContent.features &&
                 project.extendedContent.features.length > 0 && (
                   <>
-                    <SectionDivider />
+                    <ChapterDivider />
                     <section>
-                      <SectionHeading>Key features</SectionHeading>
+                      <ChapterHeading number={nextChapter()}>
+                        Key features
+                      </ChapterHeading>
                       <div className="space-y-4">
                         {project.extendedContent.features.map(
                           (feature, index) => (
@@ -320,37 +543,100 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   </>
                 )}
 
-              {/* Visualizations */}
+              {/* Visualizations — alternating magazine spread, no card chrome,
+                  big numbered scenes, image left/right alternates each scene */}
               {project.extendedContent.visualizations &&
                 project.extendedContent.visualizations.length > 0 && (
                   <>
-                    <SectionDivider />
+                    <ChapterDivider />
                     <section>
-                      <SectionHeading>Visualizations</SectionHeading>
-                      <div className="space-y-4">
+                      <ChapterHeading number={nextChapter()}>
+                        Visualizations
+                      </ChapterHeading>
+                      <p className="text-base sm:text-lg text-ink-soft mb-12 max-w-2xl">
+                        Nine D3.js scenes wrap a scrollytelling narrative.
+                        Each one is built directly from the AI-extracted CSVs.
+                      </p>
+
+                      <div className="space-y-16 sm:space-y-24">
                         {project.extendedContent.visualizations.map(
-                          (viz, index) => (
-                            <div
-                              key={index}
-                              className="bg-paper-deeper border border-border rounded-xl p-5 shadow-paper"
-                            >
-                              <h3 className="font-display text-lg text-ink mb-2 leading-snug">
-                                {viz.title}
-                              </h3>
-                              <p className="text-base text-ink-soft leading-relaxed mb-3">
-                                {viz.description}
-                              </p>
-                              <div className="flex items-start gap-2 text-sm">
-                                <CheckCircle2
-                                  className="w-4 h-4 text-terracotta flex-shrink-0 mt-0.5"
-                                  aria-hidden
-                                />
-                                <span className="text-terracotta-deep font-medium">
-                                  {viz.insight}
-                                </span>
-                              </div>
-                            </div>
-                          )
+                          (viz, index) => {
+                            const sceneNum = String(index + 1).padStart(
+                              2,
+                              '0'
+                            );
+                            const imageFirst = index % 2 === 0;
+                            return (
+                              <article
+                                key={index}
+                                className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 items-center"
+                              >
+                                {/* Image — col-span-7 on md+, alternates side */}
+                                {viz.image && (
+                                  <div
+                                    className={`md:col-span-7 ${
+                                      imageFirst
+                                        ? 'md:order-1'
+                                        : 'md:order-2'
+                                    }`}
+                                  >
+                                    <div className="relative w-full overflow-hidden rounded-xl border border-border bg-paper-deeper shadow-paper">
+                                      <Image
+                                        src={viz.image}
+                                        alt={`${viz.title} — screenshot`}
+                                        width={1600}
+                                        height={1200}
+                                        sizes="(max-width: 768px) 100vw, 520px"
+                                        className="w-full h-auto"
+                                      />
+                                    </div>
+                                  </div>
+                                )}
+
+                                {/* Text — col-span-5, alternates side */}
+                                <div
+                                  className={`md:col-span-5 ${
+                                    imageFirst ? 'md:order-2' : 'md:order-1'
+                                  }`}
+                                >
+                                  <p
+                                    className="text-base sm:text-lg text-terracotta mb-2 inline-block"
+                                    style={{
+                                      fontFamily:
+                                        'var(--font-kalam), cursive',
+                                      transform: 'rotate(-2deg)',
+                                    }}
+                                  >
+                                    scene {sceneNum} &mdash;
+                                  </p>
+                                  <div className="flex items-baseline gap-3 mb-4 flex-wrap">
+                                    <span className="font-display italic text-5xl sm:text-6xl text-terracotta leading-none">
+                                      {sceneNum}
+                                      <span className="not-italic">.</span>
+                                    </span>
+                                    <h3 className="font-display italic text-2xl sm:text-3xl text-ink leading-tight">
+                                      {viz.title}
+                                      <span className="text-terracotta not-italic">
+                                        .
+                                      </span>
+                                    </h3>
+                                  </div>
+                                  <p className="text-base sm:text-lg text-ink-soft leading-relaxed mb-5">
+                                    {viz.description}
+                                  </p>
+                                  <div className="flex items-start gap-2 text-sm pt-3 border-t border-border/60">
+                                    <CheckCircle2
+                                      className="w-4 h-4 text-terracotta flex-shrink-0 mt-0.5"
+                                      aria-hidden
+                                    />
+                                    <span className="text-terracotta-deep font-medium leading-relaxed">
+                                      {viz.insight}
+                                    </span>
+                                  </div>
+                                </div>
+                              </article>
+                            );
+                          }
                         )}
                       </div>
                     </section>
@@ -361,9 +647,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               {project.extendedContent.tools &&
                 project.extendedContent.tools.length > 0 && (
                   <>
-                    <SectionDivider />
+                    <ChapterDivider />
                     <section>
-                      <SectionHeading>Tools &amp; technologies</SectionHeading>
+                      <ChapterHeading number={nextChapter()}>
+                        Tools &amp; technologies
+                      </ChapterHeading>
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         {project.extendedContent.tools.map((tool, index) => (
                           <div
@@ -386,11 +674,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               {/* Impact */}
               {project.extendedContent.impact && (
                 <>
-                  <SectionDivider />
-                  <section className="bg-terracotta-wash border border-terracotta/30 rounded-2xl p-6 sm:p-8 shadow-paper">
-                    <SectionHeading>
+                  <ChapterDivider />
+                  <section className="bg-terracotta-wash border border-terracotta/30 rounded-2xl p-6 sm:p-10 shadow-paper">
+                    <ChapterHeading number={nextChapter()}>
                       {project.extendedContent.impact.title}
-                    </SectionHeading>
+                    </ChapterHeading>
                     <div className="text-base sm:text-lg text-ink-soft leading-relaxed space-y-4">
                       {project.extendedContent.impact.content
                         .split('\n\n')
@@ -401,13 +689,52 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   </section>
                 </>
               )}
+
+              {/* Limitations — honest caveats */}
+              {project.extendedContent.limitations &&
+                project.extendedContent.limitations.items.length > 0 && (
+                  <>
+                    <ChapterDivider />
+                    <section>
+                      <ChapterHeading number={nextChapter()}>
+                        {project.extendedContent.limitations.title ??
+                          'Known limitations'}
+                      </ChapterHeading>
+                      <p
+                        className="text-base text-terracotta mb-6 inline-block"
+                        style={{
+                          fontFamily: 'var(--font-kalam), cursive',
+                          transform: 'rotate(-1deg)',
+                        }}
+                      >
+                        the honest caveats &mdash;
+                      </p>
+                      <ul className="space-y-3">
+                        {project.extendedContent.limitations.items.map(
+                          (item, index) => (
+                            <li
+                              key={index}
+                              className="flex gap-3 text-base text-ink-soft leading-relaxed"
+                            >
+                              <span
+                                aria-hidden
+                                className="flex-shrink-0 mt-2 w-1.5 h-1.5 rounded-full bg-terracotta"
+                              />
+                              <span>{item}</span>
+                            </li>
+                          )
+                        )}
+                      </ul>
+                    </section>
+                  </>
+                )}
             </>
           )}
 
           {/* Case study viewer */}
           {project.caseStudy && (
             <>
-              <SectionDivider />
+              <ChapterDivider />
               <CaseStudyViewer
                 fileName={project.caseStudy.fileName}
                 title={
@@ -418,6 +745,20 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               />
             </>
           )}
+
+          {/* Footer back link */}
+          <div className="mt-20 pt-10 border-t border-border">
+            <Link
+              href="/projects"
+              className="inline-flex items-center text-base text-terracotta hover:text-terracotta-deep hover:-translate-x-1 transition-all duration-200"
+              style={{
+                fontFamily: 'var(--font-kalam), cursive',
+                transform: 'rotate(-2deg)',
+              }}
+            >
+              &larr; back to all projects
+            </Link>
+          </div>
         </article>
       </Container>
     </Section>

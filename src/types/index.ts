@@ -44,17 +44,52 @@ export interface Methodology {
 export interface KeyFinding {
   title: string;
   description: string;
+  /** Optional headline stat shown big and terracotta above the title */
+  stat?: string;
+}
+
+export interface ProjectStat {
+  value: string;
+  label: string;
 }
 
 export interface Visualization {
   title: string;
   description: string;
   insight: string;
+  image?: string;
+  /**
+   * How the image should fit inside its container.
+   * - 'cover' (default): fills the box, anchored top — best for wide charts/timelines
+   * - 'contain': whole image visible with letterbox — best for scatter plots and radar charts
+   */
+  imageFit?: 'cover' | 'contain';
 }
 
 export interface Tool {
   name: string;
   purpose: string;
+}
+
+export interface PipelineStage {
+  label: string;
+  detail?: string;
+}
+
+export interface PythonSourceFile {
+  name: string;
+  purpose: string;
+}
+
+export interface PythonPipeline {
+  /** Vertical flow diagram stages, top → bottom */
+  flow?: PipelineStage[];
+  /** The key Python files in the project */
+  sourceFiles?: PythonSourceFile[];
+  /** A sample JSON object the AI returns — shown as a code block */
+  sampleJson?: string;
+  /** Optional caption above the sample JSON */
+  sampleJsonCaption?: string;
 }
 
 export interface ExtendedContent {
@@ -63,11 +98,22 @@ export interface ExtendedContent {
   motivation?: ContentSection;
   datasets?: Dataset[];
   methodology?: Methodology;
+  /** Visual Python pipeline section — diagram + source files + sample output */
+  pythonPipeline?: PythonPipeline;
   keyFindings?: KeyFinding[];
   visualizations?: Visualization[];
   features?: Visualization[];
   tools?: Tool[];
   impact?: ContentSection;
+  /** Honest caveats / known limitations — shown as bullets near the end */
+  limitations?: {
+    title?: string;
+    items: string[];
+  };
+  /** Big-number stats shown as a strip near the top */
+  stats?: ProjectStat[];
+  /** Standout magazine-style pull quote rendered between sections */
+  pullQuote?: string;
 }
 
 export interface Project {

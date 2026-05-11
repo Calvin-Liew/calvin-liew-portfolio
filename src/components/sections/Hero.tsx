@@ -77,7 +77,7 @@ export default function Hero() {
               </p>
 
               <p className="text-base text-muted leading-relaxed mb-8 max-w-lg text-pretty">
-                Right now I&apos;m leading <span className="text-ink font-medium">SupRM Intelligence</span> at Sanofi &mdash; an AI agent that turns scattered supplier data into real-time risk, performance, and QBR insight for 30+ stakeholders.
+                Right now I&apos;m leading <span className="text-ink font-medium">SupRM Intelligence</span> at Sanofi, an AI agent that turns scattered supplier data into real-time risk, performance, and QBR insight for 30+ stakeholders.
               </p>
 
               {/* "start here" annotation */}
@@ -149,7 +149,7 @@ export default function Hero() {
                   className="text-base text-terracotta leading-snug"
                   style={{ fontFamily: 'var(--font-kalam), cursive' }}
                 >
-                  shipping SupRM Intelligence &mdash; an AI agent for supplier relationships.
+                  shipping SupRM Intelligence, an AI agent for supplier relationships.
                 </p>
 
                 {/* "On my mind" footer */}

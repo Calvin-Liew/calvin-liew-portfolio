@@ -5,7 +5,7 @@ export const education: Education = {
   degree: 'Bachelor of Business Administration - BBA',
   field: 'Co-op Management Information Technology',
   dates: 'Sep 2022 - Aug 2026',
-  gpa: '3.92/4.0',
+  gpa: '3.94/4.0',
   honors: [
     'Sustained Dean\'s List (three consecutive years, 2022-2025)',
     'BBA (Co-op) Program',
