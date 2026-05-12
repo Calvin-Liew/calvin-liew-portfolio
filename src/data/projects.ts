@@ -470,9 +470,9 @@ export const projects: Project[] = [
           reasoning: 'The original homepage led with a band photo. Students who saw it assumed TMPP was a performance platform and never scrolled past. The redesigned hero cycles through all eight career clusters (performance, education, business, production, publishing, health sciences, entertainment law, media) as the auto-rotating preview card. By the time the user has finished reading the tagline, they have already seen the reframe in motion. The breadth is not described, it is demonstrated.'
         },
         {
-          decision: 'Tempo as a metronome, not a treble clef',
+          decision: 'Tempo (a metronome) replaces Jay (a blue jay)',
           framework: 'Keller\'s offensive brand element criteria',
-          reasoning: 'The mascot had to read as "music" without forcing one culture\'s notation system on a multicultural Canadian student body. A treble clef, sheet music, or piano keys would have quietly excluded students from non-Western musical traditions. A metronome is universal across genres and cultures — it just means time and pace. The friendly LED-faced design plus the U of T navy + crimson palette satisfies Keller\'s offensive criteria (memorable, meaningful, likable) without leaning on Western-classical-music iconography.'
+          reasoning: 'The original mascot was Jay, a blue jay character. Friendly, but a blue jay doesn\'t actually say "music." The mascot also had to read as music without forcing one culture\'s notation system on a multicultural Canadian student body — a treble clef or piano keys would have quietly excluded students from non-Western musical traditions. A metronome is universal across genres and cultures, and it just means time and pace. Tempo\'s LED-faced design plus the U of T navy + crimson palette satisfies Keller\'s offensive criteria (memorable, meaningful, likable) and finally gives the chatbot a face that\'s on-brief.'
         },
         {
           decision: 'Interactive map as the primary surface, chatbot as the supporting voice',
@@ -492,6 +492,36 @@ export const projects: Project[] = [
           reasoning: 'The page sections aren\'t arranged by convention; they\'re arranged by CBBE rung. Salience in the hero (full pathway set visible immediately). Performance + imagery in the three pillars (Research-Informed, Curriculum-Connected, Student-Centered). Judgments in the stats strip (30+ pathways, 100% research-informed). Feelings in the dual-audience care. Resonance in the 3-step discovery flow that drives return visits. Every section earns its place by doing brand-equity work, not by checking a layout box.'
         }
       ],
+      beforeAfter: {
+        title: 'Before and after',
+        intro: 'Captured from the live original site at musicpathways.ca, paired side-by-side with the redesigned screens to show the actual delta on the same surfaces.',
+        pairs: [
+          {
+            label: 'Homepage',
+            note: 'A static band photo plus a paragraph block becomes an animated 8-pathway preview, a confident tagline that names the reframe ("Discover where music can take you"), and a clear path into the explorer.',
+            before: '/projects/music-pathways/before-after/original-homepage.png',
+            after: '/projects/music-pathways/before-after/homepage-hero.png',
+          },
+          {
+            label: 'Chatbot and explorer',
+            note: 'A standalone "Welcome — I\'m Jay!" chatbot modal becomes Tempo the metronome, sitting alongside an interactive pathways map that visualizes career clusters and surfaces example careers per cluster.',
+            before: '/projects/music-pathways/before-after/original-chatbot.png',
+            after: '/projects/music-pathways/before-after/pathways-explorer.png',
+          },
+          {
+            label: 'Mobile homepage',
+            note: 'The mobile experience gets the same reframe end-to-end — same hero, same pathway preview, same tagline emphasis — responsive across screen sizes instead of a different IA on phone.',
+            before: '/projects/music-pathways/before-after/original-mobile-home.png',
+            after: '/projects/music-pathways/before-after/mobile-home.png',
+          },
+          {
+            label: 'Mobile chatbot / explorer',
+            note: 'Jay\'s welcome modal on mobile becomes Tempo plus a touch-friendly version of the pathways map, scaling the desktop interaction model down without losing functionality.',
+            before: '/projects/music-pathways/before-after/original-mobile-chatbot.png',
+            after: '/projects/music-pathways/before-after/mobile-pathways-explorer.png',
+          },
+        ],
+      },
       keyFindings: [
         {
           stat: '8 pathways',

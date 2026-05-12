@@ -308,6 +308,94 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   </>
                 )}
 
+              {/* Before / after — visual delta on the same UI surfaces */}
+              {project.extendedContent.beforeAfter &&
+                project.extendedContent.beforeAfter.pairs.length > 0 && (
+                  <>
+                    <ChapterDivider />
+                    <section>
+                      <ChapterHeading number={nextChapter()}>
+                        {project.extendedContent.beforeAfter.title ??
+                          'Before and after'}
+                      </ChapterHeading>
+                      {project.extendedContent.beforeAfter.intro && (
+                        <p className="text-base sm:text-lg text-ink-soft mb-12 max-w-2xl">
+                          {project.extendedContent.beforeAfter.intro}
+                        </p>
+                      )}
+                      <div className="space-y-14">
+                        {project.extendedContent.beforeAfter.pairs.map(
+                          (pair, index) => (
+                            <article key={index}>
+                              <div className="flex items-baseline justify-between flex-wrap gap-3 mb-4">
+                                <h3 className="font-display italic text-xl sm:text-2xl text-ink leading-tight">
+                                  {pair.label}
+                                  <span className="text-terracotta not-italic">
+                                    .
+                                  </span>
+                                </h3>
+                              </div>
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                                {/* Before */}
+                                <figure className="m-0">
+                                  <div className="relative overflow-hidden rounded-xl border border-border bg-paper-deeper shadow-paper">
+                                    <Image
+                                      src={pair.before}
+                                      alt={`${pair.label} — before`}
+                                      width={1600}
+                                      height={1200}
+                                      sizes="(max-width: 768px) 100vw, 440px"
+                                      className="w-full h-auto"
+                                    />
+                                  </div>
+                                  <figcaption
+                                    className="mt-3 text-sm text-terracotta inline-block"
+                                    style={{
+                                      fontFamily:
+                                        'var(--font-kalam), cursive',
+                                      transform: 'rotate(-2deg)',
+                                    }}
+                                  >
+                                    before &mdash;
+                                  </figcaption>
+                                </figure>
+                                {/* After */}
+                                <figure className="m-0">
+                                  <div className="relative overflow-hidden rounded-xl border border-border bg-paper-deeper shadow-paper">
+                                    <Image
+                                      src={pair.after}
+                                      alt={`${pair.label} — after`}
+                                      width={1600}
+                                      height={1200}
+                                      sizes="(max-width: 768px) 100vw, 440px"
+                                      className="w-full h-auto"
+                                    />
+                                  </div>
+                                  <figcaption
+                                    className="mt-3 text-sm text-terracotta inline-block"
+                                    style={{
+                                      fontFamily:
+                                        'var(--font-kalam), cursive',
+                                      transform: 'rotate(-2deg)',
+                                    }}
+                                  >
+                                    after &mdash;
+                                  </figcaption>
+                                </figure>
+                              </div>
+                              {pair.note && (
+                                <p className="text-base text-ink-soft leading-relaxed mt-5 max-w-3xl">
+                                  {pair.note}
+                                </p>
+                              )}
+                            </article>
+                          )
+                        )}
+                      </div>
+                    </section>
+                  </>
+                )}
+
               {/* Datasets */}
               {project.extendedContent.datasets &&
                 project.extendedContent.datasets.length > 0 && (

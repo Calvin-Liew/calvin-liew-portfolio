@@ -81,6 +81,26 @@ export interface ProductDecision {
   framework?: string;
 }
 
+/** A side-by-side comparison of an original UI surface and its redesign */
+export interface BeforeAfterPair {
+  /** Short label identifying the surface (e.g. "Homepage", "Mobile") */
+  label: string;
+  /** Optional caption explaining what changed between the two */
+  note?: string;
+  /** Public path to the "before" image */
+  before: string;
+  /** Public path to the "after" image */
+  after: string;
+}
+
+export interface BeforeAfter {
+  /** Optional override for the chapter heading (defaults to "Before / after") */
+  title?: string;
+  /** Optional intro paragraph above the comparison pairs */
+  intro?: string;
+  pairs: BeforeAfterPair[];
+}
+
 export interface PipelineStage {
   label: string;
   detail?: string;
@@ -112,6 +132,8 @@ export interface ExtendedContent {
   pythonPipeline?: PythonPipeline;
   /** Strategic product decisions with reasoning — magazine "the decisions" chapter */
   decisions?: ProductDecision[];
+  /** Optional before / after gallery comparing original surfaces with the redesign */
+  beforeAfter?: BeforeAfter;
   keyFindings?: KeyFinding[];
   visualizations?: Visualization[];
   features?: Visualization[];
