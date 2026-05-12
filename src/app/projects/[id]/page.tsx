@@ -504,7 +504,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   </>
                 )}
 
-              {/* Features */}
+              {/* Features — same alternating magazine spread as visualizations
+                  when images are provided; falls back to a simple card otherwise */}
               {project.extendedContent.features &&
                 project.extendedContent.features.length > 0 && (
                   <>
@@ -513,30 +514,129 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                       <ChapterHeading number={nextChapter()}>
                         Key features
                       </ChapterHeading>
-                      <div className="space-y-4">
+                      <p className="text-base sm:text-lg text-ink-soft mb-12 max-w-2xl">
+                        The signature product moments. Each one is a complete
+                        scenario the prototype demonstrates end to end.
+                      </p>
+
+                      <div className="space-y-16 sm:space-y-24">
                         {project.extendedContent.features.map(
-                          (feature, index) => (
-                            <div
-                              key={index}
-                              className="bg-paper-deeper border border-border rounded-xl p-5 shadow-paper"
-                            >
-                              <h3 className="font-display text-lg text-ink mb-2 leading-snug">
-                                {feature.title}
-                              </h3>
-                              <p className="text-base text-ink-soft leading-relaxed mb-3">
-                                {feature.description}
-                              </p>
-                              <div className="flex items-start gap-2 text-sm">
-                                <CheckCircle2
-                                  className="w-4 h-4 text-terracotta flex-shrink-0 mt-0.5"
-                                  aria-hidden
-                                />
-                                <span className="text-terracotta-deep font-medium">
-                                  {feature.insight}
-                                </span>
-                              </div>
-                            </div>
-                          )
+                          (feature, index) => {
+                            const sceneNum = String(index + 1).padStart(
+                              2,
+                              '0'
+                            );
+                            const imageFirst = index % 2 === 0;
+
+                            // No image → simpler card layout so older projects
+                            // without imagery still render correctly.
+                            if (!feature.image) {
+                              return (
+                                <article
+                                  key={index}
+                                  className="bg-paper-deeper border border-border rounded-xl p-6 shadow-paper"
+                                >
+                                  <p
+                                    className="text-base text-terracotta mb-2 inline-block"
+                                    style={{
+                                      fontFamily:
+                                        'var(--font-kalam), cursive',
+                                      transform: 'rotate(-2deg)',
+                                    }}
+                                  >
+                                    feature {sceneNum} &mdash;
+                                  </p>
+                                  <h3 className="font-display italic text-xl sm:text-2xl text-ink mb-3 leading-snug">
+                                    {feature.title}
+                                    <span className="text-terracotta not-italic">
+                                      .
+                                    </span>
+                                  </h3>
+                                  <p className="text-base text-ink-soft leading-relaxed mb-4">
+                                    {feature.description}
+                                  </p>
+                                  <div className="flex items-start gap-2 text-sm pt-3 border-t border-border/60">
+                                    <CheckCircle2
+                                      className="w-4 h-4 text-terracotta flex-shrink-0 mt-0.5"
+                                      aria-hidden
+                                    />
+                                    <span className="text-terracotta-deep font-medium leading-relaxed">
+                                      {feature.insight}
+                                    </span>
+                                  </div>
+                                </article>
+                              );
+                            }
+
+                            return (
+                              <article
+                                key={index}
+                                className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 items-center"
+                              >
+                                {/* Image */}
+                                <div
+                                  className={`md:col-span-7 ${
+                                    imageFirst
+                                      ? 'md:order-1'
+                                      : 'md:order-2'
+                                  }`}
+                                >
+                                  <div className="relative w-full overflow-hidden rounded-xl border border-border bg-paper-deeper shadow-paper">
+                                    <Image
+                                      src={feature.image}
+                                      alt={`${feature.title} — screenshot`}
+                                      width={1600}
+                                      height={1200}
+                                      sizes="(max-width: 768px) 100vw, 520px"
+                                      className="w-full h-auto"
+                                    />
+                                  </div>
+                                </div>
+
+                                {/* Text */}
+                                <div
+                                  className={`md:col-span-5 ${
+                                    imageFirst ? 'md:order-2' : 'md:order-1'
+                                  }`}
+                                >
+                                  <p
+                                    className="text-base sm:text-lg text-terracotta mb-2 inline-block"
+                                    style={{
+                                      fontFamily:
+                                        'var(--font-kalam), cursive',
+                                      transform: 'rotate(-2deg)',
+                                    }}
+                                  >
+                                    feature {sceneNum} &mdash;
+                                  </p>
+                                  <div className="flex items-baseline gap-3 mb-4 flex-wrap">
+                                    <span className="font-display italic text-5xl sm:text-6xl text-terracotta leading-none">
+                                      {sceneNum}
+                                      <span className="not-italic">.</span>
+                                    </span>
+                                    <h3 className="font-display italic text-2xl sm:text-3xl text-ink leading-tight">
+                                      {feature.title}
+                                      <span className="text-terracotta not-italic">
+                                        .
+                                      </span>
+                                    </h3>
+                                  </div>
+                                  <p className="text-base sm:text-lg text-ink-soft leading-relaxed mb-5">
+                                    {feature.description}
+                                  </p>
+                                  <div className="flex items-start gap-2 text-sm pt-3 border-t border-border/60">
+                                    <CheckCircle2
+                                      className="w-4 h-4 text-terracotta flex-shrink-0 mt-0.5"
+                                      aria-hidden
+                                    />
+                                    <span className="text-terracotta-deep font-medium leading-relaxed">
+                                      {feature.insight}
+                                    </span>
+                                  </div>
+                                </div>
+                              </article>
+                            );
+                          }
                         )}
                       </div>
                     </section>
