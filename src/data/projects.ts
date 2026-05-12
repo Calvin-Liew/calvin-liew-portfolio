@@ -284,15 +284,43 @@ export const projects: Project[] = [
         { value: '$65.94B', label: 'AI market by 2032' },
         { value: '2', label: 'personas served' },
       ],
-      pullQuote: 'Users consistently prioritized tools that reduced anxiety over tools that just saved time.',
+      pullQuote: 'Microsoft Copilot is file-centric. ChatGPT is prompt-centric. Companion is people-centric.',
       overview: {
         title: 'Passive storage, made proactive',
         content: 'Google Drive Companion treats the Drive ecosystem as the substrate for AI, not a separate destination. Instead of asking users to upload files into ChatGPT or Copilot, Companion lives where the files already are: reading syllabi to schedule the semester, condensing PDFs into study packs, stitching meeting notes into action items, and surfacing context before deadlines arrive. The prototype is a full interactive demo across two personas (student, professional) and six core scenarios, designed to test whether an AI layer embedded inside Drive feels more natural than the upload-first competition.'
       },
       motivation: {
-        title: 'The gap competitors are leaving open',
-        content: 'The generative AI productivity market grows from $7.66B in 2024 to a projected $65.94B by 2032. ChatGPT (700M weekly users, 61% share) and Microsoft Copilot (33M actives, 14% share) dominate the standalone AI tool category. But none of them live where the files do. Every interaction starts with manual upload, context loss, and an app switch. Students get crushed by deadline shifts, dense readings, and course juggling; professionals drown in meetings, scattered action items, and decisions that fall through the cracks. Companion bets that the winning AI productivity surface is inside the storage layer users already trust.'
+        title: 'The product gap, not the market gap',
+        content: 'The interesting question is not how big the AI productivity market is. It is what the existing players keep getting wrong. ChatGPT lives in a different tab from your files. Copilot is anchored to a single document at a time. Notion offers tools but asks you to maintain them. Across all three, the user is the one wiring up the connection between the AI and the work. Companion\'s product bet is that the next surface for AI is not "another tool you call when you need it" but "an assistant that lives inside the place your work already lives." Everything that follows — the persona model, the consent flow, the six scenarios, the in-Drive surface — comes from that single product premise.'
       },
+      decisions: [
+        {
+          decision: 'Build in-house, not buy or partner',
+          framework: 'Resource-Based View · VRIN',
+          reasoning: 'Run through VRIN, Google\'s combination of custom TPU infrastructure, deep Workspace integration, DeepMind/Google Research, and existing user trust is valuable, rare, inimitable, and non-substitutable in combination. Any external partner has one or two of those legs, never all four. An integration deal would also hand the same structural advantage to whichever competitor signed the next quarter. The make decision is not about cost; it is about which moat compounds.'
+        },
+        {
+          decision: 'People-centric, not file-centric',
+          reasoning: 'Copilot anchors to documents. ChatGPT anchors to prompts. Both leave the user wiring up the connection between their work and the AI. Companion anchors to what the user is actually trying to accomplish — survive a semester, run a project, prep for a meeting — and pulls the relevant files in from that intent. Same kind of AI work, but the entry point is a person, not a file. Every scenario in the prototype (Syllabus-to-Schedule, Meeting Chief of Staff, Work Rhythm Optimiser) starts from a goal, not a file selection.'
+        },
+        {
+          decision: 'Permission-first onboarding',
+          reasoning: 'User research showed 70% comfort with AI summarization, conditional on transparency. So Companion activates one scenario at a time during onboarding with explicit per-folder consent, and a visibility dashboard shows current access at any time. The slower start hurts day-one activation metrics, but on a product where trust is the long-run constraint, retention beats activation. Blanket scanning of all Drive content was on the table and would have been faster to implement — and would have killed the product on the first privacy headline.'
+        },
+        {
+          decision: 'Single product, dual persona',
+          reasoning: 'A "Companion for Education" and a "Companion for Work" were both on the table. The catch: many users move between personas. A graduating student becomes a professional in twelve months; an exec takes an online course in the spring. Splitting the product would force a migration at exactly the moment the user is already context-switching. One product with persona detection (student / professional) retains the user across the transition and keeps a single codebase to evolve.'
+        },
+        {
+          decision: 'Embedded in Drive, not a standalone app',
+          reasoning: 'A separate "Drive Companion" app on iOS and Android was the easy default. But the entire pitch is that Companion lives where the files already do — the moment it becomes a separate app, it inherits the upload chore that defines ChatGPT and Copilot. Embedded means Companion shows up inside the Dashboard, the doc preview, the sheet sidebar, the meeting summary card. Mobile happens because Drive happens on mobile, not because Companion ships a new app.'
+        },
+        {
+          decision: 'Three-tier pricing with a free trial',
+          framework: 'Mirrors Google One tiers',
+          reasoning: 'Basic at $4.99 makes student adoption frictionless and matches the price point students already pay for Spotify, YouTube Premium, etc. Plus at $9.99 unlocks the multimodal study features (reading packs, flashcards, deadline-aware prep) that justify the upgrade once a student feels the workload. Pro at $19.99 reserves the AI Meeting Chief of Staff, dashboard generation, and risk alerts for professionals where the ROI clearly absorbs the price. A 1-month free trial across all tiers lowers the risk of paying for something the user has not learned to trust yet.'
+        }
+      ],
       keyFindings: [
         {
           stat: '70%',

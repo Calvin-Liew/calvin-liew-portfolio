@@ -259,6 +259,55 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 </aside>
               )}
 
+              {/* Product decisions — strategic calls + reasoning */}
+              {project.extendedContent.decisions &&
+                project.extendedContent.decisions.length > 0 && (
+                  <>
+                    <ChapterDivider />
+                    <section>
+                      <ChapterHeading number={nextChapter()}>
+                        Product decisions
+                      </ChapterHeading>
+                      <p className="text-base sm:text-lg text-ink-soft mb-10 max-w-2xl">
+                        The strategic calls behind the prototype and the
+                        reasoning each one rests on.
+                      </p>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        {project.extendedContent.decisions.map(
+                          (item, index) => (
+                            <article
+                              key={index}
+                              className="bg-paper-deeper border border-border rounded-xl p-6 shadow-paper flex flex-col"
+                            >
+                              {item.framework && (
+                                <p
+                                  className="text-sm text-terracotta mb-3 inline-block"
+                                  style={{
+                                    fontFamily:
+                                      'var(--font-kalam), cursive',
+                                    transform: 'rotate(-1deg)',
+                                  }}
+                                >
+                                  {item.framework} &mdash;
+                                </p>
+                              )}
+                              <h3 className="font-display italic text-xl sm:text-2xl text-ink mb-3 leading-snug">
+                                {item.decision}
+                                <span className="text-terracotta not-italic">
+                                  .
+                                </span>
+                              </h3>
+                              <p className="text-sm sm:text-base text-ink-soft leading-relaxed">
+                                {item.reasoning}
+                              </p>
+                            </article>
+                          )
+                        )}
+                      </div>
+                    </section>
+                  </>
+                )}
+
               {/* Datasets */}
               {project.extendedContent.datasets &&
                 project.extendedContent.datasets.length > 0 && (
