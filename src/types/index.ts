@@ -71,6 +71,16 @@ export interface Tool {
   purpose: string;
 }
 
+/** A product-strategy decision and the reasoning behind it */
+export interface ProductDecision {
+  /** The decision itself, as a short headline */
+  decision: string;
+  /** The case for that decision — typically 2–4 sentences */
+  reasoning: string;
+  /** Optional framework or model cited (e.g. "VRIN", "RBV", "Jobs-to-be-Done") */
+  framework?: string;
+}
+
 export interface PipelineStage {
   label: string;
   detail?: string;
@@ -100,6 +110,8 @@ export interface ExtendedContent {
   methodology?: Methodology;
   /** Visual Python pipeline section — diagram + source files + sample output */
   pythonPipeline?: PythonPipeline;
+  /** Strategic product decisions with reasoning — magazine "the decisions" chapter */
+  decisions?: ProductDecision[];
   keyFindings?: KeyFinding[];
   visualizations?: Visualization[];
   features?: Visualization[];
