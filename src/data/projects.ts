@@ -464,6 +464,34 @@ export const projects: Project[] = [
         title: 'From PDFs to a guided discovery experience',
         content: 'The original site put career information behind dense PDFs and an isolated keyword chatbot. Students had to scroll, decode unfamiliar job titles, and make their own connections. The homepage led with a single band photo, which quietly reinforced the misperception that TMPP was a performance platform. This redesign applies Keller\'s CBBE pyramid and core consumer behavior principles to lower the cognitive load: visual hierarchy that surfaces the full pathway set instantly, dual audience tracks so students and educators self-route, and a step-by-step structure that builds confidence rather than overwhelm.'
       },
+      decisions: [
+        {
+          decision: 'Show all 8 pathways in the first viewport',
+          reasoning: 'The original homepage led with a band photo. Students who saw it assumed TMPP was a performance platform and never scrolled past. The redesigned hero cycles through all eight career clusters (performance, education, business, production, publishing, health sciences, entertainment law, media) as the auto-rotating preview card. By the time the user has finished reading the tagline, they have already seen the reframe in motion. The breadth is not described, it is demonstrated.'
+        },
+        {
+          decision: 'Tempo as a metronome, not a treble clef',
+          framework: 'Keller\'s offensive brand element criteria',
+          reasoning: 'The mascot had to read as "music" without forcing one culture\'s notation system on a multicultural Canadian student body. A treble clef, sheet music, or piano keys would have quietly excluded students from non-Western musical traditions. A metronome is universal across genres and cultures — it just means time and pace. The friendly LED-faced design plus the U of T navy + crimson palette satisfies Keller\'s offensive criteria (memorable, meaningful, likable) without leaning on Western-classical-music iconography.'
+        },
+        {
+          decision: 'Interactive map as the primary surface, chatbot as the supporting voice',
+          reasoning: 'The original led with a keyword chatbot that operated in isolation from the resources. Students had to phrase questions correctly to get answers, and the answers were text-only with no visual context. The redesign inverts that hierarchy: the interactive pathway map is the primary way to explore, and the chatbot exists alongside it to highlight clusters that match a student\'s plain-language interest. The map gives students agency; the chatbot gives them help. Neither alone would have replaced the PDFs.'
+        },
+        {
+          decision: 'One site, two self-routing audiences',
+          reasoning: 'Students need to discover unfamiliar roles. Educators need resources they can hand to a class. Building two separate sites would have doubled the maintenance and split the brand. Instead, the homepage offers a clear two-card split — For Students and For Educators — that lets each audience self-route after the shared hero. Same brand, same content backbone, audience-specific copy and CTAs from the moment of choice forward.'
+        },
+        {
+          decision: 'Lightweight prototype chatbot, not a production AI build',
+          reasoning: 'A full LLM-backed chatbot would have meant API costs, content safety review, and weeks of evaluation work for a course-scope prototype. The build uses keyword matching that triggers the same visual highlighting the production version would do. It demonstrates the intended UX — student types interest, map responds, Tempo speaks — without the infrastructure overhead. The right move when the goal is to validate the experience design, not to ship to thousands of users on day one.'
+        },
+        {
+          decision: 'CBBE pyramid as the page structure',
+          framework: 'Keller\'s Customer-Based Brand Equity',
+          reasoning: 'The page sections aren\'t arranged by convention; they\'re arranged by CBBE rung. Salience in the hero (full pathway set visible immediately). Performance + imagery in the three pillars (Research-Informed, Curriculum-Connected, Student-Centered). Judgments in the stats strip (30+ pathways, 100% research-informed). Feelings in the dual-audience care. Resonance in the 3-step discovery flow that drives return visits. Every section earns its place by doing brand-equity work, not by checking a layout box.'
+        }
+      ],
       keyFindings: [
         {
           stat: '8 pathways',
