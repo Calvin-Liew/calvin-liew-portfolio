@@ -631,108 +631,170 @@ export const projects: Project[] = [
     category: 'Data Analysis',
     dates: 'Oct 2025 - Nov 2025',
     organization: 'University of Toronto',
-    description: 'Led a team to develop The Night Shift, an interactive three-chapter data story challenging the assumption that job titles primarily drive sleep quality. Analyzed a dataset of 374 individuals exploring how personal lifestyle choices and physiological markers often outweigh professional roles. Using D3.js, built a series of multivariate visualizations including a Bubble Landscape examining stress variance within professions and a Sankey Diagram revealing pathways between physical activity levels and sleep outcomes. Engineered The Dream Lab, a physiological mapping tool where data points pulse in sync with resting heart rates.',
+    description: 'An interactive D3.js data story that pushes back on a simple assumption: that your job is what determines your sleep. Three visualizations, one dataset of 374 people across 11 occupations, and a guided narrative that argues individual behavior and health context matter more than profession. A bubble landscape exposes stress variance within the same job. A Sankey diagram traces the path from physical activity to sleep quality. The Dream Lab animates BMI, heart rate, and sleep disorders with dots that pulse at each individual\'s resting heart rate.',
     skills: ['D3.js', 'JavaScript', 'HTML5', 'GitHub', 'Interaction Design', 'Data Visualization', 'Statistical Analysis'],
+    image: '/projects/night-shift/00-hero.png',
     links: [
       {
         type: 'live',
         url: 'https://calvin-liew.github.io/a4-sleep-analytics/',
-        label: "The Night Shift: Why Your Job Doesn't Define Your Sleep"
+        label: 'Live data story'
       },
       {
         type: 'github',
         url: 'https://github.com/Calvin-Liew/a4-sleep-analytics',
-        label: 'View Source Code on GitHub'
+        label: 'Source on GitHub'
       }
     ],
+    featured: true,
     extendedContent: {
+      stats: [
+        { value: '374', label: 'people in the dataset' },
+        { value: '11', label: 'occupations compared' },
+        { value: '3', label: 'visualization scenes' },
+        { value: '32.2pp', label: 'high vs low activity sleep gap' },
+      ],
+      pullQuote: 'Your job title does not define your sleep. Individual behavior and health context matter more than profession.',
       overview: {
-        title: 'Why Your Job Doesn\'t Define Your Sleep',
-        content: 'Every night, millions of us close our eyes hoping for rest, yet sleep remains frustratingly out of reach for so many. What determines whether we wake refreshed or exhausted? This story explores three powerful forces shaping our sleep. First, we examine how our careers and the stress they bring follow us into our bedrooms. Then, we trace the surprising pathways between our daily movement and the quality of our dreams. Finally, we dive into the intimate relationship between our bodies, our beating hearts, and the disorders that steal our sleep. Together, these perspectives reveal a fundamental truth: your job title does not define your sleep quality. Individual lifestyle choices, physical activity, and health factors matter far more than your profession when it comes to rest.'
+        title: 'Reframing a familiar question',
+        content: 'Every night, millions of us close our eyes hoping for rest, and a lot of us miss it. The easy story is that some jobs sleep well and other jobs do not. The data tells a more interesting one. The Night Shift walks through three perspectives, profession and stress, activity and sleep quality, and physiological health, and lets the user see that the strongest signals are not job titles at all. They are physical activity level, BMI category, resting heart rate, and sleep disorder status. The piece is built to be read like a magazine essay and explored like a tool.'
       },
+      motivation: {
+        title: 'From ranking jobs to reading individuals',
+        content: 'A typical sleep dashboard ranks occupations and stops there. That framing is comforting (your job is the problem) but it is also wrong, or at least incomplete. The same profession can stretch across two hours of sleep duration and five full stress points. The redesign of the narrative was the most important design decision: instead of asking "which job sleeps best," the story asks "what actually moves your sleep," and then shows that movement, body composition, and heart rate explain more than the label on a business card. Every chart and every annotation is in service of that reframe.'
+      },
+      decisions: [
+        {
+          decision: 'Lead with the reframe, not a ranking',
+          reasoning: 'The default move with an occupation-coded dataset is to sort professions by average sleep and call it a story. That framing flatters the dataset but lies to the user, because within-profession variance is enormous. The Night Shift opens with the question "does your job define your sleep?" and answers no on the very first scene. The whole reading experience is shaped by that bet: the bubble chart is structured so the user notices spread first and averages second.'
+        },
+        {
+          decision: 'Three chart types for three different arguments',
+          reasoning: 'Most data stories pick one chart family and stretch it. Each scene here makes a different kind of claim and gets a chart suited to that claim. The bubble landscape argues about variance, so it shows distribution. The Sankey argues about flow, so it shows where activity levels actually land in sleep buckets. The Dream Lab argues about physiology, so it animates individuals as living, pulsing dots. Using one chart for all three would have collapsed three arguments into one shape.'
+        },
+        {
+          decision: 'Pulse-sync the Dream Lab dots to resting heart rate',
+          reasoning: 'A scatter plot of BMI vs heart rate vs sleep disorder is informative but cold. Pulsing each dot at the individual\'s resting heart rate (64-86 bpm) reframes the chart from a statistical surface to a room full of bodies. It is a small piece of motion design that does outsized narrative work: the user feels that these are people, not points, and they remember the chart hours later. The animation also encodes data, faster pulse means higher resting heart rate, so it is not just decoration.'
+        },
+        {
+          decision: 'Drill from occupation to individual on click',
+          reasoning: 'The bubble landscape shows averages by profession, which is the storytelling problem we are trying to fight. Clicking a bubble breaks it open into the individual records inside, so the user sees with their own eyes that Nurse contains both 5.9 hour and 8.2 hour sleepers. The interaction makes the variance argument unavoidable. Removing the click would have left the chart vulnerable to the same misread we are trying to correct.'
+        },
+        {
+          decision: 'Compute the narration from the dataset, not hardcode it',
+          reasoning: 'Numbers in the captions (54.9% high activity to good sleep, 22.7% for low, 32.2pp gap, Nurse spans 2.3h) are computed at load time from the CSV. If a teammate later swaps the dataset or tweaks the bucket thresholds, the prose stays honest. It is a small engineering choice with a large editorial benefit, the story can never quietly diverge from the data.'
+        },
+        {
+          decision: 'Filters and effect toggles on the Dream Lab, not on everything',
+          reasoning: 'Letting the user filter every chart turns a guided story into a generic dashboard. The first two scenes are deliberately fixed so the argument lands. The Dream Lab earns its filters and toggles (sleep disorder type, heart rate range, BMI, pulse animation, motion trails, density aura, deep sleep mode) because by that point the user understands the framing and is ready to test their own hypothesis. Interactivity is a reward for getting through the argument.'
+        }
+      ],
       datasets: [
         {
-          name: 'Sleep Health Dataset',
-          description: 'Real-world data capturing the lived experiences of individuals across diverse professions, including sleep duration, stress levels, physical activity, BMI categories, heart rate measurements, and sleep disorder classifications.',
-          records: '374 individuals'
+          name: 'Sleep Health and Lifestyle Dataset',
+          description: 'Public Kaggle dataset of sleep duration, sleep quality, daily steps, physical activity level, stress level, BMI category, blood pressure, resting heart rate, occupation, and sleep disorder status. Loaded directly in the browser as CSV and parsed with D3.',
+          records: '374 individuals · 11 occupations · 13 columns'
         }
       ],
       methodology: {
-        title: 'Three-Chapter Visual Story',
+        title: 'Three chapters, one through-line',
         steps: [
           {
-            phase: 'Chapter I: The Dataset',
-            description: 'Established the scope of investigation with 374 people studied across 11 occupations. Calculated key statistics: 7.1h average sleep, 5.4 average stress level, sleep range of 5.8h to 8.5h, and stress range of 3 to 8. Provided foundational context for understanding data patterns before diving into specific analyses.'
+            phase: 'Chapter I: the dataset',
+            description: 'Set the scope before the argument: 374 people across 11 occupations, with an average of 7.1 hours of sleep, an average stress level of 5.4, sleep ranging 5.8 to 8.5 hours, and stress ranging 3 to 8. Showing the spread up front primes the user for the variance argument that follows.'
           },
           {
-            phase: 'Chapter II: Jobs & Stress (Bubble Landscape)',
-            description: 'Built interactive bubble chart plotting sleep duration (x-axis) vs stress levels (y-axis) for each occupation. Bubble size represents number of people, color indicates stress intensity (blue = calm, gray = neutral, orange = tense). Enabled hover and click interactions to reveal individual experiences within professions, demonstrating within-profession variance.'
+            phase: 'Chapter II: jobs and stress (bubble landscape)',
+            description: 'Interactive bubble chart with sleep duration on the x-axis and stress on the y-axis. Bubble size encodes the number of people in the occupation, color encodes stress intensity (blue calm, gray neutral, orange tense). Hover surfaces the average, click opens the cluster of individual records so within-profession spread becomes visible.'
           },
           {
-            phase: 'Chapter III: The Flow of Activity to Rest (Sankey Diagram)',
-            description: 'Created Sankey diagram showing flows from physical activity levels (Low, Medium, High) to sleep quality outcomes (Poor 5-6h, Average 7h, Good 8-10h). Flow width represents number of people following each path. Revealed that 54.9% of high activity individuals achieve good sleep vs 22.7% of low activity individuals.'
+            phase: 'Chapter III: activity to rest (Sankey diagram)',
+            description: 'Sankey diagram flowing physical activity level (Low, Medium, High) into sleep quality buckets (Poor 5-6h, Average 7h, Good 8-10h). Flow width is the number of people on each path. The headline number, 54.9% of high-activity individuals reach good sleep versus 22.7% of low-activity, falls out of the geometry of the diagram itself.'
           },
           {
-            phase: 'Chapter IV: The Dream Lab',
-            description: 'Engineered interactive physiological mapping tool exploring relationships between BMI categories, heart rate, and sleep disorders. Each dot represents an individual, pulsing in sync with their resting heart rate (64-86 bpm range). Included filters for sleep disorder types, heart rate range, BMI categories, plus animation controls for speed, heartbeat pulse, motion trails, constellations, density aura, and deep sleep mode.'
+            phase: 'Chapter IV: the Dream Lab',
+            description: 'Animated scatter plot of BMI category by resting heart rate, colored by sleep disorder status. Each dot pulses at its individual\'s heart rate. Filters and visual toggles let the user test patterns themselves, motion trails, density aura, constellations, and a deep-sleep mode that dims everything but the cluster being studied.'
           }
         ]
       },
       keyFindings: [
         {
-          title: 'The Individual Matters Most',
-          description: 'Your profession does not define your sleep. The bubble chart shows that Nurse spans from 5.9 to 8.2 hours of sleep despite being the same profession (a 2.3 hour span with stress levels varying 5.0 points from 3.0 to 8.0). The Sankey diagram reveals that even high activity flows to multiple sleep outcomes. The Dream Lab demonstrates that BMI categories cannot predict individual disorders. Focus on personal lifestyle choices over workplace labels.'
+          stat: '2.3h',
+          title: 'Same job, very different sleep',
+          description: 'Nurse, with 73 people in the dataset, spans 5.9 to 8.2 hours of sleep and 3.0 to 8.0 on the stress scale. The bubble landscape makes that spread visible by clicking the bubble open. The lesson is structural: occupation averages hide the people inside them, and the design has to actively show the spread or the user will read past it.'
         },
         {
-          title: 'Physical Activity Creates Pathways to Better Sleep',
-          description: 'The Sankey diagram reveals a strong connection between movement and rest. High activity individuals achieve good sleep quality 54.9% of the time (39 out of 71 people), compared to just 22.7% for those with low activity (34 out of 150 people). This 32.2 percentage point difference demonstrates that regular physical activity creates measurable pathways to better sleep quality regardless of profession.'
+          stat: '32.2pp',
+          title: 'Movement creates a measurable path to better sleep',
+          description: 'High-activity individuals reach good sleep quality 54.9% of the time (39 of 71). For low-activity individuals the rate is 22.7% (34 of 150). The 32.2 percentage point gap is the largest cross-group effect in the dataset, larger than any single occupation contrast, and the Sankey makes it visible as flow width without needing a callout.'
         },
         {
-          title: 'Heart Rate and BMI Predict Sleep Disorders',
-          description: 'The Dream Lab reveals that most people with no sleep disorder sit in Normal BMI with lowest heart rates (68-70 bpm). Insomnia spreads across Normal and Overweight with 3-5 bpm higher rates. Sleep apnea clusters in Obese BMI with highest heart rates, often 10+ bpm above the none group. Heart rate rises with BMI, but disorder status is the stronger separator, creating a practical screening flag.'
+          stat: '10+ bpm',
+          title: 'Heart rate plus BMI flag sleep disorder risk',
+          description: 'In the Dream Lab, people with no sleep disorder cluster in Normal BMI at the lowest resting heart rates (68-70 bpm). Insomnia spreads through Normal and Overweight at 3-5 bpm higher. Sleep apnea clusters in Obese at 10+ bpm above the none baseline. Disorder status is a stronger separator than BMI alone, which gives a practical screening read on a noisy chart.'
+        },
+        {
+          stat: '1 reframe',
+          title: 'The narrative is the visualization',
+          description: 'The strongest finding is not a number, it is that the framing of the question changes what the data appears to say. Ranking professions makes the dataset sound like a workplace story. Asking what actually moves sleep makes it a behavior and physiology story. The visualization choices and the story choices are the same choice.'
         }
       ],
       visualizations: [
         {
-          title: 'Bubble Landscape (Jobs & Stress)',
-          description: 'Interactive scatter plot with sleep duration on x-axis (5.8-8.6h) and stress level on y-axis (3.0-8.0). Each occupation represented as a bubble where size = number of people and color = stress intensity (blue to orange gradient). Includes hover tooltips and click interactions to reveal individual data points within professions.',
-          insight: 'Demonstrated within-profession variation is substantial: Nurse (73 people) shows 2.3h sleep span and 5.0 point stress span, proving the same job title can span from restful to high-stress zones based on individual circumstances.'
+          title: 'Bubble landscape, jobs and stress',
+          description: 'Sleep duration on the x-axis (5.8 to 8.6h), stress on the y-axis (3.0 to 8.0). Each occupation is a bubble sized by population and colored by stress intensity. Hover surfaces the average, click breaks the bubble into the individual records inside so within-profession spread is visible at a glance.',
+          insight: 'The drill-down is the argument. The same job stretches across the chart instead of sitting in one zone, which immediately undermines the "your job sleeps well or it doesn\'t" framing.',
+          image: '/projects/night-shift/jobs-stress-bubbles.png',
+          imageFit: 'contain'
         },
         {
-          title: 'Activity-to-Sleep Sankey Diagram',
-          description: 'Flow diagram connecting three activity levels (Low: 150 people, Medium: 153 people, High: 71 people) to three sleep quality buckets (Poor 5-6h: 117 people, Average 7h: 77 people, Good 8-10h: 180 people). Flow width visually represents the number of people following each pathway from activity to sleep outcome.',
-          insight: 'High activity individuals show 54.9% good sleep rate vs 22.7% for low activity, a clear visual demonstration that movement creates stronger pathways to quality rest.'
+          title: 'Activity to sleep Sankey',
+          description: 'Three activity bands (Low 150, Medium 153, High 71) flow into three sleep quality buckets (Poor 117, Average 77, Good 180). Flow width is the count on each path, so the relationship between movement and sleep is encoded directly in the geometry, not in a caption.',
+          insight: 'The 32.2pp gap between high-activity and low-activity routes to good sleep is the strongest cross-group effect in the dataset, and the Sankey lets the user see the size of that gap without reading a number.',
+          image: '/projects/night-shift/activity-sleep-flow.png',
+          imageFit: 'contain'
         },
         {
-          title: 'The Dream Lab (Physiological Mapping)',
-          description: 'Animated scatter plot with BMI categories (Normal, Overweight, Obese) on x-axis and heart rate (64-86 bpm) on y-axis. Each dot represents an individual and pulses at their resting heart rate speed. Color-coded by sleep disorder: None (blue), Insomnia (orange), Sleep Apnea (red). Interactive filters and animation controls (speed, pulse, trails, constellations, density aura, deep sleep mode).',
-          insight: 'Sleep apnea dominated the high BMI + high heart rate corner (Obese + 10+ bpm above baseline), creating a practical screening flag that body composition and cardiovascular health strongly correlate with sleep disorder risk.'
+          title: 'The Dream Lab',
+          description: 'BMI category on the x-axis, resting heart rate (64-86 bpm) on the y-axis, color encodes sleep disorder status (None, Insomnia, Sleep Apnea). Each dot pulses at the individual\'s resting heart rate. Filters and effect toggles (motion trails, density aura, constellations, deep sleep mode) let users test their own hypotheses.',
+          insight: 'Sleep apnea pulls toward Obese BMI plus high heart rate, 10+ bpm above the no-disorder baseline. The animation reframes the scatter plot from a statistical surface to a room full of bodies, which is the entire point.',
+          image: '/projects/night-shift/dream-lab.png',
+          imageFit: 'contain'
         }
       ],
       tools: [
         {
           name: 'D3.js',
-          purpose: 'Built all three interactive visualizations: bubble chart with dynamic sizing and color encoding, Sankey diagram with flowing pathways, and animated physiological scatter plot with pulsing heartbeat effects synchronized to individual resting heart rates.'
+          purpose: 'Powered all three scenes: bubble landscape with sized and colored bubbles, Sankey flow with computed link widths, and the animated Dream Lab scatter with per-dot pulse rates synced to resting heart rate.'
         },
         {
-          name: 'JavaScript',
-          purpose: 'Implemented interaction logic for hover tooltips, click events to drill down into occupation data, filter controls for Dream Lab (sleep disorder, heart rate range, BMI), and animation toggles for visual effects (motion trails, constellations, density aura).'
+          name: 'd3-sankey',
+          purpose: 'Handled the flow geometry for the activity-to-sleep diagram. Lets the layout do the storytelling: flow width is the count, so the 32.2pp gap shows up visually instead of as a caption number.'
         },
         {
-          name: 'Statistical Analysis',
-          purpose: 'Calculated key metrics: average sleep (7.1h), average stress (5.4), within-profession variance (Nurse: 2.3h sleep span, 5.0 stress span), activity-to-sleep flow percentages (54.9% high activity → good sleep vs 22.7% low activity), and heart rate differences across BMI and disorder groups.'
+          name: 'Vanilla JavaScript + CSV',
+          purpose: 'CSV loaded directly in the browser, no build step. Filter logic, hover tooltips, drill-down clicks, and Dream Lab effect toggles are plain DOM handlers, which keeps the project small and easy to fork.'
         },
         {
           name: 'GitHub Pages',
-          purpose: 'Deployed interactive three-chapter data story to calvin-liew.github.io/a4-sleep-analytics for live demonstration. Configured static hosting for D3.js visualizations with smooth animations and responsive interactions across devices.'
+          purpose: 'Static hosting at calvin-liew.github.io/a4-sleep-analytics. The whole project is HTML, CSS, JS, and a CSV file, so deploys are git push and done.'
         }
       ],
       impact: {
-        title: 'Three Truths from the Data',
-        content: 'When we examine the patterns across all three perspectives (profession, activity flow, and physiological health), three distinct narratives emerge that reveal the hidden forces shaping our sleep.\n\n01 • The Individual Matters Most: Your profession does not define your sleep. The bubble chart shows that Nurse spans from 5.9 to 8.2 hours despite being the same profession. Focus on personal lifestyle choices over workplace labels. Individual habits matter more than job titles.\n\n02 • The Body Tells the Story: Physical activity directly improves sleep quality. The Sankey diagram shows high activity creates stronger pathways to good sleep (54.9% vs 22.7%). The Dream Lab reveals how heart rate and body composition correlate with sleep disorders. Increase daily movement, manage weight, and monitor cardiovascular health for measurable sleep improvements.\n\n03 • The Path Forward: Take control through evidence-based choices. Start with small changes: walk more each day, prioritize stress management, and consult healthcare providers about sleep conditions. The data shows these actions create real differences regardless of profession. Behind every bubble, every flow, and every pulse lies a real person navigating the universal challenge of finding rest in a restless world.'
+        title: 'What the piece actually argues',
+        content: 'The Night Shift is a small data story with one strong opinion: the framing you bring to a dataset decides what the dataset appears to say. Rank professions and you get a workplace narrative. Ask what actually moves sleep and you get a behavior and physiology narrative. The numbers do not change, but the lesson the reader walks away with changes completely.\n\nTechnically, the project taught me to treat chart type as part of the argument, not part of the decoration. The bubble landscape is about variance, so it shows distribution. The Sankey is about flow, so it shows where activity levels land. The Dream Lab is about people, so it animates them. Trying to force a single chart family on all three would have weakened every claim.\n\nNarratively, computing the captions from the dataset rather than hardcoding them was the choice I am proudest of. The prose can never silently diverge from the data, which is the failure mode for almost every dashboard-style story I have read.'
+      },
+      limitations: {
+        title: 'Honest caveats',
+        items: [
+          'Sample size is 374 individuals from a single Kaggle dataset. Strong enough to argue framing and within-profession variance, not strong enough to make population-level health claims.',
+          'The data is observational and cross-sectional. Activity, BMI, heart rate, and sleep are correlated, not proven to cause each other; the piece is careful to use language like "creates pathways to" rather than "causes."',
+          'Sleep quality is bucketed (Poor 5-6h, Average 7h, Good 8-10h) for the Sankey diagram. Cleaner storytelling, lossier than the underlying continuous values.',
+          'Occupation labels in the dataset are coarse (Doctor, Nurse, Engineer, etc.), which masks specialty differences (ER nurse vs. clinic nurse) that almost certainly matter for sleep and stress.',
+          'No longitudinal signal. The dataset is a snapshot, so day-to-day variance and seasonal effects are invisible.',
+        ]
       }
-    },
-    featured: true
+    }
   },
   {
     id: 'matchify',
