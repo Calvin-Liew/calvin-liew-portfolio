@@ -954,82 +954,149 @@ export const projects: Project[] = [
     category: 'UI/UX Design',
     dates: 'May 2024 - Aug 2024',
     organization: 'University of Toronto',
-    description: 'Led the UX design for Tutorly, a peer tutoring platform built to bridge the gap between students through personalized academic support. Directed end-to-end design process starting with comprehensive user research and detailed persona creation. Designed core functional suite including personalized recommendation system for finding matches, integrated messaging interface, and data-driven progress tracking dashboard. Conducted iterative usability testing using student feedback to refine navigation and feature set. Project achieved final evaluation score above 85% and was selected for showcase at University of Toronto Scarborough Undergraduate Research Symposium 2024.',
+    description: 'A mobile peer-tutoring platform that turns "can you help me with this?" into a structured learning relationship. Designed end-to-end in Figma across dual onboarding, profile, matching, messaging, session booking, and a progress dashboard. Built on 15+ user interviews, four personas, and three rounds of moderated usability testing. Scored above 85% in the UX course and was selected for the University of Toronto Scarborough Undergraduate Research Symposium 2024.',
     skills: ['Mobile Design', 'Usability Testing', 'Experience Design', 'Prototyping', 'User-centered Design', 'User Experience Design (UED)', 'User Personas', 'Figma', 'Wireframing', 'UX Research', 'Design Thinking'],
     links: [
       {
         type: 'figma',
         url: 'https://www.figma.com/design/ssRCJVnGktqLf6BZCVj1ph/Tutorly-Project?t=Mx5ibMOFH3m6BehJ-0',
-        label: 'Tutorly Figma Design Project'
+        label: 'Open the Tutorly Figma file'
       }
     ],
     caseStudy: {
       fileName: 'tutorly.pdf',
-      title: 'Tutorly Case Study',
+      title: 'Tutorly case study',
       fileSize: '16 MB'
     },
     extendedContent: {
+      stats: [
+        { value: '85%+', label: 'final UX evaluation' },
+        { value: 'UTSC \'24', label: 'undergrad symposium showcase' },
+        { value: '15+', label: 'student interviews' },
+        { value: '3', label: 'usability testing rounds' },
+      ],
+      pullQuote: 'Students understand their peers\' struggles better than instructors do, because they just got through them.',
       overview: {
-        title: 'Bridging Students Through Personalized Peer Learning',
-        content: 'Tutorly reimagines academic support by connecting students directly with peers who excel in subjects where they struggle. Rather than relying on expensive professional tutors or impersonal study groups, Tutorly creates personalized one-on-one learning relationships based on academic strengths, learning styles, and scheduling compatibility. The platform transforms peer tutoring from an ad-hoc arrangement into a structured, trackable, and rewarding experience for both tutors and learners. By empowering students to teach and learn from each other, Tutorly builds academic communities where knowledge flows freely, confidence grows mutually, and success becomes collaborative rather than competitive.'
+        title: 'A structured front door for peer tutoring',
+        content: 'Tutorly is a mobile platform that pairs students who recently aced a course with students currently fighting through it. The product is a two-sided marketplace, but the design treats it like a relationship tool: profiles that emphasize personality alongside grades, a matching layer that considers schedule and learning style, an in-app chat scoped to the academic context, and a progress dashboard that turns informal help into something both sides can point to. The goal is less "find a tutor" and more "find someone you can keep working with."'
       },
       motivation: {
-        title: 'Why Peer-to-Peer Learning?',
-        content: 'Students often understand their peers\' struggles better than professional instructors because they recently overcame the same challenges. A classmate who aced calculus last semester remembers exactly where the confusion happens and can explain concepts in relatable language without academic jargon. Yet finding the right peer tutor is frustratingly difficult. You might not know who\'s strong in organic chemistry, when they\'re available, or if they even want to help. Tutorly was born from recognizing this matching problem as a design challenge. By creating a platform where students can advertise their strengths, discover learning opportunities, and track progress together, Tutorly makes peer tutoring accessible, reliable, and mutually beneficial. It transforms "Can you help me with this?" from a awkward ask into a structured learning relationship that benefits both parties.'
+        title: 'Why peer tutoring needed a design pass',
+        content: 'A classmate who just survived calculus knows exactly where the confusion happens, can explain it in language a stressed student will actually hear, and remembers what the textbook glossed over. That kind of help is already happening in group chats and dorm hallways. The problem is matching: students do not know who is strong in organic chemistry, whether they want to help, or when they are free. Tutorly takes that ad-hoc matching problem and treats it as a product problem, with a designed front door, a structured first interaction, and a way for both sides to see that the time spent was worth it.'
       },
+      decisions: [
+        {
+          decision: 'Design as a two-sided marketplace from the first screen',
+          framework: 'Two-sided marketplace design',
+          reasoning: 'Tutoring platforms fail when they treat tutors as a feature for learners. If tutors have nothing to show for their time (resume signal, hours logged, evidence of impact), they stop responding within two weeks and the supply side collapses. Tutorly\'s onboarding asks user intent upfront ("find a tutor" or "become a tutor"), then builds two different value propositions on top of the same matching engine. Every feature has to answer "what does this do for the tutor" before it ships, not just "what does this do for the learner."'
+        },
+        {
+          decision: 'Tiered engagement model: quick question, trial session, ongoing relationship',
+          reasoning: 'Round one of usability testing surfaced that students would not commit to a formal tutoring relationship cold; the social cost of asking for help was too high. The design split the funnel into three on-ramps: a "quick question" lane for one-off asks, a trial session for testing fit, and ongoing booking for committed relationships. Lowering the activation energy at the top of the funnel turned out to be more impactful than improving the matching algorithm itself.'
+        },
+        {
+          decision: 'Profile cards lead with personality, not GPA',
+          reasoning: 'Testers consistently said that all-credential tutor profiles felt intimidating, "too professional," and led them to bounce rather than book. The redesign moved a short personal blurb, teaching style notes, and a friendly profile photo above the grade and credential block. Academic credibility is still present; it just is not the first thing the learner reads. Tutors reported the same thing in reverse: they wanted to be picked because someone clicked with them, not because they had the highest mark.'
+        },
+        {
+          decision: 'Progress dashboard to give tutors something to point to',
+          reasoning: 'Without a dashboard, tutoring is invisible labor. With it, tutors get hours logged, subjects covered, and session notes they can attach to a resume, a grad-school application, or a TA application. The dashboard is not a learner tool wearing a tutor mask, it is the supply-side retention mechanism. Learners get growth trajectory visualizations as a side benefit, but the dashboard\'s real job is to keep tutors active for a second semester.'
+        },
+        {
+          decision: 'Mobile-first because that is where help actually gets asked',
+          reasoning: 'Field notes from the interviews kept landing in the same place: students reach for tutoring help on the bus, between classes, at 11 p.m. before a problem set is due. Almost nobody opens a laptop to find a tutor. The design system is mobile-native (tap targets, three-tap booking, scannable profile cards, subject tag pills color-coded by discipline) instead of being a desktop layout squeezed into a phone screen.'
+        },
+        {
+          decision: 'Subject-scoped messaging instead of generic chat',
+          reasoning: 'Generic DMs encourage off-topic drift and make academic content (problem sets, images, PDFs, scheduling) hard to find later. Message threads are organized by subject, so the calculus thread stays calculus, and the bio thread stays bio. The constraint is editorial: by making the message surface remember the academic context, the conversation stays useful as a study artifact instead of decaying into a chat log.'
+        }
+      ],
+      keyFindings: [
+        {
+          stat: '3 lanes',
+          title: 'Lower the activation energy before optimizing the match',
+          description: 'The biggest unlock from usability testing was the tiered engagement model (quick question, trial session, ongoing relationship). Students would not enter a tutoring relationship cold, and no improvement to the matching algorithm would change that. Reframing the funnel as three on-ramps mattered more than tuning the recommender.'
+        },
+        {
+          stat: '4 personas',
+          title: 'Tutors are not one motivation',
+          description: 'Research surfaced four distinct profiles (Struggling Learner, Altruistic Tutor, Resume Builder, Subject Enthusiast) with different incentives. The design accommodates all four without forcing one model of "what tutoring should look like," which is how supply stays alive past week three.'
+        },
+        {
+          stat: 'Personality',
+          title: 'Credentials alone repel learners',
+          description: 'Profile testing showed that all-credential cards read as intimidating. Leading with a short personal blurb and teaching style notes (with credentials below, not absent) turned bounce-from-profile into book-a-trial. The lesson generalizes: vulnerability-reducing copy is a feature, not decoration.'
+        },
+        {
+          stat: '85%+',
+          title: 'External validation of the framing, not just the screens',
+          description: 'Above-85% course evaluation plus selection for the UTSC undergrad symposium said the framing held up: solving the matching problem as a relationship-design problem (not a database-design problem) is the move. Most attempts in this space lead with algorithms and lose on retention.'
+        }
+      ],
       features: [
         {
-          title: 'Personalized Recommendation System',
-          description: 'Matching algorithm that analyzes student profiles (courses taken, grades, tutoring preferences, learning styles) to suggest ideal tutor-learner pairings. The system considers subject expertise depth, teaching experience, availability overlap, campus proximity, and personality compatibility indicators. Recommendations prioritize quality matches over quantity, presenting 3-5 high-fit suggestions rather than overwhelming users with options.',
-          insight: 'Reduces the friction of finding the "right" tutor from hours of searching to seconds of browsing. By considering both academic fit and interpersonal compatibility, the algorithm creates matches that feel personalized and thoughtful, increasing the likelihood of successful long-term tutoring relationships.'
+          title: 'Personalized recommendation system',
+          description: 'Matching engine that considers subject expertise, teaching experience, availability overlap, campus proximity, and personality compatibility. Surfaces 3-5 high-fit suggestions instead of an open-ended scroll of options, so the user is not making a decision in a vacuum.',
+          insight: 'Quality over quantity is a deliberate constraint. An infinite tutor list reproduces the discovery problem the app was supposed to solve; a curated short list is where matching products actually earn their keep.'
         },
         {
-          title: 'Integrated Messaging Interface',
-          description: 'In-app chat system designed specifically for academic communication. Features include sharing course materials (PDFs, images, links), scheduling session times with calendar integration, setting learning goals collaboratively, and asking quick questions between sessions. Message threads are organized by subject to keep conversations focused and searchable.',
-          insight: 'Keeps all tutoring-related communication in one place, preventing messages from getting lost in crowded personal inboxes or group chats. The academic focus encourages productive conversations and reduces social awkwardness around asking for help, making students more likely to reach out when stuck.'
+          title: 'Tiered engagement flow',
+          description: 'Three on-ramps live side by side: quick question (one-off async help), trial session (low-commitment first meeting), and ongoing booking (recurring weekly slots). Users can move up or stay where they are, so the relationship grows at the pace both sides are comfortable with.',
+          insight: 'This was the single highest-impact insight from usability testing. Most platforms force students into a formal tutoring commitment too early and bleed users at the activation step.'
         },
         {
-          title: 'Progress Tracking Dashboard',
-          description: 'Visual analytics showing completed sessions, hours tutored/learned, subjects covered, and performance trends over time. Tutors can log session notes, attach practice problems, and mark concept mastery milestones. Learners see their growth trajectory visualized through charts tracking topic confidence before and after sessions. Both parties can export progress reports for academic portfolios or resume building.',
-          insight: 'Transforms informal study help into trackable achievements. Tutors gain tangible evidence of teaching impact (useful for resumes, grad school applications), while learners can monitor improvement and identify persistent weak spots. The data-driven approach adds legitimacy and motivation to peer tutoring relationships.'
+          title: 'Subject-scoped messaging',
+          description: 'In-app chat organized by subject thread, with inline support for PDFs, images, calendar invites, and shared learning goals. Threads stay searchable so the conversation works as a study artifact, not just a chat log.',
+          insight: 'Most peer tutoring conversations die in personal inboxes or get buried under group chats. Scoping the chat by subject keeps it findable and reduces the social cost of asking a second question a week later.'
         },
         {
-          title: 'User Research-Driven Personas',
-          description: 'Developed through comprehensive interviews with both struggling students and high-achieving peers willing to tutor. Created detailed personas representing different user motivations: "The Struggling Learner" (needs affordable, patient help), "The Altruistic Tutor" (wants to give back to community), "The Resume Builder" (seeks teaching experience for career goals), and "The Subject Enthusiast" (loves their major and enjoys explaining it). Each persona informed specific design decisions around messaging tone, feature prioritization, and incentive structures.',
-          insight: 'Ensured the platform serves both sides of the marketplace equally. By understanding diverse motivations (some tutors want money, others want experience, some want social connection), the design accommodates multiple use cases without forcing a single rigid model of peer tutoring.'
+          title: 'Progress tracking dashboard',
+          description: 'Visual analytics surface completed sessions, hours, subjects, and trends. Tutors log session notes, attach practice problems, and mark mastery milestones. Both sides can export progress reports for resumes, TA applications, or academic portfolios.',
+          insight: 'The dashboard is the supply-side retention move. Tutoring without visibility is invisible labor, and invisible labor stops after midterms. Tangible artifacts (hours, notes, exportable reports) keep tutors active across semesters.'
         },
         {
-          title: 'Iterative Usability Testing',
-          description: 'Conducted multiple rounds of testing with University of Toronto students using progressively refined prototypes. Early tests revealed navigation confusion around "Find a Tutor" vs "Become a Tutor" entry points, leading to redesigned onboarding that asks user intent upfront. Later tests identified need for "Quick Question" feature allowing brief help requests without committing to full tutoring relationships. Final testing validated simplified messaging interface and progress dashboard clarity.',
-          insight: 'User feedback directly shaped core functionality. Students needed lower-commitment options before diving into formal tutoring, leading to tiered engagement model (quick questions → trial session → ongoing relationship). Testing also revealed students value tutor profiles showing personality and approachability, not just academic credentials, informing profile template design.'
+          title: 'Research-driven personas',
+          description: 'Four personas anchor the design: the Struggling Learner (needs patient, affordable help), the Altruistic Tutor (gives back), the Resume Builder (wants teaching experience for grad school), and the Subject Enthusiast (loves the material). Each persona drove specific copy, tone, and incentive design.',
+          insight: 'Treating "tutor" as a single user type would have collapsed the supply side into one motivation that does not survive a semester. Designing for four different incentive structures is how the marketplace stays alive past first contact.'
         },
         {
-          title: 'Mobile-First Design System',
-          description: 'Complete UI design prioritizing mobile experience where students naturally seek help, on the bus, between classes, late-night study sessions. Design system includes reusable components: subject tag pills (color-coded by discipline), availability calendars (optimized for small screens), tutor profile cards (scannable at a glance), and session booking flows (three taps maximum). Maintains consistency across iOS and Android while respecting platform conventions for gestures and navigation patterns.',
-          insight: 'Recognized that students won\'t open laptops to ask quick tutoring questions. They pull out their phones. The mobile-first approach ensures Tutorly fits naturally into student workflows, making it as easy to book a tutoring session as ordering food delivery, reducing barriers to seeking academic help.'
+          title: 'Mobile-first design system',
+          description: 'Subject tag pills color-coded by discipline, scannable tutor profile cards, three-tap booking flow, and small-screen availability calendars. Designed for the bus, the lecture-hall back row, and 11 p.m. study sessions, not a laptop in a library cubicle.',
+          insight: 'The mobile-first call is not a stylistic preference, it is a usage-context call. Students are not opening a laptop to ask for organic chemistry help, and a desktop-first design loses to that reality.'
         }
       ],
       tools: [
         {
           name: 'Figma',
-          purpose: 'Designed complete mobile application including dual onboarding flows (tutor vs learner), personalized match browsing screens, detailed tutor profiles, integrated messaging interface, session booking calendar, and progress tracking dashboard. Created interactive prototype demonstrating full user journeys from signup to completed tutoring relationship.'
+          purpose: 'Complete mobile system: dual onboarding (tutor vs. learner), match browsing, tutor profiles, messaging, session booking calendar, and progress dashboard. Interactive prototype demonstrates full journeys from signup to completed session.'
         },
         {
-          name: 'User Research Methods',
-          purpose: 'Conducted semi-structured interviews with 15+ students across different academic disciplines and performance levels. Used affinity mapping to synthesize pain points, created user journey maps highlighting emotional highs and lows of seeking tutoring help, and developed personas representing diverse student motivations and needs.'
+          name: 'User research methods',
+          purpose: '15+ semi-structured interviews with students across disciplines and academic standings. Affinity mapping for synthesis, user journey maps for emotional highs and lows of asking for help, and four personas grounded in interview data.'
         },
         {
-          name: 'Usability Testing',
-          purpose: 'Ran moderated usability tests with 8 participants across 3 testing rounds. Used think-aloud protocol to identify navigation confusion, friction points in booking flow, and unclear messaging. Iterated designs based on feedback, measuring task completion rates and time-on-task improvements between versions.'
+          name: 'Usability testing',
+          purpose: 'Three rounds of moderated testing with 8 participants total. Think-aloud protocol surfaced navigation confusion at the homepage, the activation-step drop-off that produced the tiered engagement model, and the credential-vs-personality tradeoff in profile cards.'
         },
         {
-          name: 'Wireframing',
-          purpose: 'Started with low-fidelity sketches to explore multiple layout options for key screens (match browsing, tutor profiles, messaging). Progressed to mid-fidelity wireframes for testing information architecture and interaction patterns before committing to visual design. Used rapid iteration to test 5+ navigation structures before selecting final approach.'
+          name: 'Wireframing + design thinking',
+          purpose: 'Lo-fi sketches for layout exploration, mid-fi wireframes for information architecture, then committed to visual design only after testing five-plus navigation structures. Saved a full round of high-fidelity rework that would have been wasted on the wrong IA.'
         }
       ],
       impact: {
-        title: 'Academic Recognition and Career Relevance',
-        content: 'Tutorly achieved a final evaluation score above 85% in the UX design course and was selected for showcase at the University of Toronto Scarborough Undergraduate Research Symposium 2024, where it was presented to faculty, students, and industry professionals. This recognition validated the project\'s user-centered approach, demonstrating that thorough research, iterative testing, and thoughtful design can solve real student pain points in measurable ways.\n\nFrom a learning perspective, Tutorly taught critical lessons about designing for two-sided marketplaces where both user groups (tutors and learners) must find value simultaneously. The project reinforced that successful platforms require deep empathy for users\' emotional states (seeking academic help is vulnerable and anxiety-inducing, while offering to tutor risks rejection or imposter syndrome). Designing for these sensitivities meant crafting encouraging copy, low-commitment entry points, and features that celebrate small wins to reduce stigma around struggling academically.\n\nThis project directly applies to UX and product design careers where conducting user research, translating insights into features, and iterating based on feedback are core skills. Tutorly demonstrates the ability to navigate complex user needs, design intuitive mobile experiences, and create systems that foster meaningful human connections (all critical competencies for building products that genuinely improve users\' lives). The peer tutoring domain also showcases understanding of education technology, a rapidly growing field where thoughtful design can democratize access to learning support.'
+        title: 'What the project actually argues',
+        content: 'Tutorly\'s thesis is that peer tutoring is not primarily a search problem or a matching problem, it is a relationship problem. Above-85% course evaluation and UTSC symposium selection said the framing held up against academic scrutiny, but the more interesting validation was that the design changed the most because of usability testing, not visual iteration. The tiered engagement flow, the personality-led profile cards, and the subject-scoped chat were all things the research surfaced, not things I started with.\n\nFor my own product instincts, this is the project that taught me to treat two-sided marketplaces as two products that share a database, not one product with two user types. The supply side needs its own retention story (the dashboard, the resume signal, the hours logged) or the marketplace collapses by midterm. Anyone designing a marketplace product without a supply-side retention plan is one semester away from a ghost town.\n\nIf I shipped Tutorly v2, the work would be less about new features and more about real grade-record verification, an academic-integrity policy that actually has teeth, and a careful study of whether the matching engine pays off at the scale needed to justify the modeling effort.'
+      },
+      limitations: {
+        title: 'What this project is, and what it isn\'t',
+        items: [
+          'High-fidelity Figma prototype, not a shipped iOS or Android app. The matching engine, dashboard, and chat are designed and demonstrated, not production-implemented.',
+          'Tutor credential verification in the prototype is a placeholder. A real build would need integration with university grade records, and a clear policy for what counts as "qualified" to tutor a course.',
+          'Research is qualitative-leaning at this scope: 15+ interviews, 8 usability participants across three rounds. Enough for design direction, not enough for population-level claims about retention or learning outcomes.',
+          'Academic-integrity edge cases (homework solving, paid impersonation, contract cheating) are flagged but not designed in depth. A production build would need a trust and safety pass.',
+          'Mobile-first by design, but a desktop companion may be needed for tutors who plan sessions and write notes from a laptop. Currently out of scope.',
+          'The matching algorithm is conceptual, not a trained recommender. Real performance would depend on data scale the prototype does not have.',
+        ]
       }
     },
     featured: false
