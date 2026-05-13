@@ -802,82 +802,148 @@ export const projects: Project[] = [
     category: 'UI/UX Design',
     dates: 'Jun 2024 - Aug 2024',
     organization: 'Independent Project',
-    description: 'Designed the UI for Matchify, a music-driven social application that connects users through their listening habits. Developed an intuitive navigation system and customizable user profiles prioritizing visual identity and musical taste. Created streamlined onboarding process leveraging Spotify API integration to instantly personalize user journey. Designed comprehensive settings suite with granular privacy options. High-fidelity prototype was selected to be showcased at ARIA 2024, University of Toronto\'s premier research and innovation event.',
+    description: 'A mobile social app that treats your listening data as identity, not metadata. Matchify uses Spotify OAuth to build a user profile out of artists, genres, and listening patterns, then matches people on a blend of similarity (shared favorites) and complementarity (compatible but different tastes). Designed end-to-end in Figma as a high-fidelity prototype across onboarding, profile, matching, messaging, and privacy. Selected for ARIA 2024, the University of Toronto\'s annual research and innovation showcase.',
     skills: ['Navigation Design', 'Mobile Design', 'UI/UX Design', 'Experience Design', 'Figma', 'Prototyping', 'Mobile App Design', 'User-centered Design', 'Wireframing', 'Design Systems'],
     links: [
       {
         type: 'figma',
         url: 'https://www.figma.com/design/nkmVIyQnZzKT01rF20G9n1/Matchify-Project--Copy-?node-id=0-1&p=f&t=qmd4JXc07v1CpX4R-0',
-        label: 'Matchify Figma Design Project'
+        label: 'Open the Matchify Figma file'
       }
     ],
     caseStudy: {
       fileName: 'matchify.pdf',
-      title: 'Matchify Case Study',
+      title: 'Matchify case study',
       fileSize: '11 MB'
     },
     extendedContent: {
+      stats: [
+        { value: 'ARIA \'24', label: 'UofT research showcase' },
+        { value: '6', label: 'core mobile flows' },
+        { value: '4', label: 'bottom-tab sections' },
+        { value: '1', label: 'Spotify-powered identity' },
+      ],
+      pullQuote: 'Music reveals who you are. Matchify treats listening data as identity, not metadata.',
       overview: {
-        title: 'Connecting People Through Musical Identity',
-        content: 'Matchify reimagines social connection by placing music at the center of human relationships. Rather than relying on geographic proximity or mutual friends, Matchify connects users through their authentic musical identity: the artists they love, the genres that move them, and the listening habits that define their daily lives. By integrating seamlessly with Spotify, the platform transforms passive listening data into active social discovery, helping users find friends, collaborators, and communities who truly understand their musical perspective. This project explores how music can serve as both a conversation starter and a foundation for meaningful connection in an increasingly digital world.'
+        title: 'A social app where taste is the profile',
+        content: 'Matchify reimagines social connection by making music the primary signal rather than photos, bios, or location. The app pulls authentic listening data through Spotify OAuth (top artists, favorite genres, recently played, listening intensity) and turns it into a visually rich identity card that does the introductions for you. The pitch is simple: shared taste is one of the lowest-friction ways two strangers can find common ground, and the app is engineered to keep music in the center of the experience from onboarding through chat.'
       },
       motivation: {
-        title: 'Why Music-Based Social Discovery?',
-        content: 'Traditional social platforms prioritize who you already know or where you live, but music reveals who you are. Your Spotify Wrapped isn\'t just data. It\'s a window into your personality, your mood patterns, your cultural identity. Matchify was born from the recognition that shared musical taste creates instant common ground and authentic conversation. In a world where meeting new people often feels forced or superficial, music offers a natural, judgment-free entry point for connection. Whether you\'re looking for concert buddies, jam session partners, or simply people who "get" your playlist, Matchify makes those discoveries feel organic and exciting.'
+        title: 'Photos sort by attraction, taste sorts by personality',
+        content: 'Traditional social and dating platforms sort people by where they live or how they look in a photo, which produces the matches you would expect from those signals. Music is a more honest filter. Your library says something about your mood patterns, your cultural touchstones, what you reach for at 3 a.m., and what you would never put on a playlist for a first date. Matchify was designed around the premise that letting people lead with that signal produces conversations that do not stall at "hey" and matches that feel earned, not random.'
       },
+      decisions: [
+        {
+          decision: 'Music is the primary match signal, not a side filter',
+          reasoning: 'Most social apps treat music as a profile decoration: a "songs I like" field below age and height. Matchify inverts that. Spotify data is the profile, and photos, bios, and location are secondary. Leading with taste is the entire point of difference, so the design refuses to bury it under conventional dating-app patterns. Discover, profile, and matching screens are all organized around artists, genres, and listening intensity first.'
+        },
+        {
+          decision: 'Spotify OAuth replaces the taste questionnaire',
+          reasoning: 'A manual "pick five favorite artists" questionnaire is friction theater: users overthink it, pick whatever feels coolest, and the resulting profile lies. OAuth pulls the real signal in seconds. The tradeoff is that we are dependent on Spotify\'s permissions UX and a network of users who actually use Spotify, but the gain in profile authenticity is worth the platform dependency for the prototype.'
+        },
+        {
+          decision: 'Match on similarity plus complementarity, not overlap alone',
+          framework: 'Recommendation system design',
+          reasoning: 'A pure overlap algorithm ("you both like Taylor Swift") collapses everyone into the same cluster, which is exactly the failure mode of mainstream music recommenders. Matchify blends similarity (shared favorites) with complementarity (adjacent but different genres, compatible listening intensity, niche-artist appreciation). It produces a broader, more interesting set of matches and gives users something new to discover, not just confirmation of what they already know.'
+        },
+        {
+          decision: 'Privacy controls are granular, by default, not an afterthought',
+          reasoning: 'Music taste is more personal than most users realize, sometimes more personal than the photos they post. Showing a stranger that you have listened to a specific breakup album on repeat for two weeks is genuinely vulnerable data. The settings dashboard supports hiding specific artists or genres, private-mode listening sessions that do not affect matching, and contact-initiation controls. The pattern is: opt-in to exposure, not opt-out, because trust has to be the on-ramp.'
+        },
+        {
+          decision: 'Music-anchored messaging instead of generic chat',
+          reasoning: 'A blank chat box is where most match-based apps lose users. Matchify\'s messaging surface is built around the shared interest itself: inline Spotify link previews, collaborative playlist creation, concert planning, and music trivia icebreakers. Conversations have a natural fallback when small talk runs dry, which is the moment most threads die. Keeping the topic anchored is a retention play disguised as a feature.'
+        },
+        {
+          decision: 'Four bottom tabs, not six. Resist the feature creep',
+          reasoning: 'Discover, Messages, Profile, Explore. That is the entire IA. Every other "delight" feature (concert finder, trending artists, playlist challenges) lives nested inside Explore so the primary navigation stays readable at a glance. Mobile prototypes lose to feature sprawl more often than to missing features, so the design holds the line at four tabs even when stakeholders ask for a fifth.'
+        }
+      ],
+      keyFindings: [
+        {
+          stat: '~0 sec',
+          title: 'OAuth eliminates the taste-questionnaire problem',
+          description: 'The entire "tell us about your music" step collapses into a single Spotify authorize screen. Users review their imported identity rather than constructing one from scratch, which means the profile that goes live is the profile they actually live with, not the one they would have curated for a stranger.'
+        },
+        {
+          stat: 'ARIA \'24',
+          title: 'External validation as a UX bet',
+          description: 'Selection for ARIA 2024 confirmed the framing held up against academic projects across disciplines. The signal was less "the design is pretty" and more "leading with listening data, not photos, is a defensible positioning move for a music-first social product."'
+        },
+        {
+          stat: '2 axes',
+          title: 'Similarity alone produces bad matches',
+          description: 'Overlap-only matching collapses everyone into the most popular cluster. Blending similarity with complementarity (compatible but different) produced a more interesting match set in prototype testing, and gave users something to discover on each new match rather than confirming what they already knew.'
+        },
+        {
+          stat: 'Trust',
+          title: 'Privacy is the on-ramp, not the exit',
+          description: 'Music taste is more revealing than most users realize. Putting granular controls (hide artists, private-mode listening, who-can-initiate) on the first-run path rather than five settings menus deep was the move that let users opt into authentic exposure instead of curating safe, cool, fake taste.'
+        }
+      ],
       features: [
         {
-          title: 'Spotify-Powered Onboarding',
-          description: 'Streamlined authentication flow that connects users\' Spotify accounts in seconds. The system instantly imports top artists, favorite genres, recently played tracks, and listening patterns to build a comprehensive musical profile without requiring manual data entry. Users can review and customize their imported data before going live.',
-          insight: 'Reduces onboarding friction by 90% compared to manual profile creation. Users skip tedious form-filling and immediately see their musical identity visualized, creating instant engagement and personalization from the first interaction.'
+          title: 'Spotify-powered onboarding',
+          description: 'OAuth flow that connects a Spotify account in seconds and imports top artists, favorite genres, recently played, and listening intensity. Users review and customize the imported identity before going live, so the profile that hits the matching pool is honest by construction.',
+          insight: 'The manual "build your music profile" step disappears. The first thing the user sees in the app is themselves, accurately represented, which is the strongest possible hook for the next session.'
         },
         {
-          title: 'Musical Identity Profiles',
-          description: 'Visually rich user profiles that showcase musical personality through artist grids, genre breakdowns, top tracks, and listening statistics. Profiles display both current favorites and all-time classics, giving potential matches a complete picture of musical taste evolution over time. Customizable privacy controls let users choose what to share publicly vs. with matches only.',
-          insight: 'Transforms abstract listening data into concrete conversation starters. The visual design emphasizes discovery over comparison, encouraging users to explore differences in taste rather than only seeking perfect matches, broadening potential connections.'
+          title: 'Musical identity profiles',
+          description: 'Visually dense profiles that surface artist grids, genre breakdowns, top tracks, and listening statistics. Both current favorites and all-time classics are shown so taste evolution is visible. Privacy controls govern what is public vs. match-only.',
+          insight: 'Profiles work as conversation starters, not comparison charts. The design emphasizes discovery of difference, not confirmation of overlap, which broadens the match graph.'
         },
         {
-          title: 'Smart Matching Algorithm',
-          description: 'Recommendation engine that analyzes artist overlap, genre compatibility, listening intensity patterns, and discovery behaviors to suggest potential matches. The algorithm balances similarity (shared favorites) with complementarity (compatible but different tastes) to create diverse, interesting connections. Users can filter matches by music preferences, location, or activity interests.',
-          insight: 'Goes beyond simple "you both like Taylor Swift" matching by considering listening context, niche artist appreciation, and genre exploration patterns. Creates matches that feel serendipitous yet meaningful, like meeting someone at a concert you both traveled across the city to attend.'
+          title: 'Similarity + complementarity matching',
+          description: 'Recommendation engine that scores artist overlap, genre compatibility, listening intensity, and niche-artist exposure. Filters let users adjust by music preference, location, or activity interest. Designed to produce diverse, surprising matches rather than only obvious ones.',
+          insight: 'The matching layer is the product\'s real intellectual property. It is also where most prototypes hand-wave; making it explicit (and showing the user what it is doing) is what earns trust.'
         },
         {
-          title: 'Integrated Messaging Interface',
-          description: 'In-app chat system designed specifically for music-centered conversations. Features include sharing Spotify links with inline previews, collaborative playlist creation, concert planning tools, and music trivia icebreakers. Messages can include song recommendations, artist deep dives, or genre exploration challenges to keep conversations engaging and music-focused.',
-          insight: 'Keeps conversations anchored to the shared interest that brought users together. The music-specific features prevent conversations from stalling and provide natural conversation pivots when topics run dry, increasing message response rates and connection quality.'
+          title: 'Music-anchored messaging',
+          description: 'Chat surface with inline Spotify link previews, collaborative playlist creation, concert planning tools, and music trivia icebreakers. Designed to keep the conversation tied to the shared interest that produced the match in the first place.',
+          insight: 'The blank-message-box failure mode is the biggest churn driver in match apps. Anchoring the chat to music gives every conversation a default topic and a graceful pivot when small talk dies.'
         },
         {
-          title: 'Granular Privacy Settings',
-          description: 'Comprehensive privacy controls allowing users to manage visibility of listening history, location data, profile information, and online status. Options include hiding specific artists or genres, creating "private mode" listening sessions that don\'t affect matching, and controlling who can initiate contact. Settings dashboard explains data usage transparently.',
-          insight: 'Addresses the vulnerability users feel when sharing music taste (arguably more personal than photos). By giving users control over their musical exposure, the platform builds trust and encourages authentic self-presentation rather than curated "cool" personas.'
+          title: 'Granular privacy settings',
+          description: 'Settings dashboard covering listening history visibility, location, profile fields, and online status. Hide specific artists or genres, run private-mode listening sessions that do not affect matching, and control who can initiate contact. Data usage is explained in plain language.',
+          insight: 'Music taste is more vulnerable than most users expect. Putting these controls on the first-run path, not deep in settings, is how the app earns the right to ask for authentic exposure.'
         },
         {
-          title: 'Intuitive Navigation System',
-          description: 'Bottom tab navigation with four core sections: Discover (match browsing), Messages (conversations), Profile (your musical identity), and Explore (community features like local concerts, trending artists, playlist challenges). Each section uses music-inspired visual metaphors (waveforms, vinyl records, equalizers) to create cohesive brand identity while maintaining clarity.',
-          insight: 'Balances feature complexity with ease of use. Users can quickly jump between discovering new matches, maintaining existing conversations, and refining their profile without getting lost in nested menus. The music-themed UI feels playful without sacrificing usability.'
+          title: 'Four-tab navigation',
+          description: 'Discover (match browsing), Messages (conversations), Profile (your identity), Explore (concerts, trending artists, playlist challenges). Music-inspired iconography (waveforms, vinyl, equalizers) for personality without sacrificing legibility.',
+          insight: 'Resisting the urge to add a fifth tab was the design decision that kept the app readable. Sprawl is the failure mode for social prototypes; this one keeps the primary surface flat and the deeper features nested inside Explore.'
         }
       ],
       tools: [
         {
           name: 'Figma',
-          purpose: 'Designed complete mobile interface system including onboarding flows, profile templates, match browsing screens, messaging interface, and settings dashboard. Created high-fidelity prototype demonstrating Spotify authentication, swipe gestures, and animated transitions between states.'
+          purpose: 'Designed the complete mobile system: onboarding, profile templates, match browsing, messaging, settings. High-fidelity prototype with Spotify auth, swipe gestures, and animated transitions between states.'
         },
         {
-          name: 'Spotify API Integration',
-          purpose: 'Leveraged Spotify Web API for OAuth authentication, user profile data retrieval (top artists, tracks, genres), listening history analysis, and playlist management. Designed data mapping strategy to transform Spotify\'s JSON responses into meaningful visual profile elements.'
+          name: 'Spotify Web API',
+          purpose: 'OAuth, top artists, top tracks, genre data, listening history, and playlist management. Designed the mapping from Spotify\'s JSON shape into visual profile elements (artist grids, genre breakdowns, intensity meters).'
         },
         {
-          name: 'User Research',
-          purpose: 'Conducted interviews with music enthusiasts to understand how they discover new music, form music-based friendships, and use existing social platforms. Identified pain points around superficial connections and desire for music-centered communities, informing core feature prioritization.'
+          name: 'User research',
+          purpose: 'Interviews with music enthusiasts about discovery habits, music-based friendships, and pain points with existing social platforms. Findings shaped feature priority and the "lead with taste, not photos" positioning.'
         },
         {
-          name: 'Mobile Design Patterns',
-          purpose: 'Applied iOS and Android design conventions for gesture-based navigation (swipe to match/pass), bottom sheet modals (profile details), tab bars (primary navigation), and notification systems. Ensured platform-appropriate interactions while maintaining consistent brand identity.'
+          name: 'Mobile design patterns',
+          purpose: 'iOS and Android conventions for gesture-based interactions (swipe to match/pass), bottom sheets (profile detail), tab bars, and notifications. Platform-appropriate without splintering brand identity.'
         }
       ],
       impact: {
-        title: 'Recognition and Learning',
-        content: 'Matchify was selected to be showcased at ARIA 2024 (Academic Research and Innovation Affair), University of Toronto\'s premier research and innovation event, where it was presented alongside cutting-edge academic projects from across disciplines. This recognition validated the project\'s innovation in combining social connection with music technology, demonstrating that leveraging existing APIs like Spotify can create novel user experiences without reinventing the wheel.\n\nFrom a design learning perspective, Matchify taught critical lessons about balancing personalization with privacy, feature richness with simplicity, and algorithmic matching with serendipitous discovery. The project reinforced that successful social platforms must solve a genuine human need (in this case, the desire to connect over shared passions) rather than simply implementing trendy features. The Spotify integration showcased how thoughtful API usage can bootstrap complex functionality, allowing designers to focus on unique value propositions rather than rebuilding basic infrastructure.\n\nThis project directly applies to product design and UX careers where understanding user motivation, designing for trust and vulnerability, and creating delightful interactions are paramount. Matchify demonstrates the ability to research user needs, translate insights into features, and prototype complete mobile experiences that balance technical feasibility with emotional resonance.'
+        title: 'What the project actually argues',
+        content: 'Matchify\'s thesis is positioning: there is a defensible product wedge in social apps that treat music as the primary signal rather than the third or fourth one. Selection for ARIA 2024 validated that the framing was strong enough to stand next to research-led work across disciplines, not just decorative interaction design.\n\nFor my own product instincts, the project drove home that an API integration is a positioning decision, not a checklist item. Choosing Spotify OAuth over a taste questionnaire was not laziness, it was a bet that authentic data beats curated data every time. The matching engine being a blend of similarity and complementarity, not pure overlap, was a bet that interesting matches matter more than safe ones. The privacy-first defaults were a bet that trust is what unlocks honest taste in the first place.\n\nIf I shipped Matchify v2, the work would be less about new features and more about making those three bets even more visible to the user from the first session.'
+      },
+      limitations: {
+        title: 'What this project is, and what it isn\'t',
+        items: [
+          'High-fidelity Figma prototype, not a shipped iOS or Android app. The matching engine, OAuth flow, and chat surface are designed and demonstrated but not production-implemented.',
+          'Spotify dependency is a strategic vulnerability. Apple Music, YouTube Music, and offline-only listeners are not addressable until a multi-provider strategy is designed.',
+          'User research was qualitative-leaning at this scope (interviews, not large-panel surveys). A bigger panel would be needed before claiming statistical conclusions about match quality or retention.',
+          'Privacy-first defaults are designed but not stress-tested against real adversarial behavior (harassment, doxxing, stalking via music habits). A production build would need a trust and safety pass beyond what a class prototype can do.',
+          'The "complementarity" axis of the matching engine is conceptual in the prototype, not a trained model. A real implementation would require listening-data scale and ongoing tuning.',
+        ]
       }
     },
     featured: false
