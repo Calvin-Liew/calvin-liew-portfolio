@@ -1,24 +1,16 @@
 [build]
-  # Build command for Next.js
+  # Build command for Next.js. The publish directory and routing are handled
+  # automatically by the Netlify Next.js Runtime plugin, which Netlify
+  # auto-installs when it detects a Next.js project. Do NOT set publish=".next"
+  # here, and do NOT add a catch-all rewrite to /index.html — that breaks
+  # static-asset serving (every /projects/*.png ends up returning index.html).
   command = "npm run build"
 
-  # Directory containing the built site
-  publish = ".next"
-
 [build.environment]
-  # Node.js version (Next.js 16 requires >= 20.9.0)
   NODE_VERSION = "20.11.0"
-
-  # Next.js specific environment variables
   NEXT_TELEMETRY_DISABLED = "1"
 
-# Redirect rules for Next.js routing
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-# Headers for security and performance
+# Security and performance headers for every response.
 [[headers]]
   for = "/*"
   [headers.values]
