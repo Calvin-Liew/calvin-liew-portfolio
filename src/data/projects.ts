@@ -291,7 +291,7 @@ export const projects: Project[] = [
       },
       motivation: {
         title: 'The product gap, not the market gap',
-        content: 'The interesting question is not how big the AI productivity market is. It is what the existing players keep getting wrong. ChatGPT lives in a different tab from your files. Copilot is anchored to a single document at a time. Notion offers tools but asks you to maintain them. Across all three, the user is the one wiring up the connection between the AI and the work. Companion\'s product bet is that the next surface for AI is not "another tool you call when you need it" but "an assistant that lives inside the place your work already lives." Everything that follows — the persona model, the consent flow, the six scenarios, the in-Drive surface — comes from that single product premise.'
+        content: 'The interesting question is not how big the AI productivity market is. It is what the existing players keep getting wrong. ChatGPT lives in a different tab from your files. Copilot is anchored to a single document at a time. Notion offers tools but asks you to maintain them. Across all three, the user is the one wiring up the connection between the AI and the work. Companion\'s product bet is that the next surface for AI is not "another tool you call when you need it" but "an assistant that lives inside the place your work already lives." Everything that follows (the persona model, the consent flow, the six scenarios, the in-Drive surface) comes from that single product premise.'
       },
       decisions: [
         {
@@ -301,11 +301,11 @@ export const projects: Project[] = [
         },
         {
           decision: 'People-centric, not file-centric',
-          reasoning: 'Copilot anchors to documents. ChatGPT anchors to prompts. Both leave the user wiring up the connection between their work and the AI. Companion anchors to what the user is actually trying to accomplish — survive a semester, run a project, prep for a meeting — and pulls the relevant files in from that intent. Same kind of AI work, but the entry point is a person, not a file. Every scenario in the prototype (Syllabus-to-Schedule, Meeting Chief of Staff, Work Rhythm Optimiser) starts from a goal, not a file selection.'
+          reasoning: 'Copilot anchors to documents. ChatGPT anchors to prompts. Both leave the user wiring up the connection between their work and the AI. Companion anchors to what the user is actually trying to accomplish (survive a semester, run a project, prep for a meeting) and pulls the relevant files in from that intent. Same kind of AI work, but the entry point is a person, not a file. Every scenario in the prototype (Syllabus-to-Schedule, Meeting Chief of Staff, Work Rhythm Optimiser) starts from a goal, not a file selection.'
         },
         {
           decision: 'Permission-first onboarding',
-          reasoning: 'User research showed 70% comfort with AI summarization, conditional on transparency. So Companion activates one scenario at a time during onboarding with explicit per-folder consent, and a visibility dashboard shows current access at any time. The slower start hurts day-one activation metrics, but on a product where trust is the long-run constraint, retention beats activation. Blanket scanning of all Drive content was on the table and would have been faster to implement — and would have killed the product on the first privacy headline.'
+          reasoning: 'User research showed 70% comfort with AI summarization, conditional on transparency. So Companion activates one scenario at a time during onboarding with explicit per-folder consent, and a visibility dashboard shows current access at any time. The slower start hurts day-one activation metrics, but on a product where trust is the long-run constraint, retention beats activation. Blanket scanning of all Drive content was on the table and would have been faster to implement. It would also have killed the product on the first privacy headline.'
         },
         {
           decision: 'Single product, dual persona',
@@ -313,7 +313,7 @@ export const projects: Project[] = [
         },
         {
           decision: 'Embedded in Drive, not a standalone app',
-          reasoning: 'A separate "Drive Companion" app on iOS and Android was the easy default. But the entire pitch is that Companion lives where the files already do — the moment it becomes a separate app, it inherits the upload chore that defines ChatGPT and Copilot. Embedded means Companion shows up inside the Dashboard, the doc preview, the sheet sidebar, the meeting summary card. Mobile happens because Drive happens on mobile, not because Companion ships a new app.'
+          reasoning: 'A separate "Drive Companion" app on iOS and Android was the easy default. But the entire pitch is that Companion lives where the files already do. The moment it becomes a separate app, it inherits the upload chore that defines ChatGPT and Copilot. Embedded means Companion shows up inside the Dashboard, the doc preview, the sheet sidebar, the meeting summary card. Mobile happens because Drive happens on mobile, not because Companion ships a new app.'
         },
         {
           decision: 'Three-tier pricing with a free trial',
@@ -458,7 +458,7 @@ export const projects: Project[] = [
       pullQuote: 'Most students think their options are perform, teach, or quit. The redesign starts by saying out loud that the industry is much bigger than that.',
       overview: {
         title: 'Reframing what a music career can look like',
-        content: 'TMPP\'s research showed a gap between how students picture music careers and how the industry actually works today. Sound design, music technology, digital content, community arts, arts management, music therapy — none of it surfaced clearly in the old site. The redesign turns that information into something students can actually navigate: a confident hero that names the reframe out loud, an 8-pathway preview that cycles through the full scope on first load, dual entry points for students and educators, and a 3-step discovery flow that gets people from "I don\'t know my options" to "here\'s what to do next."'
+        content: 'TMPP\'s research showed a gap between how students picture music careers and how the industry actually works today. Sound design, music technology, digital content, community arts, arts management, music therapy: none of it surfaced clearly in the old site. The redesign turns that information into something students can actually navigate: a confident hero that names the reframe out loud, an 8-pathway preview that cycles through the full scope on first load, dual entry points for students and educators, and a 3-step discovery flow that gets people from "I don\'t know my options" to "here\'s what to do next."'
       },
       motivation: {
         title: 'From PDFs to a guided discovery experience',
@@ -472,7 +472,7 @@ export const projects: Project[] = [
         {
           decision: 'Tempo (a metronome) replaces Jay (a blue jay)',
           framework: 'Keller\'s offensive brand element criteria',
-          reasoning: 'The original mascot was Jay, a blue jay character. Friendly, but a blue jay doesn\'t actually say "music." The mascot also had to read as music without forcing one culture\'s notation system on a multicultural Canadian student body — a treble clef or piano keys would have quietly excluded students from non-Western musical traditions. A metronome is universal across genres and cultures, and it just means time and pace. Tempo\'s LED-faced design plus the U of T navy + crimson palette satisfies Keller\'s offensive criteria (memorable, meaningful, likable) and finally gives the chatbot a face that\'s on-brief.'
+          reasoning: 'The original mascot was Jay, a blue jay character. Friendly, but a blue jay doesn\'t actually say "music." The mascot also had to read as music without forcing one culture\'s notation system on a multicultural Canadian student body. A treble clef or piano keys would have quietly excluded students from non-Western musical traditions. A metronome is universal across genres and cultures, and it just means time and pace. Tempo\'s LED-faced design plus the U of T navy + crimson palette satisfies Keller\'s offensive criteria (memorable, meaningful, likable) and finally gives the chatbot a face that\'s on-brief.'
         },
         {
           decision: 'Interactive map as the primary surface, chatbot as the supporting voice',
@@ -480,11 +480,11 @@ export const projects: Project[] = [
         },
         {
           decision: 'One site, two self-routing audiences',
-          reasoning: 'Students need to discover unfamiliar roles. Educators need resources they can hand to a class. Building two separate sites would have doubled the maintenance and split the brand. Instead, the homepage offers a clear two-card split — For Students and For Educators — that lets each audience self-route after the shared hero. Same brand, same content backbone, audience-specific copy and CTAs from the moment of choice forward.'
+          reasoning: 'Students need to discover unfamiliar roles. Educators need resources they can hand to a class. Building two separate sites would have doubled the maintenance and split the brand. Instead, the homepage offers a clear two-card split (For Students and For Educators) that lets each audience self-route after the shared hero. Same brand, same content backbone, audience-specific copy and CTAs from the moment of choice forward.'
         },
         {
           decision: 'Lightweight prototype chatbot, not a production AI build',
-          reasoning: 'A full LLM-backed chatbot would have meant API costs, content safety review, and weeks of evaluation work for a course-scope prototype. The build uses keyword matching that triggers the same visual highlighting the production version would do. It demonstrates the intended UX — student types interest, map responds, Tempo speaks — without the infrastructure overhead. The right move when the goal is to validate the experience design, not to ship to thousands of users on day one.'
+          reasoning: 'A full LLM-backed chatbot would have meant API costs, content safety review, and weeks of evaluation work for a course-scope prototype. The build uses keyword matching that triggers the same visual highlighting the production version would do. It demonstrates the intended UX (student types interest, map responds, Tempo speaks) without the infrastructure overhead. The right move when the goal is to validate the experience design, not to ship to thousands of users on day one.'
         },
         {
           decision: 'CBBE pyramid as the page structure',
@@ -510,7 +510,7 @@ export const projects: Project[] = [
           },
           {
             label: 'Mobile homepage',
-            note: 'The mobile experience gets the same reframe end-to-end — same hero, same pathway preview, same tagline emphasis — responsive across screen sizes instead of a different IA on phone.',
+            note: 'The mobile experience gets the same reframe end-to-end (same hero, same pathway preview, same tagline emphasis), responsive across screen sizes instead of a different IA on phone.',
             before: '/projects/music-pathways/before-after/original-mobile-home.png',
             after: '/projects/music-pathways/before-after/mobile-home.png',
           },
@@ -541,7 +541,7 @@ export const projects: Project[] = [
         {
           stat: 'Confidence',
           title: 'Reduce anxiety, not just steps',
-          description: 'Research kept surfacing that students value tools that build confidence over tools that save time. The redesign moves up Keller\'s means-end chain from "find the right document" to "feel supported deciding what to explore next" — the brand promise is calm and possibility, not just information.'
+          description: 'Research kept surfacing that students value tools that build confidence over tools that save time. The redesign moves up Keller\'s means-end chain from "find the right document" to "feel supported deciding what to explore next". The brand promise is calm and possibility, not just information.'
         }
       ],
       features: [
@@ -561,7 +561,7 @@ export const projects: Project[] = [
         },
         {
           title: 'Three pillars of the brand',
-          description: 'Research-Informed, Curriculum-Connected, Student-Centered — three cards positioned next to the "What Is The Music Pathways Project?" paragraph. Each pillar gets a meaningful icon, a one-line label, and a sentence of substantiation.',
+          description: 'Research-Informed, Curriculum-Connected, Student-Centered: three cards positioned next to the "What Is The Music Pathways Project?" paragraph. Each pillar gets a meaningful icon, a one-line label, and a sentence of substantiation.',
           insight: 'Brand meaning: makes the abstract "research-informed UofT initiative" tangible by attaching it to three concrete commitments students and educators can verify on their own.',
           image: '/projects/music-pathways/02-pillars.png',
           imageFit: 'contain'
@@ -612,7 +612,7 @@ export const projects: Project[] = [
       ],
       impact: {
         title: 'What the redesign actually moves',
-        content: 'The original TMPP site was correct but invisible. The information was research-informed, the careers were real, the support resources existed, but students would not have known any of that from the homepage. The redesign\'s job was not to invent content, it was to make the brand legible: the moment a student lands, they see the reframe ("more than perform, teach, or quit"), see the evidence (30+ pathways, 100% research-informed), and see the next step (explore, connect to programs, plan).\n\nApplying CBBE meant treating every section as one rung of the pyramid: salience in the hero, performance and imagery in the pillars, judgments in the stats strip, feelings in the dual-audience care, resonance in the discovery flow. Consumer behavior principles meant lowering search costs at every turn — visual instead of textual, grouped instead of listed, guided instead of open.\n\nFor my own product instincts, this project drove home that great branding is not decorative work. It is structural work: it decides which 8 things land in the first viewport, which audiences self-route without friction, and which sentence gets repeated across hero, explorer, and CTA so the brand promise is felt rather than declared.'
+        content: 'The original TMPP site was correct but invisible. The information was research-informed, the careers were real, the support resources existed, but students would not have known any of that from the homepage. The redesign\'s job was not to invent content, it was to make the brand legible: the moment a student lands, they see the reframe ("more than perform, teach, or quit"), see the evidence (30+ pathways, 100% research-informed), and see the next step (explore, connect to programs, plan).\n\nApplying CBBE meant treating every section as one rung of the pyramid: salience in the hero, performance and imagery in the pillars, judgments in the stats strip, feelings in the dual-audience care, resonance in the discovery flow. Consumer behavior principles meant lowering search costs at every turn: visual instead of textual, grouped instead of listed, guided instead of open.\n\nFor my own product instincts, this project drove home that great branding is not decorative work. It is structural work: it decides which 8 things land in the first viewport, which audiences self-route without friction, and which sentence gets repeated across hero, explorer, and CTA so the brand promise is felt rather than declared.'
       },
       limitations: {
         title: 'What this redesign is, and what it isn\'t',
@@ -1043,7 +1043,7 @@ export const projects: Project[] = [
       ],
       impact: {
         title: 'What the project argues from a visual-design angle',
-        content: 'Matchify\'s thesis is structural: the visual identity is the product. The brand green, the dark canvas, the profile ring, and the match-reason copy together do work that a percentage match or a profile-only feed could not. Without those four moves, the app would be a worse version of a dozen products that already exist. With them, it has a position no other music-social product currently occupies.\n\nSelection for ARIA 2024 validated that the framing held up against research-led projects across disciplines. The interesting thing was that the visual choices were treated as the thesis, not the dressing — the dark canvas was a brand decision, not an aesthetic preference, and the match-reason copy was a content-design call, not a UX writing afterthought.\n\nFor my own design instincts, this is the project that taught me that the cheapest-looking element in a system (a two-pixel ring around an avatar) is often the most expensive to get right, and that brand discipline (one color, one canvas, one IA) is what produces a product that reads confident at a glance.'
+        content: 'Matchify\'s thesis is structural: the visual identity is the product. The brand green, the dark canvas, the profile ring, and the match-reason copy together do work that a percentage match or a profile-only feed could not. Without those four moves, the app would be a worse version of a dozen products that already exist. With them, it has a position no other music-social product currently occupies.\n\nSelection for ARIA 2024 validated that the framing held up against research-led projects across disciplines. The interesting thing was that the visual choices were treated as the thesis, not the dressing. The dark canvas was a brand decision, not an aesthetic preference, and the match-reason copy was a content-design call, not a UX writing afterthought.\n\nFor my own design instincts, this is the project that taught me that the cheapest-looking element in a system (a two-pixel ring around an avatar) is often the most expensive to get right, and that brand discipline (one color, one canvas, one IA) is what produces a product that reads confident at a glance.'
       },
       limitations: {
         title: 'What this visual system is, and what it isn\'t',
