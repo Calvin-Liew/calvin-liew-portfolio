@@ -101,20 +101,17 @@ export default async function Image() {
           AI Workflows Product Analyst
         </div>
 
-        {/* Bottom-right marker phrase */}
+        {/* Accent line — secondary marker, slight tilt */}
         <div
           style={{
-            position: 'absolute',
-            right: 70,
-            bottom: 50,
             display: 'flex',
             fontSize: 28,
-            color: '#3F3530',
-            transform: 'rotate(-2deg)',
-            transformOrigin: 'bottom right',
+            color: '#C2410C',
+            marginTop: 14,
+            transform: 'rotate(-1.5deg)',
           }}
         >
-          AI agents, data, strategy
+          AI agents &middot; data &middot; strategy
         </div>
       </div>
     ),
