@@ -1049,44 +1049,56 @@ export const projects: Project[] = [
           description: 'Sign-up gated to verified UofT email addresses. Onboarding broken into four short steps: full name, account details (profile picture, password), academic info (campus, major, subject interests, year), and study habits (preferred times, locations, accommodations). Each step is its own screen so the form never feels like a wall, and a top-of-screen progress indicator keeps users oriented.',
           insight: 'The university-email gate (with inline "already registered" validation) is what makes the rest of the product feel safe to use. The multistep structure is what makes the form long enough to drive good matching without bleeding users at signup.',
           image: '/projects/tutorly/01-signup-onboarding.png',
-          imageFit: 'contain'
+          imageFit: 'contain',
+          phoneFrame: true
         },
         {
           title: 'Find Peers with filter-rich matchmaking',
           description: 'Search and filter surface where students choose subject (CS, math, business, etc.), default vs. custom subject sets, and additional filters anchored to the onboarding inputs. Tutor results are scannable profile cards with name, subject expertise, star rating, and a teaser bio.',
           insight: 'Defaulting filters to the user\'s onboarding answers makes the first match feel personalized without making them work for it. Keeping every filter chip visible and editable keeps users in control of the match.',
           image: '/projects/tutorly/02-find-peers.png',
-          imageFit: 'contain'
+          imageFit: 'contain',
+          phoneFrame: true
         },
         {
           title: 'Tutor profile + meeting booking flow',
           description: 'Tutor profile view shows accommodation tags (ADHD, Dyslexia, Autism, Anxiety, In-person, Virtual), past reviews, and a Book meeting CTA. Booking asks for meeting type (Virtual or In-person), then a calendar date, then a 30-minute time slot, then a confirmation alert.',
           insight: 'Usability testing showed 23.1% of participants found the calendar interface only "neutral" to use. The flow is structurally sound (no participants found it difficult), but the calendar component is the highest-priority polish target if the team picks it back up.',
           image: '/projects/tutorly/03-tutor-profile-booking.png',
-          imageFit: 'contain'
+          imageFit: 'contain',
+          phoneFrame: true
         },
         {
           title: 'Home dashboard with upcoming meeting banners',
           description: 'Home tab surfaces Recent tutors at the top and Upcoming meetings below, each banner showing the session title, day or date, time, and a tap target. The current day\'s session is highlighted in the brand green so the next thing to do is impossible to miss.',
           insight: 'H1 (visibility of system status) in action. The banner answers "what is next" without the user asking, which scored well in usability testing: 84.6% of participants found the banners clear or very clear.',
           image: '/projects/tutorly/04-meeting-banners.png',
-          imageFit: 'contain'
+          imageFit: 'contain',
+          phoneFrame: true
         },
         {
           title: 'In-meeting surface with chat, file sharing, and camera',
           description: 'Virtual meeting view with mute, camera toggle, and leave controls over a video feed plus picture-in-picture self-view. The chat thread sits directly below the call, with inline file attachments (e.g., a TA sharing `psych_midterm.pdf`) and a green-tinted self message bubble.',
           insight: 'Chat box file sharing scored 76.9% positive (easy or very easy), with 23.1% neutral. The function works; the affordance for "send a file" is the iteration target. The post-session review path scored 100% clear in testing.',
           image: '/projects/tutorly/05-in-meeting-chat.png',
-          imageFit: 'contain'
+          imageFit: 'contain',
+          phoneFrame: true
         },
         {
           title: 'Reviews + finished-meeting history',
           description: 'After a session ends, users tag tutor qualities (Knowledgeable, Great Teacher, Friendly, Engaging) and write a longer comment. The modal sits on top of the dimmed Meeting Finished screen so the review feels lightweight, not bureaucratic, and the conversation thread remains reachable.',
           insight: 'This was the cleanest-testing surface in the study. Star rating layout was 100% clear, comment placeholders were 76.9% clear or very clear, and going back to view the conversation was 84.7% easy or very easy.',
           image: '/projects/tutorly/06-review.png',
-          imageFit: 'contain'
+          imageFit: 'contain',
+          phoneFrame: true
         }
       ],
+      figmaEmbed: {
+        url: 'https://www.figma.com/design/ssRCJVnGktqLf6BZCVj1ph/Tutorly-Project',
+        title: 'Try the prototype',
+        intro: 'The same Figma file the 13-participant usability study ran against. Zoom, pan, and click through the three tested flows: searching and requesting a tutor session, signup and onboarding, and joining a peer tutor session.',
+        height: 720,
+      },
       tools: [
         {
           name: 'Figma',
