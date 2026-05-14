@@ -64,6 +64,24 @@ export interface Visualization {
    * - 'contain': whole image visible with letterbox — best for scatter plots and radar charts
    */
   imageFit?: 'cover' | 'contain';
+  /**
+   * When true, render the image inside a constrained phone-frame container
+   * (max ~320px wide, centered). For portrait mobile screenshots that would
+   * otherwise dominate the magazine spread at native size.
+   */
+  phoneFrame?: boolean;
+}
+
+/** Embedded Figma file or prototype shown as an interactive iframe in the case study */
+export interface FigmaEmbed {
+  /** Full Figma file/proto URL — will be wrapped with figma.com/embed?embed_host=share&url=... */
+  url: string;
+  /** Optional chapter title override (defaults to "Try the prototype") */
+  title?: string;
+  /** Optional intro paragraph above the embed */
+  intro?: string;
+  /** Optional iframe height in pixels (defaults to 720). Min 400. */
+  height?: number;
 }
 
 export interface Tool {
@@ -134,6 +152,8 @@ export interface ExtendedContent {
   decisions?: ProductDecision[];
   /** Optional before / after gallery comparing original surfaces with the redesign */
   beforeAfter?: BeforeAfter;
+  /** Optional embedded Figma file or prototype shown as an interactive iframe */
+  figmaEmbed?: FigmaEmbed;
   keyFindings?: KeyFinding[];
   visualizations?: Visualization[];
   features?: Visualization[];

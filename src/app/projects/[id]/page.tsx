@@ -718,16 +718,31 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                                       : 'md:order-2'
                                   }`}
                                 >
-                                  <div className="relative w-full overflow-hidden rounded-xl border border-border bg-paper-deeper shadow-paper">
-                                    <Image
-                                      src={feature.image}
-                                      alt={`${feature.title} — screenshot`}
-                                      width={1600}
-                                      height={1200}
-                                      sizes="(max-width: 768px) 100vw, 520px"
-                                      className="w-full h-auto"
-                                    />
-                                  </div>
+                                  {feature.phoneFrame ? (
+                                    <div className="flex justify-center">
+                                      <div className="relative w-full max-w-[280px] sm:max-w-[300px] overflow-hidden rounded-[2rem] border-4 border-ink/80 bg-paper-deeper shadow-paper">
+                                        <Image
+                                          src={feature.image}
+                                          alt={`${feature.title} — screenshot`}
+                                          width={800}
+                                          height={1730}
+                                          sizes="(max-width: 768px) 280px, 300px"
+                                          className="w-full h-auto"
+                                        />
+                                      </div>
+                                    </div>
+                                  ) : (
+                                    <div className="relative w-full overflow-hidden rounded-xl border border-border bg-paper-deeper shadow-paper">
+                                      <Image
+                                        src={feature.image}
+                                        alt={`${feature.title} — screenshot`}
+                                        width={1600}
+                                        height={1200}
+                                        sizes="(max-width: 768px) 100vw, 520px"
+                                        className="w-full h-auto"
+                                      />
+                                    </div>
+                                  )}
                                 </div>
 
                                 {/* Text */}
@@ -817,16 +832,31 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                                         : 'md:order-2'
                                     }`}
                                   >
-                                    <div className="relative w-full overflow-hidden rounded-xl border border-border bg-paper-deeper shadow-paper">
-                                      <Image
-                                        src={viz.image}
-                                        alt={`${viz.title} — screenshot`}
-                                        width={1600}
-                                        height={1200}
-                                        sizes="(max-width: 768px) 100vw, 520px"
-                                        className="w-full h-auto"
-                                      />
-                                    </div>
+                                    {viz.phoneFrame ? (
+                                      <div className="flex justify-center">
+                                        <div className="relative w-full max-w-[280px] sm:max-w-[300px] overflow-hidden rounded-[2rem] border-4 border-ink/80 bg-paper-deeper shadow-paper">
+                                          <Image
+                                            src={viz.image}
+                                            alt={`${viz.title} — screenshot`}
+                                            width={800}
+                                            height={1730}
+                                            sizes="(max-width: 768px) 280px, 300px"
+                                            className="w-full h-auto"
+                                          />
+                                        </div>
+                                      </div>
+                                    ) : (
+                                      <div className="relative w-full overflow-hidden rounded-xl border border-border bg-paper-deeper shadow-paper">
+                                        <Image
+                                          src={viz.image}
+                                          alt={`${viz.title} — screenshot`}
+                                          width={1600}
+                                          height={1200}
+                                          sizes="(max-width: 768px) 100vw, 520px"
+                                          className="w-full h-auto"
+                                        />
+                                      </div>
+                                    )}
                                   </div>
                                 )}
 
@@ -879,6 +909,43 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     </section>
                   </>
                 )}
+
+              {/* Figma embed — interactive prototype iframe */}
+              {project.extendedContent.figmaEmbed &&
+                (() => {
+                  const fe = project.extendedContent.figmaEmbed;
+                  const embedSrc = `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(fe.url)}`;
+                  const height = Math.max(fe.height ?? 720, 400);
+                  return (
+                    <>
+                      <ChapterDivider />
+                      <section>
+                        <ChapterHeading number={nextChapter()}>
+                          {fe.title ?? 'Try the prototype'}
+                        </ChapterHeading>
+                        {fe.intro && (
+                          <p className="text-base sm:text-lg text-ink-soft mb-8 max-w-2xl leading-relaxed">
+                            {fe.intro}
+                          </p>
+                        )}
+                        <div className="relative w-full overflow-hidden rounded-xl border border-border bg-paper-deeper shadow-paper">
+                          <iframe
+                            src={embedSrc}
+                            title={`${project.title} — interactive Figma prototype`}
+                            className="block w-full"
+                            style={{ height: `${height}px` }}
+                            allowFullScreen
+                            loading="lazy"
+                          />
+                        </div>
+                        <p className="mt-3 text-xs text-ink-soft/70">
+                          Hosted by Figma. If the embed shows a sign-in prompt, the file is private —
+                          open the link below to view in a new tab.
+                        </p>
+                      </section>
+                    </>
+                  );
+                })()}
 
               {/* Tools */}
               {project.extendedContent.tools &&
