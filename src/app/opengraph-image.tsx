@@ -22,6 +22,8 @@ export default async function Image() {
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
           background:
             'linear-gradient(135deg, #F8F4EE 0%, #F1EBDF 60%, #ECE4D4 100%)',
           padding: '60px 80px',
@@ -46,6 +48,9 @@ export default async function Image() {
         {/* Top-left logo: calvin. */}
         <div
           style={{
+            position: 'absolute',
+            top: 56,
+            left: 80,
             display: 'flex',
             fontSize: 36,
             color: '#1F1A17',
@@ -57,61 +62,40 @@ export default async function Image() {
           <span style={{ color: '#C2410C' }}>.</span>
         </div>
 
-        {/* Spacer */}
-        <div style={{ flex: 1, display: 'flex' }} />
-
-        {/* Eyebrow */}
+        {/* Eyebrow — slight tilt, centered */}
         <div
           style={{
             display: 'flex',
-            fontSize: 36,
+            fontSize: 38,
             color: '#C2410C',
-            transform: 'rotate(-3deg)',
-            transformOrigin: 'top left',
-            marginBottom: 0,
+            transform: 'rotate(-2deg)',
+            marginBottom: 18,
           }}
         >
           hi, i&apos;m
         </div>
 
-        {/* Calvin — top of stacked name */}
+        {/* Main name on one line: Calvin Liew. — centered, no overflow */}
         <div
           style={{
             display: 'flex',
-            fontSize: 180,
+            fontSize: 156,
             color: '#1F1A17',
             lineHeight: 0.95,
-            transform: 'rotate(-1.5deg)',
-            transformOrigin: 'top left',
-            marginLeft: -6,
-            marginBottom: -16,
+            transform: 'rotate(-1deg)',
           }}
         >
-          Calvin
-        </div>
-
-        {/* Liew. — offset right, with terracotta period */}
-        <div
-          style={{
-            display: 'flex',
-            fontSize: 170,
-            color: '#1F1A17',
-            lineHeight: 0.95,
-            marginLeft: 140,
-          }}
-        >
-          <span>Liew</span>
+          <span>Calvin Liew</span>
           <span style={{ color: '#C2410C' }}>.</span>
         </div>
 
-        {/* Tagline below */}
+        {/* Tagline */}
         <div
           style={{
             display: 'flex',
-            fontSize: 32,
+            fontSize: 36,
             color: '#3F3530',
-            marginTop: 22,
-            marginLeft: 24,
+            marginTop: 28,
           }}
         >
           AI Workflows Product Analyst
