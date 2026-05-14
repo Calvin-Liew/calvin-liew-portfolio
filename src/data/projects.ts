@@ -823,7 +823,7 @@ export const projects: Project[] = [
         { value: '1', label: 'brand green' },
         { value: 'ARIA \'24', label: 'UofT showcase' },
       ],
-      pullQuote: 'Music apps love photos. Matchify leads with the match reason, shared EDM tracks, the same Imagine Dragons concert, a love of Kendrick, and lets the why do the introductions.',
+      pullQuote: 'Other apps show you who matches. Matchify tells you why: a shared love of Kendrick, the same Imagine Dragons concert, top tracks in the same EDM playlist. The reason is the introduction.',
       overview: {
         title: 'The visual language',
         content: 'Matchify is a music-first social network designed around three commitments: a dark canvas that lets album art, concert photography, and profile photos carry the visual energy; a single Spotify-aligned green used only for brand moments and primary CTAs so it never collapses into wallpaper; and a content design call that treats every Friend suggestion as a sentence ("Shared interest in EDM with favorite tracks by top DJs") rather than a percentage similarity score. The full prototype covers Spotify-authenticated onboarding, the multi-section home feed, the match-reason Friends discovery surface, and an Events tab that overlays attending-friends avatars onto concert cards.'
