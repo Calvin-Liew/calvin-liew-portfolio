@@ -1249,87 +1249,170 @@ export const projects: Project[] = [
     id: 'food-resq',
     title: 'Food ResQ: Smart Recipes from Fridge Scraps',
     category: 'Product Management',
-    dates: 'Oct 2023 - Oct 2023',
+    dates: 'Oct 2023',
     organization: 'Hack The Valley 8',
-    description: 'Led the product design and UI/UX for Food ResQ, an AI-powered fridge management app developed during Hack The Valley 8 to combat household food waste. Designed complete user experience for tracking fridge inventory via MongoDB database and generating flexible recipe recommendations using ChatGPT. Created intuitive interface for quickly adding ingredients (even unmeasured or unknown foods), built using React.js and Bootstrap frontend with Flask backend. Managed API integration with OpenAI for consistent recipe generation and wrote detailed prompts to retrieve formatted cooking instructions. Secured 6th place overall and won Best Use of MongoDB Atlas, demonstrating ability to deliver polished demo under 36-hour hackathon constraints.',
+    description: 'A 36-hour hackathon build: a web app that tracks the half-used ingredients in your fridge and asks ChatGPT to invent recipes around them. React.js + Bootstrap frontend, Flask backend, MongoDB Atlas for the deliberately flexible ingredient schema, OpenAI for the recipe generation. Built around the actual problem real fridges have, partial ingredients and forgotten expiry dates, instead of the cookbook ingredients recipe apps usually assume. Took 6th place at Hack The Valley 8 and won Best Use of MongoDB Atlas.',
     skills: ['React.js', 'Flask', 'MongoDB', 'OpenAI API', 'Prompt Engineering', 'UI/UX Design', 'Figma', 'Bootstrap', 'Product Management', 'Hackathon'],
+    image: '/projects/food-resq/00-hero.jpg',
     links: [
       {
         type: 'devpost',
         url: 'https://devpost.com/software/food-resq-ai-recommended-recipes-to-reduce-food-waste',
-        label: 'View Devpost Submission'
+        label: 'Devpost submission'
       },
       {
         type: 'demo',
         url: 'https://www.youtube.com/watch?v=W53-djMHqHI',
-        label: 'Watch Demo Video'
+        label: 'Watch demo'
       }
     ],
     extendedContent: {
+      stats: [
+        { value: '36h', label: 'build time' },
+        { value: '6th', label: 'place overall' },
+        { value: '2', label: 'awards won' },
+        { value: '58%', label: 'Canada food waste' },
+      ],
+      pullQuote: 'Real fridges are partial. Half a carrot, half an onion, a quarter pound of ground pork. That ingredient drift is most of what household food waste actually looks like.',
       overview: {
-        title: 'AI-Powered Recipe Recommendations to Reduce Food Waste',
-        content: 'Food ResQ uses a MongoDB database to track ingredients in your fridge and generates flexible, delicious recipes using ChatGPT to help you finish leftover food before it spoils. Built in 36 hours during Hack The Valley 8, the platform leverages AI to transform neglected ingredients (like half a carrot, half an onion, or a quarter pound of ground pork) into creative meal ideas. The app excels at handling unknown foods and ingredients you\'re too lazy to measure precisely, using LLM flexibility to generate practical recipes with step-by-step instructions. Users can input their fridge contents, and the AI recommends recipes that prioritize ingredients closer to expiry, ensuring nothing goes to waste. This project demonstrates how combining databases, AI APIs, and thoughtful UX design can solve real household sustainability challenges.'
+        title: 'A hackathon app that takes messy fridges seriously',
+        content: 'Food ResQ is a web app for the ingredients you forgot you had. The user tracks their fridge contents (with deliberately fuzzy quantities — "half", "some", "a bit"), the app stores it in a MongoDB document with no schema fight, and ChatGPT generates a few recipes that use what is about to expire. Built in 36 hours at Hack The Valley 8 with a four-person team. The product\'s wedge is not "another recipe app," it is that the recipe app step only works if the fridge tracking step accepts how messy real cooking actually is.'
       },
       motivation: {
-        title: 'From Personal Frustration to Solution',
-        content: 'I was cooking at home one day and kept noticing we had half a carrot, half an onion, and like a quarter pound of ground pork lying around all the time. More often than not it was from me cooking a fun dish that my mother would have to somehow clean up over the week. So I wanted to create an app that would help me use those ingredients I had neglected, so that even if both my mother and I forgot about them, we would not contribute to food waste. This personal frustration became the spark for Food ResQ. In Canada, over 58% of food produced is wasted (35.5 million tonnes annually, worth $49 billion), while 1 in 7 Canadians experiences food insecurity. What started as a solution to finish leftover ingredients in my fridge evolved into a platform that tackles food waste at both household and community levels through AI recipe recommendations and food redistribution.'
+        title: 'Half a carrot, half an onion, a quarter pound of pork',
+        content: 'The motivation was personal. Cooking at home, my mother and I kept ending the week with the same leftovers: half a carrot, half an onion, a quarter pound of ground pork. Either I had cooked a "fun" dish that used part of an ingredient, or we had bought ahead and forgotten. The wider numbers are worse: Canada wastes 58% of all food produced (35.5 million tonnes a year, worth $49 billion) while 1 in 7 Canadians faces food insecurity. The app does not solve food insecurity, but it does target the one piece of that problem that an individual household can actually move, which is finishing the ingredients you already bought.'
       },
+      decisions: [
+        {
+          decision: 'Solve for the messy fridge, not the cookbook fridge',
+          reasoning: 'Recipe apps tend to assume the user has every ingredient at the right quantity. Real fridges have partial ingredients, forgotten expiry dates, and ingredients the user is not sure how to name. The entire product is designed around accepting that mess: free-text quantities, optional expiry dates, vague names, and ingredient deletion that does not require finishing the item. If we had designed around the cookbook fridge, we would have built a worse version of an app that already exists.'
+        },
+        {
+          decision: 'LLM over a curated recipe database',
+          reasoning: 'A traditional recipe database (Spoonacular, Edamam) requires the input ingredients to match its taxonomy. "Half a carrot, half an onion, and ground pork" produces zero matches because nothing is exactly normalized. ChatGPT improvises through ambiguous quantities and unfamiliar combinations, and it can be prompted to weight toward ingredients near expiry. The tradeoff is that LLM output is non-deterministic and occasionally malformed, which is the cost we pay for the flexibility.'
+        },
+        {
+          decision: 'MongoDB over a relational schema',
+          framework: 'NoSQL document model',
+          reasoning: 'A relational schema for an ingredient (name, quantity, unit, expiry) is half-right at best. Some ingredients have no unit ("a handful"), some have no quantity ("some"), some have no name the user knows. MongoDB lets each ingredient document carry whatever shape the user actually entered, with nullable fields. The prize for Best Use of MongoDB Atlas was effectively for "you used the document model the way it was designed to be used."'
+        },
+        {
+          decision: 'Stop and replan after the schema failure',
+          reasoning: 'Mid-hackathon, our initial database schema collapsed. Continuing to code around it would have buried us in workarounds. We stopped, drew the Kanban board and the API contract on a literal blackboard, documented the endpoints, then resumed. Trading two hours of momentum for a real plan was the highest-leverage decision of the build. Most hackathons reward more code; this one rewarded slowing down at exactly the right moment.'
+        },
+        {
+          decision: 'Prompt engineering as a first-class deliverable',
+          reasoning: 'Getting the LLM to return consistently-formatted recipes (ingredients list, numbered steps, cooking time, substitutions) was not a side task, it was the API. We wrote the prompt as a structured template with explicit format requirements, tested edge cases (weird ingredients, missing units), and built parsing on the frontend to handle the occasional malformed response gracefully. Treating the prompt as a contract is what made the recipe surface ship-ready instead of demo-ware.'
+        },
+        {
+          decision: 'Polish the demo, not the feature surface',
+          reasoning: '36 hours is short. The team picked a smaller scope (fridge inventory, add ingredient, recipe generation, single-user demo) and executed it cleanly, instead of stretching to receipt scanning, notifications, multi-user accounts, and a settings page that would all look 80% done. Judges reward a polished surface that works end to end over a half-built feature wall. The "best demo" feedback we got was the direct result of this decision.'
+        }
+      ],
+      keyFindings: [
+        {
+          stat: '36h',
+          title: 'Time is the constraint that shapes every decision',
+          description: 'Every scope call (LLM over a curated DB, MongoDB over Postgres, polish over breadth, stop and replan after the schema failure) was downstream of the 36-hour timer. The constraint is what forced cleaner architectural decisions than I would have made on a relaxed timeline.'
+        },
+        {
+          stat: '1 schema',
+          title: 'The failure that taught the most',
+          description: 'The initial database schema mistake was the inflection point of the build. The decision to stop, plan on a blackboard, document the API contract, and only then resume coding was what saved the project. Replanning under pressure is a skill, not a stumble.'
+        },
+        {
+          stat: '58%',
+          title: 'The user pain is national, not personal',
+          description: 'Canada wastes 58% of all food produced, 35.5 million tonnes a year, $49 billion. The app cannot fix that, but it can move the household piece of it, which is the only piece an individual user can actually move. Naming the larger number matters: it positions the app as serious, not a toy.'
+        },
+        {
+          stat: '6th + 1',
+          title: 'Two awards as external validation',
+          description: '6th place overall at Hack The Valley 8 plus Best Use of MongoDB Atlas. The latter mattered more because it was a category award for the specific design call we made (document model for messy ingredient shapes) rather than a generic ranking.'
+        }
+      ],
       features: [
         {
-          title: 'Fridge Inventory Database',
-          description: 'MongoDB database stores user fridge contents with flexible schema supporting varied ingredient types, quantities, and expiry dates. Users can quickly add ingredients without precise measurements ("half a carrot", "some ground pork") or even unknown foods. The database tracks what\'s in your fridge over time, providing the foundation for smart recipe recommendations.',
-          insight: 'Built with flexibility in mind because home cooking is messy. Users don\'t want to weigh every ingredient or look up exact names. The loose schema accommodates real-world fridge chaos while still enabling intelligent recipe matching.'
+          title: "Frank's Fridge inventory",
+          description: 'The home surface: a list of ingredients with name, quantity, unit, and expiry date, plus a per-row trash icon and an "Add Ingredients" / "Delete All" pair at the bottom. Quantities and units are free text, expiry is optional. The page renders even when the user has not finished entering everything correctly.',
+          insight: 'The inventory is the entire product. If users do not maintain it, recipe recommendations have nothing to work with. Making the page tolerate partial data is what keeps the inventory alive between sessions.',
+          image: '/projects/food-resq/01-franks-fridge.jpg',
+          imageFit: 'contain'
         },
         {
-          title: 'ChatGPT-Powered Recipe Generation',
-          description: 'OpenAI API integration generates creative, practical recipes using whatever ingredients you have on hand. Detailed prompt engineering ensures recipes include step-by-step instructions, cooking times, and substitution suggestions. The AI handles inconsistent ingredient data gracefully, turning "half an onion" and "quarter pound pork" into delicious meal ideas.',
-          insight: 'LLM flexibility is the killer feature. Traditional recipe databases require exact ingredient matches, but ChatGPT improvises brilliantly with partial ingredients, unknown quantities, and unusual combinations. This makes the app genuinely useful for real kitchens.'
+          title: 'Add an ingredient (the flexible-schema modal)',
+          description: 'A modal with four fields: Ingredient Name, Quantity, Unit (dropdown), Expiration Date. Only Name is required, everything else is optional. The Save Changes button accepts the partial entry and the row appears in the table with whatever data the user provided.',
+          insight: 'This is the modal where the MongoDB-over-relational decision pays off. A relational schema would have rejected partial entries; the document model accepts them and lets the user keep moving.',
+          image: '/projects/food-resq/02-add-ingredient.jpg',
+          imageFit: 'contain'
         },
         {
-          title: 'Expiry Priority Algorithm',
-          description: 'Smart recommendation system prioritizes ingredients closer to expiry, ensuring older food gets used first. When generating recipes, the AI receives expiry context and weights suggestions toward ingredients about to spoil. Future feature: automated notifications reminding users to cook specific ingredients before they go bad.',
-          insight: 'Prevents the "out of sight, out of mind" problem. Users forget what\'s buried in their fridge, but the app remembers and actively suggests recipes before ingredients spoil. This proactive approach drives higher engagement and real waste reduction.'
+          title: 'Recipe generation with a custom prompt',
+          description: 'The right side surfaces ChatGPT-generated recipes (Asian Dish, American Dish, British Dish), expanded one at a time to show ingredients and numbered steps. The left side is the ingredient picker with checkboxes (use? yes/no per row) and a free-text "Customization" box where users can layer their own request ("Suggest an asian dish, an american dish and a british dish with my ingredients").',
+          insight: 'The customization box is the killer feature. Users can shape the LLM\'s output without learning prompt engineering, and the model handles the layering between the structured ingredient list and the natural-language addition.',
+          image: '/projects/food-resq/03-recipe-generation.jpg',
+          imageFit: 'contain'
         },
         {
-          title: 'Receipt Scanning Vision (Planned)',
-          description: 'Planned feature to automatically add ingredients via receipt scanning, eliminating manual data entry. Users snap a photo of their grocery receipt, and computer vision extracts item names and quantities to populate the fridge database. Makes onboarding frictionless and encourages consistent inventory tracking.',
-          insight: 'Manual ingredient entry is the biggest friction point. Receipt scanning removes this barrier entirely, making the app as easy as "take a photo after shopping." Planned for next iteration to drive adoption and daily usage.'
+          title: 'Brand surface: the marketing entry',
+          description: 'The dramatic login uses a food + cookware backdrop with the Food ResQ wordmark, the username/password fields, and a hero promise: "Worried about your ingredients going bad? Try our recipes catered towards what ingredients you have right now." Sets the product\'s tone before the user has typed anything.',
+          insight: 'The brand surface does more than authenticate; it states the product\'s promise before the user logs in. The split layout (form left, value prop right) means the marketing line and the action are on the same screen, not two clicks apart.',
+          image: '/projects/food-resq/04-brand-surface.jpg',
+          imageFit: 'cover'
         },
         {
-          title: 'React + Flask Architecture',
-          description: 'Clean separation between React.js/Bootstrap frontend and Flask Python backend. Frontend handles user interactions and recipe display, while backend manages MongoDB operations, OpenAI API calls, and prompt engineering. Professional dev-ops practices with Kanban board planning and detailed API documentation prevented refactor headaches during the 36-hour sprint.',
-          insight: 'Good architecture saved the hackathon. After an initial database schema mistake, the modular design allowed complete refactor without breaking everything. Documented APIs and clear separation of concerns meant the team could parallelize work efficiently.'
+          title: 'Behind the scenes: the Kanban and the API contract',
+          description: 'After the schema failure mid-hackathon, the team paused and rebuilt the plan on a physical blackboard: a TASK / IN PROGRESS / DONE column board on the left (Signin/Signup, Home, Recipes, DB setup, Schema, API, Session, AI) and the full REST endpoint contract on the right (POST /api/login, signup, ingredients; GET endpoints; DELETE; POST(LLM) for recipe generation). The blackboard was the source of truth for the rest of the build.',
+          insight: 'Most hackathon teams never write down the API contract; they discover it as bugs. This board is what made the parallel front-end and back-end work possible after the schema reset. The decision to spend 30 minutes drawing it bought the next 24 hours.',
+          image: '/projects/food-resq/05-kanban-behind-scenes.jpg',
+          imageFit: 'cover'
+        },
+        {
+          title: 'Receipt scanning (planned)',
+          description: 'The biggest friction in the current build is manual ingredient entry. The planned next iteration was OCR via a phone camera: snap the grocery receipt, extract item names and quantities, populate the fridge inventory automatically. Out of scope for the 36-hour build, on the roadmap for any production version.',
+          insight: 'The user pain we did not solve in the hackathon. If retention is the metric, the receipt-scanner is the feature that would move it most, because manual entry is the one part of the loop users will not maintain on their own.'
         }
       ],
       tools: [
         {
-          name: 'React.js & Bootstrap',
-          purpose: 'Built responsive frontend with modern component architecture. React handled state management for fridge inventory and recipe display, while Bootstrap provided mobile-friendly styling and UI components. Team had to relearn React during the hackathon, making solid component design critical for staying on schedule.'
+          name: 'React.js + Bootstrap',
+          purpose: 'Responsive frontend: inventory table, add-ingredient modal, recipe display, login. Bootstrap kept the styling work bounded so the team could focus on flow logic. The team had to relearn React during the hackathon, which made simple, well-bounded components a survival tactic.'
         },
         {
-          name: 'Flask (Python Backend)',
-          purpose: 'Python Flask server managed API routes, MongoDB database operations, and OpenAI integration. Chose Flask for rapid prototyping speed and Python\'s excellent library ecosystem for data handling. Backend refactor mid-hackathon tested Flask\'s flexibility and modular design principles.'
+          name: 'Flask (Python)',
+          purpose: 'Backend API: routes for login, signup, ingredient CRUD, and the recipe-generation POST that proxies to OpenAI. Flask was chosen for the speed of building a route surface in Python, and the language let us share helpers between API logic and prompt construction.'
         },
         {
           name: 'MongoDB Atlas',
-          purpose: 'NoSQL database stored user fridge inventories with flexible schema supporting varied ingredient formats. Won "Best Use of MongoDB Atlas" prize for demonstrating how document database flexibility enables real-world messy data (unmeasured quantities, unknown foods, partial ingredients) without rigid schemas.'
+          purpose: 'Document store for users and ingredient records. Won Best Use of MongoDB Atlas because the document model fit the messy shape of real ingredient data (nullable units, free-text quantities, optional expiry) without requiring a normalized schema.'
         },
         {
           name: 'OpenAI API (ChatGPT)',
-          purpose: 'Core feature powering recipe generation. Engineered detailed prompts to retrieve formatted recipe data including ingredients, steps, cooking times, and substitutions. Learned nuances of writing prompts for consistent LLM outputs and handling API inconsistency challenges during testing.'
+          purpose: 'Recipe generation. The prompt is the contract: a structured template that asks for ingredients list, numbered steps, cooking time, and substitutions, with format constraints. Frontend parses the output and renders it as a collapsible recipe panel.'
         },
         {
           name: 'Figma',
-          purpose: 'Designed complete UI/UX for fridge inventory management, ingredient addition flow, and recipe recommendation display. Created high-fidelity mockups to align team vision before development, preventing feature creep and ensuring focused 36-hour execution.'
+          purpose: 'High-fidelity mockups for login, inventory, add-ingredient, and recipe surfaces before any code. Pre-built component decisions kept the team from arguing about layout in the build window.'
         },
         {
-          name: 'Kanban Board & Documentation',
-          purpose: 'Professional dev-ops practices with task planning board and detailed API documentation. After initial database schema failure, the team stopped, documented everything, and planned properly. This saved countless hours debugging and enabled efficient parallel development.'
+          name: 'Kanban + blackboard API spec',
+          purpose: 'After the schema mistake mid-hackathon, the team paused and drew the Kanban board plus the full REST contract on a blackboard. That artifact was the recovery plan, the build tracker, and the source of truth for the next 24 hours.'
         }
       ],
       impact: {
-        title: 'Hackathon Success and Technical Learnings',
-        content: 'Food ResQ secured 6th place overall at Hack The Valley 8 and won Best Use of MongoDB Atlas for demonstrating how NoSQL flexibility handles real-world messy data. The judges praised our polished demo, professional presentation, and practical approach to household sustainability. Submitting for Best AI Hack and Best Sustainability Hack themes positioned the project at the intersection of emerging technology and environmental impact.\n\nFrom a technical perspective, Food ResQ taught critical lessons about good API design and planning. We messed up our database schema early on, requiring a complete refactor mid-hackathon. This failure forced the team to drop immediate work, think through solutions together, and document everything properly. The experience reinforced that upfront planning saves massive headaches during implementation. We also learned the nuances of CORS technology when connecting frontend to backend, and discovered how to write detailed prompts for retrieving consistently formatted data from LLMs despite API inconsistency challenges.\n\nThe team\'s professional dev-ops practices made the difference. Our Kanban board saved hours during task planning and implementation. After the initial failure, we documented APIs thoroughly and maintained clear separation between React frontend and Flask backend, allowing parallel development without stepping on each other\'s toes. The accomplishment we\'re most proud of: we finished a stunning demo that actually works. Future plans include receipt scanning for automatic ingredient entry, expiry-based notifications, and freemium monetization with premium LLM access for less than a coffee per month. This project demonstrates ability to rapidly prototype AI-powered solutions, recover from technical setbacks, and deliver polished products under extreme time constraints.'
+        title: 'What the hackathon actually taught',
+        content: 'Food ResQ placed 6th overall at Hack The Valley 8 and won Best Use of MongoDB Atlas. The category award mattered more than the overall ranking because it was for a specific design call (document model for messy ingredient data) rather than a generic "good project" vote. Judges called out the polish of the demo, which was the direct result of the decision to keep scope narrow and execute cleanly instead of stretching to a half-built feature wall.\n\nThe real lesson was about replanning under pressure. Our initial schema collapsed early. The choice to stop, draw the Kanban and the API contract on a blackboard, and only then resume coding was what saved the build. Most hackathon teams treat planning as something they skip to save time. We treated it as the thing that bought us time.\n\nThe other lesson was about treating prompts as APIs. Getting ChatGPT to return consistently-formatted recipes is not a one-line ask, it is a contract with explicit format requirements, edge cases tested, and a forgiving parser on the receiving end. The recipe surface shipped reliably because we wrote the prompt the same way we wrote the REST endpoints.'
+      },
+      limitations: {
+        title: 'What this project is, and what it isn\'t',
+        items: [
+          '36-hour hackathon scope. The current build is a single-user demo with a hard-coded session, not a production-ready multi-tenant web app.',
+          'LLM output is non-deterministic. ChatGPT occasionally returns malformed recipes; the frontend handles common cases but a production build would need stricter response validation and retries.',
+          'Receipt scanning is on the roadmap but unbuilt. Manual ingredient entry is the highest-friction step in the current loop and the most likely retention killer.',
+          'No nutritional or dietary data. The app cannot warn about allergies, dietary restrictions, or macros — purely a recipe ideation tool.',
+          'Web only, no native mobile build. The inventory is the kind of thing users would update with a thumb in a grocery store, which a mobile app would handle better than a responsive web page.',
+          'Expiry-based notifications are designed but not implemented. The current app can prioritize near-expiry ingredients in a recipe, but it does not actively remind the user to use them.',
+        ]
       }
     },
     featured: false
