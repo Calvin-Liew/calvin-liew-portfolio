@@ -955,7 +955,7 @@ export const projects: Project[] = [
     dates: 'May 2024 - Aug 2024',
     organization: 'University of Toronto',
     courseCode: 'CSCC10 - Human-Computer Interaction',
-    description: 'A six-person CSCC10 team project: a mobile peer-tutoring app for University of Toronto students that connects tutors and tutees through a multistep onboarding form, filter-rich matchmaking, in-app booking, and a virtual meeting surface with chat, file sharing, and reviews. The design was driven by a 30-response survey, two unstructured interviews, and a 13-participant remote usability study evaluated against Nielsen\'s 10 heuristics with emphasis on visibility, user control, and recognition.',
+    description: 'A four-phase HCI research project (CSCC10, Summer 2024) by a team of six University of Toronto students. The output is a high-fidelity mobile prototype for peer-to-peer tutoring grounded in five cited studies on peer tutoring efficacy, student mental health, and online versus in-person learning. The work covers low-fidelity exploration, a 30-response survey plus two unstructured interviews, a high-fidelity Figma prototype, and a 13-participant asynchronous usability study evaluated against Nielsen\'s 10 heuristics with emphasis on H1 (visibility), H3 (user control), and H6 (recognition).',
     skills: ['Mobile Design', 'Usability Testing', 'Experience Design', 'Prototyping', 'User-centered Design', 'User Experience Design (UED)', 'User Personas', 'Figma', 'Wireframing', 'UX Research', 'Design Thinking'],
     links: [
       {
@@ -986,12 +986,48 @@ export const projects: Project[] = [
       ],
       pullQuote: 'An inactive social life and poor academics are intertwined. Tutorly was designed to address both at once.',
       overview: {
-        title: 'A peer-tutoring app built around the CSCC10 research process',
-        content: 'Tutorly is a mobile peer-tutoring platform designed for the University of Toronto student community. The team\'s thesis, grounded in four cited studies, is that peer tutoring pulls academic and social outcomes in the same direction, particularly for first-generation, lower-income, and post-pandemic students. The design covers the full journey: a multistep onboarding form that collects academic details and study habits, a filter-rich Find Peers tab for matchmaking, an in-app booking flow for in-person or virtual sessions, and a meeting surface with camera, chat, file sharing, and a star-plus-comment review at the end.'
+        title: 'Abstract',
+        content: 'This paper summarizes the design process and methodology behind Tutorly, a peer-to-peer tutoring platform aimed at enhancing academic support and student well-being for University of Toronto students. The team followed a four-phase HCI process: a low-fidelity exploration phase (personas, scenarios, hierarchical task analyses), a requirements-gathering phase (a 30-response survey distributed on r/UTSC and r/UTM plus two unstructured interviews with non-CS students), a high-fidelity Figma prototype, and a remote asynchronous usability study with 13 participants. The work is grounded in five cited studies covering peer tutoring efficacy, student mental health, online versus in-person learning, and post-graduate career readiness. Findings are reported below, organized by the three core tasks evaluated: searching and requesting a tutor, signup and onboarding, and joining a peer tutor session.'
       },
       motivation: {
-        title: 'Two problems that are really one',
-        content: 'The team started from a shared observation that their campus had a declining social life and that the decline was tangled up with academic struggle, a pattern the literature backs up (Moghimi et al., 2023; Collier, 2021). Peer tutoring kept showing up in the research as one of the few interventions that addresses both at once: it improves academic performance regardless of competence or time spent (Bowman-Perrott et al., 2013) and is just as effective online as in person (Gehreke et al., 2024). Tutorly was designed to make peer tutoring easy to start, safe to participate in, and structured enough that students stick with it.'
+        title: 'Problem statement',
+        content: 'The team started from a shared observation that their campus had a declining social life and that the decline was tangled up with academic struggle, a pattern the literature backs up (Moghimi et al., 2023; Collier, 2021). Peer tutoring kept showing up in the research as one of the few interventions that addresses both at once: it improves academic performance regardless of competence or time spent (Bowman-Perrott et al., 2013) and is just as effective online as in person (Gehreke et al., 2024). The two problems, an inactive social life and poor academics, were treated as one design problem: build a tool that makes peer tutoring easy to start, safe to participate in, and structured enough that students stick with it.'
+      },
+      literatureReview: {
+        title: 'Literature review',
+        intro: 'Five studies grounded the design. Each citation is paired with the specific design or product decision it informed, so the connection between the research and the prototype is auditable.',
+        studies: [
+          {
+            citation: 'Bowman-Perrott et al. (2013)',
+            venue: 'School Psychology Review',
+            finding: 'A meta-analytic review of single-case research finds peer tutoring is an effective tool for improving academic ability regardless of one\'s competence, health, or time spent.',
+            application: 'Corroborated the team\'s anecdotal evidence that peer tutoring works across student demographics. Justified building a general-audience platform instead of a niche-major one.',
+          },
+          {
+            citation: 'Collier (2021)',
+            venue: 'Metropolitan Universities',
+            finding: 'First-generation, lower-income, and newer students face heightened difficulty forming social connections and succeeding academically. Peer tutoring is the primary suggested intervention.',
+            application: 'Shaped the equity framing: features like accommodations-aware matching and clear, jargon-light copy are aimed at students who do not already have an academic network.',
+          },
+          {
+            citation: 'Gehreke et al. (2024)',
+            venue: 'Review of Education',
+            finding: 'Online peer tutoring is as effective as in-person tutoring. A hybrid approach may outperform either mode alone by giving students flexibility.',
+            application: 'Directly drove the decision to support both in-person and virtual sessions as a first-class choice in the booking flow, not a secondary preference.',
+          },
+          {
+            citation: 'Brown (2024)',
+            venue: 'LendEDU / College Pulse survey',
+            finding: 'Only 29% of surveyed students feel prepared for employment after graduation.',
+            application: 'Reframed Tutorly as a career-skill builder, not only an academic tool: tutoring builds soft skills for the tutor (teaching, communication) and hard skills for the tutee.',
+          },
+          {
+            citation: 'Moghimi et al. (2023)',
+            venue: 'BMC Public Health',
+            finding: 'Cross-sectional mixed-methods study finds a widespread mental health decline among post-secondary students, intensified by the COVID-19 pandemic.',
+            application: 'Established urgency: the design treats social isolation as part of the academic-support problem rather than a separate concern, which is why the chat surface and review system live alongside booking.',
+          },
+        ],
       },
       decisions: [
         {
@@ -1043,6 +1079,54 @@ export const projects: Project[] = [
           description: 'Every one of the 13 participants rated the session-rating layout at least clear. Not every screen tested clean, the academic-info labels, the email-error message, and the meeting banners all surfaced refinements, but the review system landed on the first pass and locked in as-is.'
         }
       ],
+      usabilityResults: {
+        title: 'Usability study results',
+        sampleSize: '13 participants',
+        intro: 'Asynchronous remote study via Figma + Google Forms. Participants completed each task while answering multiple-choice and short-answer questions per subtask. Results below are organized by the three tested tasks, with the specific subtask context noted where relevant.',
+        tasks: [
+          {
+            number: '01',
+            task: 'Search and request a peer tutor session',
+            context: 'Participants opened the Find Peers tab, applied a subject filter for computer science, selected a tutor, and booked a virtual meeting for July 17 at 2 PM.',
+            results: [
+              { metric: '92.3%', statement: 'found subject filtering at least easy to use.' },
+              { metric: '15.4%', statement: 'found switching from default to custom subject sets unclear (flagged for iteration).' },
+              { metric: '70%', statement: 'rated tutor profile information at least clear (30% neutral, also flagged).' },
+              { metric: '23.1%', statement: 'rated the calendar interface only neutral, the highest-priority polish target in this task.' },
+              { metric: '84.6%', statement: 'confirmed the booking confirmation alert provided all expected information.' },
+              { metric: '84.7%', statement: 'were satisfied with the overall search-and-book journey.' },
+            ],
+          },
+          {
+            number: '02',
+            task: 'Signup and onboarding as a student',
+            context: 'Participants registered a new student account: personal info, profile picture, email + password, academic info (campus, major, subjects, year), and study habits including accommodations.',
+            results: [
+              { metric: '100%', statement: 'completed the personal info step without issue.' },
+              { metric: '100%', statement: 'found profile picture upload easy.' },
+              { metric: '76.9%', statement: 'rated the email error message at least clear (15.4% neutral, 7.7% very unclear).' },
+              { metric: '76.9%', statement: 'rated academic info labels and placeholders at least clear (23.1% neutral).' },
+              { metric: '69.2%', statement: 'found entering study habits and accommodations at least easy (23.1% neutral, 7.7% difficult).' },
+              { metric: '92.3%', statement: 'confirmed the final confirmation step provided expected information.' },
+              { metric: '76.9%', statement: 'were satisfied with the overall signup journey.' },
+            ],
+          },
+          {
+            number: '03',
+            task: 'Join a peer tutor session',
+            context: 'Participants viewed an upcoming meeting banner, opened cancel-meeting flow then backed out, joined a meeting, toggled camera, used in-meeting chat and file sharing, ended the meeting, left a star rating, and submitted a review.',
+            results: [
+              { metric: '84.6%', statement: 'found upcoming-meeting banners at least clear (15.4% neutral).' },
+              { metric: '92.3%', statement: 'found the Cancel Meeting button easy to locate.' },
+              { metric: '84.7%', statement: 'rated the cancel-meeting alert clear (7.7% unclear, flagged).' },
+              { metric: '92.3%', statement: 'rated in-meeting chat box clarity at least clear.' },
+              { metric: '76.9%', statement: 'found chat file sharing easy or very easy (23.1% neutral).' },
+              { metric: '100%', statement: 'rated the star-rating layout at least clear, the only feature that needed no iteration.' },
+              { metric: '84.7%', statement: 'found going back to view the conversation easy or very easy.' },
+            ],
+          },
+        ],
+      },
       features: [
         {
           title: 'UofT-verified signup + multistep onboarding',
@@ -1131,7 +1215,33 @@ export const projects: Project[] = [
           'Some prototype limitations bled into results: star ratings did not update visually in Figma, which the participants flagged as "unclear" even though the issue was the tool, not the design.',
           'Course scope, sixteen weeks. Future work the team explicitly named: larger and more diverse panels, responsive design across device sizes, a desktop companion, Fitts\' Law-driven button sizing, and A/B testing on the Find Peers task.',
         ]
-      }
+      },
+      references: {
+        title: 'References',
+        intro: 'The five studies cited in the literature review and problem statement, in APA format. All sources are peer-reviewed except Brown (2024), which is industry survey reporting.',
+        entries: [
+          {
+            citation: 'Bowman-Perrott, L., Davis, H., Vannest, K., Williams, L., Greenwood, C., & Parker, R. (2013). Academic benefits of peer tutoring: A meta-analytic review of single-case research. School Psychology Review, 42(1), 39-55.',
+            url: 'https://doi.org/10.1080/02796015.2013.12087490',
+          },
+          {
+            citation: 'Brown, M. (2024, April 11). College students lack confidence in their post-grad careers. LendEDU.',
+            url: 'https://lendedu.com/blog/are-college-students-prepared-for-career/',
+          },
+          {
+            citation: 'Collier, P. (2021). How peer mentoring can help universities promote student success in a post-COVID-19 pandemic world. Metropolitan Universities, 32(3), 37-54.',
+            url: 'https://doi.org/10.18060/25222',
+          },
+          {
+            citation: 'Gehreke, L., Schilling, H., & Kauffeld, S. (2024). Effectiveness of peer mentoring in the study entry phase: A systematic review. Review of Education, 12(1).',
+            url: 'https://doi.org/10.1002/rev3.3462',
+          },
+          {
+            citation: 'Moghimi, E., Stephenson, C., Gutierrez, G., Jagayat, J., Layzell, G., Patel, C., McCart, A., Gibney, C., Langstaff, C., Ayonrinde, O., Khalid-Khan, S., Milev, R., Snelgrove-Clarke, E., Soares, C., Omrani, M., & Alavi, N. (2023). Mental health challenges, treatment experiences, and care needs of post-secondary students: A cross-sectional mixed-methods study. BMC Public Health, 23(1).',
+            url: 'https://doi.org/10.1186/s12889-023-15452-x',
+          },
+        ],
+      },
     },
     featured: false
   },

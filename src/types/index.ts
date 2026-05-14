@@ -72,6 +72,69 @@ export interface Visualization {
   phoneFrame?: boolean;
 }
 
+/** A single cited study in a literature review chapter */
+export interface CitedStudy {
+  /** APA-style author + year, e.g. "Bowman-Perrott et al. (2013)" */
+  citation: string;
+  /** The headline finding from the paper, in a sentence */
+  finding: string;
+  /** How the finding shaped the project's design decisions */
+  application: string;
+  /** Optional venue or journal name */
+  venue?: string;
+}
+
+/** Literature review chapter — grounds the project in cited research */
+export interface LiteratureReview {
+  title?: string;
+  intro?: string;
+  studies: CitedStudy[];
+}
+
+/** A single usability result line — a metric + what it says */
+export interface UsabilityResult {
+  /** The percentage or numeric stat, e.g. "92.3%" or "100%" */
+  metric: string;
+  /** What that metric means, in a sentence */
+  statement: string;
+}
+
+/** One task block from a usability study — task name, what was tested, the numbers */
+export interface UsabilityTaskBlock {
+  /** Display number, e.g. "01" or "Task 1" */
+  number: string;
+  /** Task name, e.g. "Search and request peer tutor session" */
+  task: string;
+  /** Optional one-line context for what participants were asked to do */
+  context?: string;
+  /** The measured results for this task */
+  results: UsabilityResult[];
+}
+
+/** Usability results chapter — task-by-task quantitative results */
+export interface UsabilityResults {
+  title?: string;
+  intro?: string;
+  /** Sample size used across all tasks (e.g. "13 participants") */
+  sampleSize?: string;
+  tasks: UsabilityTaskBlock[];
+}
+
+/** A single reference entry for a references chapter */
+export interface ReferenceEntry {
+  /** Full APA citation as one string */
+  citation: string;
+  /** Optional DOI or article URL */
+  url?: string;
+}
+
+/** References chapter — formal citation list for the cited research */
+export interface ResearchReferences {
+  title?: string;
+  intro?: string;
+  entries: ReferenceEntry[];
+}
+
 /** Embedded Figma file or prototype shown as an interactive iframe in the case study */
 export interface FigmaEmbed {
   /** Full Figma file/proto URL — will be wrapped with figma.com/embed?embed_host=share&url=... */
@@ -154,6 +217,12 @@ export interface ExtendedContent {
   beforeAfter?: BeforeAfter;
   /** Optional embedded Figma file or prototype shown as an interactive iframe */
   figmaEmbed?: FigmaEmbed;
+  /** Optional literature review — cited studies that grounded the project */
+  literatureReview?: LiteratureReview;
+  /** Optional task-by-task quantitative results from a usability study */
+  usabilityResults?: UsabilityResults;
+  /** Optional formal references / citations list at the end of the page */
+  references?: ResearchReferences;
   keyFindings?: KeyFinding[];
   visualizations?: Visualization[];
   features?: Visualization[];
