@@ -6,7 +6,8 @@ import { join } from 'node:path';
 // handwritten "Calvin / Liew." stacked, terracotta period accent.
 
 export const alt = "Calvin Liew — AI Workflows Product Analyst";
-export const size = { width: 1200, height: 630 };
+// LinkedIn-recommended OG thumbnail size: 1200 x 627 (1.91:1 ratio)
+export const size = { width: 1200, height: 627 };
 export const contentType = 'image/png';
 
 export default async function Image() {
