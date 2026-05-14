@@ -248,6 +248,62 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 </>
               )}
 
+              {/* Literature review — cited studies grounding the project */}
+              {project.extendedContent.literatureReview &&
+                project.extendedContent.literatureReview.studies.length > 0 && (
+                  <>
+                    <ChapterDivider />
+                    <section>
+                      <ChapterHeading number={nextChapter()}>
+                        {project.extendedContent.literatureReview.title ?? 'Literature review'}
+                      </ChapterHeading>
+                      {project.extendedContent.literatureReview.intro && (
+                        <p className="text-base sm:text-lg text-ink-soft mb-10 max-w-2xl leading-relaxed">
+                          {project.extendedContent.literatureReview.intro}
+                        </p>
+                      )}
+                      <ol className="space-y-6">
+                        {project.extendedContent.literatureReview.studies.map((study, index) => (
+                          <li
+                            key={index}
+                            className="bg-paper-deeper border border-border rounded-xl p-5 sm:p-6 shadow-paper grid grid-cols-[auto_1fr] gap-4 sm:gap-6"
+                          >
+                            <span className="font-display italic text-3xl sm:text-4xl text-terracotta leading-none pt-1">
+                              {String(index + 1).padStart(2, '0')}
+                              <span className="not-italic">.</span>
+                            </span>
+                            <div>
+                              <p className="font-display text-base sm:text-lg text-ink mb-1">
+                                {study.citation}
+                                {study.venue && (
+                                  <span className="text-ink-soft font-normal italic">
+                                    {' '}&middot; {study.venue}
+                                  </span>
+                                )}
+                              </p>
+                              <p className="text-sm sm:text-base text-ink-soft leading-relaxed mb-3">
+                                {study.finding}
+                              </p>
+                              <p className="text-sm sm:text-base text-terracotta-deep font-medium leading-relaxed">
+                                <span
+                                  className="text-terracotta inline-block mr-2"
+                                  style={{
+                                    fontFamily: 'var(--font-kalam), cursive',
+                                    transform: 'rotate(-2deg)',
+                                  }}
+                                >
+                                  applied &mdash;
+                                </span>
+                                {study.application}
+                              </p>
+                            </div>
+                          </li>
+                        ))}
+                      </ol>
+                    </section>
+                  </>
+                )}
+
               {/* Pull quote — magazine-style breakout */}
               {project.extendedContent.pullQuote && (
                 <aside className="my-16">
@@ -641,6 +697,76 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   </>
                 )}
 
+              {/* Usability results — task-by-task quantitative data */}
+              {project.extendedContent.usabilityResults &&
+                project.extendedContent.usabilityResults.tasks.length > 0 && (
+                  <>
+                    <ChapterDivider />
+                    <section>
+                      <ChapterHeading number={nextChapter()}>
+                        {project.extendedContent.usabilityResults.title ?? 'Usability results'}
+                      </ChapterHeading>
+                      <div className="mb-10 max-w-2xl">
+                        {project.extendedContent.usabilityResults.sampleSize && (
+                          <p
+                            className="text-base text-terracotta mb-2 inline-block"
+                            style={{
+                              fontFamily: 'var(--font-kalam), cursive',
+                              transform: 'rotate(-1deg)',
+                            }}
+                          >
+                            n = {project.extendedContent.usabilityResults.sampleSize} &mdash;
+                          </p>
+                        )}
+                        {project.extendedContent.usabilityResults.intro && (
+                          <p className="text-base sm:text-lg text-ink-soft leading-relaxed">
+                            {project.extendedContent.usabilityResults.intro}
+                          </p>
+                        )}
+                      </div>
+                      <div className="space-y-8">
+                        {project.extendedContent.usabilityResults.tasks.map((block, blockIdx) => (
+                          <article
+                            key={blockIdx}
+                            className="bg-paper-deeper border border-border rounded-xl p-6 sm:p-7 shadow-paper"
+                          >
+                            <div className="flex items-baseline gap-3 mb-4 flex-wrap">
+                              <span className="font-display italic text-4xl sm:text-5xl text-terracotta leading-none">
+                                {block.number}
+                                <span className="not-italic">.</span>
+                              </span>
+                              <h3 className="font-display italic text-xl sm:text-2xl text-ink leading-tight">
+                                {block.task}
+                                <span className="text-terracotta not-italic">.</span>
+                              </h3>
+                            </div>
+                            {block.context && (
+                              <p className="text-sm text-ink-soft italic mb-5 pl-1 border-l-2 border-border pl-3">
+                                {block.context}
+                              </p>
+                            )}
+                            <ul className="space-y-3">
+                              {block.results.map((r, i) => (
+                                <li
+                                  key={i}
+                                  className="grid grid-cols-[auto_1fr] gap-4 items-baseline"
+                                >
+                                  <span className="font-display italic text-xl sm:text-2xl text-terracotta leading-none tabular-nums min-w-[5rem]">
+                                    {r.metric}
+                                  </span>
+                                  <span className="text-sm sm:text-base text-ink-soft leading-relaxed">
+                                    {r.statement}
+                                  </span>
+                                </li>
+                              ))}
+                            </ul>
+                          </article>
+                        ))}
+                      </div>
+                    </section>
+                  </>
+                )}
+
               {/* Features — same alternating magazine spread as visualizations
                   when images are provided; falls back to a simple card otherwise */}
               {project.extendedContent.features &&
@@ -1029,6 +1155,52 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                           )
                         )}
                       </ul>
+                    </section>
+                  </>
+                )}
+
+              {/* References — formal citation list */}
+              {project.extendedContent.references &&
+                project.extendedContent.references.entries.length > 0 && (
+                  <>
+                    <ChapterDivider />
+                    <section>
+                      <ChapterHeading number={nextChapter()}>
+                        {project.extendedContent.references.title ?? 'References'}
+                      </ChapterHeading>
+                      {project.extendedContent.references.intro && (
+                        <p className="text-base text-ink-soft mb-6 max-w-2xl leading-relaxed">
+                          {project.extendedContent.references.intro}
+                        </p>
+                      )}
+                      <ol className="space-y-4">
+                        {project.extendedContent.references.entries.map((ref, index) => (
+                          <li
+                            key={index}
+                            className="grid grid-cols-[auto_1fr] gap-4 text-sm sm:text-base text-ink-soft leading-relaxed"
+                          >
+                            <span className="font-display italic text-terracotta tabular-nums">
+                              [{index + 1}]
+                            </span>
+                            <span>
+                              {ref.citation}
+                              {ref.url && (
+                                <>
+                                  {' '}
+                                  <a
+                                    href={ref.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-terracotta-deep underline decoration-dotted underline-offset-2 hover:decoration-solid break-all"
+                                  >
+                                    {ref.url}
+                                  </a>
+                                </>
+                              )}
+                            </span>
+                          </li>
+                        ))}
+                      </ol>
                     </section>
                   </>
                 )}
