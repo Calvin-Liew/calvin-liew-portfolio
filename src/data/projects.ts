@@ -1251,7 +1251,7 @@ export const projects: Project[] = [
     category: 'Product Management',
     dates: 'Oct 2023',
     organization: 'Hack The Valley 8',
-    description: 'A 36-hour hackathon build: a web app that tracks the half-used ingredients in your fridge and asks ChatGPT to invent recipes around them. React.js + Bootstrap frontend, Flask backend, MongoDB Atlas for the deliberately flexible ingredient schema, OpenAI for the recipe generation. Built around the actual problem real fridges have, partial ingredients and forgotten expiry dates, instead of the cookbook ingredients recipe apps usually assume. Took 6th place at Hack The Valley 8 and won Best Use of MongoDB Atlas.',
+    description: 'A 36-hour hackathon build by a five-person team: a web app that tracks the half-used ingredients in your fridge and asks ChatGPT to invent recipes around them. React.js + Bootstrap frontend, Flask backend, MongoDB Atlas for the deliberately flexible ingredient schema, OpenAI for the recipe generation. Built around the actual problem real fridges have, partial ingredients and forgotten expiry dates, instead of the cookbook ingredients recipe apps usually assume. Placed 6th at Hack The Valley 8 and submitted to four category prizes (Best AI Hack, Best Sustainability Hack, Best Use of MongoDB Atlas, Most Creative Use of GitHub).',
     skills: ['React.js', 'Flask', 'MongoDB', 'OpenAI API', 'Prompt Engineering', 'UI/UX Design', 'Figma', 'Bootstrap', 'Product Management', 'Hackathon'],
     image: '/projects/food-resq/00-hero.jpg',
     links: [
@@ -1269,8 +1269,8 @@ export const projects: Project[] = [
     extendedContent: {
       stats: [
         { value: '36h', label: 'build time' },
-        { value: '6th', label: 'place overall' },
-        { value: '2', label: 'awards won' },
+        { value: '6th', label: 'place at HTV 8' },
+        { value: '5', label: 'person team' },
         { value: '58%', label: 'Canada food waste' },
       ],
       pullQuote: 'Real fridges are partial. Half a carrot, half an onion, a quarter pound of ground pork. That ingredient drift is most of what household food waste actually looks like.',
@@ -1294,7 +1294,7 @@ export const projects: Project[] = [
         {
           decision: 'MongoDB over a relational schema',
           framework: 'NoSQL document model',
-          reasoning: 'A relational schema for an ingredient (name, quantity, unit, expiry) is half-right at best. Some ingredients have no unit ("a handful"), some have no quantity ("some"), some have no name the user knows. MongoDB lets each ingredient document carry whatever shape the user actually entered, with nullable fields. The prize for Best Use of MongoDB Atlas was effectively for "you used the document model the way it was designed to be used."'
+          reasoning: 'A relational schema for an ingredient (name, quantity, unit, expiry) is half-right at best. Some ingredients have no unit ("a handful"), some have no quantity ("some"), some have no name the user knows. MongoDB lets each ingredient document carry whatever shape the user actually entered, with nullable fields. Choosing a document store was the right tool for the data, even if rigid schemas would have read as more "professional" to a different judging panel.'
         },
         {
           decision: 'Stop and replan after the schema failure',
@@ -1326,9 +1326,9 @@ export const projects: Project[] = [
           description: 'Canada wastes 58% of all food produced, 35.5 million tonnes a year, $49 billion. The app cannot fix that, but it can move the household piece of it, which is the only piece an individual user can actually move. Naming the larger number matters: it positions the app as serious, not a toy.'
         },
         {
-          stat: '6th + 1',
-          title: 'Two awards as external validation',
-          description: '6th place overall at Hack The Valley 8 plus Best Use of MongoDB Atlas. The latter mattered more because it was a category award for the specific design call we made (document model for messy ingredient shapes) rather than a generic ranking.'
+          stat: '6th',
+          title: 'Placement at Hack The Valley 8',
+          description: 'The team placed 6th overall in a field of student hackathon submissions and entered four category awards (Best AI Hack, Best Sustainability Hack, Best Use of MongoDB Atlas, Most Creative Use of GitHub) without winning any of them. The 6th place finish is the real external validation; the category submissions are useful as a record of how the team positioned the project.'
         }
       ],
       features: [
@@ -1384,7 +1384,7 @@ export const projects: Project[] = [
         },
         {
           name: 'MongoDB Atlas',
-          purpose: 'Document store for users and ingredient records. Won Best Use of MongoDB Atlas because the document model fit the messy shape of real ingredient data (nullable units, free-text quantities, optional expiry) without requiring a normalized schema.'
+          purpose: 'Document store for users and ingredient records. The document model fit the messy shape of real ingredient data (nullable units, free-text quantities, optional expiry) without requiring a normalized schema, which is why the team submitted the project for the Best Use of MongoDB Atlas category at HTV 8.'
         },
         {
           name: 'OpenAI API (ChatGPT)',
@@ -1401,7 +1401,7 @@ export const projects: Project[] = [
       ],
       impact: {
         title: 'What the hackathon actually taught',
-        content: 'Food ResQ placed 6th overall at Hack The Valley 8 and won Best Use of MongoDB Atlas. The category award mattered more than the overall ranking because it was for a specific design call (document model for messy ingredient data) rather than a generic "good project" vote. Judges called out the polish of the demo, which was the direct result of the decision to keep scope narrow and execute cleanly instead of stretching to a half-built feature wall.\n\nThe real lesson was about replanning under pressure. Our initial schema collapsed early. The choice to stop, draw the Kanban and the API contract on a blackboard, and only then resume coding was what saved the build. Most hackathon teams treat planning as something they skip to save time. We treated it as the thing that bought us time.\n\nThe other lesson was about treating prompts as APIs. Getting ChatGPT to return consistently-formatted recipes is not a one-line ask, it is a contract with explicit format requirements, edge cases tested, and a forgiving parser on the receiving end. The recipe surface shipped reliably because we wrote the prompt the same way we wrote the REST endpoints.'
+        content: 'Food ResQ placed 6th overall at Hack The Valley 8 and submitted to four category prizes (Best AI Hack, Best Sustainability Hack, Best Use of MongoDB Atlas, Most Creative Use of GitHub) without winning any of them. The category submissions are still a useful record of how the team positioned the project across themes; the 6th place finish is the actual external validation. Judges called out the polish of the demo, which was the direct result of the decision to keep scope narrow and execute cleanly instead of stretching to a half-built feature wall.\n\nThe real lesson was about replanning under pressure. Our initial schema collapsed early. The choice to stop, draw the Kanban and the API contract on a blackboard, and only then resume coding was what saved the build. Most hackathon teams treat planning as something they skip to save time. We treated it as the thing that bought us time.\n\nThe other lesson was about treating prompts as APIs. Getting ChatGPT to return consistently-formatted recipes is not a one-line ask, it is a contract with explicit format requirements, edge cases tested, and a forgiving parser on the receiving end. The recipe surface shipped reliably because we wrote the prompt the same way we wrote the REST endpoints.'
       },
       limitations: {
         title: 'What this project is, and what it isn\'t',
