@@ -859,6 +859,95 @@ export const projects: Project[] = [
           reasoning: 'Home / Events / Friends / Messages. Everything that does not fit into those four got cut from the surface and pushed inside the relevant tab. Settings, profile detail, search, filters: all live inside one of the four tabs, not in an overflow menu or a hamburger drawer. Four tabs is the smallest IA that still supports a credible music-social product, and it is the largest IA the user can hold in working memory while listening to music.'
         }
       ],
+      designSystem: {
+        title: 'Design system',
+        intro: 'The actual kit behind the screens: five colors, five type roles, six reusable components. Everything in the prototype is built from this kit, and most of the visual discipline comes from refusing to add to it.',
+        palette: [
+          {
+            name: 'Canvas',
+            hex: '#1A1D21',
+            role: 'The dark floor on every screen. Sets the brand mood and lets photography and album art carry the color.',
+          },
+          {
+            name: 'Matchify green',
+            hex: '#1DB954',
+            role: 'Brand mark, primary CTAs, tab-active state, profile ring. Used surgically so it never collapses into wallpaper.',
+          },
+          {
+            name: 'Social blue',
+            hex: '#1B95E0',
+            role: 'Secondary social actions only. The Request button on Friends cards lives here so it does not compete with the green primary CTAs.',
+          },
+          {
+            name: 'On-canvas white',
+            hex: '#FFFFFF',
+            role: 'Display headers, body copy, and card titles. The contrast workhorse against the dark canvas.',
+          },
+          {
+            name: 'Soft gray',
+            hex: '#B0B3B8',
+            role: 'Secondary text, captions, inactive tab labels, search placeholder copy. Drops below white to create reading hierarchy without adding color.',
+          },
+        ],
+        type: [
+          {
+            name: 'Display',
+            spec: 'Sans 700 / 32-36px / Matchify green',
+            example: 'Home',
+            exampleClass: 'text-3xl sm:text-4xl font-display font-extrabold tracking-tight',
+          },
+          {
+            name: 'Section heading',
+            spec: 'Sans 700 / 18-20px / white',
+            example: "Your Friends' Playlists",
+            exampleClass: 'text-lg sm:text-xl font-display font-bold text-ink',
+          },
+          {
+            name: 'Card title',
+            spec: 'Sans 600 / 16px / white',
+            example: 'Mei Wang',
+            exampleClass: 'text-base font-display font-semibold text-ink',
+          },
+          {
+            name: 'Body',
+            spec: 'Sans 400 / 14px / soft gray',
+            example: 'Shared interest in EDM with favorite tracks by top DJs.',
+            exampleClass: 'text-sm text-ink-soft leading-relaxed',
+          },
+          {
+            name: 'Caption',
+            spec: 'Sans 500 / 12px / soft gray',
+            example: 'September 10, 2024 · Toronto',
+            exampleClass: 'text-xs text-ink-soft font-medium tracking-wide',
+          },
+        ],
+        components: [
+          {
+            name: 'Profile ring',
+            purpose: 'A two-pixel green ring around every avatar. The smallest reusable element in the system, and the one that brands a photo as a Matchify profile across every surface.',
+          },
+          {
+            name: 'Card',
+            purpose: 'Dark surface, rounded corners, 16px interior padding. Used for friend suggestions, friends-listening tiles, playlists, and event cards. One container shape for the whole product.',
+          },
+          {
+            name: 'Primary CTA',
+            purpose: 'Full-width pill button in Matchify green with a white sans-700 label. Reserved for Continue With Spotify, Next, and other forward-motion actions.',
+          },
+          {
+            name: 'Secondary CTA',
+            purpose: 'Pill button in social blue with a white label. Used only for Request and similar social actions so they stay distinct from forward-motion primaries.',
+          },
+          {
+            name: 'Section header',
+            purpose: 'Sans 700 white text, left-aligned, with horizontal-scroll content directly below. The pattern that organizes the dense home feed into readable sections.',
+          },
+          {
+            name: 'Bottom nav (four-tab)',
+            purpose: 'Icon plus label per tab, green active state, never more than four entries. The structural commitment that keeps the IA readable at a glance.',
+          },
+        ],
+      },
       keyFindings: [
         {
           stat: '1 canvas',

@@ -135,6 +135,50 @@ export interface ResearchReferences {
   entries: ReferenceEntry[];
 }
 
+/** A single color token in a design system palette */
+export interface ColorToken {
+  /** Display name, e.g. "Matchify green" or "Canvas" */
+  name: string;
+  /** Hex value, e.g. "#1DB954" */
+  hex: string;
+  /** What the color is used for, e.g. "Brand + primary CTAs" */
+  role: string;
+}
+
+/** A single entry in a typography ramp */
+export interface TypeStyle {
+  /** Display name, e.g. "Display", "Section heading", "Body" */
+  name: string;
+  /** Spec line, e.g. "Sans 700, 32 / 40, white" */
+  spec: string;
+  /** Optional sample text rendered in the style preview */
+  example?: string;
+  /** Optional Tailwind classes that approximate the type style for the live sample */
+  exampleClass?: string;
+}
+
+/** A named component in the design system */
+export interface DesignSystemComponent {
+  /** Display name, e.g. "Profile ring" */
+  name: string;
+  /** What the component does or where it's used */
+  purpose: string;
+}
+
+/** Design system chapter — palette, type ramp, named components */
+export interface DesignSystem {
+  /** Chapter title, defaults to "Design system" */
+  title?: string;
+  /** Optional intro paragraph above the system */
+  intro?: string;
+  /** Color tokens with hex + role */
+  palette?: ColorToken[];
+  /** Typography ramp */
+  type?: TypeStyle[];
+  /** Named reusable components in the system */
+  components?: DesignSystemComponent[];
+}
+
 /** Embedded Figma file or prototype shown as an interactive iframe in the case study */
 export interface FigmaEmbed {
   /** Full Figma file/proto URL — will be wrapped with figma.com/embed?embed_host=share&url=... */
@@ -217,6 +261,8 @@ export interface ExtendedContent {
   beforeAfter?: BeforeAfter;
   /** Optional embedded Figma file or prototype shown as an interactive iframe */
   figmaEmbed?: FigmaEmbed;
+  /** Optional design system chapter — palette, type ramp, named components */
+  designSystem?: DesignSystem;
   /** Optional literature review — cited studies that grounded the project */
   literatureReview?: LiteratureReview;
   /** Optional task-by-task quantitative results from a usability study */

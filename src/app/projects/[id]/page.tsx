@@ -452,6 +452,143 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   </>
                 )}
 
+              {/* Design system — palette, type ramp, components */}
+              {project.extendedContent.designSystem &&
+                (() => {
+                  const ds = project.extendedContent.designSystem;
+                  const palette = ds.palette ?? [];
+                  const type = ds.type ?? [];
+                  const components = ds.components ?? [];
+                  if (palette.length === 0 && type.length === 0 && components.length === 0) return null;
+                  return (
+                    <>
+                      <ChapterDivider />
+                      <section>
+                        <ChapterHeading number={nextChapter()}>
+                          {ds.title ?? 'Design system'}
+                        </ChapterHeading>
+                        {ds.intro && (
+                          <p className="text-base sm:text-lg text-ink-soft mb-10 max-w-2xl leading-relaxed">
+                            {ds.intro}
+                          </p>
+                        )}
+
+                        {/* Palette */}
+                        {palette.length > 0 && (
+                          <div className="mb-12">
+                            <p
+                              className="text-base text-terracotta mb-4 inline-block"
+                              style={{
+                                fontFamily: 'var(--font-kalam), cursive',
+                                transform: 'rotate(-2deg)',
+                              }}
+                            >
+                              palette &mdash;
+                            </p>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                              {palette.map((c, i) => (
+                                <div
+                                  key={i}
+                                  className="bg-paper-deeper border border-border rounded-xl overflow-hidden shadow-paper flex flex-col"
+                                >
+                                  <div
+                                    className="h-24 w-full"
+                                    style={{ backgroundColor: c.hex }}
+                                    aria-hidden
+                                  />
+                                  <div className="p-4">
+                                    <p className="font-display text-base text-ink leading-tight">
+                                      {c.name}
+                                    </p>
+                                    <p className="text-xs text-ink-soft/80 font-mono mt-0.5">
+                                      {c.hex.toUpperCase()}
+                                    </p>
+                                    <p className="text-xs text-ink-soft leading-relaxed mt-2">
+                                      {c.role}
+                                    </p>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Typography */}
+                        {type.length > 0 && (
+                          <div className="mb-12">
+                            <p
+                              className="text-base text-terracotta mb-4 inline-block"
+                              style={{
+                                fontFamily: 'var(--font-kalam), cursive',
+                                transform: 'rotate(-2deg)',
+                              }}
+                            >
+                              typography &mdash;
+                            </p>
+                            <div className="space-y-4">
+                              {type.map((t, i) => (
+                                <div
+                                  key={i}
+                                  className="bg-paper-deeper border border-border rounded-xl p-5 shadow-paper grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-4 md:gap-8 items-baseline"
+                                >
+                                  <div>
+                                    <p className="font-display text-base text-ink mb-1">
+                                      {t.name}
+                                    </p>
+                                    <p className="text-xs text-ink-soft/80 font-mono leading-relaxed">
+                                      {t.spec}
+                                    </p>
+                                  </div>
+                                  {t.example && (
+                                    <p
+                                      className={
+                                        t.exampleClass ??
+                                        'text-2xl text-ink font-display'
+                                      }
+                                    >
+                                      {t.example}
+                                    </p>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Components */}
+                        {components.length > 0 && (
+                          <div>
+                            <p
+                              className="text-base text-terracotta mb-4 inline-block"
+                              style={{
+                                fontFamily: 'var(--font-kalam), cursive',
+                                transform: 'rotate(-2deg)',
+                              }}
+                            >
+                              components &mdash;
+                            </p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                              {components.map((cm, i) => (
+                                <div
+                                  key={i}
+                                  className="bg-paper-deeper border border-border rounded-xl p-5 shadow-paper"
+                                >
+                                  <h3 className="font-display text-base text-ink mb-2">
+                                    {cm.name}
+                                  </h3>
+                                  <p className="text-sm text-ink-soft leading-relaxed">
+                                    {cm.purpose}
+                                  </p>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </section>
+                    </>
+                  );
+                })()}
+
               {/* Datasets */}
               {project.extendedContent.datasets &&
                 project.extendedContent.datasets.length > 0 && (
