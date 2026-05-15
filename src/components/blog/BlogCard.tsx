@@ -48,13 +48,13 @@ export default function BlogCard({ post, index = 0 }: BlogCardProps) {
         </time>
 
         {/* Title — Fraunces italic, hand-drawn underline on hover */}
-        <h3 className="font-display italic text-xl sm:text-2xl text-ink mb-3 leading-snug relative">
+        <h3 className="font-display italic text-xl sm:text-2xl text-ink mb-3 leading-snug relative line-clamp-2">
           <span className="relative z-10">{post.title}</span>
           <HandUnderline className="absolute -bottom-1 left-0 w-full h-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
         </h3>
 
         {/* Excerpt */}
-        <p className="text-sm text-ink-soft leading-relaxed line-clamp-4 mb-5 flex-grow">
+        <p className="text-sm text-ink-soft leading-relaxed line-clamp-3 mb-5 flex-grow overflow-hidden">
           {post.excerpt}
         </p>
 
