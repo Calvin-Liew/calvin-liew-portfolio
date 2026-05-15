@@ -41,7 +41,7 @@ export default function Hero() {
           </p>
 
           {/* Name — asymmetric, mixed-typography */}
-          <div className="relative mb-10 animate-fade-in-up animation-delay-200">
+          <div className="mb-10 animate-fade-in-up animation-delay-200">
             <h1 className="leading-[0.9] mb-0">
               <span
                 className="block text-7xl sm:text-8xl lg:text-[10rem] text-ink"
@@ -54,14 +54,15 @@ export default function Hero() {
               >
                 Calvin
               </span>
-              <span className="block font-display italic text-6xl sm:text-7xl lg:text-9xl text-ink -mt-2 sm:-mt-4 ml-12 sm:ml-24 lg:ml-40">
+              {/* Underline anchored to this span so it tracks "Liew." at every breakpoint */}
+              <span className="relative inline-block font-display italic text-6xl sm:text-7xl lg:text-9xl text-ink -mt-2 sm:-mt-4 ml-12 sm:ml-24 lg:ml-40">
                 Liew<span className="text-terracotta not-italic">.</span>
+                <HandUnderline
+                  className="absolute -bottom-1 sm:-bottom-2 left-0 w-full h-2.5 sm:h-3"
+                  animate
+                />
               </span>
             </h1>
-            <HandUnderline
-              className="absolute bottom-1 left-12 sm:left-24 lg:left-40 w-[55%] sm:w-[44%] lg:w-[36%] h-3"
-              animate
-            />
           </div>
 
           {/* Two-column: blurb + CTAs left, currently card right */}
