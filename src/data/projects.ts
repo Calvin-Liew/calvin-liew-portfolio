@@ -1214,6 +1214,148 @@ export const projects: Project[] = [
           reasoning: 'A redesign that cannot articulate its rationale is vulnerable to being undone by whoever maintains the site next. Every page-level UX decision in this project was mapped to a specific heuristic or principle: recognition over recall (navigation labels reflect user goals, not internal naming), consistency and standards (buttons, cards, section headings repeat across pages), error prevention (clear navigation and footer links reduce wrong turns), reduced short-term memory load (options stay visible rather than requiring users to remember where to find them). Maintaining a documented case study alongside the live site gives future maintainers a design rationale to refer to when they are tempted to add a feature or rearrange a section. The design system — color tokens, typography scale, card anatomy, CTA variants — is documented in the same case study so future contributors work from the same visual language.',
         },
       ],
+      beforeAfter: {
+        title: 'Before and after',
+        intro: 'Seven surface-level comparisons from the same viewport dimensions. The old site had personality and brand energy — the challenge was not to replace that, but to give students, applicants, and sponsors a clearer path through it.',
+        pairs: [
+          {
+            label: 'Homepage',
+            before: '/projects/tmg-website/old-home-desktop-viewport.png',
+            after: '/projects/tmg-website/new-home-desktop-viewport.png',
+            note: 'The old homepage led with a pink photo overlay, centered logo stack, and overlapping About copy — strong brand energy, but the first screen made users infer what to do next. The new homepage sequences the experience: navigation → brand identity → value proposition → two primary CTAs → event cards. Each zone does one job before passing to the next.',
+          },
+          {
+            label: 'Navigation',
+            before: '/projects/tmg-website/old-navigation-dropdown-viewport.png',
+            after: '/projects/tmg-website/new-navigation-dropdown-viewport.png',
+            note: 'The old nav compressed brand logo, menu items, event links, and social icons into one compact strip. The new navigation groups destinations by user intent — About, Events, Sponsors, Join Our Team — with dropdown depth available for committed users, an active state, and the Linktree as a top-level destination. Hick\'s Law at the nav level: same number of decisions, organized so each one maps to a real job.',
+          },
+          {
+            label: 'Events page',
+            before: '/projects/tmg-website/old-events-desktop-viewport.png',
+            after: '/projects/tmg-website/new-events-desktop-viewport.png',
+            note: 'The old events page read as a promotional banner — strong pink composition, event name, broad summary. The new page opens with a full-width audience photo, a direct "Our Events" headline, and a short participation prompt that explains why students should attend. Event entries below follow a repeatable card pattern: title, date, description, image proof, outcomes, CTA. The shift is from announcement to persuasion.',
+          },
+          {
+            label: 'About page',
+            before: '/projects/tmg-website/old-about-desktop-viewport.png',
+            after: '/projects/tmg-website/new-about-desktop-viewport.png',
+            note: 'The old About page placed the mission copy as a white card over a large team photo — readable, but the background competed with the message. The new layout separates them: mission in its own two-column content zone, team members grouped by department below. Gestalt proximity does the organizational work — no explicit labels needed to see where leadership ends and marketing begins.',
+          },
+          {
+            label: 'CBA Applications',
+            before: '/projects/tmg-website/old-cba-applications-viewport.png',
+            after: '/projects/tmg-website/new-cba-applications-viewport.png',
+            note: 'The old CBA page was informational — a centered white card explaining what a Campus Brand Ambassador is. The new page is a conversion surface: community photography, the value line "Represent. Connect. Grow.", and a "Why Become a CBA?" section with concrete benefit framing before the application path. Students were not asking what a CBA is — they were asking why they should become one.',
+          },
+          {
+            label: 'Sponsor path vs. archive',
+            before: '/projects/tmg-website/old-archive-desktop-viewport.png',
+            after: '/projects/tmg-website/new-sponsors-desktop-viewport.png',
+            note: 'The old site mixed sponsor information into general student content; what remains is an archive-style page. The new Sponsors page is a dedicated partner experience: audience-specific hero, a "Why Sponsor TMG" section with four explicit benefit categories (talent pipeline, brand exposure, industry insights, past-partner credibility), and a direct contact CTA. Audience segmentation as an IA decision, not just a visual one.',
+          },
+          {
+            label: 'Mobile homepage',
+            before: '/projects/tmg-website/old-home-mobile-viewport.png',
+            after: '/projects/tmg-website/new-home-mobile-viewport.png',
+            note: 'The old site did not adapt reliably to a 390px viewport — navigation compressed, section spacing broke, and tap targets were undersized for mobile students. The new mobile layout is the canonical starting point: single-column flow, oversized headline and CTAs, stacked event cards, and a footer with grouped navigation links. Because it was designed mobile-first, the hierarchy holds cleanly at every breakpoint rather than stretching a desktop layout.',
+          },
+        ],
+      },
+      designSystem: {
+        title: 'Design system',
+        intro: 'The redesign uses a documented visual language so future maintainers can work from consistent tokens rather than guessing. Pink remains the primary brand signal; navy grounds actions and navigation.',
+        palette: [
+          {
+            name: 'Brand pink',
+            hex: '#E83E8C',
+            role: 'Primary brand color — hero headlines, primary CTA fills, accent borders, and tab indicators throughout the site.',
+          },
+          {
+            name: 'Deep pink',
+            hex: '#C2185B',
+            role: 'Hover and active state for pink elements. Provides sufficient contrast shift to signal interactivity without leaving the brand palette.',
+          },
+          {
+            name: 'Navigation navy',
+            hex: '#1A2744',
+            role: 'Navigation background, footer background, and dark CTA fills. Navy grounds the high-energy pink brand color and creates clear figure-ground separation for white text.',
+          },
+          {
+            name: 'Body ink',
+            hex: '#1F2937',
+            role: 'Primary body text and section headings on light backgrounds. Near-black rather than true black for softer reading across long-form content sections.',
+          },
+          {
+            name: 'Soft surface',
+            hex: '#FFF5F8',
+            role: 'Section backgrounds and card fills on pages with heavy content. Warm white with a faint pink cast keeps the brand palette present without saturating the page.',
+          },
+          {
+            name: 'Divider line',
+            hex: '#EDD5E0',
+            role: 'Section dividers, card borders, and horizontal rules. Muted pink-grey separates content zones without creating harsh visual breaks.',
+          },
+        ],
+        type: [
+          {
+            name: 'Display heading',
+            spec: 'Raleway 700, 40–56px / 1.1, white or navy',
+            example: 'The Marketing Group',
+            exampleClass: 'text-4xl font-bold text-ink',
+          },
+          {
+            name: 'Section heading',
+            spec: 'Raleway 600, 28–36px / 1.2',
+            example: 'Our Events',
+            exampleClass: 'text-3xl font-semibold text-ink',
+          },
+          {
+            name: 'CTA label',
+            spec: 'Raleway 600, 14–16px / 1.0, uppercase tracked',
+            example: 'JOIN THE HERD',
+            exampleClass: 'text-sm font-semibold tracking-widest text-ink uppercase',
+          },
+          {
+            name: 'Body copy',
+            spec: 'Wix Madefor Text 400, 16–18px / 1.6',
+            example: 'Connect with like-minded students and build real marketing experience.',
+            exampleClass: 'text-base text-ink-soft leading-relaxed',
+          },
+          {
+            name: 'Supporting / metadata',
+            spec: 'Wix Madefor Text 400, 13–14px / 1.5, muted',
+            example: 'Event · April 2025 · UTSC',
+            exampleClass: 'text-sm text-muted',
+          },
+        ],
+        components: [
+          {
+            name: 'Pill navigation',
+            purpose: 'Rounded nav links with dropdown affordance. Active state uses a pink underline or fill. Groups Home, About, Events, Sponsors, Join, and Linktree at the top level with sub-pages in dropdown menus.',
+          },
+          {
+            name: 'Primary CTA',
+            purpose: 'White or pink pill button with navy label. Used at hero moments — "Join The Herd", "Follow Us", "Become a Sponsor". Standardized padding and radius across all pages.',
+          },
+          {
+            name: 'Secondary CTA',
+            purpose: 'Transparent pill with a pink or white border. Used for secondary actions adjacent to primary CTAs — "Learn More", "View Events". Same sizing as primary so CTAs align naturally in rows.',
+          },
+          {
+            name: 'Event card',
+            purpose: 'Repeatable content pattern: title, date, one-line description, event image, outcome statement, and CTA. The same card structure appears on the homepage events section and the Events page, so students learn to scan it after the first instance.',
+          },
+          {
+            name: 'Team member card',
+            purpose: 'Portrait photo, name, role label, and LinkedIn link in a fixed-size card. Cards group into department rows using Gestalt proximity — a visual break between leadership and operations without an explicit divider element.',
+          },
+          {
+            name: 'Footer wayfinding',
+            purpose: 'Dark navy footer with grouped navigation columns (About, Events, Connect), contact info, address, and social links. Designed as a recovery surface: users who scroll past a CTA can reorient without the browser back button.',
+          },
+        ],
+      },
       keyFindings: [
         {
           stat: '+67%',
