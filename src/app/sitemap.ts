@@ -33,12 +33,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]
 
-  // Dynamic project pages
+  // Dynamic project pages — featured projects get higher priority
   const projectPages: MetadataRoute.Sitemap = projects.map((project) => ({
     url: `${baseUrl}/projects/${project.id}`,
     lastModified: new Date(),
-    changeFrequency: 'monthly',
-    priority: 0.8,
+    changeFrequency: 'monthly' as const,
+    priority: project.featured ? 0.85 : 0.75,
   }))
 
   // Dynamic blog posts
