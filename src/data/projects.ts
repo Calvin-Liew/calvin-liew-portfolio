@@ -348,180 +348,7 @@ export const projects: Project[] = [
       },
     },
   },
-  {
-    id: 'tmg-website',
-    title: 'TMG Website Redesign: From Static Brochure to Task-Oriented Experience',
-    category: 'UI/UX Design',
-    dates: 'Feb 2026 - May 2026',
-    organization: 'The Marketing Group (TMG) — University of Toronto Scarborough',
-    description: 'A 90-day mobile-first redesign of the UTSC Marketing Group\'s website that cut bounce rate from 62% to 23%, grew sessions by 67%, and increased average session duration by 30% to 3m 36s. Rebuilt the information architecture around five distinct user journeys — students, event attendees, applicants, sponsors, and social visitors — and applied a full suite of HCI principles (Nielsen heuristics, Shneiderman\'s golden rules, Fitts\'s Law, Hick\'s Law, Gestalt) across every page.',
-    skills: ['UX Design', 'Information Architecture', 'Wix', 'Responsive Design', 'Google Analytics', 'Visual Hierarchy', 'HCI Principles', 'Conversion Optimization', 'UX Research', 'Design Systems'],
-    image: '/projects/tmg-website/new-home-desktop-viewport.png',
-    links: [
-      {
-        type: 'live',
-        url: 'https://www.utsctmg.ca/',
-        label: 'Live site',
-      },
-      {
-        type: 'github',
-        url: 'https://calvin-liew.github.io/TMGWebsite/',
-        label: 'Case study',
-      },
-    ],
-    extendedContent: {
-      stats: [
-        { value: '+67%', label: 'total site sessions' },
-        { value: '62%→23%', label: 'bounce rate reduction' },
-        { value: '+45%', label: 'unique visitors' },
-        { value: '3m 36s', label: 'avg session duration (+30%)' },
-      ],
-      pullQuote: 'The site was not redesigned to look newer. It was redesigned so that students, applicants, and sponsors could each find their path in under ten seconds.',
-      overview: {
-        title: 'A product-minded UX overhaul of a student organization web presence',
-        content: 'The Marketing Group (TMG) at the University of Toronto Scarborough had a Wix-hosted website that communicated brand identity but generated significant engagement friction: a 62% bounce rate, weak mobile usability, shallow navigation, and conversion paths that required users to search for next actions. The 90-day redesign treated the website as a product with measurable user journeys rather than a digital brochure with pages.\n\nThe outcome was a mobile-first, task-oriented experience structured around five distinct audience jobs: students discovering TMG, event attendees finding what to attend, applicants evaluating whether to join, sponsors evaluating partnership, and social visitors looking for the Linktree. Each page was rebuilt with a clear information hierarchy, specific CTAs, and a design system — brand pink, navigation navy, Raleway headings, Wix Madefor Text body, 1180px desktop content width — that creates consistency across every surface. Analytics confirmed the shift: sessions up 67%, unique visitors up 45%, bounce rate dropped to 23%, and average session duration up 30% to 3m 36s.',
-      },
-      motivation: {
-        title: 'Six original UX problems that analytics confirmed were real',
-        content: 'The redesign was not driven by aesthetic preference. Google Analytics data pointed to specific engagement problems that traced to identifiable UX failures in the original Wix site.\n\nMobile usability: the old layout did not reliably adapt to a phone viewport — navigation compressed, section spacing broke, and interaction targets were too small for mobile students. Mobile traffic was the largest segment, so every user on a phone was hitting a degraded experience.\n\nInformation architecture: the old four-item navigation did not expose the user tasks that mattered most — events, joining, sponsorship, organizational structure. Visitors with a clear goal (apply, sponsor, find a specific event) had no efficient entry point.\n\nCognitive load: large photo compositions with overlapping content regions, mission copy over a busy team photograph, and sparse whitespace forced users to infer page purpose and next steps. The visual hierarchy competing with decorative imagery meant important content did not read as important.\n\nWeak conversion paths: the joining path, event discovery, and sponsor engagement all required users to locate the relevant action. CTAs were present but buried beneath content that did not orient them.\n\nInconsistent hierarchy: important content competed with decorative imagery, blank space, and a Wix platform banner. The brand was visible; the actions were not.\n\nLimited orientation: the site gave users little sense of where they were in the experience. Navigation did not reflect active states, footer was sparse, and section structure did not sequence the experience from awareness to action.',
-      },
-      decisions: [
-        {
-          decision: 'Redesign navigation around user jobs-to-be-done, not internal page structure',
-          framework: 'Hick\'s Law + information architecture',
-          reasoning: 'The old navigation had four items that mapped to internal TMG structure rather than student intent. The new navigation exposes six destinations — Home, About, Events, Sponsors, Join Our Team, Linktree — organized to answer the questions real visitors arrive with: "What is TMG?", "What events can I attend?", "How do I join?", "Should we sponsor?". Hick\'s Law predicts that adding choices increases decision time; the redesign counters this by grouping related decisions (event sub-pages under Events, department sub-pages under About) so the top-level choice set stays small while depth is available for committed users. The active state and grouped dropdowns keep users oriented rather than requiring them to remember where they are.',
-        },
-        {
-          decision: 'Mobile-first layout as the design constraint, not a responsive afterthought',
-          framework: 'Universal usability + Fitts\'s Law',
-          reasoning: 'The student audience discovers events, clubs, and applications from phones. Starting the redesign from a 390px mobile viewport forced information hierarchy decisions that improved the desktop too. Every section on the homepage had to earn its above-the-fold position when constrained to a single column — two sections that were not being scrolled to on desktop were cut as a result. Fitts\'s Law drove specific decisions on mobile: pill CTAs were sized and padded to be comfortable thumb targets, action buttons were placed below relevant content (not floating at page edges), and the bottom navigation on the events page kept tab switching within reach. The result was not a stripped-down mobile variant but a layout that happened to also work at 1180px.',
-        },
-        {
-          decision: 'Apply Gestalt proximity and similarity to organize team and event content',
-          framework: 'Gestalt grouping + cognitive load reduction',
-          reasoning: 'The old About page displayed team members in a large undifferentiated grid. Users had no way to quickly understand organizational structure, department responsibilities, or which team was relevant to their goal. The redesign grouped team members by function — leadership, business development, events, marketing, operations — with a clear visual break between departments. Gestalt proximity (items close together are read as a group) and similarity (consistent portrait style, role label, and LinkedIn affordance per card) do the work of communicating structure without explicit labels for every relationship. The same principle was applied to event cards: title, date, description, image, and CTA repeat in the same spatial relationship across every event so users learn to scan the pattern after the first card.',
-        },
-        {
-          decision: 'Separate sponsor and CBA applicant paths into dedicated audience experiences',
-          framework: 'Audience segmentation + Nielsen\'s user control',
-          reasoning: 'The original site mixed sponsor information into general student content. A potential corporate sponsor landing on the homepage found student-facing event content before finding any partner-relevant information. The redesign created a dedicated Sponsors page with a partner-specific first impression, an explicit "Why Sponsor TMG" section (talent pipeline, brand exposure, industry insights, past partner credibility), and a sponsor contact path independent of the student membership flow. The same separation was applied to the CBA Applications route: instead of a centered information card, the new page uses community photography, a role-specific headline, and a "Why Become a CBA?" benefits section that turns a passive information page into a conversion surface. Both pages follow Nielsen\'s match-between-system-and-real-world: the copy, imagery, and CTAs match what each audience is actually evaluating.',
-        },
-        {
-          decision: 'End every page section with closure and a clear next action',
-          framework: 'Shneiderman\'s golden rules + conversion design',
-          reasoning: 'Shneiderman\'s rule "design dialogs to yield closure" guided the page-level structure. Every major section ends with an action: the homepage hero with "Join The Herd" and "Follow Us", the events section with "View All Events", the about section with "Meet the Team", the sponsor section with "Become a Sponsor", the CBA page with a direct application CTA. This is not just aesthetic — it is functional. Users who finish reading a content block and find no next step bounce or navigate to an unrelated destination. By anchoring every section to an action, the design turns awareness into engagement and engagement into conversion. The footer was also redesigned from a closing brand element into a recovery and wayfinding surface with grouped menu links, contact, address, and social destinations — so users who scroll past what they need can reorient without using the browser back button.',
-        },
-        {
-          decision: 'Document every design decision against specific HCI principles for institutional knowledge',
-          framework: 'Nielsen heuristics + Shneiderman\'s golden rules',
-          reasoning: 'A redesign that cannot articulate its rationale is vulnerable to being undone by whoever maintains the site next. Every page-level UX decision in this project was mapped to a specific heuristic or principle: recognition over recall (navigation labels reflect user goals, not internal naming), consistency and standards (buttons, cards, section headings repeat across pages), error prevention (clear navigation and footer links reduce wrong turns), reduced short-term memory load (options stay visible rather than requiring users to remember where to find them). Maintaining a documented case study alongside the live site gives future maintainers a design rationale to refer to when they are tempted to add a feature or rearrange a section. The design system — color tokens, typography scale, card anatomy, CTA variants — is documented in the same case study so future contributors work from the same visual language.',
-        },
-      ],
-      keyFindings: [
-        {
-          stat: '+67%',
-          title: 'Total site sessions',
-          description: 'Sessions grew 67% in the 90 days following the redesign. The combination of clearer navigation, stronger event discovery, and dedicated audience paths (student, sponsor, applicant) gave each visitor segment more reasons to explore the site rather than exit after a single page.',
-        },
-        {
-          stat: '62%→23%',
-          title: 'Bounce rate',
-          description: 'Bounce rate fell from 62% to approximately 23% — a 39-point reduction. The most significant driver was mobile layout: once the first screen gave students a clear read on TMG\'s value and a visible next action, the proportion of single-page exits dropped sharply. A 23% bounce rate is strong for a student organization site.',
-        },
-        {
-          stat: '3m 36s',
-          title: 'Average session duration (+30%)',
-          description: 'Average session duration grew 30% to 3m 36s. Longer sessions indicate that users were navigating between pages — moving from the homepage into events, from events into specific event pages, from about into team departments — rather than reading one section and leaving. The repeatable event card pattern and grouped team content made deeper exploration feel worth the effort.',
-        },
-        {
-          stat: '+45%',
-          title: 'Unique visitors',
-          description: '45% more unique visitors in the post-redesign period. Some of this reflects word-of-mouth and social promotion, but the retention improvement (lower bounce, longer sessions) also means repeat visits contributed more unique-visitor counts than in the previous period. A site that users return to for event updates and application deadlines compounds its visitor count over a semester.',
-        },
-      ],
-      features: [
-        {
-          title: 'Homepage redesign',
-          description: 'The new homepage gives users a clear first scan: navigation, organization identity statement, supporting copy, Pink Sheep mascot, and two primary CTAs above the fold. Upcoming events surface as scannable cards immediately below the hero. The section ends with social follow and Linktree actions. On mobile, the same content collapses into a single-column flow that preserves reading order and keeps the primary CTA reachable without scrolling.',
-          insight: 'The hero composition does one job at a time: navigation, then identity, then value proposition, then actions. The old homepage put all of these in competition. The redesign sequences them so each element reads after the previous one rather than competing for the same attention.',
-          image: '/projects/tmg-website/new-home-desktop-viewport.png',
-          imageFit: 'contain',
-        },
-        {
-          title: 'Events page',
-          description: 'The events page opens with a full-width audience photo, a direct "Our Events" headline, and a short participation prompt that explains why students should attend, not just that events exist. Below, event entries follow a repeatable pattern: title, date, description, image proof, outcomes, and CTA. A supporting "Other Events" module shows the breadth of TMG programming. The page ends with a social follow action that keeps the community connection visible after event content is consumed.',
-          insight: 'Event content that shows community proof (audience photos, outcome statements) outperforms content that only describes what the event is. Students evaluating whether to attend need to see that other students attended and found value — that is the job the imagery and outcome language do.',
-          image: '/projects/tmg-website/new-events-desktop-viewport.png',
-          imageFit: 'contain',
-        },
-        {
-          title: 'About page and team structure',
-          description: 'The About page separates mission copy from the team photo into a two-column desktop layout, resolving the figure-ground clarity issue of the old design (white mission card over a busy team image). Team members are organized by department — leadership, business development, events, marketing, operations — using Gestalt proximity to make organizational structure immediately recognizable. Each card shows portrait, name, role, and a LinkedIn link. The mobile view gives each department section a clear vertical order.',
-          insight: 'Potential members and sponsors evaluate the About page to assess organizational credibility. Seeing departments with named leads — not just an alphabetical grid of portraits — communicates that TMG is structured and accountable. That credibility is the conversion driver on the About page, not the mission copy.',
-          image: '/projects/tmg-website/new-about-desktop-viewport.png',
-          imageFit: 'contain',
-        },
-        {
-          title: 'Sponsors page',
-          description: 'The sponsors page is a dedicated audience experience for external partners, separate from student-facing content. It opens with a partner-specific hero, then presents an explicit "Why Sponsor TMG" section with four benefit categories: talent pipeline access, brand exposure at student events, industry insights, and past partner credibility (with partner logos). The page ends with a direct "Become a Sponsor" CTA. Sponsors arrive with a specific evaluation question — is this a credible, valuable partnership? — and the page answers that question before asking for contact.',
-          insight: 'Mixing sponsor content into student-facing pages makes the site harder for both audiences. Corporate partners evaluating a student sponsorship need a professional, partner-specific experience — not a page designed to recruit members. Separation by audience is an information architecture decision that also serves brand credibility.',
-          image: '/projects/tmg-website/new-sponsors-desktop-viewport.png',
-          imageFit: 'contain',
-        },
-        {
-          title: 'CBA Applications page',
-          description: 'The Campus Brand Ambassador recruitment page uses community imagery, a role-specific "Campus Brand Ambassador" headline, and the value line "Represent. Connect. Grow." to communicate the opportunity before explaining it. The supporting "Why Become a CBA?" section converts the application page from a passive information destination into a conversion surface with concrete benefit framing: leadership development, networking opportunities, and marketing experience. The application path feels current, visible, and connected to student identity.',
-          insight: 'Application pages that front-load benefit framing outperform pages that front-load process information. Students are not asking "what is a CBA?" — they are asking "why should I become one?" The new page answers the second question first, then supports it with process details for committed applicants.',
-          image: '/projects/tmg-website/new-cba-applications-viewport.png',
-          imageFit: 'contain',
-        },
-        {
-          title: 'Mobile layout',
-          description: 'The full redesigned experience on a 390px phone viewport: compact header with navigation controls, single-column hero with primary CTAs, stacked event cards with readable type, and a bottom-anchored footer with grouped navigation links and social destinations. Tap targets throughout are sized for thumb interaction. The mobile layout is not a stripped-down variant — it is the canonical layout from which the desktop was derived, which is why the hierarchy choices hold at every breakpoint.',
-          insight: 'Designing mobile-first forced every content decision to be justified by user value, not by the visual affordance of a wide canvas. Two sections present on the desktop homepage were removed during the mobile-first pass because they did not earn their space at 390px — those cuts also improved the desktop layout.',
-          image: '/projects/tmg-website/new-home-mobile-viewport.png',
-          imageFit: 'contain',
-          phoneFrame: true,
-        },
-      ],
-      tools: [
-        {
-          name: 'Wix Studio',
-          purpose: 'Design and development environment for the live UTSC TMG website. Wix\'s visual editor enabled rapid iteration on layout, component styling, navigation structure, and responsive breakpoints without a custom code deployment pipeline. Design system tokens (colors, type scale, spacing) were maintained across pages via Wix\'s global styles panel.',
-        },
-        {
-          name: 'Google Analytics',
-          purpose: 'Primary measurement tool. Session volume, unique visitors, bounce rate, and average session duration were tracked before and after the redesign to validate UX hypotheses with behavioral data rather than qualitative feedback alone. Analytics data was also used to diagnose the original UX problems: a 62% bounce rate and shorter sessions confirmed that first-impression clarity and navigation depth were the highest-priority fixes.',
-        },
-        {
-          name: 'HCI frameworks (Nielsen, Shneiderman, Fitts, Hick, Gestalt)',
-          purpose: 'Design rationale. Every page-level decision was mapped to a specific principle: recognition over recall drove navigation label choices, Hick\'s Law shaped the dropdown grouping strategy, Fitts\'s Law set CTA sizing and placement on mobile, Gestalt proximity and similarity organized team and event card layouts, and Shneiderman\'s closure rule governed section endings. Mapping decisions to principles also produced the case study documentation that gives future site maintainers a rationale to work from.',
-        },
-        {
-          name: 'Viewport capture and visual documentation',
-          purpose: 'Screenshot evidence for before/after comparison across desktop and mobile viewports. Captures were normalized within each comparison so visual differences come from the websites, not mismatched case-study containers. Captures include homepage, navigation dropdown, events, about, sponsors, CBA applications, and the full mobile layout across multiple pages.',
-        },
-        {
-          name: 'Information architecture mapping',
-          purpose: 'Navigation restructuring from a four-item flat menu to a six-destination grouped navigation organized by user intent: Home, About (with department sub-pages), Events (with event sub-pages and CBA), Sponsors, Join Our Team, and Linktree. IA mapping preceded visual design to ensure each page had a clear audience, job-to-be-done, and conversion moment before any component was placed.',
-        },
-      ],
-      impact: {
-        title: 'What a 90-day UX redesign actually moves — and what it does not',
-        content: 'The analytics results are the most legible part of the outcome: 67% more sessions, 45% more unique visitors, bounce rate from 62% to 23%, session duration up 30% to 3m 36s. Those numbers confirm that the redesign moved the metrics it was optimizing for — first-impression clarity, mobile usability, navigation depth, and conversion path strength.\n\nThe less visible outcome is the design system. A Wix site without documented design principles drifts: well-meaning maintainers add a section here, change a CTA color there, and six months later the visual language is inconsistent. The case study paired with the live site gives future contributors a documented rationale: here is why the navigation is structured this way, here is the color system, here is what "Hick\'s Law" meant for how we grouped the dropdown items. That documentation is the difference between a redesign that lasts and one that gets gradually overwritten.\n\nThe remaining UX opportunity is conversion measurement beyond sessions. Sessions and duration tell you that users are engaging more; they do not tell you how many joined TMG, applied to become a CBA, or reached out as a sponsor as a result. Wiring analytics events to every CTA click and tracking the event-page-to-registration path would close that loop and give the next redesign cycle a behavioral basis for prioritization rather than an analytics-and-judgment one.',
-      },
-      limitations: {
-        title: 'Honest caveats',
-        items: [
-          'Wix\'s editor constraints limit what is achievable in custom animation, advanced data binding, and performance optimization. A Next.js or SvelteKit build would offer more control over Core Web Vitals and interaction patterns, at the cost of a deployment pipeline the organization may not be able to maintain.',
-          'Analytics coverage does not yet include CTA-level event tracking. Session and duration metrics confirm engagement improved, but conversion rates for specific actions (join form submissions, sponsor contact clicks, CBA applications) are not yet measured separately.',
-          'A formal accessibility audit has not been completed. The redesign improves contrast, readability, and responsive layout, but keyboard navigation, screen reader heading order, focus states, and ARIA labels require a Lighthouse or axe audit to validate.',
-          'The 90-day measurement window may include confounding variables: increased event activity, social media campaigns, and seasonal student engagement patterns can all shift session volume independently of the redesign. A longer measurement period would increase confidence in the attribution.',
-          'Content lifecycle management — archiving past events, updating application deadlines, refreshing sponsor lists — is not systematized. Without a content governance plan, the site will accumulate stale content that reduces credibility with returning visitors.',
-        ],
-      },
-    },
-  },
+
   {
     id: 'anatomy-of-fear',
     title: 'The Anatomy of Fear: Quantifying Horror',
@@ -1316,6 +1143,181 @@ export const projects: Project[] = [
         ]
       }
     }
+  },
+
+  {
+    id: 'tmg-website',
+    title: 'TMG Website Redesign: From Static Brochure to Task-Oriented Experience',
+    category: 'UI/UX Design',
+    dates: 'Apr 2025 - Aug 2025',
+    organization: 'The Marketing Group (TMG) — University of Toronto Scarborough',
+    description: 'A 90-day mobile-first redesign of the UTSC Marketing Group\'s website that cut bounce rate from 62% to 23%, grew sessions by 67%, and increased average session duration by 30% to 3m 36s. Rebuilt the information architecture around five distinct user journeys — students, event attendees, applicants, sponsors, and social visitors — and applied a full suite of HCI principles (Nielsen heuristics, Shneiderman\'s golden rules, Fitts\'s Law, Hick\'s Law, Gestalt) across every page.',
+    skills: ['UX Design', 'Information Architecture', 'Wix', 'Responsive Design', 'Google Analytics', 'Visual Hierarchy', 'HCI Principles', 'Conversion Optimization', 'UX Research', 'Design Systems'],
+    image: '/projects/tmg-website/new-home-desktop-viewport.png',
+    links: [
+      {
+        type: 'live',
+        url: 'https://www.utsctmg.ca/',
+        label: 'Live site',
+      },
+      {
+        type: 'github',
+        url: 'https://calvin-liew.github.io/TMGWebsite/',
+        label: 'Case study',
+      },
+    ],
+    extendedContent: {
+      stats: [
+        { value: '+67%', label: 'total site sessions' },
+        { value: '62%→23%', label: 'bounce rate reduction' },
+        { value: '+45%', label: 'unique visitors' },
+        { value: '3m 36s', label: 'avg session duration (+30%)' },
+      ],
+      pullQuote: 'The site was not redesigned to look newer. It was redesigned so that students, applicants, and sponsors could each find their path in under ten seconds.',
+      overview: {
+        title: 'A product-minded UX overhaul of a student organization web presence',
+        content: 'The Marketing Group (TMG) at the University of Toronto Scarborough had a Wix-hosted website that communicated brand identity but generated significant engagement friction: a 62% bounce rate, weak mobile usability, shallow navigation, and conversion paths that required users to search for next actions. The 90-day redesign treated the website as a product with measurable user journeys rather than a digital brochure with pages.\n\nThe outcome was a mobile-first, task-oriented experience structured around five distinct audience jobs: students discovering TMG, event attendees finding what to attend, applicants evaluating whether to join, sponsors evaluating partnership, and social visitors looking for the Linktree. Each page was rebuilt with a clear information hierarchy, specific CTAs, and a design system — brand pink, navigation navy, Raleway headings, Wix Madefor Text body, 1180px desktop content width — that creates consistency across every surface. Analytics confirmed the shift: sessions up 67%, unique visitors up 45%, bounce rate dropped to 23%, and average session duration up 30% to 3m 36s.',
+      },
+      motivation: {
+        title: 'Six original UX problems that analytics confirmed were real',
+        content: 'The redesign was not driven by aesthetic preference. Google Analytics data pointed to specific engagement problems that traced to identifiable UX failures in the original Wix site.\n\nMobile usability: the old layout did not reliably adapt to a phone viewport — navigation compressed, section spacing broke, and interaction targets were too small for mobile students. Mobile traffic was the largest segment, so every user on a phone was hitting a degraded experience.\n\nInformation architecture: the old four-item navigation did not expose the user tasks that mattered most — events, joining, sponsorship, organizational structure. Visitors with a clear goal (apply, sponsor, find a specific event) had no efficient entry point.\n\nCognitive load: large photo compositions with overlapping content regions, mission copy over a busy team photograph, and sparse whitespace forced users to infer page purpose and next steps. The visual hierarchy competing with decorative imagery meant important content did not read as important.\n\nWeak conversion paths: the joining path, event discovery, and sponsor engagement all required users to locate the relevant action. CTAs were present but buried beneath content that did not orient them.\n\nInconsistent hierarchy: important content competed with decorative imagery, blank space, and a Wix platform banner. The brand was visible; the actions were not.\n\nLimited orientation: the site gave users little sense of where they were in the experience. Navigation did not reflect active states, footer was sparse, and section structure did not sequence the experience from awareness to action.',
+      },
+      decisions: [
+        {
+          decision: 'Redesign navigation around user jobs-to-be-done, not internal page structure',
+          framework: 'Hick\'s Law + information architecture',
+          reasoning: 'The old navigation had four items that mapped to internal TMG structure rather than student intent. The new navigation exposes six destinations — Home, About, Events, Sponsors, Join Our Team, Linktree — organized to answer the questions real visitors arrive with: "What is TMG?", "What events can I attend?", "How do I join?", "Should we sponsor?". Hick\'s Law predicts that adding choices increases decision time; the redesign counters this by grouping related decisions (event sub-pages under Events, department sub-pages under About) so the top-level choice set stays small while depth is available for committed users. The active state and grouped dropdowns keep users oriented rather than requiring them to remember where they are.',
+        },
+        {
+          decision: 'Mobile-first layout as the design constraint, not a responsive afterthought',
+          framework: 'Universal usability + Fitts\'s Law',
+          reasoning: 'The student audience discovers events, clubs, and applications from phones. Starting the redesign from a 390px mobile viewport forced information hierarchy decisions that improved the desktop too. Every section on the homepage had to earn its above-the-fold position when constrained to a single column — two sections that were not being scrolled to on desktop were cut as a result. Fitts\'s Law drove specific decisions on mobile: pill CTAs were sized and padded to be comfortable thumb targets, action buttons were placed below relevant content (not floating at page edges), and the bottom navigation on the events page kept tab switching within reach. The result was not a stripped-down mobile variant but a layout that happened to also work at 1180px.',
+        },
+        {
+          decision: 'Apply Gestalt proximity and similarity to organize team and event content',
+          framework: 'Gestalt grouping + cognitive load reduction',
+          reasoning: 'The old About page displayed team members in a large undifferentiated grid. Users had no way to quickly understand organizational structure, department responsibilities, or which team was relevant to their goal. The redesign grouped team members by function — leadership, business development, events, marketing, operations — with a clear visual break between departments. Gestalt proximity (items close together are read as a group) and similarity (consistent portrait style, role label, and LinkedIn affordance per card) do the work of communicating structure without explicit labels for every relationship. The same principle was applied to event cards: title, date, description, image, and CTA repeat in the same spatial relationship across every event so users learn to scan the pattern after the first card.',
+        },
+        {
+          decision: 'Separate sponsor and CBA applicant paths into dedicated audience experiences',
+          framework: 'Audience segmentation + Nielsen\'s user control',
+          reasoning: 'The original site mixed sponsor information into general student content. A potential corporate sponsor landing on the homepage found student-facing event content before finding any partner-relevant information. The redesign created a dedicated Sponsors page with a partner-specific first impression, an explicit "Why Sponsor TMG" section (talent pipeline, brand exposure, industry insights, past partner credibility), and a sponsor contact path independent of the student membership flow. The same separation was applied to the CBA Applications route: instead of a centered information card, the new page uses community photography, a role-specific headline, and a "Why Become a CBA?" benefits section that turns a passive information page into a conversion surface. Both pages follow Nielsen\'s match-between-system-and-real-world: the copy, imagery, and CTAs match what each audience is actually evaluating.',
+        },
+        {
+          decision: 'End every page section with closure and a clear next action',
+          framework: 'Shneiderman\'s golden rules + conversion design',
+          reasoning: 'Shneiderman\'s rule "design dialogs to yield closure" guided the page-level structure. Every major section ends with an action: the homepage hero with "Join The Herd" and "Follow Us", the events section with "View All Events", the about section with "Meet the Team", the sponsor section with "Become a Sponsor", the CBA page with a direct application CTA. This is not just aesthetic — it is functional. Users who finish reading a content block and find no next step bounce or navigate to an unrelated destination. By anchoring every section to an action, the design turns awareness into engagement and engagement into conversion. The footer was also redesigned from a closing brand element into a recovery and wayfinding surface with grouped menu links, contact, address, and social destinations — so users who scroll past what they need can reorient without using the browser back button.',
+        },
+        {
+          decision: 'Document every design decision against specific HCI principles for institutional knowledge',
+          framework: 'Nielsen heuristics + Shneiderman\'s golden rules',
+          reasoning: 'A redesign that cannot articulate its rationale is vulnerable to being undone by whoever maintains the site next. Every page-level UX decision in this project was mapped to a specific heuristic or principle: recognition over recall (navigation labels reflect user goals, not internal naming), consistency and standards (buttons, cards, section headings repeat across pages), error prevention (clear navigation and footer links reduce wrong turns), reduced short-term memory load (options stay visible rather than requiring users to remember where to find them). Maintaining a documented case study alongside the live site gives future maintainers a design rationale to refer to when they are tempted to add a feature or rearrange a section. The design system — color tokens, typography scale, card anatomy, CTA variants — is documented in the same case study so future contributors work from the same visual language.',
+        },
+      ],
+      keyFindings: [
+        {
+          stat: '+67%',
+          title: 'Total site sessions',
+          description: 'Sessions grew 67% in the 90 days following the redesign. The combination of clearer navigation, stronger event discovery, and dedicated audience paths (student, sponsor, applicant) gave each visitor segment more reasons to explore the site rather than exit after a single page.',
+        },
+        {
+          stat: '62%→23%',
+          title: 'Bounce rate',
+          description: 'Bounce rate fell from 62% to approximately 23% — a 39-point reduction. The most significant driver was mobile layout: once the first screen gave students a clear read on TMG\'s value and a visible next action, the proportion of single-page exits dropped sharply. A 23% bounce rate is strong for a student organization site.',
+        },
+        {
+          stat: '3m 36s',
+          title: 'Average session duration (+30%)',
+          description: 'Average session duration grew 30% to 3m 36s. Longer sessions indicate that users were navigating between pages — moving from the homepage into events, from events into specific event pages, from about into team departments — rather than reading one section and leaving. The repeatable event card pattern and grouped team content made deeper exploration feel worth the effort.',
+        },
+        {
+          stat: '+45%',
+          title: 'Unique visitors',
+          description: '45% more unique visitors in the post-redesign period. Some of this reflects word-of-mouth and social promotion, but the retention improvement (lower bounce, longer sessions) also means repeat visits contributed more unique-visitor counts than in the previous period. A site that users return to for event updates and application deadlines compounds its visitor count over a semester.',
+        },
+      ],
+      features: [
+        {
+          title: 'Homepage redesign',
+          description: 'The new homepage gives users a clear first scan: navigation, organization identity statement, supporting copy, Pink Sheep mascot, and two primary CTAs above the fold. Upcoming events surface as scannable cards immediately below the hero. The section ends with social follow and Linktree actions. On mobile, the same content collapses into a single-column flow that preserves reading order and keeps the primary CTA reachable without scrolling.',
+          insight: 'The hero composition does one job at a time: navigation, then identity, then value proposition, then actions. The old homepage put all of these in competition. The redesign sequences them so each element reads after the previous one rather than competing for the same attention.',
+          image: '/projects/tmg-website/new-home-desktop-viewport.png',
+          imageFit: 'contain',
+        },
+        {
+          title: 'Events page',
+          description: 'The events page opens with a full-width audience photo, a direct "Our Events" headline, and a short participation prompt that explains why students should attend, not just that events exist. Below, event entries follow a repeatable pattern: title, date, description, image proof, outcomes, and CTA. A supporting "Other Events" module shows the breadth of TMG programming. The page ends with a social follow action that keeps the community connection visible after event content is consumed.',
+          insight: 'Event content that shows community proof (audience photos, outcome statements) outperforms content that only describes what the event is. Students evaluating whether to attend need to see that other students attended and found value — that is the job the imagery and outcome language do.',
+          image: '/projects/tmg-website/new-events-desktop-viewport.png',
+          imageFit: 'contain',
+        },
+        {
+          title: 'About page and team structure',
+          description: 'The About page separates mission copy from the team photo into a two-column desktop layout, resolving the figure-ground clarity issue of the old design (white mission card over a busy team image). Team members are organized by department — leadership, business development, events, marketing, operations — using Gestalt proximity to make organizational structure immediately recognizable. Each card shows portrait, name, role, and a LinkedIn link. The mobile view gives each department section a clear vertical order.',
+          insight: 'Potential members and sponsors evaluate the About page to assess organizational credibility. Seeing departments with named leads — not just an alphabetical grid of portraits — communicates that TMG is structured and accountable. That credibility is the conversion driver on the About page, not the mission copy.',
+          image: '/projects/tmg-website/new-about-desktop-viewport.png',
+          imageFit: 'contain',
+        },
+        {
+          title: 'Sponsors page',
+          description: 'The sponsors page is a dedicated audience experience for external partners, separate from student-facing content. It opens with a partner-specific hero, then presents an explicit "Why Sponsor TMG" section with four benefit categories: talent pipeline access, brand exposure at student events, industry insights, and past partner credibility (with partner logos). The page ends with a direct "Become a Sponsor" CTA. Sponsors arrive with a specific evaluation question — is this a credible, valuable partnership? — and the page answers that question before asking for contact.',
+          insight: 'Mixing sponsor content into student-facing pages makes the site harder for both audiences. Corporate partners evaluating a student sponsorship need a professional, partner-specific experience — not a page designed to recruit members. Separation by audience is an information architecture decision that also serves brand credibility.',
+          image: '/projects/tmg-website/new-sponsors-desktop-viewport.png',
+          imageFit: 'contain',
+        },
+        {
+          title: 'CBA Applications page',
+          description: 'The Campus Brand Ambassador recruitment page uses community imagery, a role-specific "Campus Brand Ambassador" headline, and the value line "Represent. Connect. Grow." to communicate the opportunity before explaining it. The supporting "Why Become a CBA?" section converts the application page from a passive information destination into a conversion surface with concrete benefit framing: leadership development, networking opportunities, and marketing experience. The application path feels current, visible, and connected to student identity.',
+          insight: 'Application pages that front-load benefit framing outperform pages that front-load process information. Students are not asking "what is a CBA?" — they are asking "why should I become one?" The new page answers the second question first, then supports it with process details for committed applicants.',
+          image: '/projects/tmg-website/new-cba-applications-viewport.png',
+          imageFit: 'contain',
+        },
+        {
+          title: 'Mobile layout',
+          description: 'The full redesigned experience on a 390px phone viewport: compact header with navigation controls, single-column hero with primary CTAs, stacked event cards with readable type, and a bottom-anchored footer with grouped navigation links and social destinations. Tap targets throughout are sized for thumb interaction. The mobile layout is not a stripped-down variant — it is the canonical layout from which the desktop was derived, which is why the hierarchy choices hold at every breakpoint.',
+          insight: 'Designing mobile-first forced every content decision to be justified by user value, not by the visual affordance of a wide canvas. Two sections present on the desktop homepage were removed during the mobile-first pass because they did not earn their space at 390px — those cuts also improved the desktop layout.',
+          image: '/projects/tmg-website/new-home-mobile-viewport.png',
+          imageFit: 'contain',
+          phoneFrame: true,
+        },
+      ],
+      tools: [
+        {
+          name: 'Wix Studio',
+          purpose: 'Design and development environment for the live UTSC TMG website. Wix\'s visual editor enabled rapid iteration on layout, component styling, navigation structure, and responsive breakpoints without a custom code deployment pipeline. Design system tokens (colors, type scale, spacing) were maintained across pages via Wix\'s global styles panel.',
+        },
+        {
+          name: 'Google Analytics',
+          purpose: 'Primary measurement tool. Session volume, unique visitors, bounce rate, and average session duration were tracked before and after the redesign to validate UX hypotheses with behavioral data rather than qualitative feedback alone. Analytics data was also used to diagnose the original UX problems: a 62% bounce rate and shorter sessions confirmed that first-impression clarity and navigation depth were the highest-priority fixes.',
+        },
+        {
+          name: 'HCI frameworks (Nielsen, Shneiderman, Fitts, Hick, Gestalt)',
+          purpose: 'Design rationale. Every page-level decision was mapped to a specific principle: recognition over recall drove navigation label choices, Hick\'s Law shaped the dropdown grouping strategy, Fitts\'s Law set CTA sizing and placement on mobile, Gestalt proximity and similarity organized team and event card layouts, and Shneiderman\'s closure rule governed section endings. Mapping decisions to principles also produced the case study documentation that gives future site maintainers a rationale to work from.',
+        },
+        {
+          name: 'Viewport capture and visual documentation',
+          purpose: 'Screenshot evidence for before/after comparison across desktop and mobile viewports. Captures were normalized within each comparison so visual differences come from the websites, not mismatched case-study containers. Captures include homepage, navigation dropdown, events, about, sponsors, CBA applications, and the full mobile layout across multiple pages.',
+        },
+        {
+          name: 'Information architecture mapping',
+          purpose: 'Navigation restructuring from a four-item flat menu to a six-destination grouped navigation organized by user intent: Home, About (with department sub-pages), Events (with event sub-pages and CBA), Sponsors, Join Our Team, and Linktree. IA mapping preceded visual design to ensure each page had a clear audience, job-to-be-done, and conversion moment before any component was placed.',
+        },
+      ],
+      impact: {
+        title: 'What a 90-day UX redesign actually moves — and what it does not',
+        content: 'The analytics results are the most legible part of the outcome: 67% more sessions, 45% more unique visitors, bounce rate from 62% to 23%, session duration up 30% to 3m 36s. Those numbers confirm that the redesign moved the metrics it was optimizing for — first-impression clarity, mobile usability, navigation depth, and conversion path strength.\n\nThe less visible outcome is the design system. A Wix site without documented design principles drifts: well-meaning maintainers add a section here, change a CTA color there, and six months later the visual language is inconsistent. The case study paired with the live site gives future contributors a documented rationale: here is why the navigation is structured this way, here is the color system, here is what "Hick\'s Law" meant for how we grouped the dropdown items. That documentation is the difference between a redesign that lasts and one that gets gradually overwritten.\n\nThe remaining UX opportunity is conversion measurement beyond sessions. Sessions and duration tell you that users are engaging more; they do not tell you how many joined TMG, applied to become a CBA, or reached out as a sponsor as a result. Wiring analytics events to every CTA click and tracking the event-page-to-registration path would close that loop and give the next redesign cycle a behavioral basis for prioritization rather than an analytics-and-judgment one.',
+      },
+      limitations: {
+        title: 'Honest caveats',
+        items: [
+          'Wix\'s editor constraints limit what is achievable in custom animation, advanced data binding, and performance optimization. A Next.js or SvelteKit build would offer more control over Core Web Vitals and interaction patterns, at the cost of a deployment pipeline the organization may not be able to maintain.',
+          'Analytics coverage does not yet include CTA-level event tracking. Session and duration metrics confirm engagement improved, but conversion rates for specific actions (join form submissions, sponsor contact clicks, CBA applications) are not yet measured separately.',
+          'A formal accessibility audit has not been completed. The redesign improves contrast, readability, and responsive layout, but keyboard navigation, screen reader heading order, focus states, and ARIA labels require a Lighthouse or axe audit to validate.',
+          'The 90-day measurement window may include confounding variables: increased event activity, social media campaigns, and seasonal student engagement patterns can all shift session volume independently of the redesign. A longer measurement period would increase confidence in the attribution.',
+          'Content lifecycle management — archiving past events, updating application deadlines, refreshing sponsor lists — is not systematized. Without a content governance plan, the site will accumulate stale content that reduces credibility with returning visitors.',
+        ],
+      },
+    },
   },
   {
     id: 'matchify',
