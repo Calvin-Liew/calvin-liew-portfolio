@@ -2,7 +2,7 @@
 title: "Why I Built This Portfolio (And What You'll Find Here)"
 date: "2025-12-23"
 excerpt: "A product analyst who also designs and builds things needs a place to show the full picture — not just the job title. This is that place."
-tags: ["Career", "AI", "Product"]
+tags: ["Career", "AI Agents", "RAG", "Product Strategy"]
 ---
 
 Most portfolios are résumés with screenshots. I wanted something different.

@@ -2,7 +2,7 @@
 title: "RAG as Organizational Memory: Reducing Amnesia, Risking Rigidity"
 date: "2026-04-06"
 excerpt: "Retrieval-augmented generation can help organizations stop losing institutional knowledge when people leave. But a better memory system can also preserve outdated thinking with more authority than it deserves. The value of RAG depends less on the model than on the quality and governance of what it retrieves."
-tags: ["AI", "RAG", "Enterprise", "Knowledge Management", "Organizational Learning"]
+tags: ["RAG", "Knowledge Management", "Enterprise", "LLM"]
 ---
 
 *This is an edited version of a course paper written for MGSD15H3 — Managing the Information Economy at the University of Toronto (Winter 2026). [Read the full paper with complete citations →](/papers/rag-organizational-memory.html)*

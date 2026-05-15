@@ -8,7 +8,8 @@ export const projects: Project[] = [
     dates: 'Mar 2026 - May 2026',
     organization: 'Independent Project',
     description: 'A production RAG copilot for SaaS evaluation. Indexes 335 products and 4,899 review chunks into four partitioned Chroma vector collections, ranks retrieval candidates across six signals (feature-fit, pricing, review sentiment, provenance trust, query alignment, category overlap), then generates grounded recommendations via a provider-neutral LLM layer — Groq Qwen 32B online, Ollama Qwen 2.5 local, or a deterministic grounded template when both are unavailable. The architecture ensures the LLM never invents a fact the retrieval layer did not supply.',
-    skills: ['RAG', 'FastAPI', 'React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Chroma', 'Vector Search', 'LLM Integration', 'Groq', 'Ollama', 'Production Deployment', 'Netlify', 'Render', 'Data Engineering'],
+    skills: ['RAG', 'FastAPI', 'React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Chroma', 'Vector Search', 'LLM', 'Groq', 'Ollama', 'Production Deployment', 'Netlify', 'Render', 'Data Engineering'],
+    tags: ['RAG', 'LLM', 'AI Agents', 'Product Strategy'],
     image: '/projects/saas-scout/00-hero.png',
     links: [
       {
@@ -182,6 +183,7 @@ export const projects: Project[] = [
     courseCode: 'MGSD24 - New Venture Creation and Planning',
     description: 'A new venture concept and working UX prototype for a smart pantry management app. PantryPilot connects inventory risk, recipe matching, and grocery planning into one system to help households cut the average $1,300+ in avoidable food waste per year. Validated through a 50-person primary research survey, a 24-month financial model projecting break-even at Month 17, and a React 18 + TypeScript prototype deployed on Netlify.',
     skills: ['Product Strategy', 'Market Research', 'Financial Modeling', 'User Research', 'React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Zustand', 'Framer Motion', 'UX Design', 'Entrepreneurship'],
+    tags: ['Entrepreneurship', 'Product Strategy', 'UX Design'],
     image: '/projects/pantry-pilot/00-dashboard.png',
     links: [
       {
@@ -357,7 +359,8 @@ export const projects: Project[] = [
     organization: 'University of Toronto',
     courseCode: 'CSC316H1 - Data Visualization and Advanced Programming',
     description: 'An interactive data visualization study of how horror films generate fear. Analyzed 129 horror screenplays across 9,760 scenes and 11,204 horror signals using a GPT-4o-mini + GPT-4o pipeline (99.97% success rate, $2.28 total cost), then built nine custom D3.js visualizations into a scrollytelling site that reveals horror\'s power law: a tiny set of elite signals like scream and blood drive most of the actual scares.',
-    skills: ['Large Language Models (LLM)', 'Generative AI', 'D3.js', 'Python (Programming Language)', 'Data Science', 'Data Visualization', 'Prompt Engineering'],
+    skills: ['LLM', 'Generative AI', 'D3.js', 'Python', 'Data Science', 'Data Visualization', 'Prompt Engineering'],
+    tags: ['Data Visualization', 'LLM', 'Generative AI'],
     image: '/projects/anatomy-of-fear/00-hero.png',
     links: [
       {
@@ -610,7 +613,8 @@ export const projects: Project[] = [
     organization: 'University of Toronto',
     courseCode: 'MGMC11H3 - Product Management and Branding',
     description: 'A high-fidelity prototype reimagining Google Drive as a proactive AI partner instead of passive storage. Six signature scenarios (Syllabus-to-Schedule, Smart Reading Pack, Living Concept Maps, AI Meeting Chief of Staff, Executive Briefs, Work Rhythm Optimiser) demonstrate how an embedded AI layer can replace the manual-upload chore that defines ChatGPT and Copilot. User research with 100+ students and professionals exposed the real lever: emotional benefits (anxiety down, confidence up) lift adoption far more than time savings alone.',
-    skills: ['Product Management', 'Product Design', 'Prototyping', 'Agentic Design', 'Agents', 'User Interface Design', 'Rapid Prototyping', 'Large Language Models (LLM)'],
+    skills: ['Product Management', 'Product Design', 'Prototyping', 'Agentic AI', 'UI Design', 'Rapid Prototyping', 'LLM'],
+    tags: ['AI Agents', 'LLM', 'Product Strategy', 'UX Design'],
     image: '/projects/drive-companion/00-hero.png',
     links: [
       {
@@ -781,7 +785,8 @@ export const projects: Project[] = [
     organization: 'University of Toronto',
     courseCode: 'MGMC11H3 - Product Management and Branding',
     description: 'A brand and UX redesign of The Music Pathways Project (TMPP), a UofT Scarborough initiative that helps high-school and post-secondary students see music careers as more than "perform, teach, or quit." Replaced static PDFs and a generic band photo with a confident homepage, an 8-pathway interactive preview, dual audience entry points for students and educators, and a 3-step discovery flow. Built on CBBE branding theory and consumer behavior principles to reduce cognitive load and reframe the brand around possibility.',
-    skills: ['Product Management', 'Product Design', 'UI/UX', 'Interactive Design', 'Brand Strategy', 'CBBE Framework', 'Consumer Behavior'],
+    skills: ['Product Management', 'Product Design', 'UI/UX Design', 'Interactive Design', 'Brand Strategy', 'CBBE Framework', 'Consumer Behavior'],
+    tags: ['Product Strategy', 'UX Design', 'Brand Strategy'],
     image: '/projects/music-pathways/00-hero.png',
     links: [
       {
@@ -980,7 +985,8 @@ export const projects: Project[] = [
     dates: 'Oct 2025 - Nov 2025',
     organization: 'University of Toronto',
     description: 'An interactive D3.js data story that pushes back on a simple assumption: that your job is what determines your sleep. Three visualizations, one dataset of 374 people across 11 occupations, and a guided narrative that argues individual behavior and health context matter more than profession. A bubble landscape exposes stress variance within the same job. A Sankey diagram traces the path from physical activity to sleep quality. The Dream Lab animates BMI, heart rate, and sleep disorders with dots that pulse at each individual\'s resting heart rate.',
-    skills: ['D3.js', 'JavaScript', 'HTML5', 'GitHub', 'Interaction Design', 'Data Visualization', 'Statistical Analysis'],
+    skills: ['D3.js', 'JavaScript', 'HTML5', 'Interaction Design', 'Data Visualization', 'Statistical Analysis'],
+    tags: ['Data Visualization', 'Data Analysis'],
     image: '/projects/night-shift/00-hero.png',
     links: [
       {
@@ -1153,6 +1159,7 @@ export const projects: Project[] = [
     organization: 'The Marketing Group (TMG) — University of Toronto Scarborough',
     description: 'A 90-day mobile-first redesign of the UTSC Marketing Group\'s website that cut bounce rate from 62% to 23%, grew sessions by 67%, and increased average session duration by 30% to 3m 36s. Rebuilt the information architecture around five distinct user journeys — students, event attendees, applicants, sponsors, and social visitors — and applied a full suite of HCI principles (Nielsen heuristics, Shneiderman\'s golden rules, Fitts\'s Law, Hick\'s Law, Gestalt) across every page.',
     skills: ['UX Design', 'Information Architecture', 'Wix', 'Responsive Design', 'Google Analytics', 'Visual Hierarchy', 'HCI Principles', 'Conversion Optimization', 'UX Research', 'Design Systems'],
+    tags: ['UX Design', 'Design Systems', 'Information Architecture'],
     image: '/projects/tmg-website/new-home-desktop-viewport.png',
     links: [
       {
@@ -1469,6 +1476,7 @@ export const projects: Project[] = [
     organization: 'Independent Project',
     description: 'A mobile concept where the visual identity is the product. Dark canvas as the brand floor, one Spotify-aligned green used surgically, profile rings as the universal identity marker, and a content design call that treats every Friend suggestion as a sentence explaining the match. Designed end-to-end in Figma across Spotify-authenticated onboarding, the multi-section home feed, the Friends discovery surface, and the Events tab. Selected for ARIA 2024, the University of Toronto\'s annual research and innovation showcase.',
     skills: ['Visual Design', 'Brand Systems', 'Dark Mode Design', 'Mobile Design', 'UI/UX Design', 'Figma', 'Prototyping', 'Design Tokens', 'Wireframing', 'Design Systems'],
+    tags: ['UX Design', 'Design Systems', 'Brand Strategy', 'Mobile Design'],
     links: [
       {
         type: 'figma',
@@ -1732,7 +1740,8 @@ export const projects: Project[] = [
     organization: 'University of Toronto',
     courseCode: 'CSCC10 - Human-Computer Interaction',
     description: 'A four-phase HCI research project (CSCC10, Summer 2024) by a team of six University of Toronto students. The output is a high-fidelity mobile prototype for peer-to-peer tutoring grounded in five cited studies on peer tutoring efficacy, student mental health, and online versus in-person learning. The work covers low-fidelity exploration, a 30-response survey plus two unstructured interviews, a high-fidelity Figma prototype, and a 13-participant asynchronous usability study evaluated against Nielsen\'s 10 heuristics with emphasis on H1 (visibility), H3 (user control), and H6 (recognition).',
-    skills: ['Mobile Design', 'Usability Testing', 'Experience Design', 'Prototyping', 'User-centered Design', 'User Experience Design (UED)', 'User Personas', 'Figma', 'Wireframing', 'UX Research', 'Design Thinking'],
+    skills: ['Mobile Design', 'Usability Testing', 'Experience Design', 'Prototyping', 'User-centered Design', 'UX Design', 'User Personas', 'Figma', 'Wireframing', 'UX Research', 'Design Thinking'],
+    tags: ['UX Design', 'UX Research', 'Mobile Design'],
     links: [
       {
         type: 'figma',

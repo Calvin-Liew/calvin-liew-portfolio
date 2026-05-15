@@ -2,7 +2,7 @@
 title: "What's on the Writing Queue"
 date: "2025-12-20"
 excerpt: "The topics I'm working through carefully enough to write down — on RAG architecture, stakeholder trust in AI, and the gap between building something and shipping something."
-tags: ["AI", "Product", "RAG"]
+tags: ["RAG", "AI Agents", "Product Strategy", "LLM"]
 ---
 
 Writing is slow for me because I only publish things I've actually worked through. These are the topics currently earning that treatment.
