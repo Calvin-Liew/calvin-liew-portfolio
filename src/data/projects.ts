@@ -4,11 +4,12 @@ export const projects: Project[] = [
   {
     id: 'saas-scout',
     title: 'SaaSScout: A Grounded RAG Copilot for SaaS Evaluation',
-    category: 'Development',
+    category: 'AI & Data',
     dates: 'Mar 2026 - May 2026',
     organization: 'Independent Project',
     description: 'A production RAG copilot for SaaS evaluation. Indexes 335 products and 4,899 review chunks into four partitioned Chroma vector collections, ranks retrieval candidates across six signals (feature-fit, pricing, review sentiment, provenance trust, query alignment, category overlap), then generates grounded recommendations via a provider-neutral LLM layer — Groq Qwen 32B online, Ollama Qwen 2.5 local, or a deterministic grounded template when both are unavailable. The architecture ensures the LLM never invents a fact the retrieval layer did not supply.',
-    skills: ['RAG', 'FastAPI', 'React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Chroma', 'Vector Search', 'LLM Integration', 'Groq', 'Ollama', 'Production Deployment', 'Netlify', 'Render', 'Data Engineering'],
+    skills: ['RAG', 'FastAPI', 'React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Chroma', 'Vector Search', 'LLM', 'Groq', 'Ollama', 'Production Deployment', 'Netlify', 'Render', 'Data Engineering'],
+    tags: ['RAG', 'LLM', 'AI Agents', 'Product Strategy'],
     image: '/projects/saas-scout/00-hero.png',
     links: [
       {
@@ -176,12 +177,13 @@ export const projects: Project[] = [
   {
     id: 'pantry-pilot',
     title: 'PantryPilot: Know What Will Spoil, Cook What You Have',
-    category: 'Entrepreneurship',
+    category: 'Product',
     dates: 'Jan 2026 - Apr 2026',
     organization: 'University of Toronto',
     courseCode: 'MGSD24 - New Venture Creation and Planning',
     description: 'A new venture concept and working UX prototype for a smart pantry management app. PantryPilot connects inventory risk, recipe matching, and grocery planning into one system to help households cut the average $1,300+ in avoidable food waste per year. Validated through a 50-person primary research survey, a 24-month financial model projecting break-even at Month 17, and a React 18 + TypeScript prototype deployed on Netlify.',
     skills: ['Product Strategy', 'Market Research', 'Financial Modeling', 'User Research', 'React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Zustand', 'Framer Motion', 'UX Design', 'Entrepreneurship'],
+    tags: ['Entrepreneurship', 'Product Strategy', 'UX Design'],
     image: '/projects/pantry-pilot/00-dashboard.png',
     links: [
       {
@@ -348,15 +350,17 @@ export const projects: Project[] = [
       },
     },
   },
+
   {
     id: 'anatomy-of-fear',
     title: 'The Anatomy of Fear: Quantifying Horror',
-    category: 'Data Analysis',
+    category: 'AI & Data',
     dates: 'Sep 2025 - Dec 2025',
     organization: 'University of Toronto',
     courseCode: 'CSC316H1 - Data Visualization and Advanced Programming',
     description: 'An interactive data visualization study of how horror films generate fear. Analyzed 129 horror screenplays across 9,760 scenes and 11,204 horror signals using a GPT-4o-mini + GPT-4o pipeline (99.97% success rate, $2.28 total cost), then built nine custom D3.js visualizations into a scrollytelling site that reveals horror\'s power law: a tiny set of elite signals like scream and blood drive most of the actual scares.',
-    skills: ['Large Language Models (LLM)', 'Generative AI', 'D3.js', 'Python (Programming Language)', 'Data Science', 'Data Visualization', 'Prompt Engineering'],
+    skills: ['LLM', 'Generative AI', 'D3.js', 'Python', 'Data Science', 'Data Visualization', 'Prompt Engineering'],
+    tags: ['Data Visualization', 'LLM', 'Generative AI'],
     image: '/projects/anatomy-of-fear/00-hero.png',
     links: [
       {
@@ -604,12 +608,13 @@ export const projects: Project[] = [
   {
     id: 'google-drive-companion',
     title: 'Drive Companion: AI-Powered Cloud Intelligence',
-    category: 'Product Management',
+    category: 'Product',
     dates: 'Sep 2025 - Nov 2025',
     organization: 'University of Toronto',
     courseCode: 'MGMC11H3 - Product Management and Branding',
     description: 'A high-fidelity prototype reimagining Google Drive as a proactive AI partner instead of passive storage. Six signature scenarios (Syllabus-to-Schedule, Smart Reading Pack, Living Concept Maps, AI Meeting Chief of Staff, Executive Briefs, Work Rhythm Optimiser) demonstrate how an embedded AI layer can replace the manual-upload chore that defines ChatGPT and Copilot. User research with 100+ students and professionals exposed the real lever: emotional benefits (anxiety down, confidence up) lift adoption far more than time savings alone.',
-    skills: ['Product Management', 'Product Design', 'Prototyping', 'Agentic Design', 'Agents', 'User Interface Design', 'Rapid Prototyping', 'Large Language Models (LLM)'],
+    skills: ['Product Management', 'Product Design', 'Prototyping', 'Agentic AI', 'UI Design', 'Rapid Prototyping', 'LLM'],
+    tags: ['AI Agents', 'LLM', 'Product Strategy', 'UX Design'],
     image: '/projects/drive-companion/00-hero.png',
     links: [
       {
@@ -775,12 +780,13 @@ export const projects: Project[] = [
   {
     id: 'music-pathways-redesign',
     title: 'Music Pathways: Brand Design for Career Discovery',
-    category: 'UI/UX Design',
+    category: 'Product',
     dates: 'Nov 2025 - Nov 2025',
     organization: 'University of Toronto',
     courseCode: 'MGMC11H3 - Product Management and Branding',
     description: 'A brand and UX redesign of The Music Pathways Project (TMPP), a UofT Scarborough initiative that helps high-school and post-secondary students see music careers as more than "perform, teach, or quit." Replaced static PDFs and a generic band photo with a confident homepage, an 8-pathway interactive preview, dual audience entry points for students and educators, and a 3-step discovery flow. Built on CBBE branding theory and consumer behavior principles to reduce cognitive load and reframe the brand around possibility.',
-    skills: ['Product Management', 'Product Design', 'UI/UX', 'Interactive Design', 'Brand Strategy', 'CBBE Framework', 'Consumer Behavior'],
+    skills: ['Product Management', 'Product Design', 'UI/UX Design', 'Interactive Design', 'Brand Strategy', 'CBBE Framework', 'Consumer Behavior'],
+    tags: ['Product Strategy', 'UX Design', 'Brand Strategy'],
     image: '/projects/music-pathways/00-hero.png',
     links: [
       {
@@ -975,11 +981,12 @@ export const projects: Project[] = [
   {
     id: 'night-shift',
     title: 'The Night Shift: Visualizing Sleep, Stress, and Health',
-    category: 'Data Analysis',
+    category: 'AI & Data',
     dates: 'Oct 2025 - Nov 2025',
     organization: 'University of Toronto',
     description: 'An interactive D3.js data story that pushes back on a simple assumption: that your job is what determines your sleep. Three visualizations, one dataset of 374 people across 11 occupations, and a guided narrative that argues individual behavior and health context matter more than profession. A bubble landscape exposes stress variance within the same job. A Sankey diagram traces the path from physical activity to sleep quality. The Dream Lab animates BMI, heart rate, and sleep disorders with dots that pulse at each individual\'s resting heart rate.',
-    skills: ['D3.js', 'JavaScript', 'HTML5', 'GitHub', 'Interaction Design', 'Data Visualization', 'Statistical Analysis'],
+    skills: ['D3.js', 'JavaScript', 'HTML5', 'Interaction Design', 'Data Visualization', 'Statistical Analysis'],
+    tags: ['Data Visualization', 'Data Analysis'],
     image: '/projects/night-shift/00-hero.png',
     links: [
       {
@@ -1143,14 +1150,333 @@ export const projects: Project[] = [
       }
     }
   },
+
+  {
+    id: 'tmg-website',
+    title: 'TMG Website Redesign: From Static Brochure to Task-Oriented Experience',
+    category: 'Design',
+    dates: 'Apr 2025 - Aug 2025',
+    organization: 'The Marketing Group (TMG) — University of Toronto Scarborough',
+    description: 'A 90-day mobile-first redesign of the UTSC Marketing Group\'s website that cut bounce rate from 62% to 23%, grew sessions by 67%, and increased average session duration by 30% to 3m 36s. Rebuilt the information architecture around five distinct user journeys — students, event attendees, applicants, sponsors, and social visitors — and applied a full suite of HCI principles (Nielsen heuristics, Shneiderman\'s golden rules, Fitts\'s Law, Hick\'s Law, Gestalt) across every page.',
+    skills: ['UX Design', 'Information Architecture', 'Wix', 'Responsive Design', 'Google Analytics', 'Visual Hierarchy', 'HCI Principles', 'Conversion Optimization', 'UX Research', 'Design Systems'],
+    tags: ['UX Design', 'Design Systems', 'Information Architecture'],
+    image: '/projects/tmg-website/new-home-desktop-viewport.png',
+    links: [
+      {
+        type: 'live',
+        url: 'https://www.utsctmg.ca/',
+        label: 'Live site',
+      },
+      {
+        type: 'github',
+        url: 'https://calvin-liew.github.io/TMGWebsite/',
+        label: 'Case study',
+      },
+    ],
+    extendedContent: {
+      stats: [
+        { value: '+67%', label: 'total site sessions' },
+        { value: '62%→23%', label: 'bounce rate reduction' },
+        { value: '+45%', label: 'unique visitors' },
+        { value: '3m 36s', label: 'avg session duration (+30%)' },
+      ],
+      pullQuote: 'The site was not redesigned to look newer. It was redesigned so that students, applicants, and sponsors could each find their path in under ten seconds.',
+      overview: {
+        title: 'A product-minded UX overhaul of a student organization web presence',
+        content: 'The Marketing Group (TMG) at the University of Toronto Scarborough had a Wix-hosted website that communicated brand identity but generated significant engagement friction: a 62% bounce rate, weak mobile usability, shallow navigation, and conversion paths that required users to search for next actions. The 90-day redesign treated the website as a product with measurable user journeys rather than a digital brochure with pages.\n\nThe outcome was a mobile-first, task-oriented experience structured around five distinct audience jobs: students discovering TMG, event attendees finding what to attend, applicants evaluating whether to join, sponsors evaluating partnership, and social visitors looking for the Linktree. Each page was rebuilt with a clear information hierarchy, specific CTAs, and a design system — brand pink, navigation navy, Raleway headings, Wix Madefor Text body, 1180px desktop content width — that creates consistency across every surface. Analytics confirmed the shift: sessions up 67%, unique visitors up 45%, bounce rate dropped to 23%, and average session duration up 30% to 3m 36s.',
+      },
+      motivation: {
+        title: 'Six original UX problems that analytics confirmed were real',
+        content: 'The redesign was not driven by aesthetic preference. Google Analytics data pointed to specific engagement problems that traced to identifiable UX failures in the original Wix site.\n\nMobile usability: the old layout did not reliably adapt to a phone viewport — navigation compressed, section spacing broke, and interaction targets were too small for mobile students. Mobile traffic was the largest segment, so every user on a phone was hitting a degraded experience.\n\nInformation architecture: the old four-item navigation did not expose the user tasks that mattered most — events, joining, sponsorship, organizational structure. Visitors with a clear goal (apply, sponsor, find a specific event) had no efficient entry point.\n\nCognitive load: large photo compositions with overlapping content regions, mission copy over a busy team photograph, and sparse whitespace forced users to infer page purpose and next steps. The visual hierarchy competing with decorative imagery meant important content did not read as important.\n\nWeak conversion paths: the joining path, event discovery, and sponsor engagement all required users to locate the relevant action. CTAs were present but buried beneath content that did not orient them.\n\nInconsistent hierarchy: important content competed with decorative imagery, blank space, and a Wix platform banner. The brand was visible; the actions were not.\n\nLimited orientation: the site gave users little sense of where they were in the experience. Navigation did not reflect active states, footer was sparse, and section structure did not sequence the experience from awareness to action.',
+      },
+      decisions: [
+        {
+          decision: 'Redesign navigation around user jobs-to-be-done, not internal page structure',
+          framework: 'Hick\'s Law + information architecture',
+          reasoning: 'The old navigation had four items that mapped to internal TMG structure rather than student intent. The new navigation exposes six destinations — Home, About, Events, Sponsors, Join Our Team, Linktree — organized to answer the questions real visitors arrive with: "What is TMG?", "What events can I attend?", "How do I join?", "Should we sponsor?". Hick\'s Law predicts that adding choices increases decision time; the redesign counters this by grouping related decisions (event sub-pages under Events, department sub-pages under About) so the top-level choice set stays small while depth is available for committed users. The active state and grouped dropdowns keep users oriented rather than requiring them to remember where they are.',
+        },
+        {
+          decision: 'Mobile-first layout as the design constraint, not a responsive afterthought',
+          framework: 'Universal usability + Fitts\'s Law',
+          reasoning: 'The student audience discovers events, clubs, and applications from phones. Starting the redesign from a 390px mobile viewport forced information hierarchy decisions that improved the desktop too. Every section on the homepage had to earn its above-the-fold position when constrained to a single column — two sections that were not being scrolled to on desktop were cut as a result. Fitts\'s Law drove specific decisions on mobile: pill CTAs were sized and padded to be comfortable thumb targets, action buttons were placed below relevant content (not floating at page edges), and the bottom navigation on the events page kept tab switching within reach. The result was not a stripped-down mobile variant but a layout that happened to also work at 1180px.',
+        },
+        {
+          decision: 'Apply Gestalt proximity and similarity to organize team and event content',
+          framework: 'Gestalt grouping + cognitive load reduction',
+          reasoning: 'The old About page displayed team members in a large undifferentiated grid. Users had no way to quickly understand organizational structure, department responsibilities, or which team was relevant to their goal. The redesign grouped team members by function — leadership, business development, events, marketing, operations — with a clear visual break between departments. Gestalt proximity (items close together are read as a group) and similarity (consistent portrait style, role label, and LinkedIn affordance per card) do the work of communicating structure without explicit labels for every relationship. The same principle was applied to event cards: title, date, description, image, and CTA repeat in the same spatial relationship across every event so users learn to scan the pattern after the first card.',
+        },
+        {
+          decision: 'Separate sponsor and CBA applicant paths into dedicated audience experiences',
+          framework: 'Audience segmentation + Nielsen\'s user control',
+          reasoning: 'The original site mixed sponsor information into general student content. A potential corporate sponsor landing on the homepage found student-facing event content before finding any partner-relevant information. The redesign created a dedicated Sponsors page with a partner-specific first impression, an explicit "Why Sponsor TMG" section (talent pipeline, brand exposure, industry insights, past partner credibility), and a sponsor contact path independent of the student membership flow. The same separation was applied to the CBA Applications route: instead of a centered information card, the new page uses community photography, a role-specific headline, and a "Why Become a CBA?" benefits section that turns a passive information page into a conversion surface. Both pages follow Nielsen\'s match-between-system-and-real-world: the copy, imagery, and CTAs match what each audience is actually evaluating.',
+        },
+        {
+          decision: 'End every page section with closure and a clear next action',
+          framework: 'Shneiderman\'s golden rules + conversion design',
+          reasoning: 'Shneiderman\'s rule "design dialogs to yield closure" guided the page-level structure. Every major section ends with an action: the homepage hero with "Join The Herd" and "Follow Us", the events section with "View All Events", the about section with "Meet the Team", the sponsor section with "Become a Sponsor", the CBA page with a direct application CTA. This is not just aesthetic — it is functional. Users who finish reading a content block and find no next step bounce or navigate to an unrelated destination. By anchoring every section to an action, the design turns awareness into engagement and engagement into conversion. The footer was also redesigned from a closing brand element into a recovery and wayfinding surface with grouped menu links, contact, address, and social destinations — so users who scroll past what they need can reorient without using the browser back button.',
+        },
+        {
+          decision: 'Document every design decision against specific HCI principles for institutional knowledge',
+          framework: 'Nielsen heuristics + Shneiderman\'s golden rules',
+          reasoning: 'A redesign that cannot articulate its rationale is vulnerable to being undone by whoever maintains the site next. Every page-level UX decision in this project was mapped to a specific heuristic or principle: recognition over recall (navigation labels reflect user goals, not internal naming), consistency and standards (buttons, cards, section headings repeat across pages), error prevention (clear navigation and footer links reduce wrong turns), reduced short-term memory load (options stay visible rather than requiring users to remember where to find them). Maintaining a documented case study alongside the live site gives future maintainers a design rationale to refer to when they are tempted to add a feature or rearrange a section. The design system — color tokens, typography scale, card anatomy, CTA variants — is documented in the same case study so future contributors work from the same visual language.',
+        },
+      ],
+      beforeAfter: {
+        title: 'Before and after',
+        intro: 'Seven surface-level comparisons from the same viewport dimensions. The old site had personality and brand energy — the challenge was not to replace that, but to give students, applicants, and sponsors a clearer path through it.',
+        pairs: [
+          {
+            label: 'Homepage',
+            before: '/projects/tmg-website/old-home-desktop-viewport.png',
+            after: '/projects/tmg-website/new-home-desktop-viewport.png',
+            note: 'The old homepage led with a pink photo overlay, centered logo stack, and overlapping About copy — strong brand energy, but the first screen made users infer what to do next. The new homepage sequences the experience: navigation → brand identity → value proposition → two primary CTAs → event cards. Each zone does one job before passing to the next.',
+          },
+          {
+            label: 'Navigation',
+            before: '/projects/tmg-website/old-navigation-dropdown-viewport.png',
+            after: '/projects/tmg-website/new-navigation-dropdown-viewport.png',
+            note: 'The old nav compressed brand logo, menu items, event links, and social icons into one compact strip. The new navigation groups destinations by user intent — About, Events, Sponsors, Join Our Team — with dropdown depth available for committed users, an active state, and the Linktree as a top-level destination. Hick\'s Law at the nav level: same number of decisions, organized so each one maps to a real job.',
+          },
+          {
+            label: 'Events page',
+            before: '/projects/tmg-website/old-events-desktop-viewport.png',
+            after: '/projects/tmg-website/new-events-desktop-viewport.png',
+            note: 'The old events page read as a promotional banner — strong pink composition, event name, broad summary. The new page opens with a full-width audience photo, a direct "Our Events" headline, and a short participation prompt that explains why students should attend. Event entries below follow a repeatable card pattern: title, date, description, image proof, outcomes, CTA. The shift is from announcement to persuasion.',
+          },
+          {
+            label: 'About page',
+            before: '/projects/tmg-website/old-about-desktop-viewport.png',
+            after: '/projects/tmg-website/new-about-desktop-viewport.png',
+            note: 'The old About page placed the mission copy as a white card over a large team photo — readable, but the background competed with the message. The new layout separates them: mission in its own two-column content zone, team members grouped by department below. Gestalt proximity does the organizational work — no explicit labels needed to see where leadership ends and marketing begins.',
+          },
+          {
+            label: 'CBA Applications',
+            before: '/projects/tmg-website/old-cba-applications-viewport.png',
+            after: '/projects/tmg-website/new-cba-applications-viewport.png',
+            note: 'The old CBA page was informational — a centered white card explaining what a Campus Brand Ambassador is. The new page is a conversion surface: community photography, the value line "Represent. Connect. Grow.", and a "Why Become a CBA?" section with concrete benefit framing before the application path. Students were not asking what a CBA is — they were asking why they should become one.',
+          },
+          {
+            label: 'Sponsor path vs. archive',
+            before: '/projects/tmg-website/old-archive-desktop-viewport.png',
+            after: '/projects/tmg-website/new-sponsors-desktop-viewport.png',
+            note: 'The old site mixed sponsor information into general student content; what remains is an archive-style page. The new Sponsors page is a dedicated partner experience: audience-specific hero, a "Why Sponsor TMG" section with four explicit benefit categories (talent pipeline, brand exposure, industry insights, past-partner credibility), and a direct contact CTA. Audience segmentation as an IA decision, not just a visual one.',
+          },
+          {
+            label: 'Mobile homepage',
+            before: '/projects/tmg-website/old-home-mobile-viewport.png',
+            after: '/projects/tmg-website/new-home-mobile-viewport.png',
+            note: 'The old site did not adapt reliably to a 390px viewport — navigation compressed, section spacing broke, and tap targets were undersized for mobile students. The new mobile layout is the canonical starting point: single-column flow, oversized headline and CTAs, stacked event cards, and a footer with grouped navigation links. Because it was designed mobile-first, the hierarchy holds cleanly at every breakpoint rather than stretching a desktop layout.',
+          },
+        ],
+      },
+      designSystem: {
+        title: 'Design system',
+        intro: 'The redesign uses a documented visual language so future maintainers can work from consistent tokens rather than guessing. Pink remains the primary brand signal; navy grounds actions and navigation.',
+        palette: [
+          {
+            name: 'Brand pink',
+            hex: '#E83E8C',
+            role: 'Primary brand color — hero headlines, primary CTA fills, accent borders, and tab indicators throughout the site.',
+          },
+          {
+            name: 'Deep pink',
+            hex: '#C2185B',
+            role: 'Hover and active state for pink elements. Provides sufficient contrast shift to signal interactivity without leaving the brand palette.',
+          },
+          {
+            name: 'Navigation navy',
+            hex: '#1A2744',
+            role: 'Navigation background, footer background, and dark CTA fills. Navy grounds the high-energy pink brand color and creates clear figure-ground separation for white text.',
+          },
+          {
+            name: 'Body ink',
+            hex: '#1F2937',
+            role: 'Primary body text and section headings on light backgrounds. Near-black rather than true black for softer reading across long-form content sections.',
+          },
+          {
+            name: 'Soft surface',
+            hex: '#FFF5F8',
+            role: 'Section backgrounds and card fills on pages with heavy content. Warm white with a faint pink cast keeps the brand palette present without saturating the page.',
+          },
+          {
+            name: 'Divider line',
+            hex: '#EDD5E0',
+            role: 'Section dividers, card borders, and horizontal rules. Muted pink-grey separates content zones without creating harsh visual breaks.',
+          },
+        ],
+        type: [
+          {
+            name: 'Display heading',
+            spec: 'Raleway 700, 40–56px / 1.1, white or navy',
+            example: 'The Marketing Group',
+            exampleClass: 'text-4xl font-bold text-ink',
+          },
+          {
+            name: 'Section heading',
+            spec: 'Raleway 600, 28–36px / 1.2',
+            example: 'Our Events',
+            exampleClass: 'text-3xl font-semibold text-ink',
+          },
+          {
+            name: 'CTA label',
+            spec: 'Raleway 600, 14–16px / 1.0, uppercase tracked',
+            example: 'JOIN THE HERD',
+            exampleClass: 'text-sm font-semibold tracking-widest text-ink uppercase',
+          },
+          {
+            name: 'Body copy',
+            spec: 'Wix Madefor Text 400, 16–18px / 1.6',
+            example: 'Connect with like-minded students and build real marketing experience.',
+            exampleClass: 'text-base text-ink-soft leading-relaxed',
+          },
+          {
+            name: 'Supporting / metadata',
+            spec: 'Wix Madefor Text 400, 13–14px / 1.5, muted',
+            example: 'Event · April 2025 · UTSC',
+            exampleClass: 'text-sm text-muted',
+          },
+        ],
+        components: [
+          {
+            name: 'Pill navigation',
+            purpose: 'Rounded nav links with dropdown affordance. Active state uses a pink underline or fill. Groups Home, About, Events, Sponsors, Join, and Linktree at the top level with sub-pages in dropdown menus.',
+          },
+          {
+            name: 'Primary CTA',
+            purpose: 'White or pink pill button with navy label. Used at hero moments — "Join The Herd", "Follow Us", "Become a Sponsor". Standardized padding and radius across all pages.',
+          },
+          {
+            name: 'Secondary CTA',
+            purpose: 'Transparent pill with a pink or white border. Used for secondary actions adjacent to primary CTAs — "Learn More", "View Events". Same sizing as primary so CTAs align naturally in rows.',
+          },
+          {
+            name: 'Event card',
+            purpose: 'Repeatable content pattern: title, date, one-line description, event image, outcome statement, and CTA. The same card structure appears on the homepage events section and the Events page, so students learn to scan it after the first instance.',
+          },
+          {
+            name: 'Team member card',
+            purpose: 'Portrait photo, name, role label, and LinkedIn link in a fixed-size card. Cards group into department rows using Gestalt proximity — a visual break between leadership and operations without an explicit divider element.',
+          },
+          {
+            name: 'Footer wayfinding',
+            purpose: 'Dark navy footer with grouped navigation columns (About, Events, Connect), contact info, address, and social links. Designed as a recovery surface: users who scroll past a CTA can reorient without the browser back button.',
+          },
+        ],
+      },
+      keyFindings: [
+        {
+          stat: '+67%',
+          title: 'Total site sessions',
+          description: 'Sessions grew 67% in the 90 days following the redesign. The combination of clearer navigation, stronger event discovery, and dedicated audience paths (student, sponsor, applicant) gave each visitor segment more reasons to explore the site rather than exit after a single page.',
+        },
+        {
+          stat: '62%→23%',
+          title: 'Bounce rate',
+          description: 'Bounce rate fell from 62% to approximately 23% — a 39-point reduction. The most significant driver was mobile layout: once the first screen gave students a clear read on TMG\'s value and a visible next action, the proportion of single-page exits dropped sharply. A 23% bounce rate is strong for a student organization site.',
+        },
+        {
+          stat: '3m 36s',
+          title: 'Average session duration (+30%)',
+          description: 'Average session duration grew 30% to 3m 36s. Longer sessions indicate that users were navigating between pages — moving from the homepage into events, from events into specific event pages, from about into team departments — rather than reading one section and leaving. The repeatable event card pattern and grouped team content made deeper exploration feel worth the effort.',
+        },
+        {
+          stat: '+45%',
+          title: 'Unique visitors',
+          description: '45% more unique visitors in the post-redesign period. Some of this reflects word-of-mouth and social promotion, but the retention improvement (lower bounce, longer sessions) also means repeat visits contributed more unique-visitor counts than in the previous period. A site that users return to for event updates and application deadlines compounds its visitor count over a semester.',
+        },
+      ],
+      features: [
+        {
+          title: 'Homepage redesign',
+          description: 'The new homepage gives users a clear first scan: navigation, organization identity statement, supporting copy, Pink Sheep mascot, and two primary CTAs above the fold. Upcoming events surface as scannable cards immediately below the hero. The section ends with social follow and Linktree actions. On mobile, the same content collapses into a single-column flow that preserves reading order and keeps the primary CTA reachable without scrolling.',
+          insight: 'The hero composition does one job at a time: navigation, then identity, then value proposition, then actions. The old homepage put all of these in competition. The redesign sequences them so each element reads after the previous one rather than competing for the same attention.',
+          image: '/projects/tmg-website/new-home-desktop-viewport.png',
+          imageFit: 'contain',
+        },
+        {
+          title: 'Events page',
+          description: 'The events page opens with a full-width audience photo, a direct "Our Events" headline, and a short participation prompt that explains why students should attend, not just that events exist. Below, event entries follow a repeatable pattern: title, date, description, image proof, outcomes, and CTA. A supporting "Other Events" module shows the breadth of TMG programming. The page ends with a social follow action that keeps the community connection visible after event content is consumed.',
+          insight: 'Event content that shows community proof (audience photos, outcome statements) outperforms content that only describes what the event is. Students evaluating whether to attend need to see that other students attended and found value — that is the job the imagery and outcome language do.',
+          image: '/projects/tmg-website/new-events-desktop-viewport.png',
+          imageFit: 'contain',
+        },
+        {
+          title: 'About page and team structure',
+          description: 'The About page separates mission copy from the team photo into a two-column desktop layout, resolving the figure-ground clarity issue of the old design (white mission card over a busy team image). Team members are organized by department — leadership, business development, events, marketing, operations — using Gestalt proximity to make organizational structure immediately recognizable. Each card shows portrait, name, role, and a LinkedIn link. The mobile view gives each department section a clear vertical order.',
+          insight: 'Potential members and sponsors evaluate the About page to assess organizational credibility. Seeing departments with named leads — not just an alphabetical grid of portraits — communicates that TMG is structured and accountable. That credibility is the conversion driver on the About page, not the mission copy.',
+          image: '/projects/tmg-website/new-about-desktop-viewport.png',
+          imageFit: 'contain',
+        },
+        {
+          title: 'Sponsors page',
+          description: 'The sponsors page is a dedicated audience experience for external partners, separate from student-facing content. It opens with a partner-specific hero, then presents an explicit "Why Sponsor TMG" section with four benefit categories: talent pipeline access, brand exposure at student events, industry insights, and past partner credibility (with partner logos). The page ends with a direct "Become a Sponsor" CTA. Sponsors arrive with a specific evaluation question — is this a credible, valuable partnership? — and the page answers that question before asking for contact.',
+          insight: 'Mixing sponsor content into student-facing pages makes the site harder for both audiences. Corporate partners evaluating a student sponsorship need a professional, partner-specific experience — not a page designed to recruit members. Separation by audience is an information architecture decision that also serves brand credibility.',
+          image: '/projects/tmg-website/new-sponsors-desktop-viewport.png',
+          imageFit: 'contain',
+        },
+        {
+          title: 'CBA Applications page',
+          description: 'The Campus Brand Ambassador recruitment page uses community imagery, a role-specific "Campus Brand Ambassador" headline, and the value line "Represent. Connect. Grow." to communicate the opportunity before explaining it. The supporting "Why Become a CBA?" section converts the application page from a passive information destination into a conversion surface with concrete benefit framing: leadership development, networking opportunities, and marketing experience. The application path feels current, visible, and connected to student identity.',
+          insight: 'Application pages that front-load benefit framing outperform pages that front-load process information. Students are not asking "what is a CBA?" — they are asking "why should I become one?" The new page answers the second question first, then supports it with process details for committed applicants.',
+          image: '/projects/tmg-website/new-cba-applications-viewport.png',
+          imageFit: 'contain',
+        },
+        {
+          title: 'Mobile layout',
+          description: 'The full redesigned experience on a 390px phone viewport: compact header with navigation controls, single-column hero with primary CTAs, stacked event cards with readable type, and a bottom-anchored footer with grouped navigation links and social destinations. Tap targets throughout are sized for thumb interaction. The mobile layout is not a stripped-down variant — it is the canonical layout from which the desktop was derived, which is why the hierarchy choices hold at every breakpoint.',
+          insight: 'Designing mobile-first forced every content decision to be justified by user value, not by the visual affordance of a wide canvas. Two sections present on the desktop homepage were removed during the mobile-first pass because they did not earn their space at 390px — those cuts also improved the desktop layout.',
+          image: '/projects/tmg-website/new-home-mobile-viewport.png',
+          imageFit: 'contain',
+          phoneFrame: true,
+        },
+      ],
+      tools: [
+        {
+          name: 'Wix Studio',
+          purpose: 'Design and development environment for the live UTSC TMG website. Wix\'s visual editor enabled rapid iteration on layout, component styling, navigation structure, and responsive breakpoints without a custom code deployment pipeline. Design system tokens (colors, type scale, spacing) were maintained across pages via Wix\'s global styles panel.',
+        },
+        {
+          name: 'Google Analytics',
+          purpose: 'Primary measurement tool. Session volume, unique visitors, bounce rate, and average session duration were tracked before and after the redesign to validate UX hypotheses with behavioral data rather than qualitative feedback alone. Analytics data was also used to diagnose the original UX problems: a 62% bounce rate and shorter sessions confirmed that first-impression clarity and navigation depth were the highest-priority fixes.',
+        },
+        {
+          name: 'HCI frameworks (Nielsen, Shneiderman, Fitts, Hick, Gestalt)',
+          purpose: 'Design rationale. Every page-level decision was mapped to a specific principle: recognition over recall drove navigation label choices, Hick\'s Law shaped the dropdown grouping strategy, Fitts\'s Law set CTA sizing and placement on mobile, Gestalt proximity and similarity organized team and event card layouts, and Shneiderman\'s closure rule governed section endings. Mapping decisions to principles also produced the case study documentation that gives future site maintainers a rationale to work from.',
+        },
+        {
+          name: 'Viewport capture and visual documentation',
+          purpose: 'Screenshot evidence for before/after comparison across desktop and mobile viewports. Captures were normalized within each comparison so visual differences come from the websites, not mismatched case-study containers. Captures include homepage, navigation dropdown, events, about, sponsors, CBA applications, and the full mobile layout across multiple pages.',
+        },
+        {
+          name: 'Information architecture mapping',
+          purpose: 'Navigation restructuring from a four-item flat menu to a six-destination grouped navigation organized by user intent: Home, About (with department sub-pages), Events (with event sub-pages and CBA), Sponsors, Join Our Team, and Linktree. IA mapping preceded visual design to ensure each page had a clear audience, job-to-be-done, and conversion moment before any component was placed.',
+        },
+      ],
+      impact: {
+        title: 'What a 90-day UX redesign actually moves — and what it does not',
+        content: 'The analytics results are the most legible part of the outcome: 67% more sessions, 45% more unique visitors, bounce rate from 62% to 23%, session duration up 30% to 3m 36s. Those numbers confirm that the redesign moved the metrics it was optimizing for — first-impression clarity, mobile usability, navigation depth, and conversion path strength.\n\nThe less visible outcome is the design system. A Wix site without documented design principles drifts: well-meaning maintainers add a section here, change a CTA color there, and six months later the visual language is inconsistent. The case study paired with the live site gives future contributors a documented rationale: here is why the navigation is structured this way, here is the color system, here is what "Hick\'s Law" meant for how we grouped the dropdown items. That documentation is the difference between a redesign that lasts and one that gets gradually overwritten.\n\nThe remaining UX opportunity is conversion measurement beyond sessions. Sessions and duration tell you that users are engaging more; they do not tell you how many joined TMG, applied to become a CBA, or reached out as a sponsor as a result. Wiring analytics events to every CTA click and tracking the event-page-to-registration path would close that loop and give the next redesign cycle a behavioral basis for prioritization rather than an analytics-and-judgment one.',
+      },
+      limitations: {
+        title: 'Honest caveats',
+        items: [
+          'Wix\'s editor constraints limit what is achievable in custom animation, advanced data binding, and performance optimization. A Next.js or SvelteKit build would offer more control over Core Web Vitals and interaction patterns, at the cost of a deployment pipeline the organization may not be able to maintain.',
+          'Analytics coverage does not yet include CTA-level event tracking. Session and duration metrics confirm engagement improved, but conversion rates for specific actions (join form submissions, sponsor contact clicks, CBA applications) are not yet measured separately.',
+          'A formal accessibility audit has not been completed. The redesign improves contrast, readability, and responsive layout, but keyboard navigation, screen reader heading order, focus states, and ARIA labels require a Lighthouse or axe audit to validate.',
+          'The 90-day measurement window may include confounding variables: increased event activity, social media campaigns, and seasonal student engagement patterns can all shift session volume independently of the redesign. A longer measurement period would increase confidence in the attribution.',
+          'Content lifecycle management — archiving past events, updating application deadlines, refreshing sponsor lists — is not systematized. Without a content governance plan, the site will accumulate stale content that reduces credibility with returning visitors.',
+        ],
+      },
+    },
+  },
   {
     id: 'matchify',
     title: 'Matchify: A Visual System for Music-First Social',
-    category: 'UI/UX Design',
+    category: 'Design',
     dates: 'Jun 2024 - Aug 2024',
     organization: 'Independent Project',
     description: 'A mobile concept where the visual identity is the product. Dark canvas as the brand floor, one Spotify-aligned green used surgically, profile rings as the universal identity marker, and a content design call that treats every Friend suggestion as a sentence explaining the match. Designed end-to-end in Figma across Spotify-authenticated onboarding, the multi-section home feed, the Friends discovery surface, and the Events tab. Selected for ARIA 2024, the University of Toronto\'s annual research and innovation showcase.',
     skills: ['Visual Design', 'Brand Systems', 'Dark Mode Design', 'Mobile Design', 'UI/UX Design', 'Figma', 'Prototyping', 'Design Tokens', 'Wireframing', 'Design Systems'],
+    tags: ['UX Design', 'Design Systems', 'Brand Strategy', 'Mobile Design'],
     links: [
       {
         type: 'figma',
@@ -1409,12 +1735,13 @@ export const projects: Project[] = [
   {
     id: 'tutorly',
     title: 'Tutorly: Peer Tutoring for UofT Students',
-    category: 'UI/UX Design',
+    category: 'Design',
     dates: 'May 2024 - Aug 2024',
     organization: 'University of Toronto',
     courseCode: 'CSCC10 - Human-Computer Interaction',
     description: 'A four-phase HCI research project (CSCC10, Summer 2024) by a team of six University of Toronto students. The output is a high-fidelity mobile prototype for peer-to-peer tutoring grounded in five cited studies on peer tutoring efficacy, student mental health, and online versus in-person learning. The work covers low-fidelity exploration, a 30-response survey plus two unstructured interviews, a high-fidelity Figma prototype, and a 13-participant asynchronous usability study evaluated against Nielsen\'s 10 heuristics with emphasis on H1 (visibility), H3 (user control), and H6 (recognition).',
-    skills: ['Mobile Design', 'Usability Testing', 'Experience Design', 'Prototyping', 'User-centered Design', 'User Experience Design (UED)', 'User Personas', 'Figma', 'Wireframing', 'UX Research', 'Design Thinking'],
+    skills: ['Mobile Design', 'Usability Testing', 'Experience Design', 'Prototyping', 'User-centered Design', 'UX Design', 'User Personas', 'Figma', 'Wireframing', 'UX Research', 'Design Thinking'],
+    tags: ['UX Design', 'UX Research', 'Mobile Design'],
     links: [
       {
         type: 'figma',

@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Container from '@/components/layout/Container';
 import Section from '@/components/layout/Section';
-import BlogCard from '@/components/blog/BlogCard';
+import BlogClient from '@/components/blog/BlogClient';
 import MarkerHighlight from '@/components/ui/MarkerHighlight';
 import { getAllPosts } from '@/lib/blog';
 
@@ -61,11 +61,7 @@ export default async function BlogPage() {
         </div>
 
         {posts.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-            {posts.map((post, i) => (
-              <BlogCard key={post.slug} post={post} index={i} />
-            ))}
-          </div>
+          <BlogClient posts={posts} />
         ) : (
           <div className="text-center py-20">
             <p

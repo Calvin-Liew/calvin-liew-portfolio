@@ -9,8 +9,9 @@ export default function CategoryFilter({
   onToggle,
   projectCounts,
 }: CategoryFilterProps) {
-  const categories = ['Product Management', 'UI/UX Design', 'Data Analysis']
-    .filter((cat) => (projectCounts.get(cat) || 0) > 0);
+  // Derive order from canonical list — show all that have at least one project
+  const ORDERED: string[] = ['AI & Data', 'Product', 'Design'];
+  const categories = ORDERED.filter((cat) => (projectCounts.get(cat) || 0) > 0);
 
   return (
     <div className="space-y-3">

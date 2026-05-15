@@ -1,4 +1,4 @@
-export type ProjectCategory = 'Product Management' | 'UI/UX Design' | 'Data Analysis' | 'Development' | 'Entrepreneurship';
+export type ProjectCategory = 'AI & Data' | 'Product' | 'Design';
 
 export type LinkType = 'live' | 'github' | 'figma' | 'demo' | 'devpost';
 
@@ -294,6 +294,8 @@ export interface Project {
   courseCode?: string;
   description: string;
   skills: string[];
+  /** High-level topic tags shared with blog posts — enables cross-linking */
+  tags?: string[];
   links?: ProjectLink[];
   image?: string;
   featured?: boolean;
