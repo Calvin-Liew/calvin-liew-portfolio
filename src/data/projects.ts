@@ -2,6 +2,175 @@ import { Project } from '@/types';
 
 export const projects: Project[] = [
   {
+    id: 'saas-scout',
+    title: 'SaaSScout: A Grounded RAG Copilot for SaaS Evaluation',
+    category: 'Development',
+    dates: 'May 2026',
+    organization: 'Independent Project',
+    description: 'A production-deployed RAG copilot that scouts SaaS tools for product analysts and procurement teams. Combines 335 product records, 4,899 review chunks, and four evidence lanes (Capterra reviews, FactGrid enterprise metadata, Wikidata vendor facts, OpenAlternative open-source discovery) into grounded recommendations, side-by-side comparisons, and procurement-style next-checks. React + TypeScript on Netlify, FastAPI on Render, Chroma vector retrieval, Groq Qwen / Ollama Qwen with deterministic template fallback. Same-origin Netlify proxy plus scheduled GitHub Actions production monitor keep it reliable under cold starts and rate limits.',
+    skills: ['RAG', 'FastAPI', 'React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Chroma', 'Vector Search', 'LLM Integration', 'Groq', 'Ollama', 'Production Deployment', 'Netlify', 'Render', 'Data Engineering'],
+    image: '/projects/saas-scout/00-hero.png',
+    links: [
+      {
+        type: 'live',
+        url: 'https://saas-intelligence-copilot-calvi.netlify.app',
+        label: 'Live RAG demo',
+      },
+      {
+        type: 'github',
+        url: 'https://github.com/Calvin-Liew/saas-intelligence-copilot',
+        label: 'Source on GitHub',
+      },
+    ],
+    featured: true,
+    extendedContent: {
+      stats: [
+        { value: '335', label: 'products indexed' },
+        { value: '4,899', label: 'review chunks' },
+        { value: '4', label: 'evidence lanes' },
+        { value: '3-tier', label: 'LLM fallback' },
+      ],
+      pullQuote: 'Every recommendation has a source. Every gap has a flag. The whole product is a defense against the confident-but-wrong default of generic LLMs.',
+      overview: {
+        title: 'Grounded RAG for SaaS evaluation',
+        content: 'SaaSScout takes a natural-language SaaS request ("Compare Zendesk, Zoho Desk, and Freshdesk for support ticketing pain points") and answers it with grounded evidence: a feature-fit scorecard, pricing-aware ranking, review-themed pain points, and a procurement-style next-checks list. Behind the dashboard, 335 products and 4,899 review chunks live in Chroma collections, joined with FactGrid enterprise metadata, Wikidata vendor facts, and OpenAlternative open-source discovery. The generation layer is provider-neutral: Groq Qwen online, Ollama Qwen local, or a deterministic grounded template when both are unavailable.',
+      },
+      motivation: {
+        title: 'Generic chatbots are not trustworthy for procurement',
+        content: 'Procurement and SaaS evaluation are exactly the kind of task generic ChatGPT-style chat fails at. The answers sound confident, the citations are usually invented, and there is no way to tell which features were verified versus made up. SaaSScout\'s premise is that the only useful AI for this work is one that shows its sources, flags its gaps, and degrades gracefully under failure. The product is structured around four commitments: separate the structured product / feature / pricing data from review-derived evidence, label everything by source, treat missing evidence as a finding (not a confidence-killing absence), and never let the LLM invent a fact the data does not support.',
+      },
+      decisions: [
+        {
+          decision: 'RAG over a generic LLM',
+          framework: 'Retrieval-augmented generation',
+          reasoning: 'A vanilla ChatGPT prompt will happily invent SaaS feature matrices and cite them confidently. SaaSScout indexes 335 real products in Chroma, ranks them with feature-fit + pricing + review + provenance scoring, and only then asks the LLM to assemble a grounded answer. The LLM never sees a request without the relevant evidence already retrieved and ranked. The architecture is the trust mechanism.',
+        },
+        {
+          decision: 'Four separate evidence lanes, not one blob',
+          reasoning: 'The default move would be to dump every signal into one corpus and let semantic search find the right thing. Instead, evidence is partitioned by source: Capterra reviews (user-reported pain points), FactGrid enterprise metadata (verified vendor facts), Wikidata vendor facts (CC0 corporate data), OpenAlternative (open-source / self-hosted discovery). Each lane has its own retrieval and its own trust profile, so the UI can label evidence by where it came from and the user can decide what to trust.',
+        },
+        {
+          decision: 'Provider-neutral LLM with deterministic template fallback',
+          reasoning: 'Groq is fast but rate-limited. Ollama works offline but is slower. Both can fail. The pipeline supports Groq Qwen online, Ollama Qwen local, and a deterministic grounded-template response when neither is available. The template path uses the same retrieved evidence and ranking, so the app never crashes to a generic "I cannot help" state and never invents facts to fill silence.',
+        },
+        {
+          decision: 'Same-origin Netlify proxy over CORS handshakes',
+          reasoning: 'A typical React + FastAPI deploy splits frontend and backend across two domains and uses CORS. Cold starts on Render plus CORS preflight in the browser added 2 to 3 seconds before the actual query landed. Routing /api/* through Netlify\'s edge proxy collapses that to same-origin requests and lets the frontend cache the API endpoint without CORS gymnastics.',
+        },
+        {
+          decision: 'Production smoke monitor on GitHub Actions cron',
+          reasoning: 'Render\'s free tier sleeps. The first user of the day pays a 30-second cold-start penalty. A scheduled GitHub Actions workflow hits /health, /api/status, and a low-cost template /api/analyze on a cadence that keeps the dyno warm during business hours, while surfacing failures as Actions notifications. Same observability story a paid APM gives, costing zero.',
+        },
+        {
+          decision: 'Packaged data artifact via GitHub Releases',
+          reasoning: 'Re-running Kaggle downloads and the Chroma rebuild every time Render restarts is a 5-minute cold start. Instead, the processed data and the Chroma index are packaged as a versioned zip, uploaded to a GitHub Release, and pulled by the backend on startup via DATA_ARTIFACT_URL. Cold start drops to roughly 30 seconds and the build is reproducible across environments.',
+        },
+      ],
+      keyFindings: [
+        {
+          stat: '335 / 4,899',
+          title: 'Grounding scale',
+          description: 'Products and review chunks indexed across separate Chroma collections. The architecture is built so the catalog can grow without rewriting the retrieval layer; adding a new source means a new lane, not a re-shape of the data model.',
+        },
+        {
+          stat: '0',
+          title: 'Unmatched rows after canonicalization',
+          description: 'Canonical product-name normalization joins pricing, feature matrix, and review data without leaving any record orphaned. The unmatched-record QA pass is in the pipeline so every future ingest gets the same guarantee.',
+        },
+        {
+          stat: '3 tiers',
+          title: 'LLM fallback path',
+          description: 'Groq Qwen online → Ollama Qwen local → deterministic grounded template. Each layer falls back on retrieval + ranking output that already exists, so reliability does not depend on any single provider being available.',
+        },
+        {
+          stat: '4 lanes',
+          title: 'Evidence by source, not by score',
+          description: 'Capterra reviews, FactGrid enterprise metadata, Wikidata vendor facts, OpenAlternative open-source discovery. Each lane is retrievable, labeled, and shown to the user as a tab so trust calls are made on the evidence, not on a black-box confidence number.',
+        },
+      ],
+      features: [
+        {
+          title: 'Configure-then-run dashboard',
+          description: 'The single-pane workspace where evaluations happen. Pick a scenario (Support desk review risk, CRM under $30, PM automation shortlist, CRM vendor comparison), set required features and pricing constraints, choose tools to compare, and run. Demo presets seed reasonable defaults so a first-time user can fire a useful query in three clicks.',
+          insight: 'Resists the temptation to be a generic chat box. Every input is structured (scenario, category, budget, required features, tools to compare) so the retrieval can rank with confidence before the LLM ever sees the query.',
+          image: '/projects/saas-scout/00-hero.png',
+          imageFit: 'contain',
+        },
+        {
+          title: 'Side-by-side comparison + scorecard',
+          description: 'The output surface for a compare-three-tools query: confidence rating (Low / Medium / High), aligned-features count, feature scorecard per tool, pricing summary, review-derived pain points, recommendation memo, and a list of follow-up procurement checks. Everything grouped so the user can scan one tool top-to-bottom or compare across tools.',
+          insight: 'The recommendation memo at the end is what makes the output portable. Analysts can paste it into a Slack thread or a procurement deck without rewriting; the format matches what they would have written by hand.',
+          image: '/projects/saas-scout/01-comparison.png',
+          imageFit: 'contain',
+        },
+        {
+          title: 'Evidence lanes panel',
+          description: 'Behind every claim is a sourced row. The Evidence panel exposes the FactGrid Enterprise Metadata table (vendor verification, pricing cross-checks, SLA notes, audit dates), Wikidata Vendor Facts (entity type, official website, country, parent organization, stock ticker), and the underlying review snippets. "Missing" cells are rendered as cells, not hidden, so absent evidence reads as a real finding.',
+          insight: 'Showing the data tables is the opposite of magic-AI marketing. The app earns trust by showing exactly what it knows and what it does not, including the URL each fact came from.',
+          image: '/projects/saas-scout/02-evidence.png',
+          imageFit: 'contain',
+        },
+        {
+          title: 'Mobile responsive workspace',
+          description: 'The full evaluation flow stacks cleanly on phones: data status header, query box, scenario controls, feature checklist, comparison set, and run settings. Same components, same evidence lanes, same template fallback path; just laid out vertically with touch-sized targets.',
+          insight: 'Mobile parity matters for analysts who do quick sanity checks on the train. One set of components and one set of typography across viewports, not a stripped-down mobile variant.',
+          image: '/projects/saas-scout/03-mobile.png',
+          imageFit: 'contain',
+          phoneFrame: true,
+        },
+      ],
+      tools: [
+        {
+          name: 'React + TypeScript + Vite + Tailwind',
+          purpose: 'Frontend dashboard, scenario presets, evidence tabs, loading states, template-mode retry, responsive grid. Same component library across desktop and mobile.',
+        },
+        {
+          name: 'FastAPI',
+          purpose: 'Backend service with routes for health, status, options, and analysis. Bootstraps the production artifact on startup and caches expensive status checks.',
+        },
+        {
+          name: 'Chroma',
+          purpose: 'Vector retrieval across separate collections for products, reviews, and open-source alternatives. TF-IDF fallback when embeddings fail, plus metadata filtering for source-aware queries.',
+        },
+        {
+          name: 'Groq + Ollama (Qwen)',
+          purpose: 'Provider-neutral LLM layer: Groq\'s hosted Qwen 32B online, Ollama\'s local Qwen 2.5 1.5B for offline, deterministic grounded template if both are unavailable.',
+        },
+        {
+          name: 'Netlify + Render',
+          purpose: 'Frontend deploy with same-origin /api/* proxy to the Render-hosted FastAPI backend. Both free-tier; cold-start handling lives in the monitor and the packaged artifact.',
+        },
+        {
+          name: 'GitHub Actions',
+          purpose: 'Scheduled production monitor that hits /health, /api/status, and a low-cost template /api/analyze. Reports the first failing layer (Netlify, Render, Chroma, enrichment, or analyze) on failure.',
+        },
+        {
+          name: 'Multi-source data ingest',
+          purpose: 'CompareEdge SaaS Market Data (Kaggle), Capterra Ticketsystem reviews, FactGrid enterprise metadata (CC BY 4.0), Wikidata vendor facts (CC0), and OpenAlternative open-source discovery (CC0).',
+        },
+        {
+          name: 'Python data pipeline',
+          purpose: 'Schema discovery, canonical product-name normalization, product / pricing / feature / review joins, unmatched-record QA, and evidence enrichment.',
+        },
+      ],
+      impact: {
+        title: 'What the project actually argues',
+        content: 'SaaSScout\'s thesis is that AI for high-stakes work, like SaaS procurement, has to be built around evidence, not generation. The generic-LLM default of "sounds confident, citations invented" is fundamentally unfit for purpose. The product is engineered around four commitments: separate evidence lanes, source-labeled output, missing evidence treated as a finding rather than a gap to fill, and a deterministic template path that ships when the LLM cannot.\n\nProduction shipping mattered as much as the design. Same-origin Netlify proxy, packaged GitHub Release artifact, scheduled smoke monitor, three-tier LLM fallback: these are the moves that turn a prototype into a thing real analysts can use without babysitting. The free-tier infrastructure (Netlify plus Render) is intentional. Anyone can run the same stack for $0 and get the same reliability.\n\nFor my own product instincts, SaaSScout taught me that the most expensive part of an AI product is not the model. It is the data joins, the evidence partitioning, the fallback paths, and the production observability. The model is the cheapest commodity in the stack.',
+      },
+      limitations: {
+        title: 'Honest caveats',
+        items: [
+          'Demo data is Kaggle\'s CompareEdge 2026 SaaS market snapshot, not live vendor pricing. Real procurement use would need a refresh cadence and pricing-API hooks.',
+          'Many enterprise tools list pricing as "contact sales" rather than a number. Those quotes appear as gaps in the pricing table, which is honest but means budget-aware ranking is limited for higher tiers.',
+          'Render\'s free tier has cold starts. The scheduled monitor mitigates but does not eliminate the first-of-day delay.',
+          'LLM rate limits during demo spikes fall back to the deterministic template, which is grounded but reads less naturally than the LLM output.',
+          'No user accounts, saved evaluations, or team sharing yet. Each session is stateless.',
+          'The four evidence lanes are the curated v1 set. Adding G2, TrustRadius, and vendor-direct feature pages is the obvious v2 priority.',
+        ],
+      },
+    },
+  },
+  {
     id: 'anatomy-of-fear',
     title: 'The Anatomy of Fear: Quantifying Horror',
     category: 'Data Analysis',
