@@ -5,6 +5,10 @@ excerpt: "Retrieval-augmented generation can help organizations stop losing inst
 tags: ["AI", "RAG", "Enterprise", "Knowledge Management", "Organizational Learning"]
 ---
 
+*This is an edited version of a course paper written for MGSD15H3 — Managing the Information Economy at the University of Toronto (Winter 2026). [Read the full paper with complete citations →](/papers/rag-organizational-memory.html)*
+
+---
+
 Every organization has experienced some version of this: a key employee leaves, and weeks later someone realizes that three years of hard-won context — why a decision was made, how a vendor relationship actually works, what failed last time — walked out the door with them. The formal documentation exists. The real knowledge does not.
 
 This paper started as a course essay for MGSD15H3 at the University of Toronto. But the argument it makes connects directly to the kind of AI work I do at Sanofi and the systems I build on the side. Retrieval-augmented generation is a technical architecture. It is also, if you think about it carefully, an organizational memory system. And that framing changes what questions matter.

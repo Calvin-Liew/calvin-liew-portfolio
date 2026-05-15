@@ -61,7 +61,7 @@ export const aboutData: AboutData = {
         'React/Next.js',
         'SQL',
         'REST APIs',
-        'Snowflake',
+        'FastAPI',
         'Git',
         'Low-Code Platforms'
       ]

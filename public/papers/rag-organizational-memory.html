@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RAG as Organizational Memory — Calvin Liew</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #fafaf8;
+      color: #1a1a1a;
+      line-height: 1.75;
+      padding: 3rem 1.5rem 5rem;
+    }
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    /* Back link */
+    .back {
+      display: inline-block;
+      font-family: system-ui, sans-serif;
+      font-size: 0.875rem;
+      color: #c2410c;
+      text-decoration: none;
+      margin-bottom: 2.5rem;
+    }
+    .back:hover { text-decoration: underline; }
+    /* Cover block */
+    .cover {
+      border-left: 4px solid #c2410c;
+      padding: 1.25rem 1.5rem;
+      background: #fff8f5;
+      margin-bottom: 3rem;
+      border-radius: 0 6px 6px 0;
+    }
+    .cover h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 0.75rem;
+      font-family: Georgia, serif;
+    }
+    .cover .meta {
+      font-family: system-ui, sans-serif;
+      font-size: 0.8125rem;
+      color: #666;
+      line-height: 1.6;
+    }
+    .cover .meta strong { color: #333; }
+    /* Body */
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 2.75rem;
+      margin-bottom: 0.75rem;
+      font-family: system-ui, sans-serif;
+      color: #111;
+    }
+    p { margin-bottom: 1.1rem; }
+    p + p { text-indent: 1.5em; }
+    h2 + p { text-indent: 0; }
+    /* References */
+    .references { margin-top: 3rem; }
+    .references h2 { margin-bottom: 1.25rem; }
+    .ref-list { list-style: none; }
+    .ref-list li {
+      font-size: 0.875rem;
+      line-height: 1.65;
+      margin-bottom: 0.75rem;
+      padding-left: 2rem;
+      text-indent: -2rem;
+    }
+    .ref-list a { color: #c2410c; word-break: break-all; }
+    /* Footer */
+    footer {
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #ddd;
+      font-family: system-ui, sans-serif;
+      font-size: 0.8125rem;
+      color: #888;
+    }
+    @media print {
+      body { background: white; }
+      .back { display: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <a class="back" href="/blog/rag-as-organizational-memory">&larr; Back to blog</a>
+
+  <div class="cover">
+    <h1>RAG as Organizational Memory: Reducing Amnesia, Risking Rigidity</h1>
+    <div class="meta">
+      <strong>Calvin Liew</strong> &nbsp;·&nbsp; Student #1008801129<br>
+      MGSD15H3 — Managing the Information Economy<br>
+      Professor Niza Talukder &nbsp;·&nbsp; Winter 2026 &nbsp;·&nbsp; April 6, 2026<br>
+      University of Toronto Scarborough
+    </div>
+  </div>
+
+  <h2>Introduction</h2>
+
+  <p>As organizations increasingly compete through knowledge rather than physical assets alone in the information economy, one of their challenges is retaining and coordinating what they know over time. In knowledge-intensive firms, the knowledge needed for effective action is often scattered across individuals rather than fully built into organizational processes and systems. Walsh and Ungson (1991) conceptualize organizational memory as knowledge from an organization's past that remains available to shape present decisions. From a complementary perspective, Grant (1996) views the firm as a mechanism for coordinating and applying expertise that is distributed across individuals. Together, these views suggest that firms create value not only by generating knowledge but also by retaining, coordinating and reusing it across people and over time.</p>
+
+  <p>This challenge becomes more serious when employee turnover disrupts organizational continuity. In a review of 91 studies, Galan (2023a) shows that turnover is a major cause of the organizational loss of knowledge, routines and continuity. Furthermore, Galan (2023a) links accidental forgetting to breakdowns in preserving usable organizational knowledge over time and describes this problem through amnesia-related metaphors. In this paper, organizational amnesia refers to the erosion of usable organizational knowledge when that knowledge remains dependent on individuals rather than being preserved in organizationally accessible forms.</p>
+
+  <p>At the same time, not all organizational knowledge is easy to preserve. Nonaka (1994) argues that organizational knowledge develops through ongoing interaction between tacit and explicit forms. This distinction matters because tacit knowledge is personal, experience-based and difficult to formalize, whereas explicit knowledge can be articulated, combined and transferred more readily (Nonaka, 1994). As a result, organizations do not solve the knowledge loss problem by storing more documents. What matters is whether the important knowledge has been externalized into forms that can actually be preserved, accessed and applied later. Knowledge conversion therefore becomes a requirement for any technological system that aims to support organizational memory.</p>
+
+  <p>Recent work on artificial intelligence (AI) and knowledge management provides a useful bridge between organizational theory and AI-enabled retrieval. Jarrahi et al. (2023) argue that AI can support several areas of knowledge management, especially organizing, retrieving and using explicit knowledge — but tacit knowledge remains deeply social and contextual and its transfer is still dependent on human interaction. This distinction is central to this paper. AI may be especially useful for handling explicit knowledge and improving access to scattered organizational content but it does not eliminate the need for human judgment, contextual interpretation and social interaction in knowledge work.</p>
+
+  <p>Retrieval-augmented generation (RAG) offers a concrete technical framework that reflects this distinction. Lewis et al. (2020) describe RAG as an AI model that combines the knowledge built into the model with information retrieved from external documents. This means that the system does not rely only on what is built into the model itself but it can also pull information from an external knowledge base. They also caution that source traceability and updating sources remain unresolved challenges for RAG. In organizational settings, provenance means being able to identify where an answer came from, which document or record supported it and whether the source is trustworthy and current. This matters because a system may provide a fluent and convincing answer even when the underlying source may be outdated, incomplete, or weak. RAG can therefore be understood as more than an AI chatbot. It can function as a retrieval layer that makes codified organizational knowledge more accessible when needed. However, its value depends on the quality, currency and governance of knowledge it fetches.</p>
+
+  <p>Accordingly, this paper examines the conditions under which RAG can reduce organizational amnesia and the conditions under which it may instead reinforce outdated knowledge. This paper argues that RAG can reduce organizational amnesia by making codified knowledge more retrievable and reusable particularly after employee turnover. However, its value depends on whether organizations have already converted important tacit knowledge into explicit and retrievable form. Even then, improved retrieval does not necessarily lead to better learning when the underlying organizational memory is incomplete, outdated, or poorly governed.</p>
+
+  <h2>Literature Review</h2>
+
+  <p><strong>Organizational Memory and the Knowledge-Based View of the Firm.</strong> Grant's (1996) knowledge-based view presents firms as mechanisms for coordinating and applying distributed expertise. In this perspective, firms do not exist only to own resources or direct labor but to coordinate knowledge spread across individuals. The firm's strategic value lies not only in creating knowledge but also in integrating and applying it effectively. In this sense, organizational memory is more than just stored information. It helps firms preserve continuity, coordinate knowledge and apply past learning in new situations.</p>
+
+  <p>The concept of organizational memory provides the theoretical starting point for this paper. Walsh and Ungson (1991) treat organizational memory as retained organizational knowledge that continues to guide current decisions. This definition shifts the focus from memory as something that individuals hold to memory as contributing to an organization's structural capital. From this point of view, memory is not just about remembering things as individuals but also ensuring that existing knowledge is preserved for future use.</p>
+
+  <p>Walsh and Ungson (1991) and Grant (1996) both support the idea that companies are systems that store and combine knowledge. This lays the groundwork for looking at AI retrieval systems as possible ways to build on organizational memory. If companies create value by retaining and organizing knowledge over time, then technologies that shape how knowledge is stored, retrieved and reused can influence the firm's core capabilities.</p>
+
+  <p><strong>Tacit and Explicit Knowledge and the Problem of Knowledge Conversion.</strong> A major challenge for theories of organizational memory is that some forms of knowledge are harder to retain than others. Nonaka (1994) argues that organizational knowledge is created through interaction between tacit and explicit forms of knowledge — where tacit knowledge is rooted in experience, action and context, whereas explicit knowledge can be more readily articulated, documented and shared. This distinction is important because retrieval systems can operate only on knowledge that has already been made accessible in explicit form.</p>
+
+  <p>Nonaka's framework is especially useful because it does not treat knowledge as static content waiting to be stored. Instead, it focuses on the process of knowledge conversion. Through socialization, externalization, combination and internalization, organizations move knowledge between tacit and explicit forms. Of these, externalization and combination are most relevant here. Externalization converts tacit knowledge into explicit form, while combination organizes and integrates explicit knowledge into new forms. As a result, the usefulness of any memory system depends on whether important know-how has been translated into retrievable artifacts such as procedures, reports, manuals, logs and databases.</p>
+
+  <p>This framework also shows limits of technology on its own. If critical knowledge remains tacit, making information easier to retrieve will not solve the problem of knowledge loss on its own. Jarrahi et al. (2023) claim that AI can improve knowledge management but highlight that tacit knowledge transfer still depends heavily on people, interaction and context. RAG and similar frameworks can improve access to codified knowledge but they cannot fully reproduce the judgment, intuition, or contextual understanding that was never externalized in the first place.</p>
+
+  <p><strong>Turnover, Knowledge Loss and Organizational Amnesia.</strong> The importance of organizational memory becomes especially clear when employee turnover disrupts continuity. Galan (2023a) synthesizes 91 empirical studies on knowledge loss associated with organizational member turnover and shows that turnover is a major mechanism that causes organizations to lose knowledge. Galan also notes that the organizational learning and knowledge management literature often links the loss of organizational knowledge to organizational forgetting, which may be either purposeful or accidental.</p>
+
+  <p>For the purposes of this paper, organizational amnesia refers to the harmful erosion of usable organizational knowledge when that knowledge remains dependent on individuals or when stored knowledge is not effectively maintained. De Holan and Phillips (2004) advance this discussion by characterizing organizational forgetting as the loss of organizational knowledge, whether deliberate or unintended, and by differentiating between accidental and deliberate forgetting. Their framework illustrates that organizations may fail either by neglecting to incorporate new knowledge into organizational memory or by failing to maintain accessibility of knowledge that has already been acquired. This difference matters because organizational amnesia does not happen only when knowledge is never captured. It can also occur when knowledge that was once retained begins to deteriorate or becomes inaccessible. As de Holan and Phillips (2004) suggest, organizational memory requires ongoing maintenance and can weaken if it is not actively taken care of — knowledge retention is therefore not a one-time activity. It is an ongoing process of embedding, maintaining, and preserving organizational knowledge.</p>
+
+  <p>Galan (2023b) reinforces this point in a review of coping and preventative strategies for turnover-driven knowledge loss. Leonard-Barton (1992) argues that organizations are better able to reduce knowledge loss when transferred knowledge is integrated into organizational systems, processes and products or services in ways that are embedded in systems where others can draw on it later. They also show that codification-based approaches — such as knowledge management systems, databases and standard operating procedures — are effective for explicit knowledge when they are supported by clear practices for later use.</p>
+
+  <p><strong>AI, Knowledge Management and RAG as Memory Infrastructure.</strong> Recent research on AI brings these organizational theories into a digital context. Jarrahi et al. (2023) argue that AI can support several core knowledge-management processes. AI can classify content, retrieve fragmented information, support reuse of knowledge, and connect people to relevant knowledge across organizational silos. However, Jarrahi et al. (2023) distinguish AI's ability to aid in specific tasks from the broader human capabilities required for judgment and contextual interpretation, emphasizing that judgment still depends primarily on human interpretation rather than automated retrieval alone.</p>
+
+  <p>Lewis et al. (2020) offer a foundation for understanding RAG in this context. They argue that RAG is a model that combines model-trained knowledge with a retrieval-based external memory. This means that responses that are generated can be based on external documents that are retrieved, not just on model parameters. This is important in organizations because RAG adds a layer of retrieval on top of external knowledge repositories. Lewis et al. (2020) also warn that issues of source traceability and keeping sources current remain to be solved.</p>
+
+  <p>Taken together, this literature supports interpreting RAG as a form of organizational memory infrastructure. It can reduce search frictions, improve access to codified knowledge and make organizational knowledge easier to reuse when employees leave or change responsibilities. However, it can do so only under certain conditions. Important knowledge must already be externalized, repositories must be organized and maintained and retrieved material must remain relevant and reliable.</p>
+
+  <h2>Methodology</h2>
+
+  <p>This paper uses a conceptual review of the literature to examine retrieval-augmented generation (RAG) as a form of organizational memory. It develops its argument by synthesizing research on organizational memory, the knowledge-based view of the firm, tacit and explicit knowledge, turnover-induced knowledge loss, AI-enabled knowledge management and RAG. This paper builds a conceptual framework for identifying the conditions under which RAG may reduce organizational amnesia and the conditions under which it may instead reinforce rigidity through the reuse of outdated knowledge.</p>
+
+  <h2>Analysis</h2>
+
+  <p><strong>RAG as a Mechanism for Reducing Organizational Amnesia.</strong> RAG can reduce organizational amnesia because it increases the accessibility and usability of codified knowledge. Lewis et al. (2020) describe RAG as a model that combines model-trained knowledge with a retrieval-based external memory, allowing responses to be informed by retrieved external documents rather than by model parameters alone. In organizational terms, this means that the system can draw on policies, project records, procedures, reports and other artifacts that already exist in the firm's repositories. Its contribution is not that it stores more knowledge but that it lowers the friction to locate and reuse knowledge that might otherwise remain buried, fragmented, or forgotten.</p>
+
+  <p>This retrieval advantage becomes especially important when employee turnover disrupts organizational continuity. Galan (2023b) argues that organizations are less likely to lose knowledge when it is built into systems, processes and products or services that allow others to retrieve and reuse it. This connects well with RAG. It does not replace the work of capturing knowledge but it can make captured knowledge more available after the people who originally produced or carried it are gone. In this sense, RAG can reduce reliance on individual memory by strengthening retrievable organizational knowledge.</p>
+
+  <p>Lewis et al. (2020) also help clarify why this architecture is well suited to changing organizational environments. Because RAG relies on non-parametric memory that can be updated by changing the documents it retrieves, the knowledge it makes available does not depend solely on the model. This matters because organizational memory is valuable only when it remains accessible and can be revised over time. RAG allows firms to preserve continuity without treating their knowledge base as fixed.</p>
+
+  <p><strong>The Limit of Retrieval: Tacit Knowledge, Judgment and Context.</strong> Although RAG can help preserve continuity and reduce knowledge loss, its value is still limited by the nature of organizational knowledge itself. Nonaka (1994) argues that organizational knowledge is created through repeated interaction between tacit and explicit forms of knowledge. This places an important limit on RAG — the retrieval system can only operate on knowledge that has already been externalized. If important know-how remains embedded in experience, informal routines, or interpersonal practice, no retrieval architecture can recover it simply by searching more efficiently.</p>
+
+  <p>Jarrahi et al. (2023) support this claim by noting that tacit knowledge transfer remains predominantly a human-centric process. RAG can help find written rules, past decisions and knowledge that has built up over time, but cannot replace the common sense, situational understanding, or social dynamics that organizations use to handle ambiguous situations.</p>
+
+  <p>Leonard-Barton (1992) provides a more detailed organizational explanation for this problem. Core capabilities are described as interconnected knowledge sets within employee skills, technical systems, managerial systems and organizational values and norms. Knowledge of an organization is not just kept in documents but is also shared by people, systems and practices. RAG can only strengthen organizational memory to the extent that knowledge has already been converted into explicit and retrievable form. It is a mechanism for accessing codified memory, not a substitute for the organizational work of mentoring, interpretation and knowledge conversion.</p>
+
+  <p><strong>From Memory to Rigidity: When Retrieval Reinforces Outdated Knowledge.</strong> The second main contribution of this paper is that a system designed to help organizations remember may also make them more rigid. Leonard-Barton (1992) argues that the routines, systems, skills and values that once supported a firm's success can later become rigidities that make innovation and adaptation more difficult. From this point of view, having a better memory is not always beneficial — it can also keep the organization anchored in ways of thinking that no longer apply.</p>
+
+  <p>Tsang and Zahra (2008) reinforce this point by framing organizational unlearning as the discarding of existing routines. They argue that organizations may become tied to routines in organizational memory that are difficult to revise or abandon, and that adopting new ideas often requires letting go of older ones. This extends the present argument: organizations do not simply need stronger mechanisms for remembering. They also need the capacity to revise, retire and sometimes remove what they previously knew. Without that capacity, a more powerful memory system may preserve outdated routines more efficiently than it supports learning.</p>
+
+  <p>Recent research on RAG confirms that this risk is not merely theoretical. Chen et al. (2024) outline several competencies necessary for effective RAG, including the handling of noisy or irrelevant data, the rejection of weak or misleading evidence, the synthesis of information from multiple sources and the reduction of errors resulting from false or contradictory content — and demonstrate that existing models continue to struggle in many domains. Chen et al. (2025) argue that time-sensitive retrieval remains difficult because systems may return outdated or irrelevant documents. This is important for organizations because rules, standards, playbooks and past decisions may have been correct at the time but are no longer current. When a system surfaces such material with perceived authority, it may reinforce stale knowledge instead of helping the organization adjust.</p>
+
+  <p>Lewis et al. (2020) reinforce this governance issue by illustrating that source traceability and timely updating remain challenges. De Holan and Phillips (2004) raise a related concern in organizational settings, arguing that memory needs ongoing maintenance and can weaken over time if organizations do not actively sustain it. Better retrieval does not imply better organizational learning if the underlying knowledge base is incomplete, outdated, or weakly governed.</p>
+
+  <h2>Discussion and Managerial Implications</h2>
+
+  <p>The argument developed in this paper suggests that the central managerial question is not whether an organization should adopt RAG but where it should deploy it, which knowledge it should draw on and how that knowledge should be maintained over time. If firms treat RAG simply as a convenient interface layered on top of all available content, they risk reproducing the same fragmentation, inconsistency and decay that already exist in their repositories.</p>
+
+  <p>A first implication is that organizations should carefully choose where to deploy RAG. The existing research suggests that RAG is most effective in areas of knowledge that are clearly defined, often needed and at risk of being lost when employees leave — standard operating procedures, policy documents, decision logs, project histories, onboarding materials and regularly used operational playbooks. This corresponds with Galan's (2023b) assertion that turnover-driven knowledge loss is mitigated when transferred knowledge is incorporated into systems and processes in retrievable and reusable formats.</p>
+
+  <p>A second implication is that implementation should begin with preparing the knowledge base rather than with the AI interface itself. A RAG system cannot compensate for knowledge repositories that are poorly structured, weakly governed, or full of duplicative and outdated material. Before deployment, organizations need to determine which documents are authoritative, who owns them, how they are versioned and how they will be updated over time. In this sense, the main implementation task is not only technical but organizational.</p>
+
+  <p>A third implication is that organizations should build RAG in ways that make its sources clear and keep human judgment involved. Lewis et al. (2020) note that provenance and updating are ongoing problems in RAG, and later research confirms that retrieval systems continue to struggle with noisy evidence and time-sensitive queries (Chen et al., 2024; Chen et al., 2025). In practice, this means users should be able to see what supported an answer, how current those sources are and whether they still reflect approved organizational practice. Firms need document ownership, metadata standards, freshness rules and clear source visibility built into the system.</p>
+
+  <p>A final implication is that maintaining RAG requires continuous memory management. De Holan and Phillips (2004) argue that organizational memory must be actively maintained if it is to remain useful, while Leonard-Barton (1992) and Tsang and Zahra (2008) show that stored routines can become sources of rigidity if they are not revised or retired when conditions change. When policies, standards, or routines change, older materials should not remain in the same active retrieval pool as current guidance without clear differentiation.</p>
+
+  <h2>Conclusion</h2>
+
+  <p>Retrieval-augmented generation (RAG) is most valuable in organizations because it can make organizational knowledge more accessible. Drawing on organizational memory theory, the knowledge-based view of the firm and research on turnover-induced knowledge loss, this paper has argued that organizations are especially vulnerable when critical knowledge remains tied to individuals rather than embedded in accessible organizational forms. In this context, RAG matters because it can improve the retrieval and reuse of codified knowledge that might otherwise remain buried, fragmented, or effectively lost after turnover.</p>
+
+  <p>At the same time, this paper shows that the value of RAG depends on context. Retrieval systems can only operate on knowledge that has already been externalized into explicit form. As a result, they cannot fully recover tacit knowledge, contextual understanding, or judgment that remains embedded in practice and experience. RAG can therefore strengthen organizational memory but it does not eliminate the need for human interpretation, mentoring and other organizational mechanisms through which tacit knowledge is transferred and applied.</p>
+
+  <p>This paper also shows that better retrieval does not always lead to better organizational memory — it can also preserve outdated ideas, routines and standards beyond their usefulness and increase rigidity. Without clear knowledge governance, provenance, updating and purposeful unlearning, RAG might make stale knowledge more accessible. Because of this, RAG should not be thought of as just an AI tool but as an organizational memory system that works best when the knowledge base it uses is well-maintained, well-governed and of high quality. RAG can help organizations remember without becoming too rigid.</p>
+
+  <div class="references">
+    <h2>References</h2>
+    <ul class="ref-list">
+      <li>Chen, J., Lin, H., Han, X., &amp; Sun, L. (2024). Benchmarking large language models in retrieval-augmented generation. <em>Proceedings of the AAAI Conference on Artificial Intelligence, 38</em>(16), 17754–17762. <a href="https://doi.org/10.1609/aaai.v38i16.29728" target="_blank" rel="noopener">https://doi.org/10.1609/aaai.v38i16.29728</a></li>
+      <li>Chen, Z., Min, E., Zhao, X., Li, Y., Jia, X., Liao, J., Li, J., Wang, S., Hu, B., &amp; Yin, D. (2025). A question answering dataset for temporal-sensitive retrieval-augmented generation. <em>Scientific Data, 12</em>, Article 1855. <a href="https://doi.org/10.1038/s41597-025-06098-y" target="_blank" rel="noopener">https://doi.org/10.1038/s41597-025-06098-y</a></li>
+      <li>de Holan, P. M., &amp; Phillips, N. (2004). Remembrance of things past? The dynamics of organizational forgetting. <em>Management Science, 50</em>(11), 1603–1613. <a href="https://doi.org/10.1287/mnsc.1040.0273" target="_blank" rel="noopener">https://doi.org/10.1287/mnsc.1040.0273</a></li>
+      <li>Galan, N. (2023a). Knowledge loss induced by organizational member turnover: A review of empirical literature, synthesis and future research directions (Part I). <em>The Learning Organization, 30</em>(2), 117–136. <a href="https://doi.org/10.1108/TLO-09-2022-0107" target="_blank" rel="noopener">https://doi.org/10.1108/TLO-09-2022-0107</a></li>
+      <li>Galan, N. (2023b). Knowledge loss induced by organizational member turnover: A review of empirical literature, synthesis and future research directions (Part II). <em>The Learning Organization, 30</em>(2), 137–161. <a href="https://doi.org/10.1108/TLO-09-2022-0108" target="_blank" rel="noopener">https://doi.org/10.1108/TLO-09-2022-0108</a></li>
+      <li>Grant, R. M. (1996). Toward a knowledge-based theory of the firm. <em>Strategic Management Journal, 17</em>(S2), 109–122. <a href="https://doi.org/10.1002/smj.4250171110" target="_blank" rel="noopener">https://doi.org/10.1002/smj.4250171110</a></li>
+      <li>Jarrahi, M. H., Askay, D., Eshraghi, A., &amp; Smith, P. (2023). Artificial intelligence and knowledge management: A partnership between human and AI. <em>Business Horizons, 66</em>(1), 87–99. <a href="https://doi.org/10.1016/j.bushor.2022.03.002" target="_blank" rel="noopener">https://doi.org/10.1016/j.bushor.2022.03.002</a></li>
+      <li>Leonard-Barton, D. (1992). Core capabilities and core rigidities: A paradox in managing new product development. <em>Strategic Management Journal, 13</em>(S1), 111–125. <a href="https://doi.org/10.1002/smj.4250131009" target="_blank" rel="noopener">https://doi.org/10.1002/smj.4250131009</a></li>
+      <li>Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., Küttler, H., Lewis, M., Yih, W.-T., Rocktäschel, T., Riedel, S., &amp; Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive NLP tasks. <em>Advances in Neural Information Processing Systems, 33</em>, 9459–9474. <a href="https://proceedings.neurips.cc/paper/2020/hash/6b493230205f780e1bc26945df7481e5-Abstract.html" target="_blank" rel="noopener">https://proceedings.neurips.cc</a></li>
+      <li>Nonaka, I. (1994). A dynamic theory of organizational knowledge creation. <em>Organization Science, 5</em>(1), 14–37. <a href="https://doi.org/10.1287/orsc.5.1.14" target="_blank" rel="noopener">https://doi.org/10.1287/orsc.5.1.14</a></li>
+      <li>Tsang, E. W. K., &amp; Zahra, S. A. (2008). Organizational unlearning. <em>Human Relations, 61</em>(10), 1435–1462. <a href="https://doi.org/10.1177/0018726708095710" target="_blank" rel="noopener">https://doi.org/10.1177/0018726708095710</a></li>
+      <li>Walsh, J. P., &amp; Ungson, G. R. (1991). Organizational memory. <em>Academy of Management Review, 16</em>(1), 57–91. <a href="https://doi.org/10.5465/amr.1991.4278992" target="_blank" rel="noopener">https://doi.org/10.5465/amr.1991.4278992</a></li>
+    </ul>
+  </div>
+
+  <footer>
+    &copy; 2026 Calvin Liew &nbsp;&middot;&nbsp; <a href="/" style="color:#c2410c">calvinliew.space</a>
+  </footer>
+
+</div>
+</body>
+</html>

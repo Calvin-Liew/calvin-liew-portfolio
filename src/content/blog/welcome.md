@@ -1,37 +1,28 @@
 ---
-title: "Welcome to My Portfolio"
+title: "Why I Built This Portfolio (And What You'll Find Here)"
 date: "2025-12-23"
-excerpt: "Welcome to my portfolio website! Learn about my journey in product management, design, and technology."
-tags: ["Product Management", "Design", "Career"]
+excerpt: "A product analyst who also designs and builds things needs a place to show the full picture — not just the job title. This is that place."
+tags: ["Career", "AI", "Product"]
 ---
 
-I'm excited to share my work and insights with you through this portfolio website. This space showcases my journey in product analysis, design, and technology.
+Most portfolios are résumés with screenshots. I wanted something different.
 
-## What You'll Find Here
+I work at the intersection of AI agents, data, and product strategy. That means my day-to-day involves designing the right product question, pulling data to answer it, building an agent or dashboard to operationalize the answer, and convincing 30 stakeholders that the thing they've been doing manually can now be done better. None of those steps fit neatly into "Product Manager" or "Data Analyst" or "Developer." The job is all of them, in sequence, with judgment about which hat to put on next.
 
-This portfolio highlights my experience across:
+This site is my attempt to show that full picture — the technical architecture, the product reasoning, the design decisions, and the honest caveats.
 
-- **Product Management**: Leading product strategy, requirements analysis, and cross-functional collaboration
-- **UI/UX Design**: Creating user-centered designs and interactive prototypes
-- **Data Analysis**: Building data visualizations and deriving insights from complex datasets
-- **Technology**: Leveraging AI, automation, and modern development tools
+## What I'm working on right now
 
-## My Approach
+At Sanofi I lead **SupRM Intelligence** — an AI agent that turns scattered supplier relationship data into structured insight for sourcing, risk management, and QBR preparation. The core challenge is not the model. It is getting 30+ stakeholders to trust a system enough to replace the manual workflows they have been running for years. That trust comes from grounded outputs, clear evidence sourcing, and an interface that respects how they already think about the problem.
 
-I believe in building products that solve real problems through the intersection of:
+On the side I built **SaaSScout**, a RAG copilot for SaaS evaluation. It indexes 335 products and nearly 5,000 review chunks into partitioned Chroma vector collections, runs six-signal retrieval ranking before the LLM ever sees a query, and delivers grounded procurement recommendations with a three-tier LLM fallback chain. Building it sharpened a conviction I now apply everywhere: the expensive part of an AI product is not the model. It is the retrieval layer, the evidence partitioning, and the fallback architecture.
 
-1. **Data-driven insights** - Using analytics and research to inform decisions
-2. **Human-centered design** - Putting users at the heart of every solution
-3. **Technical excellence** - Implementing solutions that are both elegant and scalable
+## What you'll find here
 
-## What's Next
+**Projects** — full case studies with the real reasoning behind design decisions, not just the polished outcome. Each one has an "honest caveats" section because every project has limits and acknowledging them is part of the work.
 
-I'll be sharing insights and learnings from my work in product management, design, and technology. Stay tuned for posts on:
+**Blog** — long-form thinking on AI product strategy, RAG architecture, organizational knowledge management, and anything else I have worked through carefully enough to write down.
 
-- Product strategy and roadmap planning
-- UI/UX design best practices
-- AI and automation in product development
-- Data visualization techniques
-- Career insights and lessons learned
+If you want to see specific work, start with [projects](/projects). If you want to understand how I think, the [blog](/blog) is where that lives.
 
-Thank you for visiting, and feel free to reach out if you'd like to connect!
+And if you want to talk — about AI products, agentic systems, or anything in between — [reach out](/profile#contact).
