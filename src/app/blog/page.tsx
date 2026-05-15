@@ -8,7 +8,15 @@ import { getAllPosts } from '@/lib/blog';
 export const metadata: Metadata = {
   title: 'Blog',
   description:
-    'Thoughts and insights on product management, design, and technology.',
+    'Notes on agentic AI, RAG pipelines, product strategy, and enterprise data from Calvin Liew — AI Workflows Product Analyst at Sanofi.',
+  alternates: {
+    canonical: 'https://calvinliew.space/blog',
+  },
+  openGraph: {
+    title: 'Blog — Calvin Liew',
+    description: 'Notes on agentic AI, product strategy, and enterprise data.',
+    url: 'https://calvinliew.space/blog',
+  },
 };
 
 export default async function BlogPage() {

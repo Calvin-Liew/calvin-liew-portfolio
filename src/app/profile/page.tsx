@@ -21,7 +21,15 @@ const volunteerExperiences = experiences.filter(
 export const metadata: Metadata = {
   title: 'Profile',
   description:
-    'Calvin Liew - Product Analyst and Designer. Background, skills, and professional experience in product, design, data, and AI.',
+    'Calvin Liew — AI Workflows Product Analyst at Sanofi. Background in agentic AI, RAG pipelines, product strategy, Snowflake, and UX design. University of Toronto, Toronto.',
+  alternates: {
+    canonical: 'https://calvinliew.space/profile',
+  },
+  openGraph: {
+    title: 'Profile — Calvin Liew',
+    description: 'AI Workflows Product Analyst at Sanofi. Experience in agentic AI, product strategy, data engineering, and UX design.',
+    url: 'https://calvinliew.space/profile',
+  },
 };
 
 const toolkitMeta: Record<

@@ -8,7 +8,15 @@ import { projects } from '@/data/projects';
 export const metadata: Metadata = {
   title: 'Projects',
   description:
-    'Explore my product management, UI/UX design, and data analysis projects. From AI-driven solutions to user-centered design.',
+    'Calvin Liew\'s project portfolio: SaaSScout (RAG copilot), PantryPilot (food-waste venture), Anatomy of Fear (D3.js + LLM), and more. AI agents, product design, and data analysis.',
+  alternates: {
+    canonical: 'https://calvinliew.space/projects',
+  },
+  openGraph: {
+    title: 'Projects — Calvin Liew',
+    description: 'AI agents, RAG pipelines, product design, and data analysis. Built at Sanofi, UofT, and in production.',
+    url: 'https://calvinliew.space/projects',
+  },
 };
 
 export default function ProjectsPage() {

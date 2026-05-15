@@ -9,7 +9,15 @@ import MetaBadge from '@/components/ui/MetaBadge';
 import Button from '@/components/ui/Button';
 import { BookOpen, Building2, Calendar, CheckCircle2, ExternalLink } from 'lucide-react';
 import CaseStudyViewer from '@/components/projects/CaseStudyViewer';
+import ProjectSchema from '@/components/seo/ProjectSchema';
 import { projects } from '@/data/projects';
+
+/** Trim to `max` chars without cutting mid-word */
+function seoTrunc(text: string, max: number): string {
+  if (text.length <= max) return text;
+  const cut = text.substring(0, max);
+  return cut.substring(0, cut.lastIndexOf(' ')) + '…';
+}
 
 interface ProjectPageProps {
   params: Promise<{ id: string }>;
@@ -27,9 +35,38 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
     return { title: 'Project Not Found' };
   }
 
+  const desc = seoTrunc(project.description, 155);
+  const ogDesc = seoTrunc(project.description, 200);
+  const projectUrl = `https://calvinliew.space/projects/${id}`;
+  const ogImage = project.image
+    ? {
+        url: project.image,           // resolved against metadataBase
+        width: 1440,
+        height: 900,
+        alt: `${project.title} — project preview`,
+      }
+    : undefined;
+
   return {
     title: project.title,
-    description: project.description.substring(0, 160),
+    description: desc,
+    alternates: {
+      canonical: projectUrl,
+    },
+    openGraph: {
+      type: 'article',
+      title: project.title,
+      description: ogDesc,
+      url: projectUrl,
+      images: ogImage ? [ogImage] : undefined,
+      tags: project.skills,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: project.title,
+      description: ogDesc,
+      images: ogImage ? [ogImage.url] : undefined,
+    },
   };
 }
 
@@ -97,6 +134,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     <Section>
       <Container>
         <article className="max-w-4xl mx-auto">
+          {/* Structured data — CreativeWork + BreadcrumbList */}
+          <ProjectSchema project={project} />
+
           {/* Back link */}
           <Link
             href="/projects"

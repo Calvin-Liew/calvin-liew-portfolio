@@ -2,13 +2,13 @@ import { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Calvin Liew Portfolio',
+    name: 'Calvin Liew — AI Workflows Product Analyst',
     short_name: 'Calvin Liew',
-    description: 'Product Analyst & Designer specializing in UX, data visualization, and AI-powered solutions',
+    description: 'AI Workflows Product Analyst at Sanofi building AI agents, RAG pipelines, and enterprise data products.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#0a0a0f',
-    theme_color: '#8b5cf6',
+    background_color: '#F8F4EE',
+    theme_color: '#C2410C',
     icons: [
       {
         src: '/favicon.svg',
