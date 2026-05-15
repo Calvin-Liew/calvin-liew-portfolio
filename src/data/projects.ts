@@ -5,9 +5,9 @@ export const projects: Project[] = [
     id: 'saas-scout',
     title: 'SaaSScout: A Grounded RAG Copilot for SaaS Evaluation',
     category: 'Development',
-    dates: 'May 2026',
+    dates: 'Mar 2026 - May 2026',
     organization: 'Independent Project',
-    description: 'A production-deployed RAG copilot that scouts SaaS tools for product analysts and procurement teams. Combines 335 product records, 4,899 review chunks, and four evidence lanes (Capterra reviews, FactGrid enterprise metadata, Wikidata vendor facts, OpenAlternative open-source discovery) into grounded recommendations, side-by-side comparisons, and procurement-style next-checks. React + TypeScript on Netlify, FastAPI on Render, Chroma vector retrieval, Groq Qwen / Ollama Qwen with deterministic template fallback. Same-origin Netlify proxy plus scheduled GitHub Actions production monitor keep it reliable under cold starts and rate limits.',
+    description: 'A production RAG copilot for SaaS evaluation. Indexes 335 products and 4,899 review chunks into four partitioned Chroma vector collections, ranks retrieval candidates across six signals (feature-fit, pricing, review sentiment, provenance trust, query alignment, category overlap), then generates grounded recommendations via a provider-neutral LLM layer — Groq Qwen 32B online, Ollama Qwen 2.5 local, or a deterministic grounded template when both are unavailable. The architecture ensures the LLM never invents a fact the retrieval layer did not supply.',
     skills: ['RAG', 'FastAPI', 'React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Chroma', 'Vector Search', 'LLM Integration', 'Groq', 'Ollama', 'Production Deployment', 'Netlify', 'Render', 'Data Engineering'],
     image: '/projects/saas-scout/00-hero.png',
     links: [
@@ -26,66 +26,69 @@ export const projects: Project[] = [
     extendedContent: {
       stats: [
         { value: '335', label: 'products indexed' },
-        { value: '4,899', label: 'review chunks' },
-        { value: '4', label: 'evidence lanes' },
-        { value: '3-tier', label: 'LLM fallback' },
+        { value: '4,899', label: 'review chunks in Chroma' },
+        { value: '6-signal', label: 'retrieval ranking' },
+        { value: '3-tier', label: 'LLM fallback chain' },
       ],
-      pullQuote: 'Every recommendation has a source. Every gap has a flag. The whole product is a defense against the confident-but-wrong default of generic LLMs.',
+      pullQuote: 'RAG is not a feature — it is an architectural commitment: every answer is grounded in retrieved evidence, every gap is labeled, and the LLM never invents what the data does not support.',
       overview: {
-        title: 'Grounded RAG for SaaS evaluation',
-        content: 'SaaSScout takes a natural-language SaaS request ("Compare Zendesk, Zoho Desk, and Freshdesk for support ticketing pain points") and answers it with grounded evidence: a feature-fit scorecard, pricing-aware ranking, review-themed pain points, and a procurement-style next-checks list. Behind the dashboard, 335 products and 4,899 review chunks live in Chroma collections, joined with FactGrid enterprise metadata, Wikidata vendor facts, and OpenAlternative open-source discovery. The generation layer is provider-neutral: Groq Qwen online, Ollama Qwen local, or a deterministic grounded template when both are unavailable.',
+        title: 'A five-phase RAG pipeline for procurement-grade answers',
+        content: 'SaaSScout is built around a retrieval-augmented generation (RAG) pipeline that turns a natural-language SaaS query into a grounded, evidence-backed recommendation. The pipeline runs in five phases. (1) Ingestion: five data sources are normalized, canonically joined on product names, and partitioned into separate Chroma vector collections by trust level. (2) Indexing: each collection is embedded using Chroma\'s default embedding model; a TF-IDF fallback index is pre-built for when the vector store is cold or unavailable. (3) Retrieval: incoming queries hit all four evidence lanes in parallel, each lane returning its top-k matches by cosine similarity, filtered by category and metadata constraints. (4) Ranking: retrieved candidates are scored across six signals before the LLM sees anything — feature-fit coverage, pricing match, review sentiment, provenance trust, query-keyword alignment, and category overlap. The six-signal composite score determines which evidence surfaces in the LLM prompt and which tools lead the comparison. (5) Generation: ranked evidence is assembled into a structured prompt and passed to Groq Qwen 32B (online), Ollama Qwen 2.5 1.5B (local), or a deterministic grounded template if both are unavailable. The LLM role is assembly and narration — it formats evidence it was handed, never supplements with training-set guesses.',
       },
       motivation: {
-        title: 'Generic chatbots are not trustworthy for procurement',
-        content: 'Procurement and SaaS evaluation are exactly the kind of task generic ChatGPT-style chat fails at. The answers sound confident, the citations are usually invented, and there is no way to tell which features were verified versus made up. SaaSScout\'s premise is that the only useful AI for this work is one that shows its sources, flags its gaps, and degrades gracefully under failure. The product is structured around four commitments: separate the structured product / feature / pricing data from review-derived evidence, label everything by source, treat missing evidence as a finding (not a confidence-killing absence), and never let the LLM invent a fact the data does not support.',
+        title: 'Why procurement is the worst use case for generic chat — and the best for RAG',
+        content: 'SaaS evaluation is a research task: analysts open ten browser tabs, cross-reference feature pages against pricing plans, scan review sites for recurring pain points, and summarize into a recommendation. Generic ChatGPT-style chat collapses that into one confident-sounding answer where the citations are usually invented and there is no way to tell which features were verified versus fabricated. The procurement-specific failure mode is expensive: a team selects the wrong tool, spends a quarter integrating it, then finds that the "enterprise SSO" the chatbot confirmed does not exist in the pricing tier they bought.\n\nRAG solves this by separating knowledge from generation. The retrieval layer owns the facts — 335 real products, 4,899 review chunks, FactGrid enterprise metadata, Wikidata vendor data, OpenAlternative open-source discovery. The generation layer only assembles and narrates what the retrieval layer hands it. The LLM never touches a query without already having ranked, sourced evidence in the prompt. That constraint is what makes the output auditable: every claim traces to a retrieved row, every gap is labeled as a gap, every recommendation cites the composite score that drove it. SaaSScout is a working argument that AI for high-stakes work must be built on evidence architecture — not on prompt engineering around an LLM\'s stale training data.',
       },
       decisions: [
         {
-          decision: 'RAG over a generic LLM',
-          framework: 'Retrieval-augmented generation',
-          reasoning: 'A vanilla ChatGPT prompt will happily invent SaaS feature matrices and cite them confidently. SaaSScout indexes 335 real products in Chroma, ranks them with feature-fit + pricing + review + provenance scoring, and only then asks the LLM to assemble a grounded answer. The LLM never sees a request without the relevant evidence already retrieved and ranked. The architecture is the trust mechanism.',
+          decision: 'Index real product knowledge instead of prompting around ignorance',
+          framework: 'Retrieval-Augmented Generation (RAG)',
+          reasoning: 'A vanilla LLM prompt for "compare Zendesk and Freshdesk" produces a plausible-sounding feature matrix drawn from training data that may be months or years stale. SaaSScout\'s answer is to not ask the LLM about products at all. Instead, 335 real product records are ingested, canonically normalized, and embedded into Chroma before any user query arrives. The LLM receives a prompt that already contains retrieved, ranked evidence — its role is to assemble readable output, not to recall facts. If the data does not support a claim, the claim does not appear. The RAG constraint is the product\'s entire trust argument.',
         },
         {
-          decision: 'Four separate evidence lanes, not one blob',
-          reasoning: 'The default move would be to dump every signal into one corpus and let semantic search find the right thing. Instead, evidence is partitioned by source: Capterra reviews (user-reported pain points), FactGrid enterprise metadata (verified vendor facts), Wikidata vendor facts (CC0 corporate data), OpenAlternative (open-source / self-hosted discovery). Each lane has its own retrieval and its own trust profile, so the UI can label evidence by where it came from and the user can decide what to trust.',
+          decision: 'Partition embeddings into separate Chroma collections by source trust',
+          framework: 'Evidence lane architecture',
+          reasoning: 'The default RAG approach drops all documents into one vector collection and lets semantic search surface the best match. The problem is that user reviews, enterprise metadata, and vendor-reported features have very different trust profiles: Capterra reviews are subjective but reveal real pain points; FactGrid metadata is verified but narrow; Wikidata vendor facts are CC0 and reliable but sparse; OpenAlternative surfaces open-source options that commercial indexes miss. Merging them into one corpus lets high-volume review text dominate cosine similarity, drowning out the structured metadata signals. SaaSScout keeps four separate Chroma collections — one per lane — so retrieval is independently tuned per source and output is labeled by origin. A TF-IDF fallback index mirrors each collection so retrieval degrades gracefully when the vector store is cold.',
         },
         {
-          decision: 'Provider-neutral LLM with deterministic template fallback',
-          reasoning: 'Groq is fast but rate-limited. Ollama works offline but is slower. Both can fail. The pipeline supports Groq Qwen online, Ollama Qwen local, and a deterministic grounded-template response when neither is available. The template path uses the same retrieved evidence and ranking, so the app never crashes to a generic "I cannot help" state and never invents facts to fill silence.',
+          decision: 'Score six signals before the LLM sees a single candidate',
+          framework: 'Multi-signal pre-generation ranking',
+          reasoning: 'Semantic similarity alone is a weak procurement ranking signal. A tool can embed close to the query keyword "enterprise ticketing" while failing on pricing, missing required features, or carrying uniformly negative reviews. SaaSScout scores every retrieval candidate across six dimensions before assembling the LLM prompt: feature-fit coverage (what fraction of required features are confirmed), pricing match (distance from the stated budget), review sentiment (aggregated Capterra rating), provenance trust (FactGrid weighted highest, then Wikidata, then reviews, then alternatives), query-keyword alignment (TF-IDF overlap with the raw query string), and category overlap (primary category match). The composite score governs prompt slot assignment — higher-ranked tools get more evidence real estate — so the generation step is biased toward the strongest candidates before any text is written.',
         },
         {
-          decision: 'Same-origin Netlify proxy over CORS handshakes',
-          reasoning: 'A typical React + FastAPI deploy splits frontend and backend across two domains and uses CORS. Cold starts on Render plus CORS preflight in the browser added 2 to 3 seconds before the actual query landed. Routing /api/* through Netlify\'s edge proxy collapses that to same-origin requests and lets the frontend cache the API endpoint without CORS gymnastics.',
+          decision: 'Treat missing evidence as a procurement finding, not a model failure',
+          framework: 'Epistemic honesty in output design',
+          reasoning: 'When the retrieval layer returns no Wikidata record for a vendor, or no pricing data for an enterprise tier, the typical AI response is to either hallucinate a placeholder or silently omit the row. Both are wrong for procurement. SaaSScout renders missing evidence as an explicit cell in the evidence table, tagged with the lane it came from. A blank pricing cell is a procurement red flag — it usually signals "contact sales" or a non-public tier — and surfacing it as a gap gives the analyst the right signal: this is something you must verify before buying. The design rule is that absence of evidence is itself evidence, and the product makes it visible rather than papering over it.',
         },
         {
-          decision: 'Production smoke monitor on GitHub Actions cron',
-          reasoning: 'Render\'s free tier sleeps. The first user of the day pays a 30-second cold-start penalty. A scheduled GitHub Actions workflow hits /health, /api/status, and a low-cost template /api/analyze on a cadence that keeps the dyno warm during business hours, while surfacing failures as Actions notifications. Same observability story a paid APM gives, costing zero.',
+          decision: 'Provider-neutral LLM layer: Groq Qwen 32B → Ollama Qwen 2.5 1.5B → deterministic template',
+          reasoning: 'Tying a RAG pipeline to one LLM provider is a reliability risk. Groq\'s hosted Qwen 32B is fast — sub-2-second inference on the structured prompt — but rate-limited under demo traffic. Ollama\'s local Qwen 2.5 1.5B is available offline and avoids API costs, but slower and quantized. The pipeline checks availability in order: Groq first, Ollama second, deterministic grounded template last. The template fallback is not a degraded mode: it uses the same six-signal ranking and the same retrieved evidence, formats them into the same scorecard and recommendation memo, and delivers a procurement-ready output without any LLM call. Because the LLM is positioned as an assembler and narrator rather than a knowledge source, the fallback degrades in fluency but never in factual grounding.',
         },
         {
-          decision: 'Packaged data artifact via GitHub Releases',
-          reasoning: 'Re-running Kaggle downloads and the Chroma rebuild every time Render restarts is a 5-minute cold start. Instead, the processed data and the Chroma index are packaged as a versioned zip, uploaded to a GitHub Release, and pulled by the backend on startup via DATA_ARTIFACT_URL. Cold start drops to roughly 30 seconds and the build is reproducible across environments.',
+          decision: 'Packaged artifact, same-origin proxy, and scheduled smoke monitor for zero-dollar reliability',
+          reasoning: 'Three infrastructure decisions compound into production reliability on a free-tier stack. The processed Chroma index and normalized data are packaged as a versioned zip in a GitHub Release and pulled at backend startup via DATA_ARTIFACT_URL — dropping cold-start rebuild time from 5 minutes (Kaggle re-download plus Chroma rebuild) to roughly 30 seconds. Frontend API calls route through a Netlify /api/* edge proxy instead of cross-origin requests, collapsing CORS preflight latency and enabling same-origin caching. A scheduled GitHub Actions workflow hits /health, /api/status, and a low-cost template /api/analyze to keep the Render dyno warm during business hours and reports the first failing layer — Netlify, Render, Chroma, enrichment, or analyze — on failure. The combination delivers observable, warm, reproducible infrastructure at $0.',
         },
       ],
       keyFindings: [
         {
-          stat: '335 / 4,899',
-          title: 'Grounding scale',
-          description: 'Products and review chunks indexed across separate Chroma collections. The architecture is built so the catalog can grow without rewriting the retrieval layer; adding a new source means a new lane, not a re-shape of the data model.',
+          stat: '6-signal',
+          title: 'Pre-generation ranking',
+          description: 'Every retrieval candidate is scored across feature-fit coverage, pricing match, review sentiment, provenance trust, query-keyword alignment, and category overlap before the LLM prompt is assembled. The ranking is deterministic and inspectable — no black-box confidence number, just a composite score derived from labeled, retrieved evidence.',
         },
         {
-          stat: '0',
-          title: 'Unmatched rows after canonicalization',
-          description: 'Canonical product-name normalization joins pricing, feature matrix, and review data without leaving any record orphaned. The unmatched-record QA pass is in the pipeline so every future ingest gets the same guarantee.',
+          stat: '4 collections',
+          title: 'Partitioned vector indexing',
+          description: 'Capterra reviews, FactGrid enterprise metadata, Wikidata vendor facts, and OpenAlternative open-source discovery each live in their own Chroma collection with their own TF-IDF fallback index. Separate indexing means separate trust profiles, independent retrieval tuning, and source-labeled output the user can audit lane by lane.',
         },
         {
           stat: '3 tiers',
-          title: 'LLM fallback path',
-          description: 'Groq Qwen online → Ollama Qwen local → deterministic grounded template. Each layer falls back on retrieval + ranking output that already exists, so reliability does not depend on any single provider being available.',
+          title: 'LLM fallback chain',
+          description: 'Groq Qwen 32B online → Ollama Qwen 2.5 1.5B local → deterministic grounded template. Each tier consumes the same six-signal ranked evidence from the retrieval layer. The template fallback produces a full procurement scorecard with no LLM call — output that degrades in fluency but never in factual grounding.',
         },
         {
-          stat: '4 lanes',
-          title: 'Evidence by source, not by score',
-          description: 'Capterra reviews, FactGrid enterprise metadata, Wikidata vendor facts, OpenAlternative open-source discovery. Each lane is retrievable, labeled, and shown to the user as a tab so trust calls are made on the evidence, not on a black-box confidence number.',
+          stat: '0',
+          title: 'Hallucinated citations in any output mode',
+          description: 'The LLM never sees a request without pre-ranked, sourced evidence already in the prompt context. It cannot fabricate a feature not in the retrieved data because the prompt architecture leaves no room for it. Missing evidence surfaces as explicit labeled gaps, not as model-generated placeholders.',
         },
       ],
       features: [
@@ -130,11 +133,11 @@ export const projects: Project[] = [
         },
         {
           name: 'Chroma',
-          purpose: 'Vector retrieval across separate collections for products, reviews, and open-source alternatives. TF-IDF fallback when embeddings fail, plus metadata filtering for source-aware queries.',
+          purpose: 'Vector store for four separate evidence collections (products, Capterra reviews, FactGrid metadata, OpenAlternative). Each collection is indexed independently with its own embedding space and a pre-built TF-IDF fallback. Queries hit all lanes in parallel via cosine similarity, with metadata filtering for category and source. The partitioned design lets retrieval be tuned per trust level and lets the UI label every result by its origin collection.',
         },
         {
           name: 'Groq + Ollama (Qwen)',
-          purpose: 'Provider-neutral LLM layer: Groq\'s hosted Qwen 32B online, Ollama\'s local Qwen 2.5 1.5B for offline, deterministic grounded template if both are unavailable.',
+          purpose: 'Provider-neutral LLM assembly layer. Groq\'s hosted Qwen 32B handles online inference at sub-2-second latency; Ollama\'s local Qwen 2.5 1.5B covers offline and zero-API-cost scenarios. A deterministic grounded-template path activates when both providers are unavailable, producing a full procurement scorecard from the same ranked retrieval output — no LLM call required, no hallucinations possible.',
         },
         {
           name: 'Netlify + Render',
@@ -154,8 +157,8 @@ export const projects: Project[] = [
         },
       ],
       impact: {
-        title: 'What the project actually argues',
-        content: 'SaaSScout\'s thesis is that AI for high-stakes work, like SaaS procurement, has to be built around evidence, not generation. The generic-LLM default of "sounds confident, citations invented" is fundamentally unfit for purpose. The product is engineered around four commitments: separate evidence lanes, source-labeled output, missing evidence treated as a finding rather than a gap to fill, and a deterministic template path that ships when the LLM cannot.\n\nProduction shipping mattered as much as the design. Same-origin Netlify proxy, packaged GitHub Release artifact, scheduled smoke monitor, three-tier LLM fallback: these are the moves that turn a prototype into a thing real analysts can use without babysitting. The free-tier infrastructure (Netlify plus Render) is intentional. Anyone can run the same stack for $0 and get the same reliability.\n\nFor my own product instincts, SaaSScout taught me that the most expensive part of an AI product is not the model. It is the data joins, the evidence partitioning, the fallback paths, and the production observability. The model is the cheapest commodity in the stack.',
+        title: 'The business case for building on RAG instead of prompts',
+        content: 'SaaSScout is a working argument that the right architecture for high-stakes AI work is not a smarter prompt — it is a retrieval layer that owns the facts so the generation layer never has to guess. Generic LLMs fail procurement tasks not because the models are bad but because the task requires grounded, auditable, source-traceable output that training data alone cannot provide. RAG delivers that by design: the pipeline retrieves before it generates, ranks before it narrates, and labels every output with the lane and row it came from.\n\nThe product value of this architecture is measurable. Analysts get a recommendation memo they can drop directly into a Slack thread or procurement deck. Every feature claim cites a source. Every pricing gap is flagged rather than papered over. The fallback chain means the app delivers a useful output even when the LLM provider is rate-limited or offline. That reliability is not incidental — it is the product.\n\nBuilding SaaSScout sharpened a conviction I now apply to every AI product decision: the expensive part is not the model. It is the data pipeline, the evidence partitioning, the ranking heuristics, and the fallback architecture. Models are a commodity. Grounded retrieval infrastructure is the moat. Any team that skips RAG in favor of prompt engineering is trading short-term simplicity for long-term hallucination debt.',
       },
       limitations: {
         title: 'Honest caveats',
