@@ -31,6 +31,7 @@ export default function Card({
         border border-border
         rounded-xl p-6
         shadow-paper
+        overflow-hidden
         transition-all duration-300
         ${hoverClasses}
         ${className}

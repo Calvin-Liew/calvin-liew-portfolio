@@ -77,13 +77,13 @@ export default function FeaturedProjects() {
                 </div>
 
                 {/* Title — Fraunces italic, hand-drawn underline on hover */}
-                <h3 className="font-display italic text-xl sm:text-2xl text-ink mb-3 leading-snug relative">
+                <h3 className="font-display italic text-xl sm:text-2xl text-ink mb-3 leading-snug relative line-clamp-2">
                   <span className="relative z-10">{project.title}</span>
                   <HandUnderline className="absolute -bottom-1 left-0 w-full h-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                 </h3>
 
                 {/* Org / course code */}
-                <div className="text-sm text-muted mb-4">
+                <div className="text-sm text-muted mb-4 truncate">
                   <span>{project.organization}</span>
                   {project.courseCode &&
                     (() => {
@@ -99,7 +99,7 @@ export default function FeaturedProjects() {
                 </div>
 
                 {/* Description */}
-                <p className="text-sm text-ink-soft leading-relaxed line-clamp-3 mb-5 flex-grow">
+                <p className="text-sm text-ink-soft leading-relaxed line-clamp-3 mb-5 flex-grow overflow-hidden">
                   {project.description}
                 </p>
 

@@ -48,7 +48,7 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
         </h3>
 
         {/* Org / course code */}
-        <div className="text-sm text-muted mb-4">
+        <div className="text-sm text-muted mb-4 truncate">
           <span>{project.organization}</span>
           {project.courseCode &&
             (() => {
