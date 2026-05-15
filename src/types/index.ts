@@ -1,4 +1,4 @@
-export type ProjectCategory = 'Product Management' | 'UI/UX Design' | 'Data Analysis' | 'Development' | 'Entrepreneurship';
+export type ProjectCategory = 'AI & Data' | 'Product' | 'Design';
 
 export type LinkType = 'live' | 'github' | 'figma' | 'demo' | 'devpost';
 

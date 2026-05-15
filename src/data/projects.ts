@@ -4,7 +4,7 @@ export const projects: Project[] = [
   {
     id: 'saas-scout',
     title: 'SaaSScout: A Grounded RAG Copilot for SaaS Evaluation',
-    category: 'Development',
+    category: 'AI & Data',
     dates: 'Mar 2026 - May 2026',
     organization: 'Independent Project',
     description: 'A production RAG copilot for SaaS evaluation. Indexes 335 products and 4,899 review chunks into four partitioned Chroma vector collections, ranks retrieval candidates across six signals (feature-fit, pricing, review sentiment, provenance trust, query alignment, category overlap), then generates grounded recommendations via a provider-neutral LLM layer — Groq Qwen 32B online, Ollama Qwen 2.5 local, or a deterministic grounded template when both are unavailable. The architecture ensures the LLM never invents a fact the retrieval layer did not supply.',
@@ -177,7 +177,7 @@ export const projects: Project[] = [
   {
     id: 'pantry-pilot',
     title: 'PantryPilot: Know What Will Spoil, Cook What You Have',
-    category: 'Entrepreneurship',
+    category: 'Product',
     dates: 'Jan 2026 - Apr 2026',
     organization: 'University of Toronto',
     courseCode: 'MGSD24 - New Venture Creation and Planning',
@@ -354,7 +354,7 @@ export const projects: Project[] = [
   {
     id: 'anatomy-of-fear',
     title: 'The Anatomy of Fear: Quantifying Horror',
-    category: 'Data Analysis',
+    category: 'AI & Data',
     dates: 'Sep 2025 - Dec 2025',
     organization: 'University of Toronto',
     courseCode: 'CSC316H1 - Data Visualization and Advanced Programming',
@@ -608,7 +608,7 @@ export const projects: Project[] = [
   {
     id: 'google-drive-companion',
     title: 'Drive Companion: AI-Powered Cloud Intelligence',
-    category: 'Product Management',
+    category: 'Product',
     dates: 'Sep 2025 - Nov 2025',
     organization: 'University of Toronto',
     courseCode: 'MGMC11H3 - Product Management and Branding',
@@ -780,7 +780,7 @@ export const projects: Project[] = [
   {
     id: 'music-pathways-redesign',
     title: 'Music Pathways: Brand Design for Career Discovery',
-    category: 'UI/UX Design',
+    category: 'Product',
     dates: 'Nov 2025 - Nov 2025',
     organization: 'University of Toronto',
     courseCode: 'MGMC11H3 - Product Management and Branding',
@@ -981,7 +981,7 @@ export const projects: Project[] = [
   {
     id: 'night-shift',
     title: 'The Night Shift: Visualizing Sleep, Stress, and Health',
-    category: 'Data Analysis',
+    category: 'AI & Data',
     dates: 'Oct 2025 - Nov 2025',
     organization: 'University of Toronto',
     description: 'An interactive D3.js data story that pushes back on a simple assumption: that your job is what determines your sleep. Three visualizations, one dataset of 374 people across 11 occupations, and a guided narrative that argues individual behavior and health context matter more than profession. A bubble landscape exposes stress variance within the same job. A Sankey diagram traces the path from physical activity to sleep quality. The Dream Lab animates BMI, heart rate, and sleep disorders with dots that pulse at each individual\'s resting heart rate.',
@@ -1154,7 +1154,7 @@ export const projects: Project[] = [
   {
     id: 'tmg-website',
     title: 'TMG Website Redesign: From Static Brochure to Task-Oriented Experience',
-    category: 'UI/UX Design',
+    category: 'Design',
     dates: 'Apr 2025 - Aug 2025',
     organization: 'The Marketing Group (TMG) — University of Toronto Scarborough',
     description: 'A 90-day mobile-first redesign of the UTSC Marketing Group\'s website that cut bounce rate from 62% to 23%, grew sessions by 67%, and increased average session duration by 30% to 3m 36s. Rebuilt the information architecture around five distinct user journeys — students, event attendees, applicants, sponsors, and social visitors — and applied a full suite of HCI principles (Nielsen heuristics, Shneiderman\'s golden rules, Fitts\'s Law, Hick\'s Law, Gestalt) across every page.',
@@ -1471,7 +1471,7 @@ export const projects: Project[] = [
   {
     id: 'matchify',
     title: 'Matchify: A Visual System for Music-First Social',
-    category: 'UI/UX Design',
+    category: 'Design',
     dates: 'Jun 2024 - Aug 2024',
     organization: 'Independent Project',
     description: 'A mobile concept where the visual identity is the product. Dark canvas as the brand floor, one Spotify-aligned green used surgically, profile rings as the universal identity marker, and a content design call that treats every Friend suggestion as a sentence explaining the match. Designed end-to-end in Figma across Spotify-authenticated onboarding, the multi-section home feed, the Friends discovery surface, and the Events tab. Selected for ARIA 2024, the University of Toronto\'s annual research and innovation showcase.',
@@ -1735,7 +1735,7 @@ export const projects: Project[] = [
   {
     id: 'tutorly',
     title: 'Tutorly: Peer Tutoring for UofT Students',
-    category: 'UI/UX Design',
+    category: 'Design',
     dates: 'May 2024 - Aug 2024',
     organization: 'University of Toronto',
     courseCode: 'CSCC10 - Human-Computer Interaction',
