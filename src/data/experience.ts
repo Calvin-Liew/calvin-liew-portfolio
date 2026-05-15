@@ -97,9 +97,11 @@ export const experiences: Experience[] = [
     dates: 'Apr 2025 - Present',
     type: 'Volunteer',
     description: [
-      'Strategic Growth & Analytics: Orchestrated a data-driven digital strategy that resulted in a 67% increase in total site sessions and a 45% growth in unique visitors within a 90-day period.',
-      'User Experience (UX) Optimization: Identified and resolved critical UX bottlenecks, including a 62% bounce rate, by implementing a mobile-first design strategy to fix navigation issues on key landing pages like /abouttmg and /members.',
-      'Performance Monitoring: Utilizing Google Analytics to track user behavior, achieving a 16% improvement in average session duration (3m 36s) through content restructuring and clearer calls-to-action (CTAs).'
+      'Led a mobile-first UX/UI redesign for a student organization website, improving navigation, visual hierarchy, and conversion paths across core journeys like About, Events, and Join.',
+      'Transformed a high-bounce Wix experience into a task-oriented product journey, reducing bounce rate from 62% to approximately 23% through clearer information architecture and stronger calls to action.',
+      'Applied Google Analytics and behavioral insights to refine content structure and interaction patterns, increasing average session duration by 16% to 3m 36s and supporting a 67% rise in site sessions.',
+      'Reframed the website as a product with distinct user journeys for students, applicants, and sponsors, making the experience easier to scan, navigate, and act on.',
+      'Strengthened the brand experience by aligning UI components, content hierarchy, and responsive layouts into a cohesive system that better supported mobile users.'
     ],
     skills: [
       'Digital Strategy',
