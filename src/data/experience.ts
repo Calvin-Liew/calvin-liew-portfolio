@@ -3,80 +3,65 @@ import { Experience } from '@/types';
 export const experiences: Experience[] = [
   {
     id: 'sanofi-product-analyst',
-    title: 'Product Analyst',
+    title: 'AI Workflows Product Analyst',
     company: 'Sanofi',
     location: 'Toronto, Ontario, Canada (Hybrid)',
     dates: 'Sep 2025 - Present',
     type: 'Contract Part-time',
     description: [
-      'Led full redesign, configuration, and testing of License Patrol, an internal tool for optimizing software license expenditure; leveraged LLMs and prompt engineering leading to €15M+ in savings redirected to innovation.',
-      'Defined detailed product requirements, created process flow diagrams, and validated workflows across modules to align with user needs and business goals.',
-      'Coordinated with Finance, Procurement, and Software Asset Management to deliver actionable application spend insights, improve compliance, and support contract negotiation strategies for 500+ software applications.',
-      'Led 5+ product demos and gathered feedback to prepare for iteration, launch and support adoption.',
-      'Replaced manual workflows with AI-powered automation using a low-code platform, boosting governance efficiency and reducing processing time by 50%.'
+      'Lead product development of SupRM Intelligence, an AI-powered supplier relationship agent delivering real-time insights on vendor risk, project status and KPIs, supplier governance, and QBR preparation.',
+      'Built automated supplier relationship framework models integrating Snowflake and external APIs, streamlining vendor intelligence and supporting contract negotiations.',
+      'Designed dashboards surfacing vendor performance metrics to 30+ stakeholders, accelerating strategic sourcing decisions, project issues and risks, supplier performance, and opportunities.'
     ],
     skills: [
-      'Python (Programming Language)',
-      'Business Process Improvement',
+      'AI Agent Development',
+      'LLM Orchestration',
+      'Snowflake',
+      'API Integration',
+      'Data Visualization',
       'Product Management',
-      'Requirements Analysis',
-      'Process Flow Diagrams',
-      'Large Language Models (LLM)',
-      'Prompt Engineering',
-      'Low-Code Platforms',
-      'Software Asset Management',
       'Stakeholder Management',
-      'Product Demos',
-      'User Feedback',
-      'Workflow Automation',
-      'Data Analysis',
-      'Contract Negotiation',
-      'Compliance',
-      'Innovation'
+      'Dashboard Design',
+      'Supplier Risk Management'
     ]
   },
   {
     id: 'sanofi-product-analyst-intern',
-    title: 'Product Analyst Intern',
+    title: 'Digital Strategy and Operations Intern',
     company: 'Sanofi',
     location: 'Toronto, Ontario, Canada (Hybrid)',
     dates: 'Sep 2024 - Aug 2025',
     type: 'Co-op',
     description: [
-      'Led full redesign, configuration, and testing of License Patrol, an internal tool for optimizing software license expenditure; leveraged LLMs and prompt engineering leading to €15M+ in savings redirected to innovation.',
-      'Defined detailed product requirements, created process flow diagrams, and validated workflows across modules to align with user needs and business goals.',
-      'Coordinated with Finance, Procurement, and Software Asset Management to deliver actionable application spend insights, improve compliance, and support contract negotiation strategies for 500+ software applications.',
-      'Led 5+ product demos and gathered feedback to prepare for iteration, launch and support adoption.',
-      'Replaced manual workflows with AI-powered automation using a low-code platform, boosting governance efficiency and reducing processing time by 50%.'
+      'Spearheaded full redesign of License Patrol, Sanofi\'s license optimization platform, leveraging LLMs and prompt-engineering workflows to deliver €15M+ in savings redirected to R&D innovation.',
+      'Defined product requirements, created process flows, and aligned features with Finance, Procurement, and Software Asset Management teams managing 500+ applications.',
+      'Automated manual governance workflows with low-code AI integrations, reducing processing time by 50% and improving compliance efficiency.',
+      'Delivered 5+ demos, gathered stakeholder feedback, and iterated to ensure adoption and successful launch.'
     ],
     skills: [
-      'Python (Programming Language)',
-      'Business Process Improvement',
+      'LLM',
+      'Prompt Engineering',
+      'Low-Code Platforms',
       'Product Management',
       'Requirements Analysis',
       'Process Flow Diagrams',
-      'Large Language Models (LLM)',
-      'Prompt Engineering',
-      'Low-Code Platforms',
       'Software Asset Management',
-      'Stakeholder Management'
+      'Stakeholder Management',
+      'Workflow Automation'
     ]
   },
   {
     id: 'uoft-project-lead',
     title: 'Project Development Lead',
-    company: 'University of Toronto',
+    company: 'Authentic Learning Lab — University of Toronto',
     location: 'Toronto, Ontario, Canada (Remote)',
     dates: 'May 2024 - Aug 2024',
     type: 'Contract Part-time',
     description: [
-      'Led a cross-functional team of 5+ using Agile Scrum to deliver The Game of Social Life, a youth-focused learning simulation; owned sprint planning, stand-ups, and backlog prioritization from concept to launch.',
-      'Built the game\'s frontend using HTML, CSS, and JS, while enhancing UI/UX for younger audiences through accessible, visually engaging design frameworks.',
-      'Conducted user studies (10+ participants) to refine mechanics and accessibility; showcased outcomes at the 2025 Human Flourishing symposium under supervision of Dr. Kosha Bramesfeld.'
+      'Directed a cross-functional team of 5+ to design The Game of Social Life, a youth learning simulation showcased at the 2025 Human Flourishing symposium.',
+      'Developed accessible, engaging front-end in HTML/CSS/JS and conducted user studies to refine mechanics and improve usability.'
     ],
     skills: [
-      'Digital Storytelling',
-      'REST APIs',
       'Agile Scrum',
       'Sprint Planning',
       'Product Management',
@@ -85,8 +70,7 @@ export const experiences: Experience[] = [
       'UI/UX Design',
       'User Research',
       'Accessibility',
-      'Team Leadership',
-      'Backlog Management'
+      'Team Leadership'
     ]
   },
   {
@@ -104,15 +88,15 @@ export const experiences: Experience[] = [
       'Strengthened the brand experience by aligning UI components, content hierarchy, and responsive layouts into a cohesive system that better supported mobile users.'
     ],
     skills: [
-      'Digital Strategy',
+      'UX Design',
+      'Information Architecture',
       'Google Analytics',
-      'Data Analysis',
-      'UX Optimization',
       'Mobile-First Design',
       'Content Strategy',
+      'Wix',
+      'Design Systems',
       'Performance Monitoring',
-      'A/B Testing',
-      'Growth Marketing'
+      'Conversion Optimization'
     ]
   }
 ];
