@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Container from '@/components/layout/Container';
 import Section from '@/components/layout/Section';
 import BlogClient from '@/components/blog/BlogClient';
+import CollectionSchema from '@/components/seo/CollectionSchema';
 import MarkerHighlight from '@/components/ui/MarkerHighlight';
 import { getAllPosts } from '@/lib/blog';
 
@@ -9,13 +10,22 @@ export const metadata: Metadata = {
   title: 'Blog',
   description:
     'Notes on agentic AI, RAG pipelines, product strategy, and enterprise data from Calvin Liew — AI Workflows Product Analyst at Sanofi.',
+  keywords: ['AI', 'RAG', 'AI Agents', 'LLM', 'Product Strategy', 'Knowledge Management', 'Enterprise AI', 'Calvin Liew blog'],
   alternates: {
     canonical: 'https://calvinliew.space/blog',
   },
   openGraph: {
+    type: 'website',
     title: 'Blog — Calvin Liew',
     description: 'Notes on agentic AI, product strategy, and enterprise data.',
     url: 'https://calvinliew.space/blog',
+    siteName: 'Calvin Liew Portfolio',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Blog — Calvin Liew',
+    description: 'Notes on agentic AI, product strategy, and enterprise data.',
+    creator: '@calvinliew',
   },
 };
 
@@ -24,6 +34,18 @@ export default async function BlogPage() {
 
   return (
     <Section>
+      <CollectionSchema
+        pageName="Blog"
+        pageUrl="https://calvinliew.space/blog"
+        description="Notes on agentic AI, RAG pipelines, product strategy, and enterprise data from Calvin Liew."
+        itemType="BlogPosting"
+        items={posts.map((p) => ({
+          name: p.title,
+          url: `https://calvinliew.space/blog/${p.slug}`,
+          description: p.excerpt,
+          datePublished: p.date,
+        }))}
+      />
       <Container>
         <div className="mb-12 max-w-4xl">
           <p

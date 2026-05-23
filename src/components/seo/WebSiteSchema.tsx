@@ -10,15 +10,17 @@ export default function WebSiteSchema() {
       '@type': 'Person',
       name: 'Calvin Liew',
       url: 'https://calvinliew.space',
+      sameAs: [
+        'https://www.linkedin.com/in/calvin-liew-/',
+        'https://github.com/Calvin-Liew',
+      ],
     },
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: 'https://calvinliew.space/projects',
-      },
-      'query-input': 'required name=search_term_string',
+    inLanguage: 'en-US',
+    copyrightHolder: {
+      '@type': 'Person',
+      name: 'Calvin Liew',
     },
+    copyrightYear: new Date().getFullYear(),
   }
 
   return (

@@ -5,6 +5,7 @@ import Container from '@/components/layout/Container';
 import Section from '@/components/layout/Section';
 import Badge from '@/components/ui/Badge';
 import ReadingProgress from '@/components/blog/ReadingProgress';
+import BlogPostSchema from '@/components/seo/BlogPostSchema';
 import { getAllPosts, getPostBySlug } from '@/lib/blog';
 
 interface BlogPostPageProps {
@@ -24,9 +25,33 @@ export async function generateMetadata({
 
   if (!post) return { title: 'Post Not Found' };
 
+  const postUrl = `https://calvinliew.space/blog/${slug}`;
+
   return {
     title: post.title,
     description: post.excerpt,
+    keywords: post.tags,
+    authors: [{ name: 'Calvin Liew', url: 'https://calvinliew.space' }],
+    alternates: {
+      canonical: postUrl,
+    },
+    openGraph: {
+      type: 'article',
+      title: post.title,
+      description: post.excerpt,
+      url: postUrl,
+      publishedTime: post.date,
+      modifiedTime: post.date,
+      authors: ['Calvin Liew'],
+      tags: post.tags,
+      siteName: 'Calvin Liew Portfolio',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      creator: '@calvinliew',
+    },
   };
 }
 
@@ -50,6 +75,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <Section>
+      <BlogPostSchema post={post} />
       <ReadingProgress />
       <Container>
         <article className="max-w-3xl mx-auto">

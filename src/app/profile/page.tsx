@@ -8,8 +8,10 @@ import ContactCard from '@/components/ui/ContactCard';
 import Button from '@/components/ui/Button';
 import MarkerHighlight from '@/components/ui/MarkerHighlight';
 import { Doodle } from '@/components/ui/HandDrawn';
+import ProfilePageSchema from '@/components/seo/ProfilePageSchema';
 import { aboutData } from '@/data/about';
 import { experiences } from '@/data/experience';
+import { education } from '@/data/education';
 
 const professionalExperiences = experiences.filter(
   (e) => e.type !== 'Volunteer'
@@ -22,13 +24,25 @@ export const metadata: Metadata = {
   title: 'Profile',
   description:
     'Calvin Liew — AI Workflows Product Analyst at Sanofi. Background in agentic AI, RAG pipelines, product strategy, Snowflake, and UX design. University of Toronto, Toronto.',
+  keywords: ['Calvin Liew profile', 'Calvin Liew resume', 'AI Workflows Product Analyst', 'Sanofi AI', 'UofT BBA', 'product analyst Toronto', 'RAG engineer', 'Calvin Liew experience'],
   alternates: {
     canonical: 'https://calvinliew.space/profile',
   },
   openGraph: {
+    type: 'profile',
     title: 'Profile — Calvin Liew',
     description: 'AI Workflows Product Analyst at Sanofi. Experience in agentic AI, product strategy, data engineering, and UX design.',
     url: 'https://calvinliew.space/profile',
+    siteName: 'Calvin Liew Portfolio',
+    firstName: 'Calvin',
+    lastName: 'Liew',
+    username: 'calvin-liew-',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Profile — Calvin Liew',
+    description: 'AI Workflows Product Analyst at Sanofi. Experience in agentic AI, product strategy, and data engineering.',
+    creator: '@calvinliew',
   },
 };
 
@@ -45,6 +59,7 @@ const toolkitMeta: Record<
 export default function ProfilePage() {
   return (
     <Section>
+      <ProfilePageSchema experiences={experiences} education={education} />
       <Container>
         <article className="max-w-3xl mx-auto">
           {/* ─────────────────────────  Intro  ───────────────────────── */}

@@ -7,6 +7,12 @@ interface ProjectSchemaProps {
 export default function ProjectSchema({ project }: ProjectSchemaProps) {
   const projectUrl = `https://calvinliew.space/projects/${project.id}`;
 
+  // Combine tags (topic) + skills (technical) for richest keyword coverage
+  const keywordList = [
+    ...(project.tags ?? []),
+    ...project.skills,
+  ];
+
   const creativeWork = {
     '@context': 'https://schema.org',
     '@type': 'CreativeWork',
@@ -19,10 +25,23 @@ export default function ProjectSchema({ project }: ProjectSchemaProps) {
       name: 'Calvin Liew',
       url: 'https://calvinliew.space',
       jobTitle: 'AI Workflows Product Analyst',
+      sameAs: [
+        'https://www.linkedin.com/in/calvin-liew-/',
+        'https://github.com/Calvin-Liew',
+      ],
+    },
+    creator: {
+      '@type': 'Person',
+      name: 'Calvin Liew',
+      url: 'https://calvinliew.space',
     },
     dateCreated: project.dates.split(/[-–—]/)[0].trim(),
     dateModified: project.dates.split(/[-–—]/).pop()?.trim() ?? project.dates,
-    keywords: project.skills.join(', '),
+    keywords: keywordList.join(', '),
+    genre: project.category,
+    ...(project.tags && project.tags.length > 0 && {
+      about: project.tags.map((tag) => ({ '@type': 'Thing', name: tag })),
+    }),
     ...(project.organization && {
       producer: {
         '@type': 'Organization',
