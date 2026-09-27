@@ -9,9 +9,10 @@ export const experiences: Experience[] = [
     dates: 'Sep 2025 - Present',
     type: 'Contract Part-time',
     description: [
-      'Lead product development of SupRM Intelligence, an AI-powered supplier relationship agent delivering real-time insights on vendor risk, project status and KPIs, supplier governance, and QBR preparation.',
-      'Built automated supplier relationship framework models integrating Snowflake and external APIs, streamlining vendor intelligence and supporting contract negotiations.',
-      'Designed dashboards surfacing vendor performance metrics to 30+ stakeholders, accelerating strategic sourcing decisions, project issues and risks, supplier performance, and opportunities.'
+      'Led development of SupRM Intelligence, an enterprise AI assistant supporting decisions across 61 strategic suppliers and 34 Key Supplier Managers; reached 80 unique production users and 572 conversations in its first six months.',
+      'Created an evaluation framework spanning 18 business scenarios and 25 deterministic checks, achieving a 97.9% production evaluation pass rate and 100% tool compliance while shortening representative responses by 65%.',
+      'Architected reusable agent tools and orchestration capabilities used by 6+ AI products across budgeting, risk, compliance, procurement, and supplier management.',
+      'Built supplier performance reporting across weekly, monthly, quarterly, and annual workflows, reconciling 1,822 historical metric records and backfilling 211 missing reporting periods.'
     ],
     skills: [
       'AI Agent Development',

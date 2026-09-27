@@ -5,7 +5,7 @@ export default function WebSiteSchema() {
     name: 'Calvin Liew — AI Workflows Product Analyst',
     url: 'https://calvinliew.space',
     description:
-      'Portfolio of Calvin Liew, AI Workflows Product Analyst at Sanofi. AI agents, RAG pipelines, product design, and data analysis.',
+      'Portfolio of Calvin Liew, who built SupRM Intelligence at Sanofi, reaching 80 unique production users and 572 conversations in its first six months.',
     author: {
       '@type': 'Person',
       name: 'Calvin Liew',

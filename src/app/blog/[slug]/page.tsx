@@ -41,7 +41,7 @@ export async function generateMetadata({
       description: post.excerpt,
       url: postUrl,
       publishedTime: post.date,
-      modifiedTime: post.date,
+      modifiedTime: post.updated || post.date,
       authors: ['Calvin Liew'],
       tags: post.tags,
       siteName: 'Calvin Liew Portfolio',
@@ -110,6 +110,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               >
                 {formatDate(post.date)}
               </time>
+              {post.updated && (
+                <span className="text-sm text-muted">
+                  updated {formatDate(post.updated)}
+                </span>
+              )}
               {post.readTime && (
                 <span
                   className="text-base text-terracotta inline-block"

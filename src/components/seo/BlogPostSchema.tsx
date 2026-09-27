@@ -16,7 +16,7 @@ export default function BlogPostSchema({ post }: BlogPostSchemaProps) {
     url: postUrl,
     image: ogImage,
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.updated || post.date,
     author: {
       '@type': 'Person',
       name: 'Calvin Liew',

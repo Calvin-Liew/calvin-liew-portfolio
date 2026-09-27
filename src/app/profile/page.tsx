@@ -23,7 +23,7 @@ const volunteerExperiences = experiences.filter(
 export const metadata: Metadata = {
   title: 'Profile',
   description:
-    'Calvin Liew — AI Workflows Product Analyst at Sanofi. Background in agentic AI, RAG pipelines, product strategy, Snowflake, and UX design. University of Toronto, Toronto.',
+    'Calvin Liew built SupRM Intelligence at Sanofi, reaching 80 unique production users and 572 conversations in its first six months.',
   keywords: ['Calvin Liew profile', 'Calvin Liew resume', 'AI Workflows Product Analyst', 'Sanofi AI', 'UofT BBA', 'product analyst Toronto', 'RAG engineer', 'Calvin Liew experience'],
   alternates: {
     canonical: 'https://calvinliew.space/profile',
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'profile',
     title: 'Profile — Calvin Liew',
-    description: 'AI Workflows Product Analyst at Sanofi. Experience in agentic AI, product strategy, data engineering, and UX design.',
+    description: 'Built SupRM Intelligence at Sanofi: 80 unique production users and 572 conversations in its first six months.',
     url: 'https://calvinliew.space/profile',
     siteName: 'Calvin Liew Portfolio',
     firstName: 'Calvin',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Profile — Calvin Liew',
-    description: 'AI Workflows Product Analyst at Sanofi. Experience in agentic AI, product strategy, and data engineering.',
+    description: 'Built SupRM Intelligence at Sanofi: 80 unique production users and 572 conversations in its first six months.',
     creator: '@calvinliew',
   },
 };
@@ -85,11 +85,9 @@ export default function ProfilePage() {
                 <MarkerHighlight className="font-medium text-ink">
                   agentic systems, strong product strategy, and clean data
                 </MarkerHighlight>
-                . At Sanofi I&apos;ve built automated supplier intelligence
-                models on Snowflake + external APIs, shipped dashboards used
-                by 30+ stakeholders for strategic sourcing, and led product
-                development on AI agents that replace manual workflows with
-                real-time insight.
+                . At Sanofi I created an evaluation framework that reached a
+                97.9% production pass rate and architected reusable agent tools
+                now used by 6+ AI products.
               </p>
 
               <p>

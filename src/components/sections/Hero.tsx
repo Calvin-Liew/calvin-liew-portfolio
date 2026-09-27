@@ -78,7 +78,7 @@ export default function Hero() {
               </p>
 
               <p className="text-base text-muted leading-relaxed mb-8 max-w-lg text-pretty">
-                Right now I&apos;m leading <span className="text-ink font-medium">SupRM Intelligence</span> at Sanofi, an AI agent that turns scattered supplier data into real-time risk, performance, and QBR insight for 30+ stakeholders.
+                At Sanofi I designed and built <span className="text-ink font-medium">SupRM Intelligence</span>, an AI assistant that reached 80 unique production users and 572 conversations in its first six months.
               </p>
 
               {/* "start here" annotation */}
