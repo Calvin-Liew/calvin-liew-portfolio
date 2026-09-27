@@ -91,6 +91,15 @@ export default function ProfilePage() {
               </p>
 
               <p>
+                <Link
+                  href="/projects/suprm-intelligence"
+                  className="text-terracotta hover:text-terracotta-deep underline underline-offset-4"
+                >
+                  Read the SupRM Intelligence case study &rarr;
+                </Link>
+              </p>
+
+              <p>
                 My background in Management Information Technology and Computer
                 Science at the University of Toronto bridges business
                 strategy, data engineering, and product thinking. Design and

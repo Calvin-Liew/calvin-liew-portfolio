@@ -9,22 +9,22 @@ import { projects } from '@/data/projects';
 export const metadata: Metadata = {
   title: 'Projects',
   description:
-    'Calvin Liew\'s project portfolio: SaaSScout (RAG copilot), PantryPilot (food-waste venture), Anatomy of Fear (D3.js + LLM), and more. AI agents, product design, and data analysis.',
-  keywords: ['AI portfolio', 'RAG portfolio', 'product portfolio', 'UX portfolio', 'data visualization portfolio', 'Calvin Liew projects', 'SaaSScout', 'PantryPilot', 'TMG Website'],
+    'Explore Calvin Liew\'s work on SupRM Intelligence at Sanofi, SaaSScout, PantryPilot, and more across AI agents, product strategy, and data.',
+  keywords: ['AI portfolio', 'RAG portfolio', 'product portfolio', 'UX portfolio', 'data visualization portfolio', 'Calvin Liew projects', 'SupRM Intelligence', 'SaaSScout', 'PantryPilot'],
   alternates: {
     canonical: 'https://calvinliew.space/projects',
   },
   openGraph: {
     type: 'website',
     title: 'Projects — Calvin Liew',
-    description: 'AI agents, RAG pipelines, product design, and data analysis. Built at Sanofi, UofT, and in production.',
+    description: 'SupRM Intelligence at Sanofi, SaaSScout, and more: AI agents, product strategy, design, and data work.',
     url: 'https://calvinliew.space/projects',
     siteName: 'Calvin Liew Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Projects — Calvin Liew',
-    description: 'AI agents, RAG pipelines, product design, and data analysis.',
+    description: 'SupRM Intelligence at Sanofi, SaaSScout, and more: AI agents, product strategy, design, and data work.',
     creator: '@calvinliew',
   },
 };

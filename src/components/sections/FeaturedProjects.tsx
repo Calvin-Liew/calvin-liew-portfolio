@@ -98,6 +98,22 @@ export default function FeaturedProjects() {
                     })()}
                 </div>
 
+                {/* Two concrete outcomes from each case study */}
+                {project.extendedContent?.stats && (
+                  <div className="grid grid-cols-2 gap-4 border-y border-border/70 py-3 mb-4">
+                    {project.extendedContent.stats.slice(0, 2).map((stat) => (
+                      <div key={stat.label} className="min-w-0">
+                        <p className="font-display italic text-2xl text-terracotta leading-none mb-1">
+                          {stat.value}
+                        </p>
+                        <p className="text-xs text-muted leading-snug">
+                          {stat.label}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
                 {/* Description */}
                 <p className="text-sm text-ink-soft leading-relaxed line-clamp-3 mb-5 flex-grow overflow-hidden">
                   {project.description}

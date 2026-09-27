@@ -365,8 +365,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                         Product decisions
                       </ChapterHeading>
                       <p className="text-base sm:text-lg text-ink-soft mb-10 max-w-2xl">
-                        The strategic calls behind the prototype and the
-                        reasoning each one rests on.
+                        The decisions behind the work and the reasoning for each.
                       </p>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                         {project.extendedContent.decisions.map(

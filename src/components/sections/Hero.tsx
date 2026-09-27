@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import Container from '../layout/Container';
 import Button from '../ui/Button';
 import SocialLinks from '../ui/SocialLinks';
@@ -78,7 +79,7 @@ export default function Hero() {
               </p>
 
               <p className="text-base text-muted leading-relaxed mb-8 max-w-lg text-pretty">
-                At Sanofi I designed and built <span className="text-ink font-medium">SupRM Intelligence</span>, an AI assistant that reached 80 unique production users and 572 conversations in its first six months.
+                At Sanofi I designed and built <Link href="/projects/suprm-intelligence" className="text-ink font-medium underline decoration-terracotta/60 underline-offset-4 hover:decoration-terracotta">SupRM Intelligence</Link>, an AI assistant that reached 80 unique production users and 572 conversations in its first six months.
               </p>
 
               {/* "start here" annotation */}

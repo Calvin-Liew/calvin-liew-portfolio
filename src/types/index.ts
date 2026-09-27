@@ -290,6 +290,8 @@ export interface Project {
   title: string;
   category: ProjectCategory;
   dates: string;
+  /** ISO date of the latest published case-study update, when known */
+  updatedAt?: string;
   organization: string;
   courseCode?: string;
   description: string;

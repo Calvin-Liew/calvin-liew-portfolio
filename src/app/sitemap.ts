@@ -37,7 +37,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Dynamic project pages — featured projects get higher priority
   const projectPages: MetadataRoute.Sitemap = projects.map((project) => ({
     url: `${baseUrl}/projects/${project.id}`,
-    lastModified: now,
+    lastModified: project.updatedAt ? new Date(project.updatedAt) : undefined,
     changeFrequency: 'monthly' as const,
     priority: project.featured ? 0.9 : 0.75,
   }))
@@ -46,7 +46,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getAllPosts()
   const blogPages: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
+    lastModified: new Date(post.updated || post.date),
     changeFrequency: 'monthly',
     priority: 0.7,
   }))
