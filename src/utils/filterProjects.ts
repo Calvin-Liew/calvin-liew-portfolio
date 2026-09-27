@@ -19,20 +19,20 @@ export function filterProjects(
   });
 }
 
-// Helper to parse date strings like "Sep 2025 - Dec 2025" to Date
-function parseProjectDate(dateString: string): Date {
-  // Extract end date (second date) from "Mon YYYY - Mon YYYY"
-  const parts = dateString.split(' - ');
-  const endDate = parts[1] || parts[0]; // Use end date, fallback to start if no range
+// Date ranges are editorial labels; keep ongoing work first in recent sorting.
+function parseProjectDate(dateString: string): number {
+  const endDate = dateString.split(/\s+[-–—]\s+/).at(-1)?.trim() ?? '';
+  if (/^present$/i.test(endDate)) return Number.MAX_SAFE_INTEGER;
 
-  // Parse "Mon YYYY" to Date
-  const [month, year] = endDate.trim().split(' ');
-  const monthMap: { [key: string]: number } = {
-    'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
-    'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+  const match = /^(?:(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+)?(\d{4})$/.exec(endDate);
+  if (!match) return 0;
+
+  const monthMap: Record<string, number> = {
+    Jan: 0, Feb: 1, Mar: 2, Apr: 3, May: 4, Jun: 5,
+    Jul: 6, Aug: 7, Sep: 8, Oct: 9, Nov: 10, Dec: 11,
   };
-
-  return new Date(parseInt(year), monthMap[month] || 0);
+  const month = match[1] ? monthMap[match[1]] : 11;
+  return Date.UTC(Number(match[2]), month, 1);
 }
 
 export function sortProjects(
@@ -47,7 +47,7 @@ export function sortProjects(
       return sorted.sort((a, b) => {
         const dateA = parseProjectDate(a.dates);
         const dateB = parseProjectDate(b.dates);
-        return dateB.getTime() - dateA.getTime(); // Newest first
+        return dateB - dateA; // Newest first
       });
 
     case 'oldest':
@@ -55,7 +55,7 @@ export function sortProjects(
       return sorted.sort((a, b) => {
         const dateA = parseProjectDate(a.dates);
         const dateB = parseProjectDate(b.dates);
-        return dateA.getTime() - dateB.getTime(); // Oldest first
+        return dateA - dateB; // Oldest first
       });
 
     case 'alphabetical':

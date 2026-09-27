@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'Calvin Liew — AI Workflows Product Analyst',
     short_name: 'Calvin Liew',
-    description: 'AI Workflows Product Analyst at Sanofi building AI agents, RAG pipelines, and enterprise data products.',
+    description: 'Calvin Liew built SupRM Intelligence at Sanofi, reaching 80 unique production users and 572 conversations in its first six months.',
     start_url: '/',
     display: 'standalone',
     background_color: '#F8F4EE',

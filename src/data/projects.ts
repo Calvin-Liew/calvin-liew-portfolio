@@ -2,6 +2,60 @@ import { Project } from '@/types';
 
 export const projects: Project[] = [
   {
+    id: 'suprm-intelligence',
+    title: 'SupRM Intelligence: AI for Supplier Decisions',
+    category: 'AI & Data',
+    dates: '2026 - Present',
+    updatedAt: '2026-09-27',
+    organization: 'Sanofi',
+    description: 'An enterprise AI assistant I led at Sanofi, SupRM Intelligence reached 80 unique production users and 572 conversations in its first six months. It supports decisions across 61 strategic suppliers and 34 Key Supplier Managers. I built its evaluation framework, reusable agent tools, and supplier performance reporting.',
+    skills: ['AI Product Strategy', 'AI Agent Development', 'Evaluation Design', 'LLM Orchestration', 'Data Engineering', 'Workflow Design', 'Product Analytics'],
+    tags: ['AI Agents', 'Enterprise AI', 'Product Strategy', 'Supplier Management'],
+    featured: true,
+    extendedContent: {
+      stats: [
+        { value: '80', label: 'unique production users in the first six months' },
+        { value: '572', label: 'conversations in the first six months' },
+        { value: '97.9%', label: 'production evaluation pass rate' },
+        { value: '6+', label: 'AI products using shared capabilities' },
+      ],
+      overview: {
+        title: 'An assistant for supplier decisions',
+        content: 'SupRM Intelligence supports supplier decision-making across 61 strategic suppliers and 34 Key Supplier Managers. I led its development and designed the supporting evaluation, reporting, and reusable agent capabilities. The work connects AI product delivery with measurable adoption and answer quality.',
+      },
+      motivation: {
+        title: 'Make the answers useful and accountable',
+        content: 'Supplier performance and governance work spans different reporting cadences and information sources. I focused on making the assistant useful for day-to-day decisions while giving the team a repeatable way to assess answer quality and tool use.',
+      },
+      decisions: [
+        {
+          decision: 'Evaluate business questions systematically',
+          reasoning: 'I created an evaluation framework across 18 business scenarios and 25 deterministic checks. It achieved a 97.9% production evaluation pass rate and 100% tool compliance. Redesigning the responses also cut representative answer length by 65%.',
+        },
+        {
+          decision: 'Build capabilities other AI products can reuse',
+          reasoning: 'I architected shared agent tools and orchestration capabilities used by 6+ AI products across budgeting, risk, compliance, procurement, and supplier management.',
+        },
+        {
+          decision: 'Build reliable reporting across cadences',
+          reasoning: 'I developed supplier performance reporting across weekly, monthly, quarterly, and annual workflows, reconciled 1,822 historical metric records, and backfilled 211 missing reporting periods.',
+        },
+        {
+          decision: 'Keep proposed actions under human review',
+          reasoning: 'I piloted a governed workflow that turns supplier files into action proposals for people to confirm, revise, or dismiss before an action is created.',
+        },
+      ],
+      limitations: {
+        title: 'What these results show',
+        items: [
+          'The adoption totals cover the first six months, not lifetime use.',
+          'The 97.9% pass rate measures defined evaluation scenarios, not every possible supplier question.',
+          'This public case study uses aggregate outcomes and does not show supplier records or internal screens.',
+        ],
+      },
+    },
+  },
+  {
     id: 'saas-scout',
     title: 'SaaSScout: A Grounded RAG Copilot for SaaS Evaluation',
     category: 'AI & Data',
@@ -185,6 +239,7 @@ export const projects: Project[] = [
     skills: ['Product Strategy', 'Market Research', 'Financial Modeling', 'User Research', 'React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Zustand', 'Framer Motion', 'UX Design', 'Entrepreneurship'],
     tags: ['Entrepreneurship', 'Product Strategy', 'UX Design'],
     image: '/projects/pantry-pilot/00-dashboard.png',
+    featured: true,
     links: [
       {
         type: 'live',

@@ -34,6 +34,7 @@ export async function getAllPosts(): Promise<BlogPost[]> {
           slug,
           title: data.title || '',
           date: data.date || '',
+          updated: data.updated || undefined,
           excerpt: data.excerpt || '',
           content: contentHtml,
           tags: data.tags || [],
@@ -61,12 +62,13 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       slug,
       title: data.title || '',
       date: data.date || '',
+      updated: data.updated || undefined,
       excerpt: data.excerpt || '',
       content: contentHtml,
       tags: data.tags || [],
       readTime: calculateReadTime(content),
     };
-  } catch (error) {
+  } catch {
     return null;
   }
 }

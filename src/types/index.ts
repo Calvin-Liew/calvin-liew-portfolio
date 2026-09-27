@@ -290,6 +290,8 @@ export interface Project {
   title: string;
   category: ProjectCategory;
   dates: string;
+  /** ISO date of the latest published case-study update, when known */
+  updatedAt?: string;
   organization: string;
   courseCode?: string;
   description: string;
@@ -330,6 +332,7 @@ export interface BlogPost {
   slug: string;
   title: string;
   date: string;
+  updated?: string;
   excerpt: string;
   content: string;
   tags?: string[];

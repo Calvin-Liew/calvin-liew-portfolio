@@ -35,8 +35,7 @@ export default function ProjectSchema({ project }: ProjectSchemaProps) {
       name: 'Calvin Liew',
       url: 'https://calvinliew.space',
     },
-    dateCreated: project.dates.split(/[-–—]/)[0].trim(),
-    dateModified: project.dates.split(/[-–—]/).pop()?.trim() ?? project.dates,
+    ...(project.updatedAt && { dateModified: project.updatedAt }),
     keywords: keywordList.join(', '),
     genre: project.category,
     ...(project.tags && project.tags.length > 0 && {

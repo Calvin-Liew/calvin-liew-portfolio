@@ -25,7 +25,7 @@ export default function ProfilePageSchema({
     image: 'https://calvinliew.space/opengraph-image',
     jobTitle: 'AI Workflows Product Analyst',
     description:
-      'AI Workflows Product Analyst at Sanofi building AI agents, RAG pipelines, and enterprise data products.',
+      'AI Workflows Product Analyst at Sanofi who built SupRM Intelligence, reaching 80 unique production users and 572 conversations in its first six months.',
     email: 'mailto:calvin.liew@mail.utoronto.ca',
     address: {
       '@type': 'PostalAddress',
