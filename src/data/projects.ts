@@ -8,7 +8,7 @@ export const projects: Project[] = [
     dates: '2026 - Present',
     updatedAt: '2026-09-27',
     organization: 'Sanofi',
-    description: 'I led development of SupRM Intelligence, an enterprise AI assistant that reached 80 unique production users and 572 conversations in its first six months. It supports decisions across 61 strategic suppliers and 34 Key Supplier Managers. I built its evaluation framework, reusable agent tools, and supplier performance reporting.',
+    description: 'An enterprise AI assistant I led at Sanofi, SupRM Intelligence reached 80 unique production users and 572 conversations in its first six months. It supports decisions across 61 strategic suppliers and 34 Key Supplier Managers. I built its evaluation framework, reusable agent tools, and supplier performance reporting.',
     skills: ['AI Product Strategy', 'AI Agent Development', 'Evaluation Design', 'LLM Orchestration', 'Data Engineering', 'Workflow Design', 'Product Analytics'],
     tags: ['AI Agents', 'Enterprise AI', 'Product Strategy', 'Supplier Management'],
     featured: true,
@@ -239,6 +239,7 @@ export const projects: Project[] = [
     skills: ['Product Strategy', 'Market Research', 'Financial Modeling', 'User Research', 'React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Zustand', 'Framer Motion', 'UX Design', 'Entrepreneurship'],
     tags: ['Entrepreneurship', 'Product Strategy', 'UX Design'],
     image: '/projects/pantry-pilot/00-dashboard.png',
+    featured: true,
     links: [
       {
         type: 'live',
