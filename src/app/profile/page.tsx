@@ -23,15 +23,15 @@ const volunteerExperiences = experiences.filter(
 export const metadata: Metadata = {
   title: 'Profile',
   description:
-    'Calvin Liew built SupRM Intelligence at Sanofi, reaching 80 unique production users and 572 conversations in its first six months.',
-  keywords: ['Calvin Liew profile', 'Calvin Liew resume', 'AI Workflows Product Analyst', 'Sanofi AI', 'UofT BBA', 'product analyst Toronto', 'RAG engineer', 'Calvin Liew experience'],
+    'Calvin Liew is an AI Workflows Product Analyst at Sanofi, turning business needs into requirements, evaluated AI solutions, and better workflows.',
+  keywords: ['Calvin Liew profile', 'Calvin Liew resume', 'AI Workflows Product Analyst', 'Sanofi AI', 'UofT BBA', 'product analyst Toronto', 'business analyst', 'AI product management', 'Calvin Liew experience'],
   alternates: {
     canonical: 'https://calvinliew.space/profile',
   },
   openGraph: {
     type: 'profile',
     title: 'Profile — Calvin Liew',
-    description: 'Built SupRM Intelligence at Sanofi: 80 unique production users and 572 conversations in its first six months.',
+    description: 'AI Workflows Product Analyst at Sanofi. Product requirements, AI evaluation, and user-centered workflows.',
     url: 'https://calvinliew.space/profile',
     siteName: 'Calvin Liew Portfolio',
     firstName: 'Calvin',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Profile — Calvin Liew',
-    description: 'Built SupRM Intelligence at Sanofi: 80 unique production users and 572 conversations in its first six months.',
+    description: 'AI Workflows Product Analyst at Sanofi. Product requirements, AI evaluation, and user-centered workflows.',
     creator: '@calvinliew',
   },
 };
@@ -81,13 +81,13 @@ export default function ProfilePage() {
               <p>{aboutData.introduction}</p>
 
               <p>
-                I believe the best AI products come from combining{' '}
+                At Sanofi, I led development of{' '}
                 <MarkerHighlight className="font-medium text-ink">
-                  agentic systems, strong product strategy, and clean data
+                  SupRM Intelligence
                 </MarkerHighlight>
-                . At Sanofi I created an evaluation framework that reached a
-                97.9% production pass rate and architected reusable agent tools
-                now used by 6+ AI products.
+                , an assistant supporting decisions across 61 strategic suppliers and
+                34 Key Supplier Managers. It reached 80 unique production users
+                and 572 conversations in its first six months.
               </p>
 
               <p>
@@ -100,11 +100,12 @@ export default function ProfilePage() {
               </p>
 
               <p>
-                My background in Management Information Technology and Computer
-                Science at the University of Toronto bridges business
-                strategy, data engineering, and product thinking. Design and
-                UX are part of the toolkit too. They make AI products feel
-                as good to use as they are to demo.
+                Outside work, I built SaaSScout to make software comparisons easier
+                to trace back to evidence, and explored horror screenplays
+                through AI-assisted analysis and interactive visualization.
+                I completed my studies at the University of Toronto in August
+                2026, specializing in Management &amp; Information Technology
+                with a Computer Science minor.
               </p>
             </div>
           </header>
@@ -144,8 +145,7 @@ export default function ProfilePage() {
                   Calvin Liew, Resume
                 </h3>
                 <p className="text-sm text-ink-soft mb-5">
-                  My latest experience in product, design, and data, all in one
-                  page.
+                  A one-page overview of my experience in product, design, and data.
                 </p>
                 <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                   <Button

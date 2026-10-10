@@ -61,7 +61,7 @@ export const projects: Project[] = [
     category: 'AI & Data',
     dates: 'Mar 2026 - May 2026',
     organization: 'Independent Project',
-    description: 'A production RAG copilot for SaaS evaluation. Indexes 335 products and 4,899 review chunks into four partitioned Chroma vector collections, ranks retrieval candidates across six signals (feature-fit, pricing, review sentiment, provenance trust, query alignment, category overlap), then generates grounded recommendations via a provider-neutral LLM layer — Groq Qwen 32B online, Ollama Qwen 2.5 local, or a deterministic grounded template when both are unavailable. The architecture ensures the LLM never invents a fact the retrieval layer did not supply.',
+    description: 'A software comparison tool that helps analysts turn product, pricing, and review evidence into a shortlist. Built with React, FastAPI, and retrieval-augmented generation (RAG), it shows sources, flags missing information, and produces comparison scorecards and next checks.',
     skills: ['RAG', 'FastAPI', 'React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Chroma', 'Vector Search', 'LLM', 'Groq', 'Ollama', 'Production Deployment', 'Netlify', 'Render', 'Data Engineering'],
     tags: ['RAG', 'LLM', 'AI Agents', 'Product Strategy'],
     image: '/projects/saas-scout/00-hero.png',
@@ -82,33 +82,33 @@ export const projects: Project[] = [
       stats: [
         { value: '335', label: 'products indexed' },
         { value: '4,899', label: 'review chunks in Chroma' },
-        { value: '6-signal', label: 'retrieval ranking' },
+        { value: 'Source-aware', label: 'retrieval and ranking' },
         { value: '3-tier', label: 'LLM fallback chain' },
       ],
-      pullQuote: 'RAG is not a feature — it is an architectural commitment: every answer is grounded in retrieved evidence, every gap is labeled, and the LLM never invents what the data does not support.',
+      pullQuote: 'A useful software recommendation should show its evidence and make the gaps easy to check.',
       overview: {
-        title: 'A five-phase RAG pipeline for procurement-grade answers',
-        content: 'SaaSScout is built around a retrieval-augmented generation (RAG) pipeline that turns a natural-language SaaS query into a grounded, evidence-backed recommendation. The pipeline runs in five phases. (1) Ingestion: five data sources are normalized, canonically joined on product names, and partitioned into separate Chroma vector collections by trust level. (2) Indexing: each collection is embedded using Chroma\'s default embedding model; a TF-IDF fallback index is pre-built for when the vector store is cold or unavailable. (3) Retrieval: incoming queries hit all four evidence lanes in parallel, each lane returning its top-k matches by cosine similarity, filtered by category and metadata constraints. (4) Ranking: retrieved candidates are scored across six signals before the LLM sees anything — feature-fit coverage, pricing match, review sentiment, provenance trust, query-keyword alignment, and category overlap. The six-signal composite score determines which evidence surfaces in the LLM prompt and which tools lead the comparison. (5) Generation: ranked evidence is assembled into a structured prompt and passed to Groq Qwen 32B (online), Ollama Qwen 2.5 1.5B (local), or a deterministic grounded template if both are unavailable. The LLM role is assembly and narration — it formats evidence it was handed, never supplements with training-set guesses.',
+        title: 'From a software question to a sourced comparison',
+        content: 'SaaSScout combines structured product metadata, pricing, feature flags, and review evidence. A Python pipeline normalizes and joins the data; Chroma retrieval and TF-IDF fallback surface relevant material; scoring ranks candidates before answer generation. A React dashboard presents comparisons, evidence snippets, recommendation memos, and follow-up checks through a FastAPI backend.',
       },
       motivation: {
-        title: 'Why procurement is the worst use case for generic chat — and the best for RAG',
-        content: 'SaaS evaluation is a research task: analysts open ten browser tabs, cross-reference feature pages against pricing plans, scan review sites for recurring pain points, and summarize into a recommendation. Generic ChatGPT-style chat collapses that into one confident-sounding answer where the citations are usually invented and there is no way to tell which features were verified versus fabricated. The procurement-specific failure mode is expensive: a team selects the wrong tool, spends a quarter integrating it, then finds that the "enterprise SSO" the chatbot confirmed does not exist in the pricing tier they bought.\n\nRAG solves this by separating knowledge from generation. The retrieval layer owns the facts — 335 real products, 4,899 review chunks, FactGrid enterprise metadata, Wikidata vendor data, OpenAlternative open-source discovery. The generation layer only assembles and narrates what the retrieval layer hands it. The LLM never touches a query without already having ranked, sourced evidence in the prompt. That constraint is what makes the output auditable: every claim traces to a retrieved row, every gap is labeled as a gap, every recommendation cites the composite score that drove it. SaaSScout is a working argument that AI for high-stakes work must be built on evidence architecture — not on prompt engineering around an LLM\'s stale training data.',
+        title: 'Make software research easier to review',
+        content: 'Software evaluation means comparing vendor pages, pricing sheets, reviews, and incomplete feature claims. SaaSScout brings that evidence into one workflow so an analyst can build a shortlist and see what still needs verification. The product separates retrieved evidence from generated summaries and labels missing or lower-confidence information. Retrieval grounding reduces reliance on model recall, but it does not guarantee a correct answer.',
       },
       decisions: [
         {
-          decision: 'Index real product knowledge instead of prompting around ignorance',
+          decision: 'Retrieve evidence before generating a recommendation',
           framework: 'Retrieval-Augmented Generation (RAG)',
-          reasoning: 'A vanilla LLM prompt for "compare Zendesk and Freshdesk" produces a plausible-sounding feature matrix drawn from training data that may be months or years stale. SaaSScout\'s answer is to not ask the LLM about products at all. Instead, 335 real product records are ingested, canonically normalized, and embedded into Chroma before any user query arrives. The LLM receives a prompt that already contains retrieved, ranked evidence — its role is to assemble readable output, not to recall facts. If the data does not support a claim, the claim does not appear. The RAG constraint is the product\'s entire trust argument.',
+          reasoning: 'The pipeline retrieves product records, review snippets, and enrichment evidence before generating an answer. That gives users source material to inspect and constrains the summary to a relevant context. Generated claims still need review, especially when pricing or feature coverage is incomplete.',
         },
         {
-          decision: 'Partition embeddings into separate Chroma collections by source trust',
+          decision: 'Keep source provenance visible',
           framework: 'Evidence lane architecture',
-          reasoning: 'The default RAG approach drops all documents into one vector collection and lets semantic search surface the best match. The problem is that user reviews, enterprise metadata, and vendor-reported features have very different trust profiles: Capterra reviews are subjective but reveal real pain points; FactGrid metadata is verified but narrow; Wikidata vendor facts are CC0 and reliable but sparse; OpenAlternative surfaces open-source options that commercial indexes miss. Merging them into one corpus lets high-volume review text dominate cosine similarity, drowning out the structured metadata signals. SaaSScout keeps four separate Chroma collections — one per lane — so retrieval is independently tuned per source and output is labeled by origin. A TF-IDF fallback index mirrors each collection so retrieval degrades gracefully when the vector store is cold.',
+          reasoning: 'Product metadata, user reviews, and vendor enrichment answer different questions and have different limitations. Separate Chroma retrieval collections and source-aware evidence displays preserve those distinctions. TF-IDF fallback supports retrieval when the vector store is unavailable.',
         },
         {
-          decision: 'Score six signals before the LLM sees a single candidate',
+          decision: 'Rank candidates before generating the summary',
           framework: 'Multi-signal pre-generation ranking',
-          reasoning: 'Semantic similarity alone is a weak procurement ranking signal. A tool can embed close to the query keyword "enterprise ticketing" while failing on pricing, missing required features, or carrying uniformly negative reviews. SaaSScout scores every retrieval candidate across six dimensions before assembling the LLM prompt: feature-fit coverage (what fraction of required features are confirmed), pricing match (distance from the stated budget), review sentiment (aggregated Capterra rating), provenance trust (FactGrid weighted highest, then Wikidata, then reviews, then alternatives), query-keyword alignment (TF-IDF overlap with the raw query string), and category overlap (primary category match). The composite score governs prompt slot assignment — higher-ranked tools get more evidence real estate — so the generation step is biased toward the strongest candidates before any text is written.',
+          reasoning: 'Candidate scoring combines feature fit, pricing, review evidence, category relevance, and evidence quality before generation. Keeping ranking separate from the prose makes a recommendation easier to inspect and gives the user a clearer basis for comparing tools.',
         },
         {
           decision: 'Treat missing evidence as a procurement finding, not a model failure',
@@ -116,8 +116,8 @@ export const projects: Project[] = [
           reasoning: 'When the retrieval layer returns no Wikidata record for a vendor, or no pricing data for an enterprise tier, the typical AI response is to either hallucinate a placeholder or silently omit the row. Both are wrong for procurement. SaaSScout renders missing evidence as an explicit cell in the evidence table, tagged with the lane it came from. A blank pricing cell is a procurement red flag — it usually signals "contact sales" or a non-public tier — and surfacing it as a gap gives the analyst the right signal: this is something you must verify before buying. The design rule is that absence of evidence is itself evidence, and the product makes it visible rather than papering over it.',
         },
         {
-          decision: 'Provider-neutral LLM layer: Groq Qwen 32B → Ollama Qwen 2.5 1.5B → deterministic template',
-          reasoning: 'Tying a RAG pipeline to one LLM provider is a reliability risk. Groq\'s hosted Qwen 32B is fast — sub-2-second inference on the structured prompt — but rate-limited under demo traffic. Ollama\'s local Qwen 2.5 1.5B is available offline and avoids API costs, but slower and quantized. The pipeline checks availability in order: Groq first, Ollama second, deterministic grounded template last. The template fallback is not a degraded mode: it uses the same six-signal ranking and the same retrieved evidence, formats them into the same scorecard and recommendation memo, and delivers a procurement-ready output without any LLM call. Because the LLM is positioned as an assembler and narrator rather than a knowledge source, the fallback degrades in fluency but never in factual grounding.',
+          decision: 'Keep a useful fallback when an LLM is unavailable',
+          reasoning: 'A provider-neutral generation layer supports Groq online, Ollama locally, and a deterministic template fallback. The fallback uses the same retrieved evidence and scoring to produce a comparison without an LLM call. This keeps the workflow usable during provider failures while leaving source quality and coverage visible.',
         },
         {
           decision: 'Packaged artifact, same-origin proxy, and scheduled smoke monitor for zero-dollar reliability',
@@ -126,24 +126,24 @@ export const projects: Project[] = [
       ],
       keyFindings: [
         {
-          stat: '6-signal',
+          stat: 'Ranked evidence',
           title: 'Pre-generation ranking',
-          description: 'Every retrieval candidate is scored across feature-fit coverage, pricing match, review sentiment, provenance trust, query-keyword alignment, and category overlap before the LLM prompt is assembled. The ranking is deterministic and inspectable — no black-box confidence number, just a composite score derived from labeled, retrieved evidence.',
+          description: 'Feature fit, pricing, reviews, category relevance, and evidence quality contribute to ranking before the answer is generated. The scorecard makes the comparison more inspectable than a recommendation alone.',
         },
         {
-          stat: '4 collections',
+          stat: 'Source-aware',
           title: 'Partitioned vector indexing',
-          description: 'Capterra reviews, FactGrid enterprise metadata, Wikidata vendor facts, and OpenAlternative open-source discovery each live in their own Chroma collection with their own TF-IDF fallback index. Separate indexing means separate trust profiles, independent retrieval tuning, and source-labeled output the user can audit lane by lane.',
+          description: 'Product records, review snippets, vendor metadata, and open-source alternatives remain labeled by source. This helps users distinguish structured facts from review-derived signals and spot missing evidence.',
         },
         {
           stat: '3 tiers',
           title: 'LLM fallback chain',
-          description: 'Groq Qwen 32B online → Ollama Qwen 2.5 1.5B local → deterministic grounded template. Each tier consumes the same six-signal ranked evidence from the retrieval layer. The template fallback produces a full procurement scorecard with no LLM call — output that degrades in fluency but never in factual grounding.',
+          description: 'Groq online, Ollama locally, and a deterministic template fallback support the same comparison workflow. When generation is unavailable, the template can still present retrieved evidence and scores.',
         },
         {
-          stat: '0',
-          title: 'Hallucinated citations in any output mode',
-          description: 'The LLM never sees a request without pre-ranked, sourced evidence already in the prompt context. It cannot fabricate a feature not in the retrieved data because the prompt architecture leaves no room for it. Missing evidence surfaces as explicit labeled gaps, not as model-generated placeholders.',
+          stat: 'Reviewable',
+          title: 'Evidence and gaps alongside the answer',
+          description: 'Evidence snippets and source labels help users check recommendations. Missing or lower-confidence information is surfaced for follow-up; retrieval and prompting do not eliminate the risk of model errors.',
         },
       ],
       features: [
@@ -163,7 +163,7 @@ export const projects: Project[] = [
         },
         {
           title: 'Evidence lanes panel',
-          description: 'Behind every claim is a sourced row. The Evidence panel exposes the FactGrid Enterprise Metadata table (vendor verification, pricing cross-checks, SLA notes, audit dates), Wikidata Vendor Facts (entity type, official website, country, parent organization, stock ticker), and the underlying review snippets. "Missing" cells are rendered as cells, not hidden, so absent evidence reads as a real finding.',
+          description: 'The Evidence panel exposes the FactGrid Enterprise Metadata table (vendor verification, pricing cross-checks, SLA notes, audit dates), Wikidata Vendor Facts (entity type, official website, country, parent organization, stock ticker), and the underlying review snippets. "Missing" cells are rendered as cells, not hidden, so absent evidence reads as a real finding.',
           insight: 'Showing the data tables is the opposite of magic-AI marketing. The app earns trust by showing exactly what it knows and what it does not, including the URL each fact came from.',
           image: '/projects/saas-scout/02-evidence.png',
           imageFit: 'contain',
@@ -188,11 +188,11 @@ export const projects: Project[] = [
         },
         {
           name: 'Chroma',
-          purpose: 'Vector store for four separate evidence collections (products, Capterra reviews, FactGrid metadata, OpenAlternative). Each collection is indexed independently with its own embedding space and a pre-built TF-IDF fallback. Queries hit all lanes in parallel via cosine similarity, with metadata filtering for category and source. The partitioned design lets retrieval be tuned per trust level and lets the UI label every result by its origin collection.',
+          purpose: 'Vector retrieval over product, review, and open-source alternative collections, with TF-IDF fallback and source-aware retrieval metadata.',
         },
         {
-          name: 'Groq + Ollama (Qwen)',
-          purpose: 'Provider-neutral LLM assembly layer. Groq\'s hosted Qwen 32B handles online inference at sub-2-second latency; Ollama\'s local Qwen 2.5 1.5B covers offline and zero-API-cost scenarios. A deterministic grounded-template path activates when both providers are unavailable, producing a full procurement scorecard from the same ranked retrieval output — no LLM call required, no hallucinations possible.',
+          name: 'Groq + Ollama',
+          purpose: 'Provider-neutral generation using Groq online, Ollama locally, and a deterministic template fallback. The template presents retrieved evidence and scores without an LLM call.',
         },
         {
           name: 'Netlify + Render',
@@ -212,18 +212,19 @@ export const projects: Project[] = [
         },
       ],
       impact: {
-        title: 'The business case for building on RAG instead of prompts',
-        content: 'SaaSScout is a working argument that the right architecture for high-stakes AI work is not a smarter prompt — it is a retrieval layer that owns the facts so the generation layer never has to guess. Generic LLMs fail procurement tasks not because the models are bad but because the task requires grounded, auditable, source-traceable output that training data alone cannot provide. RAG delivers that by design: the pipeline retrieves before it generates, ranks before it narrates, and labels every output with the lane and row it came from.\n\nThe product value of this architecture is measurable. Analysts get a recommendation memo they can drop directly into a Slack thread or procurement deck. Every feature claim cites a source. Every pricing gap is flagged rather than papered over. The fallback chain means the app delivers a useful output even when the LLM provider is rate-limited or offline. That reliability is not incidental — it is the product.\n\nBuilding SaaSScout sharpened a conviction I now apply to every AI product decision: the expensive part is not the model. It is the data pipeline, the evidence partitioning, the ranking heuristics, and the fallback architecture. Models are a commodity. Grounded retrieval infrastructure is the moat. Any team that skips RAG in favor of prompt engineering is trading short-term simplicity for long-term hallucination debt.',
+        title: 'A comparison workflow people can inspect',
+        content: 'SaaSScout brings fragmented software research into a reviewable comparison workflow: a shortlist, a scorecard, source evidence, and questions to take back to vendors. The technical work supports those product decisions through data normalization, retrieval, ranking, and fallback generation.\n\nThe project sharpened my focus on making AI output useful to someone making a decision. A fluent recommendation is only one part of that experience; visible evidence, honest gaps, and a clear next step matter just as much.',
       },
       limitations: {
         title: 'Honest caveats',
         items: [
+          'RAG reduces reliance on model recall but does not guarantee factual accuracy. Verify generated claims and current pricing against the source before a purchase.',
           'Demo data is Kaggle\'s CompareEdge 2026 SaaS market snapshot, not live vendor pricing. Real procurement use would need a refresh cadence and pricing-API hooks.',
           'Many enterprise tools list pricing as "contact sales" rather than a number. Those quotes appear as gaps in the pricing table, which is honest but means budget-aware ranking is limited for higher tiers.',
           'Render\'s free tier has cold starts. The scheduled monitor mitigates but does not eliminate the first-of-day delay.',
           'LLM rate limits during demo spikes fall back to the deterministic template, which is grounded but reads less naturally than the LLM output.',
           'No user accounts, saved evaluations, or team sharing yet. Each session is stateless.',
-          'The four evidence lanes are the curated v1 set. Adding G2, TrustRadius, and vendor-direct feature pages is the obvious v2 priority.',
+          'The current evidence sources are the curated v1 set. Adding G2, TrustRadius, and vendor-direct feature pages is the obvious v2 priority.',
         ],
       },
     },
@@ -413,7 +414,7 @@ export const projects: Project[] = [
     dates: 'Sep 2025 - Dec 2025',
     organization: 'University of Toronto',
     courseCode: 'CSC316H1 - Data Visualization and Advanced Programming',
-    description: 'An interactive data visualization study of how horror films generate fear. Analyzed 129 horror screenplays across 9,760 scenes and 11,204 horror signals using a GPT-4o-mini + GPT-4o pipeline (99.97% success rate, $2.28 total cost), then built nine custom D3.js visualizations into a scrollytelling site that reveals horror\'s power law: a tiny set of elite signals like scream and blood drive most of the actual scares.',
+    description: 'An interactive study of suspense across 129 horror screenplays and 9,760 scenes. An AI-assisted Python pipeline feeds nine D3.js visualizations, letting readers explore pacing, recurring signals, and patterns in the analyzed films.',
     skills: ['LLM', 'Generative AI', 'D3.js', 'Python', 'Data Science', 'Data Visualization', 'Prompt Engineering'],
     tags: ['Data Visualization', 'LLM', 'Generative AI'],
     image: '/projects/anatomy-of-fear/00-hero.png',
@@ -1212,7 +1213,7 @@ export const projects: Project[] = [
     category: 'Design',
     dates: 'Apr 2025 - Aug 2025',
     organization: 'The Marketing Group (TMG) — University of Toronto Scarborough',
-    description: 'A 90-day mobile-first redesign of the UTSC Marketing Group\'s website that cut bounce rate from 62% to 23%, grew sessions by 67%, and increased average session duration by 30% to 3m 36s. Rebuilt the information architecture around five distinct user journeys — students, event attendees, applicants, sponsors, and social visitors — and applied a full suite of HCI principles (Nielsen heuristics, Shneiderman\'s golden rules, Fitts\'s Law, Hick\'s Law, Gestalt) across every page.',
+    description: 'A 90-day mobile-first redesign of the UTSC Marketing Group\'s website that cut bounce rate from 62% to 23%, grew sessions by 67%, and reached an average session duration of 3m 36s. Rebuilt the information architecture around five distinct user journeys — students, event attendees, applicants, sponsors, and social visitors — and applied a full suite of HCI principles (Nielsen heuristics, Shneiderman\'s golden rules, Fitts\'s Law, Hick\'s Law, Gestalt) across every page.',
     skills: ['UX Design', 'Information Architecture', 'Wix', 'Responsive Design', 'Google Analytics', 'Visual Hierarchy', 'HCI Principles', 'Conversion Optimization', 'UX Research', 'Design Systems'],
     tags: ['UX Design', 'Design Systems', 'Information Architecture'],
     image: '/projects/tmg-website/new-home-desktop-viewport.png',
@@ -1233,12 +1234,12 @@ export const projects: Project[] = [
         { value: '+67%', label: 'total site sessions' },
         { value: '62%→23%', label: 'bounce rate reduction' },
         { value: '+45%', label: 'unique visitors' },
-        { value: '3m 36s', label: 'avg session duration (+30%)' },
+        { value: '3m 36s', label: 'avg session duration' },
       ],
       pullQuote: 'The site was not redesigned to look newer. It was redesigned so that students, applicants, and sponsors could each find their path in under ten seconds.',
       overview: {
         title: 'A product-minded UX overhaul of a student organization web presence',
-        content: 'The Marketing Group (TMG) at the University of Toronto Scarborough had a Wix-hosted website that communicated brand identity but generated significant engagement friction: a 62% bounce rate, weak mobile usability, shallow navigation, and conversion paths that required users to search for next actions. The 90-day redesign treated the website as a product with measurable user journeys rather than a digital brochure with pages.\n\nThe outcome was a mobile-first, task-oriented experience structured around five distinct audience jobs: students discovering TMG, event attendees finding what to attend, applicants evaluating whether to join, sponsors evaluating partnership, and social visitors looking for the Linktree. Each page was rebuilt with a clear information hierarchy, specific CTAs, and a design system — brand pink, navigation navy, Raleway headings, Wix Madefor Text body, 1180px desktop content width — that creates consistency across every surface. Analytics confirmed the shift: sessions up 67%, unique visitors up 45%, bounce rate dropped to 23%, and average session duration up 30% to 3m 36s.',
+        content: 'The Marketing Group (TMG) at the University of Toronto Scarborough had a Wix-hosted website that communicated brand identity but generated significant engagement friction: a 62% bounce rate, weak mobile usability, shallow navigation, and conversion paths that required users to search for next actions. The 90-day redesign treated the website as a product with measurable user journeys rather than a digital brochure with pages.\n\nThe outcome was a mobile-first, task-oriented experience structured around five distinct audience jobs: students discovering TMG, event attendees finding what to attend, applicants evaluating whether to join, sponsors evaluating partnership, and social visitors looking for the Linktree. Each page was rebuilt with a clear information hierarchy, specific CTAs, and a design system — brand pink, navigation navy, Raleway headings, Wix Madefor Text body, 1180px desktop content width — that creates consistency across every surface. Analytics confirmed the shift: sessions up 67%, unique visitors up 45%, bounce rate dropped to 23%, and average session duration of 3m 36s.',
       },
       motivation: {
         title: 'Six original UX problems that analytics confirmed were real',
@@ -1431,8 +1432,8 @@ export const projects: Project[] = [
         },
         {
           stat: '3m 36s',
-          title: 'Average session duration (+30%)',
-          description: 'Average session duration grew 30% to 3m 36s. Longer sessions indicate that users were navigating between pages — moving from the homepage into events, from events into specific event pages, from about into team departments — rather than reading one section and leaving. The repeatable event card pattern and grouped team content made deeper exploration feel worth the effort.',
+          title: 'Average session duration',
+          description: 'Average session duration reached 3m 36s. This is an engagement signal, but duration alone does not establish which journeys users took. The repeatable event cards and grouped team content were designed to make deeper exploration easier.',
         },
         {
           stat: '+45%',
@@ -1509,7 +1510,7 @@ export const projects: Project[] = [
       ],
       impact: {
         title: 'What a 90-day UX redesign actually moves — and what it does not',
-        content: 'The analytics results are the most legible part of the outcome: 67% more sessions, 45% more unique visitors, bounce rate from 62% to 23%, session duration up 30% to 3m 36s. Those numbers confirm that the redesign moved the metrics it was optimizing for — first-impression clarity, mobile usability, navigation depth, and conversion path strength.\n\nThe less visible outcome is the design system. A Wix site without documented design principles drifts: well-meaning maintainers add a section here, change a CTA color there, and six months later the visual language is inconsistent. The case study paired with the live site gives future contributors a documented rationale: here is why the navigation is structured this way, here is the color system, here is what "Hick\'s Law" meant for how we grouped the dropdown items. That documentation is the difference between a redesign that lasts and one that gets gradually overwritten.\n\nThe remaining UX opportunity is conversion measurement beyond sessions. Sessions and duration tell you that users are engaging more; they do not tell you how many joined TMG, applied to become a CBA, or reached out as a sponsor as a result. Wiring analytics events to every CTA click and tracking the event-page-to-registration path would close that loop and give the next redesign cycle a behavioral basis for prioritization rather than an analytics-and-judgment one.',
+        content: 'The analytics results are the most legible part of the outcome: 67% more sessions, 45% more unique visitors, bounce rate from 62% to 23%, average session duration of 3m 36s. Those numbers confirm that the redesign moved the metrics it was optimizing for — first-impression clarity, mobile usability, navigation depth, and conversion path strength.\n\nThe less visible outcome is the design system. A Wix site without documented design principles drifts: well-meaning maintainers add a section here, change a CTA color there, and six months later the visual language is inconsistent. The case study paired with the live site gives future contributors a documented rationale: here is why the navigation is structured this way, here is the color system, here is what "Hick\'s Law" meant for how we grouped the dropdown items. That documentation is the difference between a redesign that lasts and one that gets gradually overwritten.\n\nThe remaining UX opportunity is conversion measurement beyond sessions. Sessions and duration tell you that users are engaging more; they do not tell you how many joined TMG, applied to become a CBA, or reached out as a sponsor as a result. Wiring analytics events to every CTA click and tracking the event-page-to-registration path would close that loop and give the next redesign cycle a behavioral basis for prioritization rather than an analytics-and-judgment one.',
       },
       limitations: {
         title: 'Honest caveats',
@@ -1811,12 +1812,12 @@ export const projects: Project[] = [
     },
     extendedContent: {
       team: [
-        { name: 'Joshua Daniel', role: 'Co-designer / researcher', contact: 'j.daniel@mail.utoronto.ca' },
-        { name: 'Matthew Iannantuono', role: 'Co-designer / researcher', contact: 'matthew.iannantuono@mail.utoronto.ca' },
-        { name: 'Alex Motor', role: 'Co-designer / researcher', contact: 'alex.motor@mail.utoronto.ca' },
+        { name: 'Joshua Daniel', role: 'Co-designer / researcher' },
+        { name: 'Matthew Iannantuono', role: 'Co-designer / researcher' },
+        { name: 'Alex Motor', role: 'Co-designer / researcher' },
         { name: 'Calvin Liew', role: 'Co-designer / researcher', contact: 'calvin.liew@mail.utoronto.ca' },
-        { name: 'Brian Yu', role: 'Co-designer / researcher', contact: 'br.yu@mail.utoronto.ca' },
-        { name: 'William Zhu', role: 'Co-designer / researcher', contact: 'williambo.zhu@mail.utoronto.ca' },
+        { name: 'Brian Yu', role: 'Co-designer / researcher' },
+        { name: 'William Zhu', role: 'Co-designer / researcher' },
       ],
       stats: [
         { value: '6', label: 'student team' },

@@ -71,15 +71,15 @@ export default function Hero() {
             {/* LEFT: subhead, paragraph, CTAs, socials */}
             <div className="max-w-xl animate-fade-in-up animation-delay-400">
               <p className="text-xl sm:text-2xl text-ink-soft leading-snug mb-6 text-balance">
-                I ship products at the intersection of{' '}
+                I turn business needs into{' '}
                 <MarkerHighlight className="font-medium text-ink" delay={400}>
-                  AI agents, data, and product strategy
+                  useful AI products
                 </MarkerHighlight>
                 .
               </p>
 
               <p className="text-base text-muted leading-relaxed mb-8 max-w-lg text-pretty">
-                At Sanofi I designed and built <Link href="/projects/suprm-intelligence" className="text-ink font-medium underline decoration-terracotta/60 underline-offset-4 hover:decoration-terracotta">SupRM Intelligence</Link>, an AI assistant that reached 80 unique production users and 572 conversations in its first six months.
+                At Sanofi, I led development of <Link href="/projects/suprm-intelligence" className="text-ink font-medium underline decoration-terracotta/60 underline-offset-4 hover:decoration-terracotta">SupRM Intelligence</Link>, an AI assistant that reached 80 unique production users and 572 conversations in its first six months.
               </p>
 
               {/* "start here" annotation */}
@@ -160,7 +160,7 @@ export default function Hero() {
                     On my mind
                   </p>
                   <p className="text-sm text-ink-soft">
-                    Where AI agents fit inside enterprise workflows.
+                    Where AI helps, and where human judgment belongs.
                   </p>
                 </div>
               </div>

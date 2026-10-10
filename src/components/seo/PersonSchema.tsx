@@ -9,7 +9,7 @@ export default function PersonSchema() {
     image: 'https://calvinliew.space/opengraph-image',
     jobTitle: 'AI Workflows Product Analyst',
     description:
-      'AI Workflows Product Analyst at Sanofi who built SupRM Intelligence, reaching 80 unique production users and 572 conversations in its first six months.',
+      'AI Workflows Product Analyst at Sanofi, turning business needs into requirements, evaluated AI solutions, and better workflows.',
     email: 'mailto:calvin.liew@mail.utoronto.ca',
     address: {
       '@type': 'PostalAddress',

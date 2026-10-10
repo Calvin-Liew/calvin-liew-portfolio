@@ -49,8 +49,8 @@ export default function SkillsOverview() {
             </span>
           </h2>
           <p className="text-base sm:text-lg text-ink-soft max-w-2xl">
-            What I bring to AI product work. Designed to ladder from raw data
-            &nbsp;&rarr;&nbsp; shipped agent.
+            From understanding the problem to defining requirements, testing the
+            solution, and learning from users.
           </p>
         </div>
 

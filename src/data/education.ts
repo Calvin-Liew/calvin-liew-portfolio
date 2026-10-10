@@ -2,13 +2,13 @@ import { Education } from '@/types';
 
 export const education: Education = {
   institution: 'University of Toronto',
-  degree: 'Bachelor of Business Administration - BBA',
-  field: 'Co-op Management Information Technology',
+  degree: 'Bachelor of Business Administration (Co-op)',
+  field: 'Management & Information Technology',
   dates: 'Sep 2022 - Aug 2026',
-  gpa: '3.94/4.0',
+  gpa: '3.94/4.00',
   honors: [
-    'Sustained Dean\'s List (three consecutive years, 2022-2025)',
-    'BBA (Co-op) Program',
+    'Dean\'s List, 2023–2026',
+    'Studies completed August 2026',
     'Specialist in Management & Information Technology',
     'Minor in Computer Science'
   ],
