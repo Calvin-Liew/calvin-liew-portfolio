@@ -3,8 +3,8 @@ import { AboutData } from '@/types';
 export const aboutData: AboutData = {
   name: 'Calvin Liew',
   title: 'AI Workflows Product Analyst',
-  tagline: 'Building AI agents at the intersection of data, product strategy, and enterprise workflows',
-  introduction: 'I\'m an AI Workflows Product Analyst building AI agents and data products at Sanofi. I designed and built SupRM Intelligence, an assistant supporting decisions across 61 strategic suppliers and 34 Key Supplier Managers. It reached 80 unique production users and 572 conversations in its first six months. I bring product strategy, data engineering, and design thinking together to make enterprise workflows easier to use.',
+  tagline: 'Turning business needs into useful AI products',
+  introduction: 'My work ranges from enterprise AI at Sanofi to exploring suspense in horror films through data. As an AI Workflows Product Analyst, I turn business needs into requirements, build and evaluate solutions, and work with users to improve them, including where human judgment belongs in an automated workflow.',
   email: 'calvin.liew@mail.utoronto.ca',
   socialLinks: [
     {
@@ -25,32 +25,33 @@ export const aboutData: AboutData = {
   ],
   skills: [
     {
+      category: 'Product Management',
+      items: [
+        'AI Product Strategy',
+        'Product Development',
+        'Requirements Analysis',
+        'Process Mapping',
+        'Stakeholder Management',
+        'User Research',
+        'Agile/Scrum',
+        'Roadmap Planning',
+        'Product Analytics',
+        'Stakeholder Demos'
+      ]
+    },
+    {
       category: 'AI & Data',
       items: [
+        'AI Evaluation',
         'AI Agent Development',
         'LLM Orchestration',
         'Prompt Engineering',
-        'Large Language Models',
         'Snowflake',
         'API Integration',
         'Data Pipelines',
         'Data Analysis',
         'Business Intelligence',
         'Data Visualization'
-      ]
-    },
-    {
-      category: 'Product Management',
-      items: [
-        'AI Product Strategy',
-        'Product Development',
-        'Requirements Analysis',
-        'Stakeholder Management',
-        'User Research',
-        'Agile/Scrum',
-        'Roadmap Planning',
-        'Product Analytics',
-        'A/B Testing'
       ]
     },
     {

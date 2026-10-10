@@ -11,8 +11,9 @@ export const experiences: Experience[] = [
     description: [
       'Led development of SupRM Intelligence, an enterprise AI assistant supporting decisions across 61 strategic suppliers and 34 Key Supplier Managers; reached 80 unique production users and 572 conversations in its first six months.',
       'Created an evaluation framework spanning 18 business scenarios and 25 deterministic checks, achieving a 97.9% production evaluation pass rate and 100% tool compliance while shortening representative responses by 65%.',
-      'Architected reusable agent tools and orchestration capabilities used by 6+ AI products across budgeting, risk, compliance, procurement, and supplier management.',
-      'Built supplier performance reporting across weekly, monthly, quarterly, and annual workflows, reconciling 1,822 historical metric records and backfilling 211 missing reporting periods.'
+      'Built reusable agent tools and orchestration capabilities used by 6+ AI products across budgeting, risk, compliance, procurement, and supplier management.',
+      'Built supplier performance reporting across weekly, monthly, quarterly, and annual workflows, reconciling 1,822 historical metric records and backfilling 211 missing reporting periods without duplicates.',
+      'Piloted a document-to-action workflow that lets people confirm, revise, or dismiss proposed actions before they are created.'
     ],
     skills: [
       'AI Agent Development',
@@ -34,10 +35,10 @@ export const experiences: Experience[] = [
     dates: 'Sep 2024 - Aug 2025',
     type: 'Co-op',
     description: [
-      'Spearheaded full redesign of License Patrol, Sanofi\'s license optimization platform, leveraging LLMs and prompt-engineering workflows to deliver €15M+ in savings redirected to R&D innovation.',
-      'Defined product requirements, created process flows, and aligned features with Finance, Procurement, and Software Asset Management teams managing 500+ applications.',
-      'Automated manual governance workflows with low-code AI integrations, reducing processing time by 50% and improving compliance efficiency.',
-      'Delivered 5+ demos, gathered stakeholder feedback, and iterated to ensure adoption and successful launch.'
+      'Led the redesign of License Patrol for 500+ applications, contributing to a shared €15M+ software-optimization savings effort.',
+      'Defined stakeholder requirements, mapped processes, and aligned features with Finance, Procurement, and Software Asset Management teams.',
+      'Built low-code AI integrations to support governance workflows.',
+      'Delivered 5+ demos, gathered stakeholder feedback, and used it to refine the product.'
     ],
     skills: [
       'LLM',
@@ -84,7 +85,7 @@ export const experiences: Experience[] = [
     description: [
       'Led a mobile-first UX/UI redesign for a student organization website, improving navigation, visual hierarchy, and conversion paths across core journeys like About, Events, and Join.',
       'Transformed a high-bounce Wix experience into a task-oriented product journey, reducing bounce rate from 62% to approximately 23% through clearer information architecture and stronger calls to action.',
-      'Applied Google Analytics and behavioral insights to refine content structure and interaction patterns, increasing average session duration by 16% to 3m 36s and supporting a 67% rise in site sessions.',
+      'Applied Google Analytics and behavioral insights to refine content structure and interaction patterns, reaching an average session duration of 3m 36s and supporting a 67% rise in site sessions.',
       'Reframed the website as a product with distinct user journeys for students, applicants, and sponsors, making the experience easier to scan, navigate, and act on.',
       'Strengthened the brand experience by aligning UI components, content hierarchy, and responsive layouts into a cohesive system that better supported mobile users.'
     ],

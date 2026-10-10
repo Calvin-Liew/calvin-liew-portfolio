@@ -17,7 +17,7 @@ export interface CaseStudy {
 export interface TeamMember {
   name: string;
   role: string;
-  contact: string;
+  contact?: string;
 }
 
 export interface ContentSection {
