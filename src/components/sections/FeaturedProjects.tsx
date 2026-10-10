@@ -115,7 +115,7 @@ export default function FeaturedProjects() {
                 )}
 
                 {/* Description */}
-                <p className="text-sm text-ink-soft leading-relaxed line-clamp-3 mb-5 flex-grow overflow-hidden">
+                <p className="text-sm text-ink-soft leading-relaxed line-clamp-3 mb-5 overflow-hidden">
                   {project.description}
                 </p>
 
