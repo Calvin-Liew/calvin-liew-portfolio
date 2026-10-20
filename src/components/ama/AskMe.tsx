@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { MessageCircle, Send, X } from 'lucide-react';
+import { MessageCircle, RotateCcw, Send, X } from 'lucide-react';
+import { OPEN_EVENT } from './openAskMe';
 
 type Turn = { role: 'user' | 'assistant'; content: string };
 
@@ -54,29 +55,45 @@ function Inline({ text }: { text: string }) {
   );
 }
 
+const BULLET = /^\s*[-*] /;
+const NUMBERED = /^\s*\d+[.)] /;
+
+/** Splits text into paragraphs and lists. A list can follow an intro line without a blank line between. */
 function Answer({ text }: { text: string }) {
-  const blocks = text.split(/\n{2,}/);
+  const groups: { kind: 'p' | 'ul' | 'ol'; lines: string[] }[] = [];
+  for (const line of text.split('\n')) {
+    if (!line.trim()) {
+      groups.push({ kind: 'p', lines: [] }); // blank line ends the current group
+      continue;
+    }
+    const kind = BULLET.test(line) ? 'ul' : NUMBERED.test(line) ? 'ol' : 'p';
+    const last = groups[groups.length - 1];
+    if (last && last.kind === kind && (kind !== 'p' || last.lines.length > 0)) last.lines.push(line);
+    else groups.push({ kind, lines: [line] });
+  }
   return (
     <div className="space-y-2">
-      {blocks.map((block, i) => {
-        const lines = block.split('\n');
-        if (lines.every((l) => /^\s*[-*] /.test(l))) {
+      {groups
+        .filter((g) => g.lines.length > 0)
+        .map((g, i) => {
+          if (g.kind === 'p') {
+            return (
+              <p key={i}>
+                <Inline text={g.lines.join('\n')} />
+              </p>
+            );
+          }
+          const List = g.kind;
           return (
-            <ul key={i} className="list-disc space-y-1 pl-5">
-              {lines.map((l, j) => (
+            <List key={i} className={`${g.kind === 'ul' ? 'list-disc' : 'list-decimal'} space-y-1 pl-5`}>
+              {g.lines.map((l, j) => (
                 <li key={j}>
-                  <Inline text={l.replace(/^\s*[-*] /, '')} />
+                  <Inline text={l.replace(g.kind === 'ul' ? BULLET : NUMBERED, '')} />
                 </li>
               ))}
-            </ul>
+            </List>
           );
-        }
-        return (
-          <p key={i}>
-            <Inline text={block} />
-          </p>
-        );
-      })}
+        })}
     </div>
   );
 }
@@ -101,6 +118,13 @@ export default function AskMe() {
   useEffect(() => {
     logRef.current?.scrollTo({ top: logRef.current.scrollHeight });
   }, [turns]);
+
+  // Other parts of the page (e.g. the hero) can open the panel with openAskMe().
+  useEffect(() => {
+    const onOpen = () => setOpen(true);
+    window.addEventListener(OPEN_EVENT, onOpen);
+    return () => window.removeEventListener(OPEN_EVENT, onOpen);
+  }, []);
 
   const close = () => {
     setOpen(false);
@@ -151,10 +175,14 @@ export default function AskMe() {
         onClick={() => setOpen(true)}
         aria-haspopup="dialog"
         aria-expanded={open}
-        className="fixed bottom-5 left-5 z-40 inline-flex items-center gap-2 rounded-full border-2 border-ink/85 bg-paper px-4 py-2.5 font-hand text-lg text-ink shadow-[3px_3px_0_0_rgba(31,26,23,0.85)] transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+        aria-label="Ask me anything: an AI assistant about Calvin's work"
+        className="fixed bottom-4 left-4 z-40 inline-flex items-center gap-2 rounded-full border-2 border-ink/85 bg-paper p-3 font-hand text-lg text-ink shadow-[3px_3px_0_0_rgba(31,26,23,0.85)] transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-paper sm:bottom-5 sm:left-5 sm:px-4 sm:py-2.5"
       >
         <MessageCircle aria-hidden="true" className="h-5 w-5 text-terracotta" />
-        ask me anything
+        {/* Icon-only on phones, where a wide pill would cover the content. */}
+        <span className="hidden sm:inline" aria-hidden="true">
+          ask me anything
+        </span>
       </button>
 
       {open && (
@@ -175,14 +203,30 @@ export default function AskMe() {
                   An AI assistant that answers from this site only. It can be wrong; check the linked pages.
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={close}
-                aria-label="Close the assistant"
-                className="rounded-md p-1.5 text-ink-soft hover:bg-paper-deeper focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta"
-              >
-                <X aria-hidden="true" className="h-5 w-5" />
-              </button>
+              <div className="flex shrink-0 items-center gap-1">
+                {turns.length > 0 && !busy && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setTurns([]);
+                      inputRef.current?.focus();
+                    }}
+                    aria-label="Start a new conversation"
+                    title="Start over"
+                    className="rounded-md p-1.5 text-ink-soft hover:bg-paper-deeper focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta"
+                  >
+                    <RotateCcw aria-hidden="true" className="h-5 w-5" />
+                  </button>
+                )}
+                <button
+                  type="button"
+                  onClick={close}
+                  aria-label="Close the assistant"
+                  className="rounded-md p-1.5 text-ink-soft hover:bg-paper-deeper focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta"
+                >
+                  <X aria-hidden="true" className="h-5 w-5" />
+                </button>
+              </div>
             </header>
 
             <div ref={logRef} className="flex-1 space-y-4 overflow-y-auto px-5 py-4" aria-live="polite">

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { openAskMe } from '../ama/openAskMe';
 import Container from '../layout/Container';
 import Button from '../ui/Button';
 import SocialLinks from '../ui/SocialLinks';
@@ -104,6 +105,15 @@ export default function Hero() {
                   Get in touch
                 </Button>
               </div>
+
+              <button
+                type="button"
+                onClick={openAskMe}
+                className="mt-4 inline-flex items-center text-lg text-terracotta-deep underline decoration-terracotta/40 underline-offset-4 transition-colors hover:text-ink focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta-deep"
+                style={{ fontFamily: 'var(--font-kalam), cursive' }}
+              >
+                or ask my AI assistant about my work &rarr;
+              </button>
 
               <div className="mt-10">
                 <SocialLinks className="justify-start" />
