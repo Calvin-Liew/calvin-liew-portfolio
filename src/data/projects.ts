@@ -62,7 +62,7 @@ export const projects: Project[] = [
     dates: 'Oct 2026',
     updatedAt: '2026-10-19',
     organization: 'Independent Research Project',
-    description: 'A research pilot extending DAEDALUS, a 2026 method in which an AI agent builds its own memory from practice problems it invents, to telecom support on Sierra\'s τ²-bench, a case the paper left unsupported. Two heuristics the agent wrote for itself raised its success on 90 unseen problems from 69.6% to 97.8%, and beat giving it the manual\'s own text.',
+    description: 'A research pilot extending DAEDALUS, a 2026 method in which an AI agent builds its own memory from practice problems it invents, to telecom support on Sierra Research\'s τ²-bench, a case the paper left unsupported. Two heuristics the agent wrote for itself raised its success on 90 unseen problems from 69.6% to 97.8%, and beat giving it the manual\'s own text.',
     skills: ['AI Agent Development', 'Evaluation Design', 'LLM Orchestration', 'Experiment Design', 'Statistics', 'Python', 'Claude API', 'Prompt Engineering'],
     tags: ['AI Agents', 'LLM', 'Evaluation', 'Research'],
     links: [
@@ -75,10 +75,10 @@ export const projects: Project[] = [
     featured: true,
     extendedContent: {
       stats: [
-        { value: '69.6% → 97.8%', label: 'problems fixed on 90 unseen test tasks' },
-        { value: '0.40 → 0.94', label: 'pass^3: fixed on all three tries' },
-        { value: '5 of 5', label: 'pre-registered tests passed after Holm correction' },
-        { value: '$76.71', label: 'total cost, including 2,000+ test conversations' },
+        { value: '97.8%', label: 'of unseen problems fixed, up from 69.6% with no memory' },
+        { value: '0.94', label: 'pass^3 (fixed on all three tries), up from 0.40' },
+        { value: '5 / 5', label: 'pre-registered tests passed after Holm correction' },
+        { value: '$77', label: 'total cost, including 2,000+ test conversations' },
       ],
       pullQuote: 'Generating improvements is the easy part. Knowing they work is most of the work.',
       overview: {
@@ -137,7 +137,7 @@ export const projects: Project[] = [
       ],
       tools: [
         {
-          name: 'τ²-bench (Sierra)',
+          name: 'τ²-bench (Sierra Research)',
           purpose: 'Dual-control telecom simulator, user simulator and end-state grader, pinned and unmodified.',
         },
         {
@@ -165,6 +165,24 @@ export const projects: Project[] = [
           'The memory bank came from just two practice sessions; a larger bank was not tested.',
           'The judge audit is small (16 attempts).',
           'Six of 270 conversations still failed with heuristics, mostly one gap: not realising the customer can switch a 2G network mode.',
+        ],
+      },
+      references: {
+        title: 'References',
+        intro: 'This project builds directly on the two papers below and on the open-source τ²-bench simulator. The method and the benchmark are their authors\' work; the telecom adaptation, harness and experiments are mine.',
+        entries: [
+          {
+            citation: 'Edy, A., Conti, M., Xing, V., Allard, M.-A., Benhamdane, N., & Viaud, G. (2026). DAEDALUS: Bootstrapping agent memory from self-generated tasks. arXiv:2610.08048.',
+            url: 'https://arxiv.org/abs/2610.08048',
+          },
+          {
+            citation: 'Barres, V., Dong, H., Ray, S., Si, X., & Narasimhan, K. (2025). τ²-Bench: Evaluating conversational agents in a dual-control environment. arXiv:2506.07982.',
+            url: 'https://arxiv.org/abs/2506.07982',
+          },
+          {
+            citation: 'Sierra Research. (2025). tau2-bench [Computer software, MIT License]. GitHub.',
+            url: 'https://github.com/sierra-research/tau2-bench',
+          },
         ],
       },
     },
