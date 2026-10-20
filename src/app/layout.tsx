@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import PageTransition from "@/components/layout/PageTransition";
 import FloatingSocial from "@/components/ui/FloatingSocial";
+import AskMe from "@/components/ama/AskMe";
 import InkPenCursor from "@/components/ui/InkPenCursor";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 
@@ -107,6 +108,7 @@ export default function RootLayout({
         <PageTransition>{children}</PageTransition>
         <Footer />
         <FloatingSocial />
+        <AskMe />
         <InkPenCursor />
       </body>
     </html>
