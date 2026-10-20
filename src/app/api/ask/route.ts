@@ -105,7 +105,10 @@ export async function POST(request: Request) {
         if (final.stop_reason === 'refusal') {
           controller.enqueue(encoder.encode("\n\nI can't help with that one. Feel free to ask about Calvin's work instead."));
         }
-      } catch {
+      } catch (err) {
+        // Log the failure class and status only (never request contents or credentials).
+        const e = err as { name?: string; status?: number; error?: { error?: { type?: string } } };
+        console.error('ama: model call failed', e?.name, e?.status, e?.error?.error?.type);
         controller.enqueue(encoder.encode('\n\nSorry, something went wrong. Please try again in a moment.'));
       } finally {
         await settle(reserved, actual).catch(() => undefined);
