@@ -17,11 +17,14 @@ const posts = fs.existsSync(blogDir)
         return {
           slug: name.replace(/\.mdx?$/, ''),
           title: String(data.title ?? ''),
+          draft: Boolean(data.draft),
           date: String(data.date ?? ''),
           content: content.trim(),
         };
       })
-      .filter((post) => post.title && !/coming soon/i.test(post.title))
+      // Drafts are hidden on the site, so the assistant shouldn't know about them either.
+      .filter((post) => post.title && !post.draft)
+      .map(({ draft, ...post }) => post)
   : [];
 
 fs.mkdirSync(path.dirname(outFile), { recursive: true });
