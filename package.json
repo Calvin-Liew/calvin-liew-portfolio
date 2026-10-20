@@ -3,12 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/build-ama-corpus.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/build-ama-corpus.mjs",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "ama:eval": "node scripts/ama-eval.mjs"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.135.0",
+    "@netlify/blobs": "^11.1.4",
     "@tailwindcss/typography": "^0.5.19",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.562.0",
