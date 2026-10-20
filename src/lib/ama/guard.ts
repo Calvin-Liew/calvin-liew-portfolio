@@ -43,12 +43,24 @@ interface KV {
   set(key: string, value: unknown, etag?: string): Promise<boolean>;
 }
 
+/**
+ * Next.js wraps fetch and tees response bodies for its cache. The Blobs client cancels bodies it
+ * doesn't need (e.g. a 404), and cancelling one branch of a tee never settles while the other branch
+ * is unread, so the call hung. Storage responses are tiny: read them fully and hand back a plain copy.
+ */
+const bufferedFetch: typeof fetch = async (input, init) => {
+  const res = await fetch(input, { ...init, cache: 'no-store' });
+  const nullBody = res.status === 204 || res.status === 304;
+  const body = nullBody ? null : await res.arrayBuffer();
+  return new Response(body, { status: res.status, statusText: res.statusText, headers: res.headers });
+};
+
 /** TEMP diagnostics: last storage request outcomes. */
 export const storageTrace: string[] = [];
 const tracedFetch: typeof fetch = async (input, init) => {
   const host = new URL(typeof input === 'string' ? input : input instanceof URL ? input.href : input.url).host;
   try {
-    const res = await fetch(input, init);
+    const res = await bufferedFetch(input, init);
     storageTrace.push(`${init?.method ?? 'GET'} ${host} ${res.status}`);
     return res;
   } catch (err) {
