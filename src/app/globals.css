@@ -246,7 +246,7 @@ body.ink-cursor-active [contenteditable="true"] {
 }
 
 .animate-fade-in-up {
-  animation: fade-in-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: fade-in-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   opacity: 0;
 }
 
@@ -270,12 +270,13 @@ body.ink-cursor-active [contenteditable="true"] {
 }
 
 /* Animation delays */
-.animation-delay-200 { animation-delay: 200ms; }
-.animation-delay-400 { animation-delay: 400ms; }
-.animation-delay-600 { animation-delay: 600ms; }
-.animation-delay-800 { animation-delay: 800ms; }
-.animation-delay-1000 { animation-delay: 1000ms; }
-.animation-delay-1200 { animation-delay: 1200ms; }
+/* A tight stagger: the whole hero is readable within ~0.75s instead of ~1.4s. */
+.animation-delay-200 { animation-delay: 70ms; }
+.animation-delay-400 { animation-delay: 140ms; }
+.animation-delay-600 { animation-delay: 210ms; }
+.animation-delay-800 { animation-delay: 280ms; }
+.animation-delay-1000 { animation-delay: 350ms; }
+.animation-delay-1200 { animation-delay: 420ms; }
 
 /* Marker highlight — terracotta wash behind inline text */
 .marker-highlight {
@@ -349,6 +350,7 @@ body.ink-cursor-active [contenteditable="true"] {
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
+      animation-delay: 0ms !important; /* delays alone would still leave content invisible */
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
