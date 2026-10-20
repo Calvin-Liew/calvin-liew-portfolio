@@ -14,6 +14,18 @@ export default function AskMe() {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const logRef = useRef<HTMLDivElement>(null);
   const openerRef = useRef<HTMLButtonElement>(null);
+  // Once the visitor scrolls, the launcher shrinks to its icon so it doesn't sit over body text.
+  const [compact, setCompact] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setCompact(window.scrollY > 240);
+    const frame = requestAnimationFrame(onScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -56,13 +68,13 @@ export default function AskMe() {
         aria-expanded={open}
         aria-label="Ask me anything: an AI assistant about Calvin's work"
         tabIndex={inlineVisible ? -1 : undefined}
-        className={`fixed bottom-4 left-4 z-40 inline-flex items-center gap-2 rounded-full border-2 border-ink/85 bg-paper p-3 font-hand text-lg text-ink shadow-[3px_3px_0_0_rgba(31,26,23,0.85)] transition-all duration-300 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-paper sm:bottom-5 sm:left-5 sm:px-4 sm:py-2.5 ${
+        className={`fixed bottom-4 left-4 z-40 inline-flex items-center gap-2 rounded-full border-2 border-ink/85 bg-paper p-3 font-hand text-lg text-ink shadow-[3px_3px_0_0_rgba(31,26,23,0.85)] transition-all duration-300 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-terracotta focus-visible:ring-offset-2 focus-visible:ring-offset-paper sm:bottom-5 sm:left-5 ${compact ? '' : 'sm:px-4 sm:py-2.5'} ${
           inlineVisible ? 'pointer-events-none translate-y-4 opacity-0' : 'opacity-100'
         }`}
       >
         <MessageCircle aria-hidden="true" className="h-5 w-5 text-terracotta" />
-        {/* Icon-only on phones, where a wide pill would cover the content. */}
-        <span className="hidden sm:inline" aria-hidden="true">
+        {/* Icon-only on phones and after scrolling, where a wide pill would cover the content. */}
+        <span className={compact ? 'hidden' : 'hidden sm:inline'} aria-hidden="true">
           ask me anything
         </span>
       </button>
