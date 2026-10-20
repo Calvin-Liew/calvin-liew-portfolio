@@ -55,20 +55,6 @@ const bufferedFetch: typeof fetch = async (input, init) => {
   return new Response(body, { status: res.status, statusText: res.statusText, headers: res.headers });
 };
 
-/** TEMP diagnostics: last storage request outcomes. */
-export const storageTrace: string[] = [];
-const tracedFetch: typeof fetch = async (input, init) => {
-  const host = new URL(typeof input === 'string' ? input : input instanceof URL ? input.href : input.url).host;
-  try {
-    const res = await bufferedFetch(input, init);
-    storageTrace.push(`${init?.method ?? 'GET'} ${host} ${res.status}`);
-    return res;
-  } catch (err) {
-    storageTrace.push(`${init?.method ?? 'GET'} ${host} threw ${(err as Error).message}`);
-    throw err;
-  }
-};
-
 const memory = new Map<string, unknown>();
 const memoryKV: KV = {
   async get(key) {
@@ -83,7 +69,7 @@ const memoryKV: KV = {
 /** Netlify Blobs in production (shared across function instances); memory when running locally. */
 function kv(): KV {
   try {
-    const store = getStore({ name: 'ama', consistency: 'strong', fetch: tracedFetch });
+    const store = getStore({ name: 'ama', consistency: 'strong', fetch: bufferedFetch });
     return {
       async get(key) {
         const hit = await store.getWithMetadata(key, { type: 'json' });
