@@ -52,7 +52,14 @@ export async function POST(request: Request) {
     request.headers.get('x-nf-client-connection-ip') ??
     request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
     'unknown';
-  if (!(await allowVisitor(visitorId(ip)))) {
+  let allowed: boolean;
+  try {
+    allowed = await allowVisitor(visitorId(ip));
+  } catch (err) {
+    console.error('ama: rate-limit store failed', err);
+    return Response.json({ error: 'The assistant is unavailable right now.' }, { status: 503, headers: { 'X-Ama-Stage': 'rate-limit' } });
+  }
+  if (!allowed) {
     return bad(429, "You've asked a lot in a short time. Please try again in a few minutes.");
   }
 
@@ -64,11 +71,18 @@ export async function POST(request: Request) {
   const messages = [...history, { role: 'user' as const, content: question }];
 
   const reserved = worstCaseCost(system[0].text.length + JSON.stringify(messages).length, MAX_TOKENS);
-  if (!(await reserve(reserved))) {
+  let withinBudget: boolean;
+  try {
+    withinBudget = await reserve(reserved);
+  } catch (err) {
+    console.error('ama: budget store failed', err);
+    return Response.json({ error: 'The assistant is unavailable right now.' }, { status: 503, headers: { 'X-Ama-Stage': 'budget' } });
+  }
+  if (!withinBudget) {
     return bad(503, "The assistant has reached this month's budget. Please use the contact form instead.");
   }
 
-  const client = new Anthropic();
+  const client = new Anthropic({ timeout: 25_000, maxRetries: 1 });
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {

@@ -73,15 +73,23 @@ function kv(): KV {
   }
 }
 
+/** Rejects if the storage call takes too long, so a visitor never waits on a stalled request. */
+function withTimeout<T>(promise: Promise<T>, ms = 4000): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<T>((_, reject) => setTimeout(() => reject(new Error(`storage timed out after ${ms}ms`)), ms)),
+  ]);
+}
+
 /** Read-modify-write with an etag check, retried on conflict. */
 async function update<T>(key: string, fallback: T, change: (current: T) => T | null): Promise<T | null> {
   const store = kv();
   for (let attempt = 0; attempt < 5; attempt++) {
-    const hit = await store.get(key);
+    const hit = await withTimeout(store.get(key));
     const current = (hit?.value as T | undefined) ?? fallback;
     const next = change(current);
     if (next === null) return null;
-    if (await store.set(key, next, hit?.etag)) return next;
+    if (await withTimeout(store.set(key, next, hit?.etag))) return next;
   }
   throw new Error('Could not update the usage counter; try again.');
 }
