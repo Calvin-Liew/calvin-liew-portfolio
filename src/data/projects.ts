@@ -64,6 +64,119 @@ export const projects: Project[] = [
     },
   },
   {
+    "id": "license-patrol",
+    "title": "License Patrol: Turning Software Data into Cost Avoidance",
+    "category": "Product",
+    "dates": "Sep 2024 - Aug 2025",
+    "updatedAt": "2026-10-20",
+    "organization": "Sanofi",
+    "description": "I drove application and contract workflow redesign for License Patrol, directly contributing to the programme’s €15M+ in cost avoidance. My work connected requirements, AI-assisted classification, onboarding automation, and benefit tracking so teams could act on software-optimization opportunities.",
+    "skills": [
+      "Product Management",
+      "Requirements Analysis",
+      "Workflow Design",
+      "AI-Assisted Automation",
+      "Stakeholder Management"
+    ],
+    "tags": [
+      "Enterprise Products",
+      "Workflow Automation",
+      "Software Optimization"
+    ],
+    "featured": false,
+    "extendedContent": {
+      "overview": {
+        "title": "My contribution",
+        "content": "I owned requirements for central application and contract hubs and drove their workflow redesign. I implemented parts of the solution and translated other requirements into delivery stories for teammates. I also worked on onboarding, benefit-calculation logic, operational dashboards, and documentation, connecting application owners, Procurement, and delivery teams."
+      },
+      "motivation": {
+        "title": "The product problem",
+        "content": "Software-optimization decisions depend on application, contract, ownership, and usage information coming together at the right time. Fragmented information and manual onboarding make it harder for teams to identify an opportunity, agree on an action, and capture the resulting benefit. The redesign focused on making that operational workflow more consistent."
+      },
+      "decisions": [
+        {
+          "decision": "Organize the product around applications and contracts",
+          "reasoning": "I defined requirements for central hubs that connected the information teams needed to review software use and renewals, rather than treating each operational step as a separate task."
+        },
+        {
+          "decision": "Remove manual inputs where automation could help",
+          "reasoning": "I helped replace manual application classification and onboarding inputs with AI-assisted classification and automated workflows. Scheduled refreshes helped keep information current without relying on repeated manual updates."
+        },
+        {
+          "decision": "Make benefit capture part of the workflow",
+          "reasoning": "I developed calculation logic, reporting, and documentation to help teams capture and review software-optimization benefits alongside the operational work."
+        }
+      ],
+      "impact": {
+        "title": "Outcome and product lesson",
+        "content": "My workflow redesign and automation work directly contributed to the programme’s €15M+ in cost avoidance. The product lesson was that better information only becomes useful when it supports a clear decision and a practical next step for the people doing the work."
+      },
+      "limitations": {
+        "title": "Scope",
+        "items": [
+          "€15M+ represents programme-level cost avoidance, rather than realized cash savings.",
+          "My contribution covers the application and contract workflow redesign, requirements, and automation work described here."
+        ]
+      }
+    }
+  },
+  {
+    "id": "document-to-workflow-intake",
+    "title": "Document-to-Workflow Intake",
+    "category": "Product",
+    "dates": "Jul - Oct 2025",
+    "updatedAt": "2026-10-20",
+    "organization": "Sanofi",
+    "description": "I built early digital-demand intake components that let requesters start from a business document instead of re-entering the same information. The work combined an initial form, AI-assisted pre-fill, and intake automation; the wider team retained or extended components in later workflows.",
+    "skills": [
+      "Workflow Design",
+      "Requirements Analysis",
+      "AI-Assisted Automation",
+      "Product Development",
+      "Cross-Functional Collaboration"
+    ],
+    "tags": [
+      "Enterprise Products",
+      "Document Intake",
+      "Workflow Automation"
+    ],
+    "featured": false,
+    "extendedContent": {
+      "overview": {
+        "title": "My contribution",
+        "content": "As part of the wider product team, I built the initial intake form and early automation for capturing a digital request. I added AI-assisted document pre-fill so information already written in a business document could become a starting point for the form, alongside components supporting request creation and routing."
+      },
+      "motivation": {
+        "title": "Start with information the requester already has",
+        "content": "A business need may already be explained in a document, but submitting it for review can still mean entering the same information into a structured form. The product challenge was to reduce that repetition while capturing a request in a form that the receiving team could assess and route."
+      },
+      "decisions": [
+        {
+          "decision": "Use a document as the starting point",
+          "reasoning": "I built document pre-fill into the intake flow so requesters could reuse existing context rather than begin with an empty form. The aim was to make structured intake easier without replacing the wider review process."
+        },
+        {
+          "decision": "Connect capture with the next workflow step",
+          "reasoning": "I worked on request-creation and routing components alongside the form, treating intake as the beginning of a business workflow rather than an isolated data-entry screen."
+        },
+        {
+          "decision": "Deliver an initial version the team could extend",
+          "reasoning": "The scope was an early intake implementation within a team-owned product. Its form and automation components provided a base for the team to retain, adapt, or replace as requirements evolved."
+        }
+      ],
+      "impact": {
+        "title": "A foundation for later workflows",
+        "content": "The wider team retained or extended parts of my initial implementation in later workflows, including document pre-fill and intake automation. Subsequent product iterations were delivered by the wider team. The experience reinforced the value of connecting a useful first interaction with a workflow the team can keep developing."
+      },
+      "limitations": {
+        "title": "Scope",
+        "items": [
+          "This case study focuses on the initial intake, document pre-fill, and routing components I built."
+        ]
+      }
+    }
+  },
+  {
     id: 'self-taught-telecom-agent',
     title: 'Self-Taught Support Agent: Memory from Practice',
     category: 'AI & Data',
