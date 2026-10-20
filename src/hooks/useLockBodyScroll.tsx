@@ -22,7 +22,7 @@ export function useLockBodyScroll(lock: boolean) {
         document.body.style.overflow = '';
 
         // Restore scroll position
-        window.scrollTo(0, scrollY);
+        window.scrollTo({ top: scrollY, behavior: 'instant' as ScrollBehavior });
       };
     }
   }, [lock]);

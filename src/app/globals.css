@@ -3,6 +3,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
 }
 
 :root {
@@ -12,7 +13,7 @@ html {
   --paper-edge: #ece4d4;
   --ink: #1f1a17;
   --ink-soft: #3f3530;
-  --muted: #78716c;
+  --muted: #6b645e; /* 5.3:1 on paper, 4.9:1 on paper-deeper */
 
   /* Terracotta accent system */
   --terracotta: #c2410c;
@@ -165,6 +166,12 @@ body.ink-cursor-active,
 body.ink-cursor-active * {
   cursor: none !important;
 }
+@media (forced-colors: active) {
+  body.ink-cursor-active,
+  body.ink-cursor-active * {
+    cursor: auto !important;
+  }
+}
 body.ink-cursor-active input,
 body.ink-cursor-active textarea,
 body.ink-cursor-active [contenteditable="true"] {
@@ -205,7 +212,7 @@ body.ink-cursor-active [contenteditable="true"] {
 
 @keyframes page-enter {
   from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  to { opacity: 1; transform: none; }
 }
 
 .animate-page-enter {

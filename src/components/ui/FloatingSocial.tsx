@@ -11,7 +11,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 
 export default function FloatingSocial() {
   return (
-    <div className="fixed right-6 bottom-6 hidden lg:flex flex-col gap-3 z-40">
+    <div className="fixed right-6 bottom-6 hidden min-[1320px]:flex flex-col gap-3 z-40">
       {aboutData.socialLinks.map((link) => {
         const Icon = iconMap[link.platform];
         if (!Icon) return null;

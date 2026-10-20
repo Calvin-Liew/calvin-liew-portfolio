@@ -19,7 +19,8 @@ export function useFocusTrap(isActive: boolean) {
     const firstElement = focusableElements[0] as HTMLElement;
     const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
 
-    // Focus first element when menu opens
+    // Remember what had focus so it can be restored on close, then focus the first element.
+    const previouslyFocused = document.activeElement as HTMLElement | null;
     firstElement?.focus();
 
     const handleTabKey = (e: KeyboardEvent) => {
@@ -44,6 +45,7 @@ export function useFocusTrap(isActive: boolean) {
 
     return () => {
       container.removeEventListener('keydown', handleTabKey);
+      previouslyFocused?.focus();
     };
   }, [isActive]);
 

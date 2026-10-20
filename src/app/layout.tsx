@@ -26,7 +26,7 @@ const kalam = Kalam({
   variable: "--font-kalam",
   subsets: ["latin"],
   display: "swap",
-  weight: ['300', '400', '700'],
+  weight: ['400', '700'],
 });
 
 export const metadata: Metadata = {

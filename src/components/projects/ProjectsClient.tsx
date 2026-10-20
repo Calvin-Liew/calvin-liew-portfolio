@@ -68,7 +68,7 @@ export default function ProjectsClient({ projects }: ProjectsClientProps) {
     const newUrl = queryString
       ? `?${queryString}`
       : window.location.pathname;
-    window.history.replaceState({}, '', newUrl);
+    window.history.replaceState(window.history.state, '', newUrl);
   }, [filters]);
 
   const toggleCategory = (category: string) => {
