@@ -9,8 +9,9 @@ import Section from '@/components/layout/Section';
 import Badge from '@/components/ui/Badge';
 import MetaBadge from '@/components/ui/MetaBadge';
 import Button from '@/components/ui/Button';
-import { BookOpen, Building2, Calendar, CheckCircle2, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ArrowRight, BookOpen, Building2, Calendar, CheckCircle2, Clock, ExternalLink } from 'lucide-react';
 import CaseStudyViewer from '@/components/projects/CaseStudyViewer';
+import ProjectToc from '@/components/projects/ProjectToc';
 import ProjectSchema from '@/components/seo/ProjectSchema';
 import { projects } from '@/data/projects';
 
@@ -73,6 +74,39 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 }
 
 // Editorial section heading: "chapter 03 — " Kalam eyebrow + Fraunces italic title with terracotta period
+function slugify(text: string) {
+  return text
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+    .slice(0, 60);
+}
+
+/** Renders text that may contain blank-line paragraph breaks. */
+function Paragraphs({ text, className }: { text: string; className?: string }) {
+  return (
+    <div className={`space-y-4 ${className ?? ''}`}>
+      {text.split('\n\n').map((paragraph, i) => (
+        <p key={i}>{paragraph}</p>
+      ))}
+    </div>
+  );
+}
+
+/** Rough reading time from every piece of text in the project entry. */
+function readingMinutes(value: unknown): number {
+  let words = 0;
+  const walk = (v: unknown) => {
+    if (typeof v === 'string') {
+      if (!/^(\/|https?:|#)/.test(v)) words += v.split(/\s+/).length;
+    } else if (Array.isArray(v)) v.forEach(walk);
+    else if (v && typeof v === 'object') Object.values(v).forEach(walk);
+  };
+  walk(value);
+  return Math.max(1, Math.round(words / 230));
+}
+
 function ChapterHeading({
   number,
   children,
@@ -82,8 +116,9 @@ function ChapterHeading({
   children: React.ReactNode;
   eyebrow?: string;
 }) {
+  const label = typeof children === 'string' ? children : undefined;
   return (
-    <div className="mb-8">
+    <div className="mb-8 scroll-mt-28" id={label ? slugify(label) : undefined} data-toc={label}>
       {(eyebrow || number) && (
         <p
           className="text-base sm:text-lg text-terracotta mb-2 inline-block"
@@ -135,9 +170,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   return (
     <Section>
       <Container>
-        <article className="max-w-4xl mx-auto">
+        <article className="relative max-w-4xl mx-auto">
           {/* Structured data — CreativeWork + BreadcrumbList */}
           <ProjectSchema project={project} />
+          <ProjectToc variant="rail" />
 
           {/* Back link */}
           <Link
@@ -174,6 +210,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               )}
               <MetaBadge icon={Building2} text={project.organization} />
               <MetaBadge icon={Calendar} text={project.dates} />
+              <MetaBadge icon={Clock} text={`${readingMinutes(project)} min read`} />
             </div>
 
             {/* Lead description with drop cap on first letter */}
@@ -181,21 +218,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               {project.description}
             </p>
           </header>
-
-          {/* Hero image */}
-          {project.image && (
-            <figure className="mb-14 relative overflow-hidden rounded-xl border border-border bg-paper-deeper shadow-paper">
-              <Image
-                src={project.image}
-                alt={`${project.title} — hero image`}
-                width={1600}
-                height={900}
-                sizes="(max-width: 768px) 100vw, 896px"
-                className="w-full h-auto"
-                priority
-              />
-            </figure>
-          )}
 
           {/* Project links */}
           {project.links && project.links.length > 0 && (
@@ -206,7 +228,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   <Button
                     key={index}
                     href={link.url}
-                    variant={isPrimary ? 'gradient' : 'secondary'}
+                    variant={isPrimary ? 'primary' : 'secondary'}
                     size="md"
                     target="_blank"
                     className="gap-2"
@@ -227,7 +249,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 py-8 px-6 sm:px-10 bg-paper-deeper border border-border rounded-2xl shadow-paper">
                   {project.extendedContent.stats.map((stat, i) => (
                     <div key={i} className="text-center sm:text-left">
-                      <p className="font-display italic text-3xl sm:text-4xl lg:text-5xl text-terracotta leading-none mb-2">
+                      <p className="font-display italic text-3xl sm:text-4xl lg:text-5xl text-ink leading-none mb-2">
                         {stat.value}
                       </p>
                       <p
@@ -245,6 +267,21 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               </section>
             )}
 
+          {/* Hero image */}
+          {project.image && (
+            <figure className="mb-14 relative overflow-hidden rounded-xl border border-border bg-paper-deeper shadow-paper">
+              <Image
+                src={project.image}
+                alt={`${project.title} — hero image`}
+                width={1600}
+                height={900}
+                sizes="(max-width: 768px) 100vw, 896px"
+                className="w-full h-auto"
+                priority
+              />
+            </figure>
+          )}
+
           {/* Skills */}
           <section className="mb-2">
             <h2 className="text-sm uppercase tracking-wider text-muted mb-4">
@@ -257,6 +294,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
           </section>
 
+          <ProjectToc variant="inline" />
+
           {/* Extended content */}
           {project.extendedContent && (
             <>
@@ -268,9 +307,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     <ChapterHeading number={nextChapter()}>
                       {project.extendedContent.overview.title}
                     </ChapterHeading>
-                    <p className="text-lg text-ink-soft leading-relaxed">
-                      {project.extendedContent.overview.content}
-                    </p>
+                    <Paragraphs
+                      text={project.extendedContent.overview.content}
+                      className="text-lg text-ink-soft leading-relaxed"
+                    />
                   </section>
                 </>
               )}
@@ -283,9 +323,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     <ChapterHeading number={nextChapter()}>
                       {project.extendedContent.motivation.title}
                     </ChapterHeading>
-                    <p className="text-lg text-ink-soft leading-relaxed">
-                      {project.extendedContent.motivation.content}
-                    </p>
+                    <Paragraphs
+                      text={project.extendedContent.motivation.content}
+                      className="text-lg text-ink-soft leading-relaxed"
+                    />
                   </section>
                 </>
               )}
@@ -310,7 +351,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                             key={index}
                             className="bg-paper-deeper border border-border rounded-xl p-5 sm:p-6 shadow-paper grid grid-cols-[auto_1fr] gap-4 sm:gap-6"
                           >
-                            <span className="font-display italic text-3xl sm:text-4xl text-terracotta leading-none pt-1">
+                            <span className="font-display italic text-3xl sm:text-4xl text-ink/30 leading-none pt-1">
                               {String(index + 1).padStart(2, '0')}
                               <span className="not-italic">.</span>
                             </span>
@@ -326,7 +367,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                               <p className="text-sm sm:text-base text-ink-soft leading-relaxed mb-3">
                                 {study.finding}
                               </p>
-                              <p className="text-sm sm:text-base text-terracotta-deep font-medium leading-relaxed">
+                              <p className="text-sm sm:text-base text-ink font-medium leading-relaxed">
                                 <span
                                   className="text-terracotta inline-block mr-2"
                                   style={{
@@ -369,16 +410,20 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                       <p className="text-base sm:text-lg text-ink-soft mb-10 max-w-2xl">
                         The decisions behind the work and the reasoning for each.
                       </p>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <ol className="space-y-5">
                         {project.extendedContent.decisions.map(
                           (item, index) => (
-                            <article
+                            <li
                               key={index}
-                              className="bg-paper-deeper border border-border rounded-xl p-6 shadow-paper flex flex-col"
+                              className="bg-paper-deeper border border-border rounded-xl p-6 sm:p-8 shadow-paper grid gap-x-8 gap-y-3 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]"
                             >
+                              <div>
+                              <p className="mb-2 text-sm tabular-nums text-muted">
+                                {String(index + 1).padStart(2, '0')}
+                              </p>
                               {item.framework && (
                                 <p
-                                  className="text-sm text-terracotta mb-3 inline-block"
+                                  className="text-sm text-ink-soft mb-3 inline-block"
                                   style={{
                                     fontFamily:
                                       'var(--font-kalam), cursive',
@@ -388,19 +433,21 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                                   {item.framework} &mdash;
                                 </p>
                               )}
-                              <h3 className="font-display italic text-xl sm:text-2xl text-ink mb-3 leading-snug">
+                              <h3 className="font-display italic text-xl sm:text-2xl text-ink leading-snug">
                                 {item.decision}
                                 <span className="text-terracotta not-italic">
                                   .
                                 </span>
                               </h3>
-                              <p className="text-sm sm:text-base text-ink-soft leading-relaxed">
-                                {item.reasoning}
-                              </p>
-                            </article>
+                              </div>
+                              <Paragraphs
+                                text={item.reasoning}
+                                className="text-base text-ink-soft leading-relaxed"
+                              />
+                            </li>
                           )
                         )}
-                      </div>
+                      </ol>
                     </section>
                   </>
                 )}
@@ -446,7 +493,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                                     />
                                   </div>
                                   <figcaption
-                                    className="mt-3 text-sm text-terracotta inline-block"
+                                    className="mt-3 text-sm text-ink-soft inline-block"
                                     style={{
                                       fontFamily:
                                         'var(--font-kalam), cursive',
@@ -469,7 +516,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                                     />
                                   </div>
                                   <figcaption
-                                    className="mt-3 text-sm text-terracotta inline-block"
+                                    className="mt-3 text-sm text-ink-soft inline-block"
                                     style={{
                                       fontFamily:
                                         'var(--font-kalam), cursive',
@@ -518,7 +565,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                         {palette.length > 0 && (
                           <div className="mb-12">
                             <p
-                              className="text-base text-terracotta mb-4 inline-block"
+                              className="text-base text-ink-soft mb-4 inline-block"
                               style={{
                                 fontFamily: 'var(--font-kalam), cursive',
                                 transform: 'rotate(-2deg)',
@@ -558,7 +605,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                         {type.length > 0 && (
                           <div className="mb-12">
                             <p
-                              className="text-base text-terracotta mb-4 inline-block"
+                              className="text-base text-ink-soft mb-4 inline-block"
                               style={{
                                 fontFamily: 'var(--font-kalam), cursive',
                                 transform: 'rotate(-2deg)',
@@ -600,7 +647,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                         {components.length > 0 && (
                           <div>
                             <p
-                              className="text-base text-terracotta mb-4 inline-block"
+                              className="text-base text-ink-soft mb-4 inline-block"
                               style={{
                                 fontFamily: 'var(--font-kalam), cursive',
                                 transform: 'rotate(-2deg)',
@@ -651,7 +698,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                                   {dataset.name}
                                 </h3>
                                 <span
-                                  className="text-sm text-terracotta inline-block"
+                                  className="text-sm text-ink-soft inline-block"
                                   style={{
                                     fontFamily: 'var(--font-kalam), cursive',
                                     transform: 'rotate(-2deg)',
@@ -689,7 +736,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                             0 && (
                             <div>
                               <p
-                                className="text-base text-terracotta mb-5 inline-block"
+                                className="text-base text-ink-soft mb-5 inline-block"
                                 style={{
                                   fontFamily: 'var(--font-kalam), cursive',
                                   transform: 'rotate(-2deg)',
@@ -745,7 +792,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                               .length > 0 && (
                               <div className="bg-paper-deeper border border-border rounded-xl shadow-paper p-6">
                                 <p
-                                  className="text-base text-terracotta mb-4 inline-block"
+                                  className="text-base text-ink-soft mb-4 inline-block"
                                   style={{
                                     fontFamily: 'var(--font-kalam), cursive',
                                     transform: 'rotate(-2deg)',
@@ -780,7 +827,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                               {project.extendedContent.pythonPipeline
                                 .sampleJsonCaption && (
                                 <p
-                                  className="text-base text-terracotta mb-4 inline-block"
+                                  className="text-base text-ink-soft mb-4 inline-block"
                                   style={{
                                     fontFamily: 'var(--font-kalam), cursive',
                                     transform: 'rotate(-2deg)',
@@ -806,7 +853,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
                     {/* Step-by-step deep dive */}
                     <p
-                      className="text-base text-terracotta mb-5 inline-block"
+                      className="text-base text-ink-soft mb-5 inline-block"
                       style={{
                         fontFamily: 'var(--font-kalam), cursive',
                         transform: 'rotate(-2deg)',
@@ -857,7 +904,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                               className="bg-paper-deeper border border-border rounded-xl p-6 shadow-paper"
                             >
                               {finding.stat && (
-                                <p className="font-display italic text-4xl sm:text-5xl text-terracotta leading-none mb-3">
+                                <p className="font-display italic text-4xl sm:text-5xl text-ink leading-none mb-3">
                                   {finding.stat}
                                 </p>
                               )}
@@ -887,7 +934,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                       <div className="mb-10 max-w-2xl">
                         {project.extendedContent.usabilityResults.sampleSize && (
                           <p
-                            className="text-base text-terracotta mb-2 inline-block"
+                            className="text-base text-ink-soft mb-2 inline-block"
                             style={{
                               fontFamily: 'var(--font-kalam), cursive',
                               transform: 'rotate(-1deg)',
@@ -909,7 +956,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                             className="bg-paper-deeper border border-border rounded-xl p-6 sm:p-7 shadow-paper"
                           >
                             <div className="flex items-baseline gap-3 mb-4 flex-wrap">
-                              <span className="font-display italic text-4xl sm:text-5xl text-terracotta leading-none">
+                              <span className="font-display italic text-4xl sm:text-5xl text-ink/20 leading-none">
                                 {block.number}
                                 <span className="not-italic">.</span>
                               </span>
@@ -929,7 +976,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                                   key={i}
                                   className="grid grid-cols-[auto_1fr] gap-4 items-baseline"
                                 >
-                                  <span className="font-display italic text-xl sm:text-2xl text-terracotta leading-none tabular-nums min-w-[5rem]">
+                                  <span className="font-display italic text-xl sm:text-2xl text-ink leading-none tabular-nums min-w-[5rem]">
                                     {r.metric}
                                   </span>
                                   <span className="text-sm sm:text-base text-ink-soft leading-relaxed">
@@ -978,7 +1025,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                                   className="bg-paper-deeper border border-border rounded-xl p-6 shadow-paper"
                                 >
                                   <p
-                                    className="text-base text-terracotta mb-2 inline-block"
+                                    className="text-base text-ink-soft mb-2 inline-block"
                                     style={{
                                       fontFamily:
                                         'var(--font-kalam), cursive',
@@ -1001,7 +1048,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                                       className="w-4 h-4 text-terracotta flex-shrink-0 mt-0.5"
                                       aria-hidden
                                     />
-                                    <span className="text-terracotta-deep font-medium leading-relaxed">
+                                    <span className="text-ink font-medium leading-relaxed">
                                       {feature.insight}
                                     </span>
                                   </div>
@@ -1056,7 +1103,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                                   }`}
                                 >
                                   <p
-                                    className="text-base sm:text-lg text-terracotta mb-2 inline-block"
+                                    className="text-base sm:text-lg text-ink-soft mb-2 inline-block"
                                     style={{
                                       fontFamily:
                                         'var(--font-kalam), cursive',
@@ -1066,7 +1113,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                                     feature {sceneNum} &mdash;
                                   </p>
                                   <div className="flex items-baseline gap-3 mb-4 flex-wrap">
-                                    <span className="font-display italic text-5xl sm:text-6xl text-terracotta leading-none">
+                                    <span className="font-display italic text-5xl sm:text-6xl text-ink/20 leading-none">
                                       {sceneNum}
                                       <span className="not-italic">.</span>
                                     </span>
@@ -1085,7 +1132,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                                       className="w-4 h-4 text-terracotta flex-shrink-0 mt-0.5"
                                       aria-hidden
                                     />
-                                    <span className="text-terracotta-deep font-medium leading-relaxed">
+                                    <span className="text-ink font-medium leading-relaxed">
                                       {feature.insight}
                                     </span>
                                   </div>
@@ -1171,7 +1218,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                                   }`}
                                 >
                                   <p
-                                    className="text-base sm:text-lg text-terracotta mb-2 inline-block"
+                                    className="text-base sm:text-lg text-ink-soft mb-2 inline-block"
                                     style={{
                                       fontFamily:
                                         'var(--font-kalam), cursive',
@@ -1181,7 +1228,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                                     scene {sceneNum} &mdash;
                                   </p>
                                   <div className="flex items-baseline gap-3 mb-4 flex-wrap">
-                                    <span className="font-display italic text-5xl sm:text-6xl text-terracotta leading-none">
+                                    <span className="font-display italic text-5xl sm:text-6xl text-ink/20 leading-none">
                                       {sceneNum}
                                       <span className="not-italic">.</span>
                                     </span>
@@ -1200,7 +1247,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                                       className="w-4 h-4 text-terracotta flex-shrink-0 mt-0.5"
                                       aria-hidden
                                     />
-                                    <span className="text-terracotta-deep font-medium leading-relaxed">
+                                    <span className="text-ink font-medium leading-relaxed">
                                       {viz.insight}
                                     </span>
                                   </div>
@@ -1309,7 +1356,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                           'Known limitations'}
                       </ChapterHeading>
                       <p
-                        className="text-base text-terracotta mb-6 inline-block"
+                        className="text-base text-ink-soft mb-6 inline-block"
                         style={{
                           fontFamily: 'var(--font-kalam), cursive',
                           transform: 'rotate(-1deg)',
@@ -1401,8 +1448,38 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </>
           )}
 
+          {/* Previous / next project */}
+          {(() => {
+            const index = projects.findIndex((p) => p.id === project.id);
+            const prev = projects[(index - 1 + projects.length) % projects.length];
+            const next = projects[(index + 1) % projects.length];
+            return (
+              <nav aria-label="More projects" className="mt-20 grid gap-4 sm:grid-cols-2">
+                {[
+                  { p: prev, label: 'Previous project', Icon: ArrowLeft, align: 'sm:text-left' },
+                  { p: next, label: 'Next project', Icon: ArrowRight, align: 'sm:text-right' },
+                ].map(({ p, label, Icon, align }) => (
+                  <Link
+                    key={label}
+                    href={`/projects/${p.id}`}
+                    className={`group rounded-xl border border-border bg-paper-deeper p-5 shadow-paper transition-colors hover:border-ink/30 ${align}`}
+                  >
+                    <span className={`flex items-center gap-1.5 text-sm text-muted ${label === 'Next project' ? 'sm:justify-end' : ''}`}>
+                      {label === 'Previous project' && <Icon aria-hidden className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />}
+                      {label}
+                      {label === 'Next project' && <Icon aria-hidden className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />}
+                    </span>
+                    <span className="mt-1.5 block font-display italic text-lg leading-snug text-ink">
+                      {p.title}
+                    </span>
+                  </Link>
+                ))}
+              </nav>
+            );
+          })()}
+
           {/* Footer back link */}
-          <div className="mt-20 pt-10 border-t border-border">
+          <div className="mt-12 pt-10 border-t border-border">
             <Link
               href="/projects"
               className="inline-flex items-center text-base text-terracotta hover:text-terracotta-deep hover:-translate-x-1 transition-all duration-200"
