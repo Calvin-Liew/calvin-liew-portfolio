@@ -43,6 +43,20 @@ interface KV {
   set(key: string, value: unknown, etag?: string): Promise<boolean>;
 }
 
+/** TEMP diagnostics: last storage request outcomes. */
+export const storageTrace: string[] = [];
+const tracedFetch: typeof fetch = async (input, init) => {
+  const host = new URL(typeof input === 'string' ? input : input instanceof URL ? input.href : input.url).host;
+  try {
+    const res = await fetch(input, init);
+    storageTrace.push(`${init?.method ?? 'GET'} ${host} ${res.status}`);
+    return res;
+  } catch (err) {
+    storageTrace.push(`${init?.method ?? 'GET'} ${host} threw ${(err as Error).message}`);
+    throw err;
+  }
+};
+
 const memory = new Map<string, unknown>();
 const memoryKV: KV = {
   async get(key) {
@@ -57,7 +71,7 @@ const memoryKV: KV = {
 /** Netlify Blobs in production (shared across function instances); memory when running locally. */
 function kv(): KV {
   try {
-    const store = getStore({ name: 'ama', consistency: 'strong' });
+    const store = getStore({ name: 'ama', consistency: 'strong', fetch: tracedFetch });
     return {
       async get(key) {
         const hit = await store.getWithMetadata(key, { type: 'json' });

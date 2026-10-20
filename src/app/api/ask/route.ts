@@ -1,5 +1,6 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { corpus } from '@/lib/ama/corpus';
+import { storageTrace } from '@/lib/ama/guard';
 import { AMA_MODEL, allowVisitor, reserve, settle, usageCost, visitorId, worstCaseCost } from '@/lib/ama/guard';
 
 export const runtime = 'nodejs';
@@ -57,7 +58,7 @@ export async function POST(request: Request) {
     allowed = await allowVisitor(visitorId(ip));
   } catch (err) {
     console.error('ama: rate-limit store failed', err);
-    return Response.json({ error: 'The assistant is unavailable right now.' }, { status: 503, headers: { 'X-Ama-Stage': 'rate-limit' } });
+    return Response.json({ error: 'The assistant is unavailable right now.' }, { status: 503, headers: { 'X-Ama-Stage': 'rate-limit', 'X-Ama-Trace': storageTrace.slice(-4).join(' | ').slice(0, 300), 'X-Ama-Ctx': process.env.NETLIFY_BLOBS_CONTEXT ? 'env' : (globalThis as { netlifyBlobsContext?: unknown }).netlifyBlobsContext ? 'global' : 'none' } });
   }
   if (!allowed) {
     return bad(429, "You've asked a lot in a short time. Please try again in a few minutes.");
