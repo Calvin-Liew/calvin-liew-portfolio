@@ -15,7 +15,7 @@ export default function CategoryFilter({
 
   return (
     <div className="space-y-3">
-      <h3
+      <h2
         className="text-xl text-ink-soft inline-block leading-none mb-3"
         style={{
           fontFamily: 'var(--font-kalam), cursive',
@@ -25,7 +25,7 @@ export default function CategoryFilter({
       >
         <span>category</span>
         <span className="text-terracotta">.</span>
-      </h3>
+      </h2>
 
       <div className="flex flex-wrap gap-2">
         {categories.map((category) => {
@@ -51,7 +51,7 @@ export default function CategoryFilter({
               {category}
               <span
                 className={`text-xs ${
-                  isSelected ? 'text-terracotta' : 'text-muted'
+                  isSelected ? 'text-terracotta-deep' : 'text-muted'
                 }`}
               >
                 {count}

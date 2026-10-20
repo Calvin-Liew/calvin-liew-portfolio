@@ -17,6 +17,8 @@ interface ButtonProps {
   ariaLabel?: string;
   target?: '_blank' | '_self';
   rel?: string;
+  /** File name to save as; renders a plain <a download> */
+  download?: string;
 }
 
 export default function Button({
@@ -30,9 +32,10 @@ export default function Button({
   ariaLabel,
   target,
   rel,
+  download,
 }: ButtonProps) {
   const baseClasses =
-    'relative inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-ink/40 focus:ring-offset-2 focus:ring-offset-paper select-none';
+    'relative inline-flex items-center justify-center font-medium transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta-deep select-none';
 
   const sizeClasses = {
     sm: 'px-4 py-2 text-sm rounded-md',
@@ -53,6 +56,13 @@ export default function Button({
 
   if (href) {
     const isExternal = href.startsWith('http') || href.startsWith('//');
+    if (download) {
+      return (
+        <a href={href} download={download} className={classes} aria-label={ariaLabel} onClick={onClick}>
+          {children}
+        </a>
+      );
+    }
     if (isExternal) {
       return (
         <a

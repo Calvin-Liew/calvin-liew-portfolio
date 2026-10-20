@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ChevronDown, Search } from 'lucide-react';
 import { SkillOption } from '@/types/filters';
 
@@ -17,6 +17,27 @@ export default function SkillsFilter({
 }: SkillsFilterProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsOpen(false);
+        buttonRef.current?.focus();
+      }
+    };
+    const onPointer = (e: PointerEvent) => {
+      if (!rootRef.current?.contains(e.target as Node)) setIsOpen(false);
+    };
+    document.addEventListener('keydown', onKey);
+    document.addEventListener('pointerdown', onPointer);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.removeEventListener('pointerdown', onPointer);
+    };
+  }, [isOpen]);
 
   const filteredSkills = availableSkills.filter(({ skill }) =>
     skill.toLowerCase().includes(searchTerm.toLowerCase())
@@ -25,7 +46,7 @@ export default function SkillsFilter({
   return (
     <div className="space-y-3">
       <div className="flex items-center gap-3">
-        <h3
+        <h2
           className="text-xl text-ink-soft inline-block leading-none"
           style={{
             fontFamily: 'var(--font-kalam), cursive',
@@ -35,7 +56,7 @@ export default function SkillsFilter({
         >
           <span>skills</span>
           <span className="text-terracotta">.</span>
-        </h3>
+        </h2>
         {selectedSkills.length > 0 && (
           <span className="inline-flex items-center justify-center min-w-[20px] h-5 text-xs font-semibold bg-terracotta text-paper rounded-full px-1.5">
             {selectedSkills.length}
@@ -43,12 +64,14 @@ export default function SkillsFilter({
         )}
       </div>
 
-      <div className="relative">
+      <div className="relative" ref={rootRef}>
         <button
+          ref={buttonRef}
+          type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="w-full md:w-auto md:min-w-[220px] px-4 py-2.5 bg-paper border border-border rounded-lg text-left text-sm transition-all duration-200 flex items-center justify-between gap-3 hover:border-ink/40 focus:outline-none focus:ring-2 focus:ring-terracotta/40"
+          className="w-full md:w-auto md:min-w-[220px] px-4 py-2.5 bg-paper border border-border rounded-lg text-left text-sm transition-all duration-200 flex items-center justify-between gap-3 hover:border-ink/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terracotta-deep"
           aria-expanded={isOpen}
-          aria-controls="skills-dropdown"
+          aria-controls={isOpen ? 'skills-dropdown' : undefined}
         >
           <span
             className={`transition-colors ${
@@ -78,6 +101,7 @@ export default function SkillsFilter({
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-soft" />
                 <input
                   type="text"
+                  aria-label="Search skills"
                   placeholder="Search skills..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}

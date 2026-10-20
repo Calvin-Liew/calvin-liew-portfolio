@@ -148,7 +148,7 @@ export default function Hero() {
 
                 {/* Handwritten note */}
                 <p
-                  className="text-base text-terracotta leading-snug"
+                  className="text-base text-terracotta-deep leading-snug"
                   style={{ fontFamily: 'var(--font-kalam), cursive' }}
                 >
                   shipping SupRM Intelligence, an AI agent for supplier relationships.

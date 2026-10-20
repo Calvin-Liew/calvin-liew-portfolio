@@ -3,6 +3,19 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+/* Scroll-reveal: only hide content when JS is running to reveal it again. */
+html.js .reveal-hidden {
+  opacity: 0;
+  transform: translateY(2.5rem);
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal-hidden {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 :root {
@@ -12,7 +25,7 @@ html {
   --paper-edge: #ece4d4;
   --ink: #1f1a17;
   --ink-soft: #3f3530;
-  --muted: #78716c;
+  --muted: #6b645e; /* 5.3:1 on paper, 4.9:1 on paper-deeper */
 
   /* Terracotta accent system */
   --terracotta: #c2410c;
@@ -165,6 +178,12 @@ body.ink-cursor-active,
 body.ink-cursor-active * {
   cursor: none !important;
 }
+@media (forced-colors: active) {
+  body.ink-cursor-active,
+  body.ink-cursor-active * {
+    cursor: auto !important;
+  }
+}
 body.ink-cursor-active input,
 body.ink-cursor-active textarea,
 body.ink-cursor-active [contenteditable="true"] {
@@ -205,7 +224,7 @@ body.ink-cursor-active [contenteditable="true"] {
 
 @keyframes page-enter {
   from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  to { opacity: 1; transform: none; }
 }
 
 .animate-page-enter {
@@ -246,7 +265,7 @@ body.ink-cursor-active [contenteditable="true"] {
 }
 
 .animate-fade-in-up {
-  animation: fade-in-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: fade-in-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   opacity: 0;
 }
 
@@ -270,12 +289,13 @@ body.ink-cursor-active [contenteditable="true"] {
 }
 
 /* Animation delays */
-.animation-delay-200 { animation-delay: 200ms; }
-.animation-delay-400 { animation-delay: 400ms; }
-.animation-delay-600 { animation-delay: 600ms; }
-.animation-delay-800 { animation-delay: 800ms; }
-.animation-delay-1000 { animation-delay: 1000ms; }
-.animation-delay-1200 { animation-delay: 1200ms; }
+/* A tight stagger: the whole hero is readable within ~0.75s instead of ~1.4s. */
+.animation-delay-200 { animation-delay: 70ms; }
+.animation-delay-400 { animation-delay: 140ms; }
+.animation-delay-600 { animation-delay: 210ms; }
+.animation-delay-800 { animation-delay: 280ms; }
+.animation-delay-1000 { animation-delay: 350ms; }
+.animation-delay-1200 { animation-delay: 420ms; }
 
 /* Marker highlight — terracotta wash behind inline text */
 .marker-highlight {
@@ -349,6 +369,7 @@ body.ink-cursor-active [contenteditable="true"] {
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
+      animation-delay: 0ms !important; /* delays alone would still leave content invisible */
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }

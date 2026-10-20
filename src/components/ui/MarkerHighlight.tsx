@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 interface MarkerHighlightProps {
   children: React.ReactNode;
@@ -23,25 +24,21 @@ export default function MarkerHighlight({
   delay = 0,
 }: MarkerHighlightProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [hasEntered, setHasEntered] = useState(false);
+  const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
+  const isVisible = hasEntered || reducedMotion;
 
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
 
-    // Respect reduced motion: show fully highlighted immediately
-    if (
-      typeof window !== 'undefined' &&
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    ) {
-      setIsVisible(true);
-      return;
-    }
+    // Reduced motion shows the highlight immediately (see isVisible), so no observer is needed.
+    if (reducedMotion) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true);
+          setHasEntered(true);
           observer.disconnect();
         }
       },
@@ -49,7 +46,7 @@ export default function MarkerHighlight({
     );
     observer.observe(node);
     return () => observer.disconnect();
-  }, []);
+  }, [reducedMotion]);
 
   const colorRgb = yellow
     ? '254, 240, 138'

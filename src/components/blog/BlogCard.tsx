@@ -19,6 +19,7 @@ function formatDate(input: string) {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
+      timeZone: 'UTC',
     })
     .toLowerCase();
 }

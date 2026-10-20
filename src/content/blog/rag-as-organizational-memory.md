@@ -73,7 +73,7 @@ I wrote this paper for a course, but it captures something I have thought about 
 
 The thing that makes a RAG system trustworthy in an enterprise context is not the model. It is the evidence architecture: how the data is partitioned, how retrieval candidates are ranked, how missing evidence is surfaced rather than silently omitted, and how the system signals what it knows versus what it does not. The knowledge governance question — which documents are in the retrieval pool, how current they are, who is responsible for updating them — is the organizational side of the same problem.
 
-SaaSScout partitions its knowledge into four separate Chroma collections with different trust levels because mixing unverified review text with structured enterprise metadata would let high-volume content drown out the more reliable signal. That design decision is organizational memory governance implemented as a retrieval architecture.
+SaaSScout partitions its knowledge into three separate Chroma collections (products, reviews, and open-source alternatives) because mixing unverified review text with structured product metadata would let high-volume content drown out the more reliable signal. That design decision is organizational memory governance implemented as a retrieval architecture.
 
 The argument in this paper is that RAG should be understood this way: as a form of organizational memory infrastructure, not just a model feature. It amplifies what is already there. If the underlying knowledge base is well-maintained, governed, and current, it can meaningfully reduce organizational amnesia after turnover. If it is not, it will make fragmented and outdated knowledge more accessible than it deserves to be.
 

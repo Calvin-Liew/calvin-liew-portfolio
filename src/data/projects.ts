@@ -5,7 +5,7 @@ export const projects: Project[] = [
     id: 'suprm-intelligence',
     title: 'SupRM Intelligence: AI for Supplier Decisions',
     category: 'AI & Data',
-    dates: '2026 - Present',
+    dates: 'Sep 2025 - Present',
     updatedAt: '2026-09-27',
     organization: 'Sanofi',
     description: 'An enterprise AI assistant I led at Sanofi, SupRM Intelligence reached 80 unique production users and 572 conversations in its first six months. It supports decisions across 61 strategic suppliers and 34 Key Supplier Managers. I built its evaluation framework, reusable agent tools, and supplier performance reporting.',
@@ -49,7 +49,7 @@ export const projects: Project[] = [
         title: 'What these results show',
         items: [
           'The adoption totals cover the first six months, not lifetime use.',
-          'The 97.9% pass rate measures defined evaluation scenarios, not every possible supplier question.',
+          'The 97.9% pass rate is 47 of 48 evaluation runs over defined scenarios, not every possible supplier question.',
           'This public case study uses aggregate outcomes and does not show supplier records or internal screens.',
         ],
       },
@@ -83,7 +83,7 @@ export const projects: Project[] = [
       pullQuote: 'Generating improvements is the easy part. Knowing they work is most of the work.',
       overview: {
         title: 'Can an agent teach itself to be a better support rep?',
-        content: 'DAEDALUS (arXiv:2610.08048) builds an agent\'s procedural memory from tasks the agent invents for itself, graded by an AI judge, with no training data or answer key. Its authors left telecom unsupported: in τ²-bench\'s telecom domain the customer controls half the tools, so the agent has to talk them through phone-side fixes. I adapted the method to that setting and tested it with a small model, Claude Haiku 5.5, against a sealed set of 90 fault combinations it never practised on.',
+        content: 'DAEDALUS (arXiv:2610.08048) builds an agent\'s procedural memory from tasks the agent invents for itself, graded by an AI judge, with no training data or answer key. Its authors left telecom unsupported: in τ²-bench\'s telecom domain the customer controls half the tools, so the agent has to talk them through phone-side fixes. I adapted the method to that setting and tested it with a small model, Claude Haiku 5.5, against a sealed set of 90 fault combinations it never practiced on.',
       },
       motivation: {
         title: 'Test the gap the paper named, with measurement I could trust',
@@ -110,7 +110,7 @@ export const projects: Project[] = [
         {
           decision: 'Pre-register the robustness checks',
           framework: 'Holm correction for multiple comparisons',
-          reasoning: 'Before running the follow-up experiments I committed the hypotheses, measures and decision rules. That covered one tool call per turn, a different customer simulator, and transfer to faults never practised. All five confirmatory tests survived a Holm correction (p < 0.0001).',
+          reasoning: 'Before running the follow-up experiments I committed the hypotheses, measures and decision rules. That covered one tool call per turn, a different customer simulator, and transfer to faults never practiced. All five confirmatory tests survived a Holm correction (p < 0.0001).',
         },
       ],
       keyFindings: [
@@ -122,16 +122,16 @@ export const projects: Project[] = [
         {
           stat: '96.3%',
           title: 'Fixed and compliant',
-          description: 'Heuristics nearly eliminated needless escalations but increased parallel tool calls. With the API enforcing one tool call per turn, 96.3% of conversations were both fixed and policy-compliant, against 76.7% without memory.',
+          description: 'Heuristics nearly eliminated needless escalations but increased parallel tool calls. With the API enforcing one tool call per turn, 96.3% of conversations were both fixed and policy-compliant, against 76.7% without memory under the same rule.',
         },
         {
           stat: '42 / 0',
           title: 'Holds with a different customer',
-          description: 'With Opus 5.5 playing the customer instead of Sonnet 5.5, the gain was the same size (97.8% vs 69.4%), and no task got worse.',
+          description: 'With Opus 5.5 playing the customer instead of Sonnet 5.5, the gain was the same size (97.8% vs 69.4%): 42 tasks got better and none got worse.',
         },
         {
           stat: '99% vs 82%',
-          title: 'Transfers to faults never practised',
+          title: 'Transfers to faults never practiced',
           description: 'Practice never injected a data-limit fault or a 2G network mode, yet heuristics lifted success on those tasks too (data limit 99% vs 82%; 2G mode 96% vs 69%).',
         },
       ],
@@ -154,7 +154,7 @@ export const projects: Project[] = [
         },
       ],
       impact: {
-        title: 'What generalises beyond telecom',
+        title: 'What generalizes beyond telecom',
         content: 'The learning method was cheap: practice, judging and consolidation cost $3.52. Most of the work, and most of the value, was measurement. That meant a checker I could trust, a sealed test set, an audited judge, and a control arm that tests the boring explanation. The same framework applies to RAG assistants, coding agents and workflow automation. For each new domain you rebuild a checker and a sandbox, and the rest carries over.',
       },
       limitations: {
@@ -164,7 +164,7 @@ export const projects: Project[] = [
           'Both simulated customers are Claude models; a non-Claude simulator was not tested.',
           'The memory bank came from just two practice sessions; a larger bank was not tested.',
           'The judge audit is small (16 attempts).',
-          'Six of 270 conversations still failed with heuristics, mostly one gap: not realising the customer can switch a 2G network mode.',
+          'Six of 270 conversations still failed with heuristics, mostly one gap: not realizing the customer can switch a 2G network mode.',
         ],
       },
       references: {
@@ -240,12 +240,12 @@ export const projects: Project[] = [
         {
           decision: 'Rank candidates before generating the summary',
           framework: 'Multi-signal pre-generation ranking',
-          reasoning: 'Candidate scoring combines feature fit, pricing, review evidence, category relevance, and evidence quality before generation. Keeping ranking separate from the prose makes a recommendation easier to inspect and gives the user a clearer basis for comparing tools.',
+          reasoning: 'Candidate scoring combines feature fit, pricing, review evidence, category relevance, evidence quality, and source provenance before generation. Keeping ranking separate from the prose makes a recommendation easier to inspect and gives the user a clearer basis for comparing tools.',
         },
         {
           decision: 'Treat missing evidence as a procurement finding, not a model failure',
           framework: 'Epistemic honesty in output design',
-          reasoning: 'When the retrieval layer returns no Wikidata record for a vendor, or no pricing data for an enterprise tier, the typical AI response is to either hallucinate a placeholder or silently omit the row. Both are wrong for procurement. SaaSScout renders missing evidence as an explicit cell in the evidence table, tagged with the lane it came from. A blank pricing cell is a procurement red flag — it usually signals "contact sales" or a non-public tier — and surfacing it as a gap gives the analyst the right signal: this is something you must verify before buying. The design rule is that absence of evidence is itself evidence, and the product makes it visible rather than papering over it.',
+          reasoning: 'When the retrieval layer returns no Wikidata record for a vendor, or no pricing data for an enterprise tier, the typical AI response is to either hallucinate a placeholder or silently omit the row. Both are wrong for procurement. SaaSScout renders missing evidence as an explicit cell in the evidence table, tagged with the lane it came from. A blank pricing cell can mean a "contact sales" or non-public tier, or simply that the source has no data, and surfacing it as a gap tells the analyst this is something to verify before buying. The design rule is that a gap is a finding to check, not something to guess around, and the product makes it visible rather than papering over it.',
         },
         {
           decision: 'Keep a useful fallback when an LLM is unavailable',
@@ -253,7 +253,7 @@ export const projects: Project[] = [
         },
         {
           decision: 'Packaged artifact, same-origin proxy, and scheduled smoke monitor for zero-dollar reliability',
-          reasoning: 'Three infrastructure decisions compound into production reliability on a free-tier stack. The processed Chroma index and normalized data are packaged as a versioned zip in a GitHub Release and pulled at backend startup via DATA_ARTIFACT_URL — dropping cold-start rebuild time from 5 minutes (Kaggle re-download plus Chroma rebuild) to roughly 30 seconds. Frontend API calls route through a Netlify /api/* edge proxy instead of cross-origin requests, collapsing CORS preflight latency and enabling same-origin caching. A scheduled GitHub Actions workflow hits /health, /api/status, and a low-cost template /api/analyze to keep the Render dyno warm during business hours and reports the first failing layer — Netlify, Render, Chroma, enrichment, or analyze — on failure. The combination delivers observable, warm, reproducible infrastructure at $0.',
+          reasoning: 'Three infrastructure decisions compound into production reliability on a free-tier stack. The processed Chroma index and normalized data are packaged as a versioned zip in a GitHub Release and downloaded and checksum-verified during the Render build via DATA_ARTIFACT_URL, so startup no longer needs a Kaggle re-download and Chroma rebuild. Frontend API calls route through a Netlify /api/* edge proxy instead of cross-origin requests, collapsing CORS preflight latency and enabling same-origin caching. A scheduled GitHub Actions workflow hits /health, /api/status, and a low-cost template /api/analyze to check the live stack every six hours and reports the first failing layer — Netlify, Render, Chroma, enrichment, or analyze — on failure. The combination delivers observable, reproducible infrastructure at $0.',
         },
       ],
       keyFindings: [
@@ -281,7 +281,7 @@ export const projects: Project[] = [
       features: [
         {
           title: 'Configure-then-run dashboard',
-          description: 'The single-pane workspace where evaluations happen. Pick a scenario (Support desk review risk, CRM under $30, PM automation shortlist, CRM vendor comparison), set required features and pricing constraints, choose tools to compare, and run. Demo presets seed reasonable defaults so a first-time user can fire a useful query in three clicks.',
+          description: 'The single-pane workspace where evaluations happen. Pick a scenario (Support desk review risk, CRM under $30, PM automation shortlist, CRM vendor comparison), set required features and pricing constraints, choose tools to compare, and run. Demo presets seed reasonable defaults so a first-time user can run a useful query right away.',
           insight: 'Resists the temptation to be a generic chat box. Every input is structured (scenario, category, budget, required features, tools to compare) so the retrieval can rank with confidence before the LLM ever sees the query.',
           image: '/projects/saas-scout/00-hero.png',
           imageFit: 'contain',
@@ -289,7 +289,7 @@ export const projects: Project[] = [
         {
           title: 'Side-by-side comparison + scorecard',
           description: 'The output surface for a compare-three-tools query: confidence rating (Low / Medium / High), aligned-features count, feature scorecard per tool, pricing summary, review-derived pain points, recommendation memo, and a list of follow-up procurement checks. Everything grouped so the user can scan one tool top-to-bottom or compare across tools.',
-          insight: 'The recommendation memo at the end is what makes the output portable. Analysts can paste it into a Slack thread or a procurement deck without rewriting; the format matches what they would have written by hand.',
+          insight: 'The recommendation memo at the end is what makes the output portable. Analysts can paste it into a Slack thread or a procurement deck without rewriting; the format is meant to resemble a hand-written procurement memo.',
           image: '/projects/saas-scout/01-comparison.png',
           imageFit: 'contain',
         },
@@ -316,7 +316,7 @@ export const projects: Project[] = [
         },
         {
           name: 'FastAPI',
-          purpose: 'Backend service with routes for health, status, options, and analysis. Bootstraps the production artifact on startup and caches expensive status checks.',
+          purpose: 'Backend service with routes for health, status, options, and analysis. Loads the packaged production artifact (downloaded and verified at build time) and caches expensive status checks.',
         },
         {
           name: 'Chroma',
@@ -328,11 +328,11 @@ export const projects: Project[] = [
         },
         {
           name: 'Netlify + Render',
-          purpose: 'Frontend deploy with same-origin /api/* proxy to the Render-hosted FastAPI backend. Both free-tier; cold-start handling lives in the monitor and the packaged artifact.',
+          purpose: 'Frontend deploy with same-origin /api/* proxy to the Render-hosted FastAPI backend. Both free-tier; cold-start handling lives mainly in the packaged artifact; the monitor only checks the live stack.',
         },
         {
           name: 'GitHub Actions',
-          purpose: 'Scheduled production monitor that hits /health, /api/status, and a low-cost template /api/analyze. Reports the first failing layer (Netlify, Render, Chroma, enrichment, or analyze) on failure.',
+          purpose: 'Scheduled production monitor (every six hours) that hits /health, /api/status, and a low-cost template /api/analyze. Reports the first failing layer (Netlify, Render, Chroma, enrichment, or analyze) on failure.',
         },
         {
           name: 'Multi-source data ingest',
@@ -353,7 +353,7 @@ export const projects: Project[] = [
           'RAG reduces reliance on model recall but does not guarantee factual accuracy. Verify generated claims and current pricing against the source before a purchase.',
           'Demo data is Kaggle\'s CompareEdge 2026 SaaS market snapshot, not live vendor pricing. Real procurement use would need a refresh cadence and pricing-API hooks.',
           'Many enterprise tools list pricing as "contact sales" rather than a number. Those quotes appear as gaps in the pricing table, which is honest but means budget-aware ranking is limited for higher tiers.',
-          'Render\'s free tier has cold starts. The scheduled monitor mitigates but does not eliminate the first-of-day delay.',
+          'Render\'s free tier has cold starts. The first request after idle time can be slow; the scheduled monitor checks the stack every six hours but does not keep the service warm.',
           'LLM rate limits during demo spikes fall back to the deterministic template, which is grounded but reads less naturally than the LLM output.',
           'No user accounts, saved evaluations, or team sharing yet. Each session is stateless.',
           'The current evidence sources are the curated v1 set. Adding G2, TrustRadius, and vendor-direct feature pages is the obvious v2 priority.',
@@ -368,7 +368,7 @@ export const projects: Project[] = [
     dates: 'Jan 2026 - Apr 2026',
     organization: 'University of Toronto',
     courseCode: 'MGSD24 - New Venture Creation and Planning',
-    description: 'A new venture concept and working UX prototype for a smart pantry management app. PantryPilot connects inventory risk, recipe matching, and grocery planning into one system to help households cut the average $1,300+ in avoidable food waste per year. Validated through a 50-person primary research survey, a 24-month financial model projecting break-even at Month 17, and a React 18 + TypeScript prototype deployed on Netlify.',
+    description: 'A new venture concept and working UX prototype for a smart pantry management app. PantryPilot connects inventory risk, recipe matching, and grocery planning into one system to help households cut the average $1,300+ in avoidable food waste per year. Informed by a 50-person primary research survey, a 24-month financial model projecting break-even at Month 17, and a React 18 + TypeScript prototype deployed on Netlify.',
     skills: ['Product Strategy', 'Market Research', 'Financial Modeling', 'User Research', 'React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Zustand', 'Framer Motion', 'UX Design', 'Entrepreneurship'],
     tags: ['Entrepreneurship', 'Product Strategy', 'UX Design'],
     image: '/projects/pantry-pilot/00-dashboard.png',
@@ -398,7 +398,7 @@ export const projects: Project[] = [
         content: 'PantryPilot is a new venture project that combines primary market research, a 24-month financial model, and a working UX prototype into one argument: households need a unified food management system, not three disconnected apps. The average Canadian household wastes more than $1,300 worth of edible food every year — 63% of what gets thrown out could have been eaten. Existing solutions each fix one piece: recipe apps ignore expiry dates, inventory trackers do not recommend meals, and grocery list tools do not connect to what is already in the fridge.\n\nThe concept addresses all three layers in one flow: scan groceries in, receive Use-Next alerts as items approach expiry, get recipe suggestions that prioritize at-risk ingredients, confirm cooking in one tap, and receive smart restock suggestions for the next grocery run. The prototype is built in React 18 + TypeScript with Zustand for state, Recharts for savings visualization, and Framer Motion for micro-interactions. It uses intentional mock data rather than a live backend — a deliberate choice to validate the full UX flow before committing to infrastructure investment.',
       },
       motivation: {
-        title: 'The $21.9B household food waste problem that apps have not solved',
+        title: 'The household food waste problem that apps have not solved',
         content: 'Food waste in Canada is documented and financially significant. Second Harvest estimates 46.5% of all food produced in Canada is wasted, with an avoidable cost of $58 billion per year. At the household level, Love Food Hate Waste Canada puts the average annual cost at over $1,300 per household — nearly equivalent to a month of rent for many urban renters. Statistics Canada reports that 23% of avoidable waste is driven by best-before date confusion, which directly maps to the Use-Next and expiry-risk prioritization features in PantryPilot.\n\nThe 50-person survey conducted for this project confirmed that existing apps do not solve the planning problem where most waste actually happens. 74% of respondents rely on instinct to manage groceries, 16% use nothing at all, and 68% identified food planning — not the grocery run itself — as their biggest pain point. The strategic insight: the problem is not memory or willpower. It is the absence of a system that connects what you have, what is about to expire, and what you can cook, in one place, in under 30 seconds.',
       },
       decisions: [
@@ -417,22 +417,22 @@ export const projects: Project[] = [
         },
         {
           decision: 'Show savings in dollars, not weight or "meals saved"',
-          reasoning: 'Survey feedback showed users trust the app most when they can see concrete financial outcomes. The Insights dashboard shows total rescued value, items at financial risk, monthly savings goal progress, and a spending breakdown in dollars. The decision to show dollar amounts rather than environmental metrics was deliberate: budget-conscious users in the core segment, students and young professionals in Toronto, respond to money saved more than CO2 equivalent. A user who sees "$65 rescued this month" has a quantified, personal reason to keep logging.',
+          reasoning: 'Product hypothesis: users trust the app most when they can see concrete financial outcomes. The Insights dashboard shows total rescued value, items at financial risk, monthly savings goal progress, and a spending breakdown in dollars. The decision to show dollar amounts rather than environmental metrics was deliberate: budget-conscious users in the core segment, students and young professionals in Toronto, respond to money saved more than CO2 equivalent. A user who sees "$65 saved this month" has a quantified, personal reason to keep logging.',
         },
         {
           decision: 'Build a mock-data prototype before any backend investment',
-          reasoning: 'The first version of PantryPilot does not call a real API. Barcode scanning, price lookups, recipe intelligence, and savings calculations are all simulated. This was a deliberate architecture decision: the venture-stage risk is whether users understand and want the UX, not whether a backend can scale. Building a full API before validating the use-next → recipe → cook → restock loop would have inverted the risk. The prototype showed the complete flow to 50 survey respondents and achieved 90% task-completion ease on the core logging action, validating UX before a dollar was spent on infrastructure.',
+          reasoning: 'The first version of PantryPilot does not call a real API. Barcode scanning, price lookups, recipe intelligence, and savings calculations are all simulated. This was a deliberate architecture decision: the venture-stage risk is whether users understand and want the UX, not whether a backend can scale. Building a full API before validating the use-next → recipe → cook → restock loop would have inverted the risk. The prototype was shown to 50 survey respondents, and 90% rated the core logging action Easy or Very Easy, a first UX signal before any infrastructure spend.',
         },
         {
-          decision: 'Freemium model with premium features tied to power-user behaviour',
-          reasoning: 'The financial model started with one question: what do free users need, and what will power users pay for? The free tier covers the core loop — inventory tracking, Use-Next alerts, and basic recipe suggestions. Premium adds budget tracking, savings analytics, advanced recipe filtering, family sharing, and smarter restock suggestions. The $4.99/month price point sits below the cost of one wasted grocery item, making the value proposition legible: one rescued item per month covers the subscription. The model projects 5% paid conversion starting Month 4 and cash-flow break-even at Month 17.',
+          decision: 'Freemium model with premium features tied to power-user behavior',
+          reasoning: 'The financial model started with one question: what do free users need, and what will power users pay for? The free tier covers the core loop — inventory tracking, Use-Next alerts, and basic recipe suggestions. Premium adds budget tracking, savings analytics, advanced recipe filtering, family sharing, and smarter restock suggestions. The $4.99/month price point is roughly the cost of one wasted grocery item, so one rescued item per month roughly covers the subscription. The model projects 5% paid conversion starting Month 4 and cash-flow break-even at Month 17.',
         },
       ],
       keyFindings: [
         {
           stat: '68%',
           title: 'Planning is the pain point, not shopping',
-          description: '68% of survey respondents identified food planning as their biggest friction point — not the grocery run itself. This shifted the product framing from "inventory tracker" to "decision-support tool": the job is not cataloguing what you have, it is answering "what do I cook tonight with what is about to expire."',
+          description: '68% of survey respondents identified food planning as their biggest friction point — not the grocery run itself. This shifted the product framing from "inventory tracker" to "decision-support tool": the job is not cataloging what you have, it is answering "what do I cook tonight with what is about to expire."',
         },
         {
           stat: '74%',
@@ -442,7 +442,7 @@ export const projects: Project[] = [
         {
           stat: '90%',
           title: 'Core logging rated Easy or Very Easy',
-          description: '90% of respondents rated the primary logging action as Easy or Very Easy — the most critical retention metric in a habit-forming app. The barcode-first, smart-defaults entry flow (storage location auto-selected, shelf life estimated when expiry is missing) kept the task under 10 seconds per item.',
+          description: '90% of respondents rated the primary logging action as Easy or Very Easy — an early signal for a habit-forming app. The barcode-first, smart-defaults entry flow (storage location auto-selected, shelf life estimated when expiry is missing) was designed to keep logging quick.',
         },
         {
           stat: '62%',
@@ -454,21 +454,21 @@ export const projects: Project[] = [
         {
           title: 'Today dashboard',
           description: 'The command center: pantry health score, food-at-risk dollar value, total saved, ready recipe count, weekly budget tracker, a rescue priority card naming the highest-risk item with a direct Cook path, and the full at-risk queue sorted by days remaining. Everything a user needs to know about their pantry in one scroll, oriented around one question: what should I do right now?',
-          insight: 'The rescue priority card was the most-clicked element in usability testing. Naming one specific item ("Baby Spinach — 1 day left — $3.99 at risk") converts abstract waste anxiety into a concrete, actionable task. The dashboard is designed to make that the first thing a user sees.',
+          insight: 'Product hypothesis: the rescue priority card becomes the most-used element on the dashboard. Naming one specific item ("Baby Spinach — 1 day left — $3.99 at risk") converts abstract waste anxiety into a concrete, actionable task. The dashboard is designed to make that the first thing a user sees.',
           image: '/projects/pantry-pilot/00-dashboard.png',
           imageFit: 'contain',
         },
         {
           title: 'Use-Next: expiry-first triage queue',
           description: 'Every item nearing or past its safe-use window, surfaced in one view sorted by urgency. Each row shows days remaining, risk level (High / Medium), and the estimated dollar value at risk. Three inline actions — Cook with this, Used it, Tossed — resolve the item without leaving the view. The total at-risk dollar figure ($36.43 in the demo) sits at the top as the motivating number, broken into "3 Today" and "4 This Week" groupings for prioritization.',
-          insight: 'The decision to show dollar value at risk rather than item count came from survey feedback. Users who saw "$36 at risk" acted faster than those who saw "7 items expiring." Money is a more urgent signal than a count.',
+          insight: 'The decision to show dollar value at risk rather than item count came from survey feedback. Product hypothesis: showing "$36 at risk" prompts faster action than "7 items expiring", because money is a more urgent signal than a count.',
           image: '/projects/pantry-pilot/06-use-next.png',
           imageFit: 'contain',
         },
         {
           title: 'Recipe matching by coverage and expiry risk',
-          description: 'Recipes ranked by the intersection of ingredient coverage and expiry urgency. The coverage bar (5/5 for One-Pot Garlic Spinach Pasta) shows what fraction of ingredients are already in the pantry. The "Use soon" badge flags recipes that consume at-risk items. Filter tabs (Ready to cook, Quick, Healthy, Budget, Breakfast, Dinner) let users narrow further. Ingredient count, cook time, calories, and difficulty are all visible on the card without clicking through.',
-          insight: 'The ingredient coverage bar was the highest-rated UI element in the survey. Users said it answered "can I actually cook this?" at a glance, without reading a full ingredient list — which is the decision they were trying to make quickly.',
+          description: 'Recipes ranked by the intersection of ingredient coverage and expiry urgency. The coverage bar (5/5 for One-Pot Garlic Spinach Pasta) shows what fraction of ingredients are already in the pantry. The "Use soon" badge flags recipes that consume at-risk items. Filter tabs (Ready to cook, Quick, Healthy, Budget, Breakfast, Lunch, Dinner, Snack) let users narrow further. Ingredient count, cook time, calories, and difficulty are all visible on the card without clicking through.',
+          insight: 'The ingredient coverage bar is meant to answer "can I actually cook this?" at a glance, without reading a full ingredient list. Users said it answered "can I actually cook this?" at a glance, without reading a full ingredient list — which is the decision they were trying to make quickly.',
           image: '/projects/pantry-pilot/02-recipes.png',
           imageFit: 'contain',
         },
@@ -482,14 +482,14 @@ export const projects: Project[] = [
         {
           title: 'Savings and pantry health insights',
           description: 'The Insights page closes the feedback loop: total rescued versus wasted, monthly savings goal with progress bar and "goal reached" confirmation, pantry health score (out of 100), and a weekly/monthly spending breakdown. The Rescue CTA at the bottom of the savings card links directly back to the Use-Next queue, connecting the tracking surface to the action surface in one tap.',
-          insight: 'Savings data is the stickiest content in the app. Users who see a number they contributed to — "$65 rescued" — want to see it increase. Personalizing the monthly goal (user-set) gives the app a reason to be opened even on days with no urgent expiry, which is the retention pattern the freemium model depends on.',
+          insight: 'Savings data is the stickiest content in the app. Users who see a number they contributed to — "$65 saved" — want to see it increase. Personalizing the monthly goal (user-set) gives the app a reason to be opened even on days with no urgent expiry, which is the retention pattern the freemium model depends on.',
           image: '/projects/pantry-pilot/03-insights.png',
           imageFit: 'contain',
         },
         {
           title: 'Mobile-first layout',
           description: 'The full PantryPilot flow on a phone: quick-access CTAs (View Inventory, Add Items, Meal Plan) above the fold, pantry health and food-at-risk metrics in a two-column card grid, rescue priority card immediately visible, and a bottom tab bar for Today / Inventory / Use Next / Recipes / Grocery / Insights. No content behind hamburger menus or nested drawers.',
-          insight: 'The mobile layout enforced information hierarchy discipline that helped improve the desktop too. Every section on Today had to earn its above-the-fold position when constrained to a 390px viewport — two desktop sections that users were not scrolling to were cut as a result.',
+          insight: 'The mobile layout enforced information hierarchy discipline that helped improve the desktop too. Every section on Today had to earn its above-the-fold position when constrained to a 390px viewport — a couple of lower-priority desktop sections were cut as a result.',
           image: '/projects/pantry-pilot/05-mobile.png',
           imageFit: 'contain',
           phoneFrame: true,
@@ -514,7 +514,7 @@ export const projects: Project[] = [
         },
         {
           name: 'Primary research survey (Google Forms)',
-          purpose: '50-respondent structured survey covering current food management behaviour, prototype usability, and willingness to pay. Both closed-ended (Likert, multiple choice) and open-ended questions, analyzed to validate the core value proposition and surface product improvement priorities.',
+          purpose: '50-respondent structured survey covering current food management behavior, prototype usability, and willingness to pay. Both closed-ended (Likert, multiple choice) and open-ended questions, analyzed to validate the core value proposition and surface product improvement priorities.',
         },
         {
           name: '24-month financial model',
@@ -522,8 +522,8 @@ export const projects: Project[] = [
         },
       ],
       impact: {
-        title: 'What the venture proved — and what remains to be validated',
-        content: 'PantryPilot validated the core product hypothesis: users understand and want a unified food management system, find the logging flow easy enough to form a habit, and respond to savings data as a retention mechanism. The 50-person survey confirmed that food planning — not shopping — is where the pain is concentrated. This reoriented the product from an inventory tracker to a decision-support tool, which changed the information hierarchy, the recipe ranking algorithm, and the dashboard design.\n\nThe financial model showed a credible path: $45,000 in two-stage funding supports a free-tier soft launch, premium conversion at 5% begins Month 4, and the business reaches cash-flow break-even at Month 17-18 with $8,895 net income in Year 2 as the active paid subscriber base crosses 1,500 users. At $4.99/month, one rescued grocery item per month more than covers the subscription against a $1,300+ annual waste baseline — the value proposition is legible before a user even opens the app.\n\nThe honest remaining unknown is retention. Survey return intent is not the same as showing up the following Tuesday when the fridge is full and logging feels like friction. The next validation gate is a multi-week closed beta with real barcode scanning, live pricing, and observed usage data before any marketing spend.',
+        title: 'What the venture showed — and what remains to be validated',
+        content: 'In a 50-person survey, PantryPilot found early support for the core product hypothesis: respondents understood the concept, rated the logging flow easy, and said they would likely return. Whether logging becomes a habit and whether savings data drives retention is not yet tested. The 50-person survey confirmed that food planning — not shopping — is where the pain is concentrated. This reoriented the product from an inventory tracker to a decision-support tool, which changed the information hierarchy, the recipe ranking algorithm, and the dashboard design.\n\nThe financial model showed a credible path: $45,000 in two-stage funding supports a free-tier soft launch, premium conversion at 5% begins Month 4, and the business reaches cash-flow break-even at Month 17 with $8,895 net income in Year 2 as the active paid subscriber base crosses 1,500 users. At $4.99/month, one rescued grocery item per month roughly covers the subscription against a $1,300+ annual waste baseline — the value proposition is legible before a user even opens the app.\n\nThe honest remaining unknown is retention. Survey return intent is not the same as showing up the following Tuesday when the fridge is full and logging feels like friction. The next validation gate is a multi-week closed beta with real barcode scanning, live pricing, and observed usage data before any marketing spend.',
       },
       limitations: {
         title: 'Honest caveats',
@@ -569,10 +569,10 @@ export const projects: Project[] = [
         { value: '11,204', label: 'horror signals' },
         { value: '$2.28', label: 'total LLM cost' },
       ],
-      pullQuote: 'The top 10 signals account for 68% of fear spikes, despite making up just 5% of the 207-term lexicon.',
+      pullQuote: 'Ten signals, under 5% of the 207-term lexicon, carry the highest fear and tension impact.',
       overview: {
         title: 'The Power Law of Horror',
-        content: 'Horror follows a power law. Atmospheric elements like "dark" and "night" set the mood, but a handful of elite signals (scream, blood, kill, knife, death) drive most of the actual scares. Across 11,204 signal occurrences in 9,760 scenes, the top 10 signals accounted for 68% of all fear spikes, despite making up just 5% of our 207-term lexicon. The site turns that finding into nine interactive D3.js visualizations.'
+        content: 'Horror follows a power law. Atmospheric elements like "dark" and "night" set the mood, but a handful of elite signals (scream, fear, blood, knife, death) drive most of the actual scares. Across 11,204 signal occurrences in 9,760 scenes, the top 10 signals carry the highest fear and tension impact, despite making up under 5% of our 207-term lexicon. The site turns that finding into nine interactive D3.js visualizations.'
       },
       motivation: {
         title: 'Why Horror?',
@@ -649,7 +649,7 @@ export const projects: Project[] = [
           },
           {
             phase: 'Hybrid AI strategy: three-tier fallback',
-            description: 'Tier 1: GPT-4o-mini with temperature 0, max_tokens 1500, response_format JSON object, handling 99.965% of scenes. Tier 2: GPT-4o fallback only after Tier 1 fails twice on retry, picking up the remaining edge cases. Tier 3: a conservative fallback record (Unknown location/time, zeroed signals, tension/fear=0.5, sentiment=0) preserves row structure when both models fail. Real-world fallback rate: 0.035% across 9,760 scenes.'
+            description: 'Tier 1: GPT-4o-mini with temperature 0, max_tokens 1500, response_format JSON object, handling 99.965% of scenes. Tier 2: GPT-4o fallback only after Tier 1 fails twice on retry, with no additional chunks recovered in the production run. Tier 3: a conservative fallback record (Unknown location/time, zeroed signals, tension/fear=0.5, sentiment=0) preserves row structure when both models fail. Real-world fallback rate: 0.035% of chunks.'
           },
           {
             phase: 'Parallel processing for throughput',
@@ -661,7 +661,7 @@ export const projects: Project[] = [
           },
           {
             phase: 'Horror signal detection: 6-family lexicon',
-            description: 'Each scene is scored against a fixed lexicon of 207 horror terms collapsing to 187 unique hs_* columns across six families: Atmosphere & Setting (night, dark, fog, basement, cabin, woods, cemetery, abandoned), Sound & Voice (scream, whisper, moan, gasp, shriek, howl, heartbeat, footsteps), Threats & Violence (blood, knife, gun, weapon, blade, chainsaw, stab, brutal, death), Supernatural (ghost, demon, possessed, spirit, witch, curse, haunted), Psychological (fear, panic, dread, paranoid, disturbed, terrifying), and Movement (chase, run, stalk, pursue, hide, escape, trapped). Top signals by raw count: night 3,694, blood 1,460, death 1,213, scream 1,187. Top by fear impact: scream +0.691, blood +0.562, death +0.438, night +0.297.'
+            description: 'Each scene is scored against a fixed lexicon of 207 horror terms collapsing to 187 unique hs_* columns across six signal families, the same ones the radar chart uses: Audio (scream, whisper, moan, gasp, shriek, howl), Visual (blood, shadow, dark, mirror, mask), Pace (chase, run, stalk, pursue, hide), Threat (knife, gun, weapon, blade, chainsaw, ghost, monster), Setting (night, forest, basement, cabin, cemetery, abandoned, fog), and Psyche (fear, paranoid, dread, creepy, scary). Top signals by raw count: night 3,694, blood 1,460, death 1,213, scream 1,187. Top by combined fear + tension impact: scream +0.691, fear +0.575, blood +0.562, knife +0.538.'
           },
           {
             phase: 'Emotional scoring on calibrated 0–1 scales',
@@ -669,7 +669,7 @@ export const projects: Project[] = [
           },
           {
             phase: 'Dialogue + action structural analysis',
-            description: 'Alongside emotion, the model estimates structural metrics per scene: dialogue lines, dialogue words, question rate, exclamation rate, average line length, action words, and stage-direction count. Lets us separate talk-heavy scenes from action-heavy ones and powers the "silence amplifies dread" correlation later in the analysis (−0.34 between dialogue density and tension).'
+            description: 'Alongside emotion, the model estimates structural metrics per scene: dialogue lines, dialogue words, question rate, exclamation rate, average line length, action words, and stage-direction count. Lets us separate talk-heavy scenes from action-heavy ones and powers the "silence amplifies dread" correlation later in the analysis (a negative correlation between dialogue density and tension).'
           },
           {
             phase: 'Flattening + visualization-ready datasets',
@@ -683,30 +683,30 @@ export const projects: Project[] = [
       },
       keyFindings: [
         {
-          stat: '68%',
+          stat: '10 of 207',
           title: 'Elite signals drive fear',
-          description: 'The top 10 signals (scream, blood, kill, knife, death, shadow, fear, dark, silent, night) account for 68% of fear spikes above 0.70, yet make up only 5% of the lexicon. "Scream" appears in 9% of scenes but adds +0.37 fear. "Dark" appears in 38% but adds only +0.18. Strategic deployment beats scattering.'
+          description: 'The top 10 signals (scream, fear, blood, knife, death, shadow, dark, silent, night, creepy) carry the highest fear and tension impact, yet make up under 5% of the lexicon. "Scream" appears in 11% of scenes but adds +0.37 fear. "Night" appears in 37% but adds only +0.14. Strategic deployment beats scattering.'
         },
         {
-          stat: '73%',
+          stat: '76%',
           title: 'Sustained unease beats constant terror',
-          description: 'Average tension (0.52) consistently exceeds average fear (0.41). 73% of scenes lead with tension over fear. Effective horror maintains baseline unease and punctuates it with shock moments. Valleys make peaks feel higher.'
+          description: 'Average tension (0.44) consistently exceeds average fear (0.31). 76% of scenes lead with tension over fear. Effective horror maintains baseline unease and punctuates it with shock moments. Valleys make peaks feel higher.'
         },
         {
-          stat: '−0.34',
+          stat: '< 0.30',
           title: 'Silence amplifies dread',
-          description: 'Scenes with low dialogue ratios (< 0.30) showed 23% higher tension than dialogue-heavy scenes (> 0.70). Correlation: −0.34. Letting sounds, visuals, and pauses do the work outperforms exposition.'
+          description: 'Scenes with low dialogue ratios (< 0.30) showed higher tension than dialogue-heavy scenes (> 0.70), and dialogue density correlates negatively with tension. Letting sounds, visuals, and pauses do the work outperforms exposition.'
         },
         {
-          stat: '75–90%',
+          stat: '42%',
           title: 'Fear clusters toward the climax',
-          description: 'Across 129 films, 28% of fear spikes happen in the third quarter and 29% in the final quarter. Most films reserve their highest fear peak (> 0.80) for the 75–90% runtime window. Horror follows surprisingly consistent pacing.'
+          description: 'Across 129 films, fear spikes (> 0.70) cluster late: about 25% fall in the third quarter of runtime and about 42% in the final quarter. Horror follows surprisingly consistent pacing.'
         }
       ],
       visualizations: [
         {
           title: 'Blood Flow of Horror',
-          description: 'Sankey diagram tracing how the six signal families (Audio, Visual, Pace, Threat, Setting, Psyche) branch into individual horror terms. Stream thickness encodes frequency; node brightness encodes fear impact.',
+          description: 'Sankey diagram tracing how signal families (The Void, The Violence, The Scream) branch into individual horror terms, with a threshold slider to filter by frequency. Stream thickness encodes frequency; node brightness encodes fear impact.',
           insight: 'Visualizes the power law on first glance: atmospheric signals flood the screen while elite ones thread through narrowly.',
           image: '/projects/anatomy-of-fear/01-blood-flow.png',
           imageFit: 'contain'
@@ -728,7 +728,7 @@ export const projects: Project[] = [
         {
           title: 'The Ladder of Fear',
           description: '3×3 Markov transition matrix between Calm, Unease, and Panic states. Cell darkness encodes transition probability.',
-          insight: 'Horror prefers gradual climbs (Calm → Unease → Panic) over sudden jumps. Once a scene reaches Panic, it tends to stay there.',
+          insight: 'Horror prefers gradual climbs (Calm → Unease → Panic) over sudden jumps: Calm → Unease is 36% likely, Calm → Panic only 12%. Panic rarely lingers: just 21% of Panic scenes are followed by another Panic scene.',
           image: '/projects/anatomy-of-fear/04-state-machine.png',
           imageFit: 'contain'
         },
@@ -741,14 +741,14 @@ export const projects: Project[] = [
         },
         {
           title: 'Impact Dripline',
-          description: 'Ranked bar chart sorting all 207 signals by combined fear + tension impact. The steep drop-off curve makes the power law impossible to miss.',
+          description: 'Ranked "drip" chart of the ten highest-impact signals by combined fear + tension impact. The steep drop-off curve makes the power law impossible to miss.',
           insight: 'Horror impact follows a power law, not a normal distribution: a small head, a long tail.',
           image: '/projects/anatomy-of-fear/06-dripline.png',
           imageFit: 'contain'
         },
         {
           title: 'Does Scary Equal Good?',
-          description: 'Scatter of horror impact score against IMDb rating across all 129 films, with correlation line and rating-range filters.',
+          description: 'Scatter of horror impact score against IMDb rating for the 46 films matched to IMDb ratings, with correlation line and year and rating filters.',
           insight: 'Technical horror craft does not guarantee audience acclaim (correlation: −0.245). Story and character carry more weight than craft alone.',
           image: '/projects/anatomy-of-fear/07-rating-impact.png',
           imageFit: 'contain'
@@ -772,7 +772,7 @@ export const projects: Project[] = [
         { name: 'D3.js v7', purpose: 'Custom interactive visualizations: Sankey, radar, live BPM animation, all responsive across desktop and mobile.' },
         { name: 'GPT-4o-mini + GPT-4o', purpose: 'Hybrid LLM pipeline. Primary parser at 99.97% success; fallback only on the hardest 0.035% of scenes. Total cost $2.28.' },
         { name: 'Python (pandas, NumPy)', purpose: 'End-to-end data pipeline: deduplication, scene boundary detection, signal counting, validation, IMDb joins.' },
-        { name: 'Observable Framework', purpose: 'Scrollytelling narrative wrapping the nine visualization scenes with client-side data caching.' },
+        { name: 'HTML, CSS, and vanilla JavaScript', purpose: 'Scrolling narrative wrapping the nine visualization scenes, with D3 modules loading the cleaned CSVs directly in the browser.' },
         { name: 'Playwright', purpose: 'Automated screenshot capture for documentation and the visualization gallery.' }
       ],
       impact: {
@@ -800,7 +800,7 @@ export const projects: Project[] = [
     dates: 'Sep 2025 - Nov 2025',
     organization: 'University of Toronto',
     courseCode: 'MGMC11H3 - Product Management and Branding',
-    description: 'A high-fidelity prototype reimagining Google Drive as a proactive AI partner instead of passive storage. Six signature scenarios (Syllabus-to-Schedule, Smart Reading Pack, Living Concept Maps, AI Meeting Chief of Staff, Executive Briefs, Work Rhythm Optimiser) demonstrate how an embedded AI layer can replace the manual-upload chore that defines ChatGPT and Copilot. User research with 100+ students and professionals exposed the real lever: emotional benefits (anxiety down, confidence up) lift adoption far more than time savings alone.',
+    description: 'A high-fidelity prototype reimagining Google Drive as a proactive AI partner instead of passive storage. Six signature scenarios (Syllabus-to-Schedule, Smart Reading Pack, Living Concept Maps, AI Meeting Chief of Staff, Executive Briefs, Work Rhythm Optimiser) demonstrate how an embedded AI layer can replace the manual-upload chore that defines ChatGPT and Copilot. User research with 100+ students and professionals pointed to the real lever: emotional benefits (less anxiety, more confidence) mattered more to respondents than time savings alone.',
     skills: ['Product Management', 'Product Design', 'Prototyping', 'Agentic AI', 'UI Design', 'Rapid Prototyping', 'LLM'],
     tags: ['AI Agents', 'LLM', 'Product Strategy', 'UX Design'],
     image: '/projects/drive-companion/00-hero.png',
@@ -874,27 +874,27 @@ export const projects: Project[] = [
         },
         {
           stat: 'Emotion',
-          title: 'Anxiety reduction beats efficiency every time',
-          description: 'When ranking feature value, users consistently picked the scenarios that prevented last-minute panic over the ones that promised speed. Deadline-Aware Exam Prep and Meeting Chief of Staff topped both lists, not because they save more minutes, but because they remove the worry that something will fall through the cracks. The brand position is calm and confidence, not just productivity.'
+          title: 'Anxiety reduction mattered more than efficiency',
+          description: 'When ranking feature value, users tended to favor the scenarios that prevented last-minute panic over the ones that promised speed. Deadline-driven scenarios such as exam prep and the Meeting Chief of Staff were valued less for the minutes they save than for removing the worry that something will fall through the cracks. The brand position is calm and confidence, not just productivity.'
         },
         {
           stat: '0 uploads',
           title: 'Embedded beats standalone',
-          description: 'ChatGPT and Notion offer more raw capability but require manual setup and ongoing care. Companion\'s "no uploads required, runs where your files already live" pitch tested significantly higher than feature-rich rivals in desirability scoring. Users want intelligence that adapts to existing habits, not a new app to maintain.'
+          description: 'ChatGPT and Notion offer more raw capability but require manual setup and ongoing care. Companion\'s "no uploads required, runs where your files already live" pitch tested higher than feature-rich rivals in desirability scoring. Users want intelligence that adapts to existing habits, not a new app to maintain.'
         }
       ],
       features: [
         {
           title: 'Syllabus-to-Schedule Pack',
           description: 'Parses a course syllabus and generates a week-by-week folder structure, populates Google Calendar with every deadline, and stages a structured to-do list. If the instructor shifts a date, Companion rebalances the entire semester and notifies the student.',
-          insight: 'Solves the "first week of the semester" overwhelm. Reduced planning stress by 60% in user testing.',
+          insight: 'Product hypothesis: easing the "first week of the semester" overwhelm lowers planning stress (not yet measured).',
           image: '/projects/drive-companion/01-syllabus-to-schedule.png',
           imageFit: 'contain'
         },
         {
           title: 'Smart Reading Pack',
           description: 'Converts dense PDFs into the format the student actually wants: a one-page summary, a slide deck for skim review, or a flashcard set staged in Sheets. Pick a modality; Companion stages it inside the same folder.',
-          insight: 'Cuts a 60-page reading into something digestible without losing the source. Reading-prep time drops 3x in pilots.',
+          insight: 'In the prototype demo, a 60-page reading becomes a one-page summary card with the source kept alongside. Product hypothesis: this cuts reading-prep time (not yet measured).',
           image: '/projects/drive-companion/02-smart-reading.png',
           imageFit: 'contain'
         },
@@ -922,7 +922,7 @@ export const projects: Project[] = [
         {
           title: 'Work Rhythm Optimiser',
           description: 'Reads calendar patterns to find overloaded days, blocks protected focus time for deep work, and suggests micro-shifts before burnout shows up. Flags compressed deadlines and meeting fatigue to managers as a signal, not an interruption.',
-          insight: 'Treats sustainable rhythm as a first-class product surface. Pilot users reported 35% lower stress.',
+          insight: 'Treats sustainable rhythm as a first-class product surface. Product hypothesis: a sustainable rhythm lowers stress (not yet measured).',
           image: '/projects/drive-companion/06-work-rhythm.png',
           imageFit: 'contain'
         }
@@ -951,14 +951,14 @@ export const projects: Project[] = [
       ],
       impact: {
         title: 'Where the product lands strategically',
-        content: 'Drive Companion proposes a strategic shift: cloud storage stops being a passive vault and becomes the active surface for AI productivity. By embedding intelligence inside the platform that already holds a billion users\' most important documents, Google removes the upload chore that defines its competitors and locks in a structural advantage the standalone AI players cannot replicate.\n\nProjections in the deck estimate 3M paid users in Year 1 (≈$324M revenue) and 9M in Year 2 (≈$971M), built on the existing Drive base rather than a cold-start audience. The VRIN analysis ratified the moat: TPU infrastructure, deep Workspace integration, and existing user trust are the three legs of a defensible position.\n\nThe project also rewired my own product instincts. User research showed that emotional benefits, feeling calm, supported, and unworried, drive adoption far more reliably than functional efficiency. That re-framed every downstream choice: feature priority, scenario copy, onboarding language, and the brand voice itself.'
+        content: 'Drive Companion proposes a strategic shift: cloud storage stops being a passive vault and becomes the active surface for AI productivity. By embedding intelligence inside the platform that already holds a billion users\' most important documents, Google removes the upload chore that defines its competitors and locks in a structural advantage the standalone AI players cannot replicate.\n\nProjections in the deck estimate 3M paid users in Year 1 (≈$324M revenue) and 9M in Year 2 (≈$971M), built on the existing Drive base rather than a cold-start audience. The VRIN analysis ratified the moat: TPU infrastructure, deep Workspace integration, DeepMind/Google Research, and existing user trust are the four legs of a defensible position.\n\nThe project also rewired my own product instincts. User research suggested that emotional benefits, feeling calm, supported, and unworried, matter more to adoption than functional efficiency. That re-framed every downstream choice: feature priority, scenario copy, onboarding language, and the brand voice itself.'
       },
       limitations: {
         title: 'What this prototype is, and what it isn\'t',
         items: [
           'High-fidelity interactive prototype, not a production product. Scenarios are scripted demos, not live AI calls against real user files.',
           'User research was qualitative-leaning (100+ participants across surveys and interviews), not a representative panel. Findings indicate direction, not population-level truth.',
-          'Financial projections in the deck are modelled estimates based on Drive\'s existing scale and analogues like Copilot, not committed forecasts.',
+          'Financial projections in the deck are modeled estimates based on Drive\'s existing scale and analogues like Copilot, not committed forecasts.',
           'Privacy and consent UX is designed but not security-audited. Production would need formal review for data residency, retention, and per-file ACL semantics.',
           'The prototype assumes Drive-native deployment. A standalone version would need to solve the upload problem differently and would lose much of Companion\'s structural advantage.',
         ]
@@ -1007,8 +1007,8 @@ export const projects: Project[] = [
       },
       decisions: [
         {
-          decision: 'Show all 8 pathways in the first viewport',
-          reasoning: 'The original homepage led with a band photo. Students who saw it assumed TMPP was a performance platform and never scrolled past. The redesigned hero cycles through all eight career clusters (performance, education, business, production, publishing, health sciences, entertainment law, media) as the auto-rotating preview card. By the time the user has finished reading the tagline, they have already seen the reframe in motion. The breadth is not described, it is demonstrated.'
+          decision: 'Cycle through all 8 pathways in the first viewport',
+          reasoning: 'The original homepage led with a band photo. Students who saw it could easily assume TMPP was a performance platform. The redesigned hero cycles through all eight career clusters (performance, education, business, production, publishing, health sciences, entertainment law, media) as the auto-rotating preview card. By the time the user has finished reading the tagline, they have already seen the reframe in motion. The breadth is not described, it is demonstrated.'
         },
         {
           decision: 'Tempo (a metronome) replaces Jay (a blue jay)',
@@ -1030,7 +1030,7 @@ export const projects: Project[] = [
         {
           decision: 'CBBE pyramid as the page structure',
           framework: 'Keller\'s Customer-Based Brand Equity',
-          reasoning: 'The page sections aren\'t arranged by convention; they\'re arranged by CBBE rung. Salience in the hero (full pathway set visible immediately). Performance + imagery in the three pillars (Research-Informed, Curriculum-Connected, Student-Centered). Judgments in the stats strip (30+ pathways, 100% research-informed). Feelings in the dual-audience care. Resonance in the 3-step discovery flow that drives return visits. Every section earns its place by doing brand-equity work, not by checking a layout box.'
+          reasoning: 'The page sections aren\'t arranged by convention; they\'re arranged by CBBE rung. Salience in the hero (full pathway set visible immediately). Performance + imagery in the three pillars (Research-Informed, Curriculum-Connected, Student-Centered). Judgments in the stats strip (30+ example careers, 100% research-informed). Feelings in the dual-audience care. Resonance in the 3-step discovery flow that drives return visits. Every section earns its place by doing brand-equity work, not by checking a layout box.'
         }
       ],
       beforeAfter: {
@@ -1153,7 +1153,7 @@ export const projects: Project[] = [
       ],
       impact: {
         title: 'What the redesign actually moves',
-        content: 'The original TMPP site was correct but invisible. The information was research-informed, the careers were real, the support resources existed, but students would not have known any of that from the homepage. The redesign\'s job was not to invent content, it was to make the brand legible: the moment a student lands, they see the reframe ("more than perform, teach, or quit"), see the evidence (30+ pathways, 100% research-informed), and see the next step (explore, connect to programs, plan).\n\nApplying CBBE meant treating every section as one rung of the pyramid: salience in the hero, performance and imagery in the pillars, judgments in the stats strip, feelings in the dual-audience care, resonance in the discovery flow. Consumer behavior principles meant lowering search costs at every turn: visual instead of textual, grouped instead of listed, guided instead of open.\n\nFor my own product instincts, this project drove home that great branding is not decorative work. It is structural work: it decides which 8 things land in the first viewport, which audiences self-route without friction, and which sentence gets repeated across hero, explorer, and CTA so the brand promise is felt rather than declared.'
+        content: 'The original TMPP site was correct but invisible. The information was research-informed, the careers were real, the support resources existed, but students would not have known any of that from the homepage. The redesign\'s job was not to invent content, it was to make the brand legible: the moment a student lands, they see the reframe ("more than perform, teach, or quit"), see the evidence (30+ example careers, 100% research-informed), and see the next step (explore, connect to programs, plan).\n\nApplying CBBE meant treating every section as one rung of the pyramid: salience in the hero, performance and imagery in the pillars, judgments in the stats strip, feelings in the dual-audience care, resonance in the discovery flow. Consumer behavior principles meant lowering search costs at every turn: visual instead of textual, grouped instead of listed, guided instead of open.\n\nFor my own product instincts, this project drove home that great branding is not decorative work. It is structural work: it decides which 8 things land in the first viewport, which audiences self-route without friction, and which sentence gets repeated across hero, explorer, and CTA so the brand promise is felt rather than declared.'
       },
       limitations: {
         title: 'What this redesign is, and what it isn\'t',
@@ -1172,7 +1172,7 @@ export const projects: Project[] = [
     category: 'AI & Data',
     dates: 'Oct 2025 - Nov 2025',
     organization: 'University of Toronto',
-    description: 'An interactive D3.js data story that pushes back on a simple assumption: that your job is what determines your sleep. Three visualizations, one dataset of 374 people across 11 occupations, and a guided narrative that argues individual behavior and health context matter more than profession. A bubble landscape exposes stress variance within the same job. A Sankey diagram traces the path from physical activity to sleep quality. The Dream Lab animates BMI, heart rate, and sleep disorders with dots that pulse at each individual\'s resting heart rate.',
+    description: 'An interactive D3.js data story that pushes back on a simple assumption: that your job is what determines your sleep. Three visualizations, one dataset of 374 people across 11 occupations, and a guided narrative that argues job title is only part of the story: individual behavior and health context matter too. A bubble landscape exposes stress variance within the same job. A Sankey diagram traces the path from physical activity to sleep quality. The Dream Lab animates BMI, heart rate, and sleep disorders with dots that pulse at each individual\'s resting heart rate.',
     skills: ['D3.js', 'JavaScript', 'HTML5', 'Interaction Design', 'Data Visualization', 'Statistical Analysis'],
     tags: ['Data Visualization', 'Data Analysis'],
     image: '/projects/night-shift/00-hero.png',
@@ -1196,19 +1196,19 @@ export const projects: Project[] = [
         { value: '3', label: 'visualization scenes' },
         { value: '32.2pp', label: 'high vs low activity sleep gap' },
       ],
-      pullQuote: 'Your job title does not define your sleep. Individual behavior and health context matter more than profession.',
+      pullQuote: 'Your job title does not define your sleep. Individual behavior and health context matter too.',
       overview: {
         title: 'Reframing a familiar question',
-        content: 'Every night, millions of us close our eyes hoping for rest, and a lot of us miss it. The easy story is that some jobs sleep well and other jobs do not. The data tells a more interesting one. The Night Shift walks through three perspectives, profession and stress, activity and sleep quality, and physiological health, and lets the user see that the strongest signals are not job titles at all. They are physical activity level, BMI category, resting heart rate, and sleep disorder status. The piece is built to be read like a magazine essay and explored like a tool.'
+        content: 'Every night, millions of us close our eyes hoping for rest, and a lot of us miss it. The easy story is that some jobs sleep well and other jobs do not. The data tells a more interesting one. The Night Shift walks through three perspectives, profession and stress, activity and sleep quality, and physiological health, and lets the user see that job titles do not tell the whole story: activity level, BMI category, resting heart rate, and sleep disorder status all show clear patterns too. The piece is built to be read like a magazine essay and explored like a tool.'
       },
       motivation: {
         title: 'From ranking jobs to reading individuals',
-        content: 'A typical sleep dashboard ranks occupations and stops there. That framing is comforting (your job is the problem) but it is also wrong, or at least incomplete. The same profession can stretch across two hours of sleep duration and five full stress points. The redesign of the narrative was the most important design decision: instead of asking "which job sleeps best," the story asks "what actually moves your sleep," and then shows that movement, body composition, and heart rate explain more than the label on a business card. Every chart and every annotation is in service of that reframe.'
+        content: 'A typical sleep dashboard ranks occupations and stops there. That framing is comforting (your job is the problem) but incomplete. The same profession can stretch across two hours of sleep duration and five full stress points. The redesign of the narrative was the most important design decision: instead of asking "which job sleeps best," the story asks "what actually moves your sleep," and then shows that movement, body composition, and heart rate explain more than the label on a business card. Every chart and every annotation is in service of that reframe.'
       },
       decisions: [
         {
           decision: 'Lead with the reframe, not a ranking',
-          reasoning: 'The default move with an occupation-coded dataset is to sort professions by average sleep and call it a story. That framing flatters the dataset but lies to the user, because within-profession variance is enormous. The Night Shift opens with the question "does your job define your sleep?" and answers no on the very first scene. The whole reading experience is shaped by that bet: the bubble chart is structured so the user notices spread first and averages second.'
+          reasoning: 'The default move with an occupation-coded dataset is to sort professions by average sleep and call it a story. That framing flatters the dataset but hides a lot, because within-profession variance is large. The Night Shift opens with the question "does your job define your sleep?" and answers "not entirely" on the very first scene. The whole reading experience is shaped by that bet: the bubble chart is structured so the user notices spread first and averages second.'
         },
         {
           decision: 'Three chart types for three different arguments',
@@ -1216,7 +1216,7 @@ export const projects: Project[] = [
         },
         {
           decision: 'Pulse-sync the Dream Lab dots to resting heart rate',
-          reasoning: 'A scatter plot of BMI vs heart rate vs sleep disorder is informative but cold. Pulsing each dot at the individual\'s resting heart rate (64-86 bpm) reframes the chart from a statistical surface to a room full of bodies. It is a small piece of motion design that does outsized narrative work: the user feels that these are people, not points, and they remember the chart hours later. The animation also encodes data, faster pulse means higher resting heart rate, so it is not just decoration.'
+          reasoning: 'A scatter plot of BMI vs heart rate vs sleep disorder is informative but cold. Pulsing each dot at the individual\'s resting heart rate (65-86 bpm) reframes the chart from a statistical surface to a room full of bodies. It is a small piece of motion design that does outsized narrative work: the user feels that these are people, not points, and they remember the chart hours later. The animation also encodes data, faster pulse means higher resting heart rate, so it is not just decoration.'
         },
         {
           decision: 'Drill from occupation to individual on click',
@@ -1239,7 +1239,7 @@ export const projects: Project[] = [
         }
       ],
       methodology: {
-        title: 'Three chapters, one through-line',
+        title: 'Four chapters, one through-line',
         steps: [
           {
             phase: 'Chapter I: the dataset',
@@ -1251,7 +1251,7 @@ export const projects: Project[] = [
           },
           {
             phase: 'Chapter III: activity to rest (Sankey diagram)',
-            description: 'Sankey diagram flowing physical activity level (Low, Medium, High) into sleep quality buckets (Poor 5-6h, Average 7h, Good 8-10h). Flow width is the number of people on each path. The headline number, 54.9% of high-activity individuals reach good sleep versus 22.7% of low-activity, falls out of the geometry of the diagram itself.'
+            description: 'Sankey diagram flowing physical activity level (Low, Medium, High) into sleep quality buckets based on the dataset\'s 1-10 quality score (Poor 5-6, Average 7, Good 8-10). Flow width is the number of people on each path. The headline number, 54.9% of high-activity individuals reach good sleep versus 22.7% of low-activity, falls out of the geometry of the diagram itself.'
           },
           {
             phase: 'Chapter IV: the Dream Lab',
@@ -1268,12 +1268,12 @@ export const projects: Project[] = [
         {
           stat: '32.2pp',
           title: 'Movement creates a measurable path to better sleep',
-          description: 'High-activity individuals reach good sleep quality 54.9% of the time (39 of 71). For low-activity individuals the rate is 22.7% (34 of 150). The 32.2 percentage point gap is the largest cross-group effect in the dataset, larger than any single occupation contrast, and the Sankey makes it visible as flow width without needing a callout.'
+          description: 'High-activity individuals reach good sleep quality 54.9% of the time (39 of 71). For low-activity individuals the rate is 22.7% (34 of 150). The 32.2 percentage point gap is the headline contrast in the activity scene, and the Sankey makes it visible as flow width without needing a callout.'
         },
         {
           stat: '10+ bpm',
-          title: 'Heart rate plus BMI flag sleep disorder risk',
-          description: 'In the Dream Lab, people with no sleep disorder cluster in Normal BMI at the lowest resting heart rates (68-70 bpm). Insomnia spreads through Normal and Overweight at 3-5 bpm higher. Sleep apnea clusters in Obese at 10+ bpm above the none baseline. Disorder status is a stronger separator than BMI alone, which gives a practical screening read on a noisy chart.'
+          title: 'Resting heart rate rises with BMI category',
+          description: 'In the Dream Lab, people with no sleep disorder cluster in Normal BMI at the lowest resting heart rates (68-70 bpm). The highest resting heart rates sit in the Obese BMI group, 10+ bpm above that no-disorder baseline. This is a descriptive pattern in one small dataset, not a screening or diagnostic tool.'
         },
         {
           stat: '1 reframe',
@@ -1292,14 +1292,14 @@ export const projects: Project[] = [
         {
           title: 'Activity to sleep Sankey',
           description: 'Three activity bands (Low 150, Medium 153, High 71) flow into three sleep quality buckets (Poor 117, Average 77, Good 180). Flow width is the count on each path, so the relationship between movement and sleep is encoded directly in the geometry, not in a caption.',
-          insight: 'The 32.2pp gap between high-activity and low-activity routes to good sleep is the strongest cross-group effect in the dataset, and the Sankey lets the user see the size of that gap without reading a number.',
+          insight: 'The 32.2pp gap between high-activity and low-activity routes to good sleep is the headline contrast in the activity scene, and the Sankey lets the user see the size of that gap without reading a number.',
           image: '/projects/night-shift/activity-sleep-flow.png',
           imageFit: 'contain'
         },
         {
           title: 'The Dream Lab',
           description: 'BMI category on the x-axis, resting heart rate (64-86 bpm) on the y-axis, color encodes sleep disorder status (None, Insomnia, Sleep Apnea). Each dot pulses at the individual\'s resting heart rate. Filters and effect toggles (motion trails, density aura, constellations, deep sleep mode) let users test their own hypotheses.',
-          insight: 'Sleep apnea pulls toward Obese BMI plus high heart rate, 10+ bpm above the no-disorder baseline. The animation reframes the scatter plot from a statistical surface to a room full of bodies, which is the entire point.',
+          insight: 'The Obese BMI group sits at the highest heart rates, 10+ bpm above the no-disorder baseline. The animation reframes the scatter plot from a statistical surface to a room full of bodies, which is the entire point.',
           image: '/projects/night-shift/dream-lab.png',
           imageFit: 'contain'
         }
@@ -1330,8 +1330,8 @@ export const projects: Project[] = [
         title: 'Honest caveats',
         items: [
           'Sample size is 374 individuals from a single Kaggle dataset. Strong enough to argue framing and within-profession variance, not strong enough to make population-level health claims.',
-          'The data is observational and cross-sectional. Activity, BMI, heart rate, and sleep are correlated, not proven to cause each other; the piece is careful to use language like "creates pathways to" rather than "causes."',
-          'Sleep quality is bucketed (Poor 5-6h, Average 7h, Good 8-10h) for the Sankey diagram. Cleaner storytelling, lossier than the underlying continuous values.',
+          'The data is observational and cross-sectional. Activity, BMI, heart rate, and sleep are correlated, not proven to cause each other; the key insights use language like "creates a pathway to" rather than "causes."',
+          'Sleep quality is bucketed (Poor 5-6, Average 7, Good 8-10 on the dataset\'s 1-10 quality score) for the Sankey diagram. Cleaner storytelling, lossier than the underlying scores.',
           'Occupation labels in the dataset are coarse (Doctor, Nurse, Engineer, etc.), which masks specialty differences (ER nurse vs. clinic nurse) that almost certainly matter for sleep and stress.',
           'No longitudinal signal. The dataset is a snapshot, so day-to-day variance and seasonal effects are invisible.',
         ]
@@ -1345,7 +1345,7 @@ export const projects: Project[] = [
     category: 'Design',
     dates: 'Apr 2025 - Aug 2025',
     organization: 'The Marketing Group (TMG) — University of Toronto Scarborough',
-    description: 'A 90-day mobile-first redesign of the UTSC Marketing Group\'s website that cut bounce rate from 62% to 23%, grew sessions by 67%, and reached an average session duration of 3m 36s. Rebuilt the information architecture around five distinct user journeys — students, event attendees, applicants, sponsors, and social visitors — and applied a full suite of HCI principles (Nielsen heuristics, Shneiderman\'s golden rules, Fitts\'s Law, Hick\'s Law, Gestalt) across every page.',
+    description: 'A mobile-first redesign of the UTSC Marketing Group\'s website that, over a 90-day measurement window, cut bounce rate from 62% to 23%, grew sessions by 67%, and reached an average session duration of 3m 36s. Rebuilt the information architecture around five distinct user journeys — students, event attendees, applicants, sponsors, and social visitors — and applied a full suite of HCI principles (Nielsen heuristics, Shneiderman\'s golden rules, Fitts\'s Law, Hick\'s Law, Gestalt) across every page.',
     skills: ['UX Design', 'Information Architecture', 'Wix', 'Responsive Design', 'Google Analytics', 'Visual Hierarchy', 'HCI Principles', 'Conversion Optimization', 'UX Research', 'Design Systems'],
     tags: ['UX Design', 'Design Systems', 'Information Architecture'],
     image: '/projects/tmg-website/new-home-desktop-viewport.png',
@@ -1368,7 +1368,7 @@ export const projects: Project[] = [
         { value: '+45%', label: 'unique visitors' },
         { value: '3m 36s', label: 'avg session duration' },
       ],
-      pullQuote: 'The site was not redesigned to look newer. It was redesigned so that students, applicants, and sponsors could each find their path in under ten seconds.',
+      pullQuote: 'The site was not redesigned to look newer. It was redesigned so that students, applicants, and sponsors could each find their path quickly.',
       overview: {
         title: 'A product-minded UX overhaul of a student organization web presence',
         content: 'The Marketing Group (TMG) at the University of Toronto Scarborough had a Wix-hosted website that communicated brand identity but generated significant engagement friction: a 62% bounce rate, weak mobile usability, shallow navigation, and conversion paths that required users to search for next actions. The 90-day redesign treated the website as a product with measurable user journeys rather than a digital brochure with pages.\n\nThe outcome was a mobile-first, task-oriented experience structured around five distinct audience jobs: students discovering TMG, event attendees finding what to attend, applicants evaluating whether to join, sponsors evaluating partnership, and social visitors looking for the Linktree. Each page was rebuilt with a clear information hierarchy, specific CTAs, and a design system — brand pink, navigation navy, Raleway headings, Wix Madefor Text body, 1180px desktop content width — that creates consistency across every surface. Analytics confirmed the shift: sessions up 67%, unique visitors up 45%, bounce rate dropped to 23%, and average session duration of 3m 36s.',
@@ -1396,7 +1396,7 @@ export const projects: Project[] = [
         {
           decision: 'Separate sponsor and CBA applicant paths into dedicated audience experiences',
           framework: 'Audience segmentation + Nielsen\'s user control',
-          reasoning: 'The original site mixed sponsor information into general student content. A potential corporate sponsor landing on the homepage found student-facing event content before finding any partner-relevant information. The redesign created a dedicated Sponsors page with a partner-specific first impression, an explicit "Why Sponsor TMG" section (talent pipeline, brand exposure, industry insights, past partner credibility), and a sponsor contact path independent of the student membership flow. The same separation was applied to the CBA Applications route: instead of a centered information card, the new page uses community photography, a role-specific headline, and a "Why Become a CBA?" benefits section that turns a passive information page into a conversion surface. Both pages follow Nielsen\'s match-between-system-and-real-world: the copy, imagery, and CTAs match what each audience is actually evaluating.',
+          reasoning: 'The original site mixed sponsor information into general student content. A potential corporate sponsor landing on the homepage found student-facing event content before finding any partner-relevant information. The redesign created a dedicated Sponsors page with a partner-specific first impression, an explicit "Why Sponsor TMG" section (talent pipeline, brand exposure, industry insights) followed by an "Our Past Partners" logo section, and a sponsor contact path independent of the student membership flow. The same separation was applied to the CBA Applications route: instead of a centered information card, the new page uses community photography, a role-specific headline, and a "Why Become a CBA?" benefits section that turns a passive information page into a conversion surface. Both pages follow Nielsen\'s match-between-system-and-real-world: the copy, imagery, and CTAs match what each audience is actually evaluating.',
         },
         {
           decision: 'End every page section with closure and a clear next action',
@@ -1423,7 +1423,7 @@ export const projects: Project[] = [
             label: 'Navigation',
             before: '/projects/tmg-website/old-navigation-dropdown-viewport.png',
             after: '/projects/tmg-website/new-navigation-dropdown-viewport.png',
-            note: 'The old nav compressed brand logo, menu items, event links, and social icons into one compact strip. The new navigation groups destinations by user intent — About, Events, Sponsors, Join Our Team — with dropdown depth available for committed users, an active state, and the Linktree as a top-level destination. Hick\'s Law at the nav level: same number of decisions, organized so each one maps to a real job.',
+            note: 'The old nav compressed brand logo, menu items, event links, and social icons into one compact strip. The new navigation groups destinations by user intent — About, Events, Sponsors, Join Our Team — with dropdown depth available for committed users, an active state, and the Linktree as a top-level destination. Hick\'s Law at the nav level: the top level stays short, with depth tucked into dropdowns, and each item maps to a real job.',
           },
           {
             label: 'Events page',
@@ -1447,7 +1447,7 @@ export const projects: Project[] = [
             label: 'Sponsor path vs. archive',
             before: '/projects/tmg-website/old-archive-desktop-viewport.png',
             after: '/projects/tmg-website/new-sponsors-desktop-viewport.png',
-            note: 'The old site mixed sponsor information into general student content; what remains is an archive-style page. The new Sponsors page is a dedicated partner experience: audience-specific hero, a "Why Sponsor TMG" section with four explicit benefit categories (talent pipeline, brand exposure, industry insights, past-partner credibility), and a direct contact CTA. Audience segmentation as an IA decision, not just a visual one.',
+            note: 'The old site mixed sponsor information into general student content; what remains is an archive-style page. The new Sponsors page is a dedicated partner experience: audience-specific hero, a "Why Sponsor TMG" section with three explicit benefits (talent pipeline, brand exposure, industry insights) plus a past-partners logo section, and a direct contact CTA. Audience segmentation as an IA decision, not just a visual one.',
           },
           {
             label: 'Mobile homepage',
@@ -1463,57 +1463,57 @@ export const projects: Project[] = [
         palette: [
           {
             name: 'Brand pink',
-            hex: '#E83E8C',
+            hex: '#FA3C78',
             role: 'Primary brand color — hero headlines, primary CTA fills, accent borders, and tab indicators throughout the site.',
           },
           {
             name: 'Deep pink',
-            hex: '#C2185B',
+            hex: '#C72572',
             role: 'Hover and active state for pink elements. Provides sufficient contrast shift to signal interactivity without leaving the brand palette.',
           },
           {
             name: 'Navigation navy',
-            hex: '#1A2744',
+            hex: '#172231',
             role: 'Navigation background, footer background, and dark CTA fills. Navy grounds the high-energy pink brand color and creates clear figure-ground separation for white text.',
           },
           {
             name: 'Body ink',
-            hex: '#1F2937',
+            hex: '#20222A',
             role: 'Primary body text and section headings on light backgrounds. Near-black rather than true black for softer reading across long-form content sections.',
           },
           {
             name: 'Soft surface',
-            hex: '#FFF5F8',
-            role: 'Section backgrounds and card fills on pages with heavy content. Warm white with a faint pink cast keeps the brand palette present without saturating the page.',
+            hex: '#F7F8FB',
+            role: 'Section backgrounds and card fills on pages with heavy content. A cool near-white keeps sections distinct without competing with the pink.',
           },
           {
             name: 'Divider line',
-            hex: '#EDD5E0',
-            role: 'Section dividers, card borders, and horizontal rules. Muted pink-grey separates content zones without creating harsh visual breaks.',
+            hex: '#E7E9EF',
+            role: 'Section dividers, card borders, and horizontal rules. A light cool grey separates content zones without creating harsh visual breaks.',
           },
         ],
         type: [
           {
             name: 'Display heading',
-            spec: 'Raleway 700, 40–56px / 1.1, white or navy',
+            spec: 'Raleway Bold, 56–90px, white or navy',
             example: 'The Marketing Group',
             exampleClass: 'text-4xl font-bold text-ink',
           },
           {
             name: 'Section heading',
-            spec: 'Raleway 600, 28–36px / 1.2',
+            spec: 'Raleway Bold, 32–48px',
             example: 'Our Events',
             exampleClass: 'text-3xl font-semibold text-ink',
           },
           {
             name: 'CTA label',
-            spec: 'Raleway 600, 14–16px / 1.0, uppercase tracked',
-            example: 'JOIN THE HERD',
-            exampleClass: 'text-sm font-semibold tracking-widest text-ink uppercase',
+            spec: 'Raleway, title case',
+            example: 'Join The Herd',
+            exampleClass: 'text-sm font-semibold text-ink',
           },
           {
             name: 'Body copy',
-            spec: 'Wix Madefor Text 400, 16–18px / 1.6',
+            spec: 'Wix Madefor Text, 16–20px',
             example: 'Connect with like-minded students and build real marketing experience.',
             exampleClass: 'text-base text-ink-soft leading-relaxed',
           },
@@ -1531,7 +1531,7 @@ export const projects: Project[] = [
           },
           {
             name: 'Primary CTA',
-            purpose: 'White or pink pill button with navy label. Used at hero moments — "Join The Herd", "Follow Us", "Become a Sponsor". Standardized padding and radius across all pages.',
+            purpose: 'White or pink pill button with a contrasting label. Used at hero moments — "Join The Herd", "Follow Us", "Become a Sponsor". Standardized padding and radius across all pages.',
           },
           {
             name: 'Secondary CTA',
@@ -1560,7 +1560,7 @@ export const projects: Project[] = [
         {
           stat: '62%→23%',
           title: 'Bounce rate',
-          description: 'Bounce rate fell from 62% to approximately 23% — a 39-point reduction. The most significant driver was mobile layout: once the first screen gave students a clear read on TMG\'s value and a visible next action, the proportion of single-page exits dropped sharply. A 23% bounce rate is strong for a student organization site.',
+          description: 'Bounce rate fell from 62% to approximately 23% — a 39-point reduction. Mobile layout was the main hypothesis behind the redesign: once the first screen gave students a clear read on TMG\'s value and a visible next action, single-page exits dropped. The analytics do not isolate which change drove the drop.',
         },
         {
           stat: '3m 36s',
@@ -1570,7 +1570,7 @@ export const projects: Project[] = [
         {
           stat: '+45%',
           title: 'Unique visitors',
-          description: '45% more unique visitors in the post-redesign period. Some of this reflects word-of-mouth and social promotion, but the retention improvement (lower bounce, longer sessions) also means repeat visits contributed more unique-visitor counts than in the previous period. A site that users return to for event updates and application deadlines compounds its visitor count over a semester.',
+          description: '45% more unique visitors in the post-redesign period. The analytics do not show where the extra visitors came from; word-of-mouth, social promotion and event activity may all have contributed alongside the redesign.',
         },
       ],
       features: [
@@ -1597,7 +1597,7 @@ export const projects: Project[] = [
         },
         {
           title: 'Sponsors page',
-          description: 'The sponsors page is a dedicated audience experience for external partners, separate from student-facing content. It opens with a partner-specific hero, then presents an explicit "Why Sponsor TMG" section with four benefit categories: talent pipeline access, brand exposure at student events, industry insights, and past partner credibility (with partner logos). The page ends with a direct "Become a Sponsor" CTA. Sponsors arrive with a specific evaluation question — is this a credible, valuable partnership? — and the page answers that question before asking for contact.',
+          description: 'The sponsors page is a dedicated audience experience for external partners, separate from student-facing content. It opens with a partner-specific hero, then presents an explicit "Why Sponsor TMG" section with three benefits (talent pipeline access, brand exposure at student events, and industry insights), followed by an "Our Past Partners" logo grid for credibility. The page ends with a direct "Become a Sponsor" CTA. Sponsors arrive with a specific evaluation question — is this a credible, valuable partnership? — and the page answers that question before asking for contact.',
           insight: 'Mixing sponsor content into student-facing pages makes the site harder for both audiences. Corporate partners evaluating a student sponsorship need a professional, partner-specific experience — not a page designed to recruit members. Separation by audience is an information architecture decision that also serves brand credibility.',
           image: '/projects/tmg-website/new-sponsors-desktop-viewport.png',
           imageFit: 'contain',
@@ -1641,7 +1641,7 @@ export const projects: Project[] = [
         },
       ],
       impact: {
-        title: 'What a 90-day UX redesign actually moves — and what it does not',
+        title: 'What a UX redesign moves in 90 days — and what it does not',
         content: 'The analytics results are the most legible part of the outcome: 67% more sessions, 45% more unique visitors, bounce rate from 62% to 23%, average session duration of 3m 36s. Those numbers confirm that the redesign moved the metrics it was optimizing for — first-impression clarity, mobile usability, navigation depth, and conversion path strength.\n\nThe less visible outcome is the design system. A Wix site without documented design principles drifts: well-meaning maintainers add a section here, change a CTA color there, and six months later the visual language is inconsistent. The case study paired with the live site gives future contributors a documented rationale: here is why the navigation is structured this way, here is the color system, here is what "Hick\'s Law" meant for how we grouped the dropdown items. That documentation is the difference between a redesign that lasts and one that gets gradually overwritten.\n\nThe remaining UX opportunity is conversion measurement beyond sessions. Sessions and duration tell you that users are engaging more; they do not tell you how many joined TMG, applied to become a CBA, or reached out as a sponsor as a result. Wiring analytics events to every CTA click and tracking the event-page-to-registration path would close that loop and give the next redesign cycle a behavioral basis for prioritization rather than an analytics-and-judgment one.',
       },
       limitations: {
@@ -1691,7 +1691,7 @@ export const projects: Project[] = [
       },
       motivation: {
         title: 'Why the visual identity does the heavy lifting',
-        content: 'Most music-social products lead with photos and personality and use music data as a secondary filter. Matchify inverts the priority. The dark canvas removes the daytime-app feeling and signals the product belongs in the same context users actually listen in: commutes, concerts, late-night sessions. The Spotify-green accent does brand recognition work that words and logos would otherwise have to do. The profile-ring treatment turns every avatar into a Matchify object, which is what binds four otherwise unrelated surfaces (splash, home, Friends, Events) into one product visually.'
+        content: 'Most music-social products lead with photos and personality and use music data as a secondary filter. Matchify inverts the priority. The dark canvas removes the daytime-app feeling and signals the product belongs in the same context users actually listen in: commutes, concerts, late-night sessions. The Spotify-green accent does brand recognition work that words and logos would otherwise have to do. The profile-ring treatment turns every avatar into a Matchify object, which is what binds otherwise unrelated surfaces (home, Friends, Events) into one product visually.'
       },
       decisions: [
         {
@@ -1701,11 +1701,11 @@ export const projects: Project[] = [
         {
           decision: 'One green, used surgically',
           framework: 'Restrained brand palette',
-          reasoning: 'Matchify green is the most expensive color in the system because it does brand recognition work that text and logo would otherwise have to do. The discipline: green is reserved for the wordmark, the Matchify logomark inside the green badge, primary CTAs ("Continue With Spotify", "Next"), tab-active states, and the profile-ring identity marker. Everything else (section headers, body, secondary CTAs like "Request") is monochrome or a deliberately different blue. Using green everywhere would have made the product feel like a Spotify clone.'
+          reasoning: 'Matchify green is the most expensive color in the system because it does brand recognition work that text and logo would otherwise have to do. The discipline: green is reserved for the wordmark, the Matchify logomark inside the green badge, primary CTAs ("Continue With Spotify", "Next"), the active segmented-toggle state, and the profile-ring identity marker. Everything else (section headers, body, secondary CTAs like "Request") is monochrome or a deliberately different blue. Using green everywhere would have made the product feel like a Spotify clone.'
         },
         {
           decision: 'Profile rings as universal identity',
-          reasoning: 'Every Matchify avatar (Friends Listening cards, the nav profile chip, attending-friends overlays on event cards, the Create Profile upload state) is wrapped in a green ring. The ring is small visually but it does load-bearing work: it tells the user "this is a Matchify profile" before they read the name. Without the ring, profile photos lose their product association and start looking like generic stock images. The ring is the atom of the visual system.'
+          reasoning: 'Primary avatars (Friends Listening cards, the nav profile chip, and the Friends suggestion cards) are wrapped in a green ring. The ring is small visually but it does load-bearing work: it tells the user "this is a Matchify profile" before they read the name. Without the ring, profile photos lose their product association and start looking like generic stock images. The ring is the atom of the visual system.'
         },
         {
           decision: 'Match reason as content, not metadata',
@@ -1732,7 +1732,7 @@ export const projects: Project[] = [
           {
             name: 'Matchify green',
             hex: '#1DB954',
-            role: 'Brand mark, primary CTAs, tab-active state, profile ring. Used surgically so it never collapses into wallpaper.',
+            role: 'Brand mark, primary CTAs, the selected Friends toggle, profile ring. Used surgically so it never collapses into wallpaper.',
           },
           {
             name: 'Social blue',
@@ -1793,11 +1793,11 @@ export const projects: Project[] = [
           },
           {
             name: 'Primary CTA',
-            purpose: 'Full-width pill button in Matchify green with a white sans-700 label. Reserved for Continue With Spotify, Next, and other forward-motion actions.',
+            purpose: 'Full-width rounded button in Matchify green with a white sans-700 label. Reserved for Continue With Spotify, Next, and other forward-motion actions.',
           },
           {
             name: 'Secondary CTA',
-            purpose: 'Pill button in social blue with a white label. Used only for Request and similar social actions so they stay distinct from forward-motion primaries.',
+            purpose: 'Rounded button in social blue with a white label. Used only for Request and similar social actions so they stay distinct from forward-motion primaries.',
           },
           {
             name: 'Section header',
@@ -1805,7 +1805,7 @@ export const projects: Project[] = [
           },
           {
             name: 'Bottom nav (four-tab)',
-            purpose: 'Icon plus label per tab, green active state, never more than four entries. The structural commitment that keeps the IA readable at a glance.',
+            purpose: 'Icon plus label per tab, filled-pill active state, never more than four entries. The structural commitment that keeps the IA readable at a glance.',
           },
         ],
       },
@@ -1813,7 +1813,7 @@ export const projects: Project[] = [
         {
           stat: '1 canvas',
           title: 'Dark mode is the brand floor',
-          description: 'Designing for dark first changed every other call: album art reads warmer, type weight needs to step down, and accent colors carry twice the visual weight they would in light mode. The brand could not have read this confident in light mode without a much louder palette.'
+          description: 'Designing for dark first changed every other call: album art reads warmer, type weight needs to step down, and accent colors carry more visual weight than they would in light mode. The brand could not have read this confident in light mode without a much louder palette.'
         },
         {
           stat: '1 green',
@@ -1842,7 +1842,7 @@ export const projects: Project[] = [
         },
         {
           title: 'Create Profile: inherit the environment',
-          description: 'The same dark concert backdrop, the same green primary CTA, and a focused form: profile picture upload (a green plus sign inside the profile ring), First Name, Last Name, Email. Three fields plus an avatar. The Next button is full-width so the path forward is the most prominent element on screen.',
+          description: 'The same dark concert backdrop, the same green primary CTA, and a focused form: profile picture upload (a blue plus badge on the profile ring), First Name, Last Name, Email. Three fields plus an avatar. The Next button is full-width so the path forward is the most prominent element on screen.',
           insight: 'Onboarding inherits the brand environment instead of resetting to a generic form. The user moves from splash to profile creation without losing visual context, which keeps the brand promise from feeling like marketing-bait-and-switch.',
           image: '/projects/matchify/01-create-profile.png',
           imageFit: 'contain',
@@ -1874,8 +1874,8 @@ export const projects: Project[] = [
         },
         {
           title: 'The visual atom: profile ring + brand green',
-          description: 'Every avatar in the product is wrapped in a green ring. Friends Listening cards, Friends Activity feed, attending-friends overlays on event cards, the nav profile chip, the Create Profile upload state. The ring is the smallest piece of the visual system and it appears on every screen except the splash.',
-          insight: 'A two-pixel border does brand-recognition work that a logo on every screen could not. The ring is what makes a profile photo unmistakably a Matchify profile across four otherwise unrelated surfaces. Most design systems forget that the smallest reusable element is often the most expensive to get right.'
+          description: 'The primary avatars in the product are wrapped in a green ring: Friends Listening cards, the nav profile chip, and the Friends suggestion cards. The ring is the smallest piece of the visual system and it appears on the main tab screens.',
+          insight: 'A two-pixel border does brand-recognition work that a logo on every screen could not. The ring is what makes a profile photo unmistakably a Matchify profile across otherwise unrelated surfaces. Most design systems forget that the smallest reusable element is often the most expensive to get right.'
         }
       ],
       figmaEmbed: {
@@ -1904,7 +1904,7 @@ export const projects: Project[] = [
       ],
       impact: {
         title: 'What the project argues from a visual-design angle',
-        content: 'Matchify\'s thesis is structural: the visual identity is the product. The brand green, the dark canvas, the profile ring, and the match-reason copy together do work that a percentage match or a profile-only feed could not. Without those four moves, the app would be a worse version of a dozen products that already exist. With them, it has a position no other music-social product currently occupies.\n\nSelection for ARIA 2024 validated that the framing held up against research-led projects across disciplines. The interesting thing was that the visual choices were treated as the thesis, not the dressing. The dark canvas was a brand decision, not an aesthetic preference, and the match-reason copy was a content-design call, not a UX writing afterthought.\n\nFor my own design instincts, this is the project that taught me that the cheapest-looking element in a system (a two-pixel ring around an avatar) is often the most expensive to get right, and that brand discipline (one color, one canvas, one IA) is what produces a product that reads confident at a glance.'
+        content: 'Matchify\'s thesis is structural: the visual identity is the product. The brand green, the dark canvas, the profile ring, and the match-reason copy together do work that a percentage match or a profile-only feed could not. Without those four moves, the app would be a worse version of a dozen products that already exist. With them, it has a position no other music-social product currently occupies.\n\nSelection for ARIA 2024 gave the project a research-showcase audience. The visual choices were presented as the thesis, not the dressing. The dark canvas was a brand decision, not an aesthetic preference, and the match-reason copy was a content-design call, not a UX writing afterthought.\n\nFor my own design instincts, this is the project that taught me that the cheapest-looking element in a system (a two-pixel ring around an avatar) is often the most expensive to get right, and that brand discipline (one color, one canvas, one IA) is what produces a product that reads confident at a glance.'
       },
       limitations: {
         title: 'What this visual system is, and what it isn\'t',
@@ -2005,16 +2005,16 @@ export const projects: Project[] = [
       decisions: [
         {
           decision: 'UofT-only sign-up via verified university email',
-          reasoning: 'The requirements survey surfaced that 31% of students were concerned or very concerned about meeting strangers through the app and 65.5% were neutral on it. Trust was the bottleneck, not features. Restricting sign-up to verified UofT email addresses (with 2FA and profile-visibility controls layered on top) was the move that let the rest of the product exist. Without that constraint, every other interaction would have been read through a safety filter.'
+          reasoning: 'The requirements survey surfaced that 31% of students were concerned or very concerned about meeting strangers through the app and 65.5% were neutral on it. Trust was a clear concern. Restricting sign-up to verified UofT email addresses (with 2FA and profile-visibility controls layered on top) was the move that let the rest of the product exist. Without that constraint, every other interaction would have been read through a safety filter.'
         },
         {
           decision: 'Support both in-person and virtual sessions, not one mode',
           framework: 'Gehreke et al. (2024) on hybrid peer mentoring',
-          reasoning: 'A hybrid approach outperformed either mode alone in the cited literature. Forcing students into "virtual only" would have made the app feel like a Zoom alternative; forcing "in-person only" would have lost commuter students and post-pandemic remote learners. The booking flow treats meeting type as a first-class field so the product fits the way students actually study.'
+          reasoning: 'The cited literature suggests a hybrid approach may outperform either mode alone. Forcing students into "virtual only" would have made the app feel like a Zoom alternative; forcing "in-person only" would have lost commuter students and post-pandemic remote learners. The booking flow treats meeting type as a first-class field so the product fits the way students actually study.'
         },
         {
           decision: 'Multistep onboarding instead of a single long form',
-          reasoning: 'Survey results showed wide variance in study habits (31% evening, 28% afternoon, 21% morning, 14% night) and locations (library, common areas, classrooms, outdoors), plus a strong demand for accommodations (anxiety, dyslexia were the test-case examples). One long sign-up form would have buried that signal. Breaking onboarding into personal info, profile picture, credentials, academic info, and study habits made each step short enough that users finished it, and gave the matching layer the structured input it needed.'
+          reasoning: 'Survey results showed wide variance in study habits (31% evening, 28% afternoon, 21% morning, 14% night) and locations (library, common areas, classrooms, outdoors), plus a strong demand for accommodations (anxiety, dyslexia were the test-case examples). One long sign-up form would have buried that signal. Breaking onboarding into four steps (full name, account details, academic info, and study habits) made each step short enough that users finished it, and gave the matching layer the structured input it needed.'
         },
         {
           decision: 'Filter-rich matchmaking that the user controls',
@@ -2033,18 +2033,18 @@ export const projects: Project[] = [
       keyFindings: [
         {
           stat: '83%',
-          title: 'Demand is real and currently unmet',
-          description: 'Survey results showed 83% of respondents were not currently using any tutoring services and 75.9% believed a support network would help them academically. The opportunity is not "build a better tutoring service," it is "build the first one most of these students will actually use."'
+          title: 'Most respondents are not using tutoring today',
+          description: 'Survey results showed 83% of respondents were not currently using any tutoring services and 75.9% believed a support network would help them academically. The opportunity is less about a better tutoring service and more about a first option these students might actually try.'
         },
         {
           stat: '31%',
-          title: 'Trust is the bottleneck, not features',
+          title: 'Trust is a clear concern',
           description: 'A full 31% of survey respondents were concerned or very concerned about meeting strangers through the app, with another 65.5% neutral. UofT-email-only sign-up plus 2FA and profile-visibility controls were not optional add-ons; they were the price of admission for the rest of the product to function.'
         },
         {
           stat: '92.3%',
           title: 'The subject filter and booking flow held up',
-          description: 'In the usability study, 92.3% of 13 participants found subject filtering at least easy to use, and the same 92.3% confirmed the onboarding confirmation step provided all the information they expected. The core booking journey did not need restructuring; only the calendar interface and confirmation copy needed iteration.'
+          description: 'In the usability study, 92.3% of 13 participants found subject filtering at least easy to use, and the same 92.3% confirmed the onboarding confirmation step provided all the information they expected. The core booking journey held up in testing; the calendar interface and confirmation copy were the clearest candidates for iteration.'
         },
         {
           stat: '100%',
@@ -2064,10 +2064,10 @@ export const projects: Project[] = [
             results: [
               { metric: '92.3%', statement: 'found subject filtering at least easy to use.' },
               { metric: '15.4%', statement: 'found switching from default to custom subject sets unclear (flagged for iteration).' },
-              { metric: '70%', statement: 'rated tutor profile information at least clear (30% neutral, also flagged).' },
+              { metric: '69.2%', statement: 'rated tutor profile information at least clear (30.8% neutral, also flagged).' },
               { metric: '23.1%', statement: 'rated the calendar interface only neutral, the highest-priority polish target in this task.' },
               { metric: '84.6%', statement: 'confirmed the booking confirmation alert provided all expected information.' },
-              { metric: '84.7%', statement: 'were satisfied with the overall search-and-book journey.' },
+              { metric: '84.6%', statement: 'were satisfied with the overall search-and-book journey.' },
             ],
           },
           {
@@ -2091,11 +2091,11 @@ export const projects: Project[] = [
             results: [
               { metric: '84.6%', statement: 'found upcoming-meeting banners at least clear (15.4% neutral).' },
               { metric: '92.3%', statement: 'found the Cancel Meeting button easy to locate.' },
-              { metric: '84.7%', statement: 'rated the cancel-meeting alert clear (7.7% unclear, flagged).' },
+              { metric: '84.6%', statement: 'rated the cancel-meeting alert clear (7.7% unclear, flagged).' },
               { metric: '92.3%', statement: 'rated in-meeting chat box clarity at least clear.' },
               { metric: '76.9%', statement: 'found chat file sharing easy or very easy (23.1% neutral).' },
               { metric: '100%', statement: 'rated the star-rating layout at least clear, the only feature that needed no iteration.' },
-              { metric: '84.7%', statement: 'found going back to view the conversation easy or very easy.' },
+              { metric: '84.6%', statement: 'found going back to view the conversation easy or very easy.' },
             ],
           },
         ],
@@ -2127,7 +2127,7 @@ export const projects: Project[] = [
         },
         {
           title: 'Home dashboard with upcoming meeting banners',
-          description: 'Home tab surfaces Recent tutors at the top and Upcoming meetings below, each banner showing the session title, day or date, time, and a tap target. The current day\'s session is highlighted in the brand green so the next thing to do is impossible to miss.',
+          description: 'Home tab surfaces Recent tutors at the top and Upcoming meetings below, each banner showing the session title, day or date, time, and a tap target. The current day\'s session is highlighted in red so the next thing to do is impossible to miss.',
           insight: 'H1 (visibility of system status) in action. The banner answers "what is next" without the user asking, which scored well in usability testing: 84.6% of participants found the banners clear or very clear.',
           image: '/projects/tutorly/04-meeting-banners.png',
           imageFit: 'contain',
@@ -2135,8 +2135,8 @@ export const projects: Project[] = [
         },
         {
           title: 'In-meeting surface with chat, file sharing, and camera',
-          description: 'Virtual meeting view with mute, camera toggle, and leave controls over a video feed plus picture-in-picture self-view. The chat thread sits directly below the call, with inline file attachments (e.g., a TA sharing `psych_midterm.pdf`) and a green-tinted self message bubble.',
-          insight: 'Chat box file sharing scored 76.9% positive (easy or very easy), with 23.1% neutral. The function works; the affordance for "send a file" is the iteration target. The post-session review path scored 100% clear in testing.',
+          description: 'Virtual meeting view with mute, camera toggle, and leave controls over a video feed plus picture-in-picture self-view. The chat thread sits directly below the call, with inline file attachments (e.g., a peer sharing `psych_midterm.pdf`) and a green-tinted self message bubble.',
+          insight: 'Chat box file sharing scored 76.9% positive (easy or very easy), with 23.1% neutral. The function works; the affordance for "send a file" is the iteration target. The star-rating layout in the post-session review scored 100% clear in testing.',
           image: '/projects/tutorly/05-in-meeting-chat.png',
           imageFit: 'contain',
           phoneFrame: true
@@ -2144,7 +2144,7 @@ export const projects: Project[] = [
         {
           title: 'Reviews + finished-meeting history',
           description: 'After a session ends, users tag tutor qualities (Knowledgeable, Great Teacher, Friendly, Engaging) and write a longer comment. The modal sits on top of the dimmed Meeting Finished screen so the review feels lightweight, not bureaucratic, and the conversation thread remains reachable.',
-          insight: 'This was the cleanest-testing surface in the study. Star rating layout was 100% clear, comment placeholders were 76.9% clear or very clear, and going back to view the conversation was 84.7% easy or very easy.',
+          insight: 'This was the cleanest-testing surface in the study. Star rating layout was 100% clear, and going back to view the conversation was 84.6% easy or very easy.',
           image: '/projects/tutorly/06-review.png',
           imageFit: 'contain',
           phoneFrame: true
@@ -2176,7 +2176,7 @@ export const projects: Project[] = [
       ],
       impact: {
         title: 'What the project actually argues',
-        content: 'Tutorly\'s thesis is that peer tutoring is one of the rare interventions that improves both academic and social outcomes for university students at once, and that the design problem is making it easy to start, safe to participate in, and structured enough that students stay. The research process backed the thesis with four cited studies (Bowman-Perrott 2013, Collier 2021, Gehreke 2024, Moghimi 2023), a 30-response survey, two interviews, and a 13-participant usability study evaluated against Nielsen\'s 10 heuristics.\n\nFor my own product instincts, the project drove home that user research is what changes a design, not stylistic iteration. The UofT-only sign-up, the multistep onboarding structure, the calendar-interface refinement priority, and the emphasis on user-controlled matching all came directly out of the survey and usability data. The Nielsen H1/H3/H6 framing was what made the evaluation scoreable rather than vibes-based.\n\nIt was also a six-person team project for CSCC10 (HCI), and that collaboration shaped the work as much as the research did. Building a design system, splitting feature areas, and reaching consensus on what counted as "done" inside a 16-week course was its own product skill.'
+        content: 'Tutorly\'s thesis is that peer tutoring is one of the rare interventions that improves both academic and social outcomes for university students at once, and that the design problem is making it easy to start, safe to participate in, and structured enough that students stay. The research process backed the thesis with five cited studies (Bowman-Perrott 2013, Collier 2021, Gehreke 2024, Brown 2024, Moghimi 2023), a 30-response survey, two interviews, and a 13-participant usability study evaluated against Nielsen\'s 10 heuristics.\n\nFor my own product instincts, the project drove home that user research is what changes a design, not stylistic iteration. The UofT-only sign-up, the multistep onboarding structure, the calendar-interface refinement priority, and the emphasis on user-controlled matching all came directly out of the survey and usability data. The Nielsen H1/H3/H6 framing was what made the evaluation scoreable rather than vibes-based.\n\nIt was also a six-person team project for CSCC10 (HCI), and that collaboration shaped the work as much as the research did. Building a design system, splitting feature areas, and reaching consensus on what counted as "done" inside a 16-week course was its own product skill.'
       },
       limitations: {
         title: 'Honest caveats (from the team\'s own analysis)',

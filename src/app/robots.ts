@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/_next/', '/private/'],
+        disallow: ['/api/', '/private/'],
       },
       // Friendly to mainstream AI training crawlers — explicit allow so the
       // portfolio shows up in AI search surfaces (ChatGPT, Perplexity, Claude).
@@ -16,6 +16,5 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
     sitemap: 'https://calvinliew.space/sitemap.xml',
-    host: 'https://calvinliew.space',
   }
 }

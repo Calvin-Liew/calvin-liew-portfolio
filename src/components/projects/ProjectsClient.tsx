@@ -46,9 +46,11 @@ export default function ProjectsClient({ projects }: ProjectsClientProps) {
     [filteredProjects, filters.sortBy]
   );
 
-  // Read from URL on mount
+  // Read from URL on mount. Done in an effect, not the initial state, so the static HTML and
+  // the first client render match.
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time sync from the URL
     setFilters({
       categories: params.get('categories')?.split(',').filter(Boolean) || [],
       skills: params.get('skills')?.split(',').filter(Boolean) || [],
@@ -68,7 +70,7 @@ export default function ProjectsClient({ projects }: ProjectsClientProps) {
     const newUrl = queryString
       ? `?${queryString}`
       : window.location.pathname;
-    window.history.replaceState({}, '', newUrl);
+    window.history.replaceState(window.history.state, '', newUrl);
   }, [filters]);
 
   const toggleCategory = (category: string) => {
@@ -171,7 +173,7 @@ export default function ProjectsClient({ projects }: ProjectsClientProps) {
 
       {/* Results count */}
       <div className="flex items-center justify-between">
-        <p className="text-sm text-ink-soft">
+        <p className="text-sm text-ink-soft" role="status" aria-live="polite">
           Showing{' '}
           <span className="font-semibold text-ink">
             {sortedProjects.length}

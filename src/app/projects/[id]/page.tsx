@@ -1,3 +1,5 @@
+import { existsSync } from 'node:fs';
+import path from 'node:path';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -1384,7 +1386,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           )}
 
           {/* Case study viewer */}
-          {project.caseStudy && (
+          {project.caseStudy &&
+            existsSync(path.join(process.cwd(), 'public', 'case-studies', project.caseStudy.fileName)) && (
             <>
               <ChapterDivider />
               <CaseStudyViewer

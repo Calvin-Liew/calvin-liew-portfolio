@@ -27,7 +27,7 @@ const kalam = Kalam({
   variable: "--font-kalam",
   subsets: ["latin"],
   display: "swap",
-  weight: ['300', '400', '700'],
+  weight: ['400', '700'],
 });
 
 export const metadata: Metadata = {
@@ -91,7 +91,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <head>
+        {/* Marks JS as available before first paint, so scroll-reveal hiding never applies without it. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body
         className={`${inter.variable} ${fraunces.variable} ${kalam.variable} antialiased`}
       >

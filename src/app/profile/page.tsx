@@ -150,6 +150,7 @@ export default function ProfilePage() {
                 <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                   <Button
                     href="/resume/resume.pdf"
+                    download="Calvin-Liew-Resume.pdf"
                     variant="primary"
                     size="md"
                   >

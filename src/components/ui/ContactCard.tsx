@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
 import Link from 'next/link';
 import Button from './Button';
 import SocialLinks from './SocialLinks';
@@ -8,17 +8,22 @@ import SocialLinks from './SocialLinks';
 // Returns a casual handwritten greeting based on the user's local time.
 // Returns null on initial render (SSR) so the greeting only appears after
 // hydration — avoids any time-mismatch flash.
+function greetingFor(h: number): string {
+  if (h >= 5 && h < 12) return 'good morning';
+  if (h >= 12 && h < 17) return 'good afternoon';
+  if (h >= 17 && h < 21) return 'good evening';
+  if (h >= 21 || h < 2) return 'still up?';
+  return 'nighthawk';
+}
+
+const noSubscribe = () => () => {};
+
 function useTimeGreeting(): string | null {
-  const [greeting, setGreeting] = useState<string | null>(null);
-  useEffect(() => {
-    const h = new Date().getHours();
-    if (h >= 5 && h < 12) setGreeting('good morning');
-    else if (h >= 12 && h < 17) setGreeting('good afternoon');
-    else if (h >= 17 && h < 21) setGreeting('good evening');
-    else if (h >= 21 || h < 2) setGreeting('still up?');
-    else setGreeting('nighthawk');
-  }, []);
-  return greeting;
+  return useSyncExternalStore(
+    noSubscribe,
+    () => greetingFor(new Date().getHours()),
+    () => null,
+  );
 }
 
 /**
