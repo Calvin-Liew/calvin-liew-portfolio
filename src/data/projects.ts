@@ -57,7 +57,7 @@ export const projects: Project[] = [
   },
   {
     id: 'self-taught-telecom-agent',
-    title: 'Self-Taught Support Agent: Practice-Learned Memory for Telecom Troubleshooting',
+    title: 'Self-Taught Support Agent: Memory from Practice',
     category: 'AI & Data',
     dates: 'Oct 2026',
     updatedAt: '2026-10-19',
