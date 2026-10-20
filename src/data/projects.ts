@@ -56,6 +56,120 @@ export const projects: Project[] = [
     },
   },
   {
+    id: 'self-taught-telecom-agent',
+    title: 'Self-Taught Support Agent: Practice-Learned Memory for Telecom Troubleshooting',
+    category: 'AI & Data',
+    dates: 'Oct 2026',
+    updatedAt: '2026-10-19',
+    organization: 'Independent Research Project',
+    description: 'A research pilot extending DAEDALUS, a 2026 method in which an AI agent builds its own memory from practice problems it invents, to telecom support on Sierra\'s τ²-bench, a case the paper left unsupported. Two heuristics the agent wrote for itself raised its success on 90 unseen problems from 69.6% to 97.8%, and beat giving it the manual\'s own text.',
+    skills: ['AI Agent Development', 'Evaluation Design', 'LLM Orchestration', 'Experiment Design', 'Statistics', 'Python', 'Claude API', 'Prompt Engineering'],
+    tags: ['AI Agents', 'LLM', 'Evaluation', 'Research'],
+    links: [
+      {
+        type: 'github',
+        url: 'https://github.com/Calvin-Liew/telecom-memory-pilot',
+        label: 'Code, results and write-up',
+      },
+    ],
+    featured: true,
+    extendedContent: {
+      stats: [
+        { value: '69.6% → 97.8%', label: 'problems fixed on 90 unseen test tasks' },
+        { value: '0.40 → 0.94', label: 'pass^3: fixed on all three tries' },
+        { value: '5 of 5', label: 'pre-registered tests passed after Holm correction' },
+        { value: '$76.71', label: 'total cost, including 2,000+ test conversations' },
+      ],
+      pullQuote: 'Generating improvements is the easy part. Knowing they work is most of the work.',
+      overview: {
+        title: 'Can an agent teach itself to be a better support rep?',
+        content: 'DAEDALUS (arXiv:2610.08048) builds an agent\'s procedural memory from tasks the agent invents for itself, graded by an AI judge, with no training data or answer key. Its authors left telecom unsupported: in τ²-bench\'s telecom domain the customer controls half the tools, so the agent has to talk them through phone-side fixes. I adapted the method to that setting and tested it with a small model, Claude Haiku 5.5, against a sealed set of 90 fault combinations it never practised on.',
+      },
+      motivation: {
+        title: 'Test the gap the paper named, with measurement I could trust',
+        content: 'Most agent improvement depends on human-written guidelines or training tasks with an answer key. I wanted to know whether self-generated practice works where it is hardest: dual control, where the agent can fix the account but not the phone. Before spending on the learning method, I built the measuring equipment: sealed test splits, a leak barrier, a hard spending cap, a policy checker scored separately from success, and $0 scripted stand-ins so the whole pipeline could be tested offline.',
+      },
+      decisions: [
+        {
+          decision: 'Check for headroom before building more',
+          reasoning: 'A $0.18 baseline showed the small model already fixed 60 of 60 dev problems when it controlled every tool, so memory had nothing to improve there. I switched to dual control, where the same model fixed only 76%, and its failures were procedural: reaching for tools only the customer has, or escalating before guiding the customer through phone-side checks.',
+        },
+        {
+          decision: 'Make the explorer solve its own task with a simulated customer',
+          framework: 'DAEDALUS acceptance rule',
+          reasoning: 'The paper\'s blocker was that the explorer would need to play the customer. Here the explorer writes the customer\'s scenario too, and proves feasibility by solving its own task with τ²-bench\'s user simulator. A heuristic is kept only after the agent fails and then succeeds three times in a row with it. A trusted guard rejects any practice setup whose starting state matches a sealed test task.',
+        },
+        {
+          decision: 'Audit the AI judge against ground truth',
+          reasoning: 'In the first practice session the judge failed correct fixes, because the explorer wrote success conditions as required steps. Scoring every practice attempt silently with the official grader exposed this. After switching to outcome-only conditions and asking for evidence before the verdict, the judge agreed with the grader 15 of 16 times (κ = 0.77, in the paper\'s 0.73–0.81 range).',
+        },
+        {
+          decision: 'Beat a boring control, not just no memory',
+          reasoning: 'Learned notes might only remind the agent of rules already in its policy. So the test included an arm that pasted the troubleshooting manual\'s own mobile-data section, word for word, under the same token budget. The heuristics beat it by 22 points.',
+        },
+        {
+          decision: 'Pre-register the robustness checks',
+          framework: 'Holm correction for multiple comparisons',
+          reasoning: 'Before running the follow-up experiments I committed the hypotheses, measures and decision rules. That covered one tool call per turn, a different customer simulator, and transfer to faults never practised. All five confirmatory tests survived a Holm correction (p < 0.0001).',
+        },
+      ],
+      keyFindings: [
+        {
+          stat: '+28 pts',
+          title: 'Large gain on unseen problems',
+          description: 'On 90 sealed test tasks × 3 seeds, the frozen two-heuristic memory fixed 97.8% of conversations against 69.6% without memory: better on 54 tasks, worse on 2.',
+        },
+        {
+          stat: '96.3%',
+          title: 'Fixed and compliant',
+          description: 'Heuristics nearly eliminated needless escalations but increased parallel tool calls. With the API enforcing one tool call per turn, 96.3% of conversations were both fixed and policy-compliant, against 76.7% without memory.',
+        },
+        {
+          stat: '42 / 0',
+          title: 'Holds with a different customer',
+          description: 'With Opus 5.5 playing the customer instead of Sonnet 5.5, the gain was the same size (97.8% vs 69.4%), and no task got worse.',
+        },
+        {
+          stat: '99% vs 82%',
+          title: 'Transfers to faults never practised',
+          description: 'Practice never injected a data-limit fault or a 2G network mode, yet heuristics lifted success on those tasks too (data limit 99% vs 82%; 2G mode 96% vs 69%).',
+        },
+      ],
+      tools: [
+        {
+          name: 'τ²-bench (Sierra)',
+          purpose: 'Dual-control telecom simulator, user simulator and end-state grader, pinned and unmodified.',
+        },
+        {
+          name: 'Claude API',
+          purpose: 'Haiku 5.5 as the agent under test; Sonnet 5.5 and Opus 5.5 as simulated customers; Opus 5.5 for the explorer, judge, extractor and consolidator. Prompt caching on the policy and tool prefix.',
+        },
+        {
+          name: 'Python harness',
+          purpose: 'Per-request worst-case cost reservation with a hard cap, a leak barrier, a deterministic policy checker, frozen hash-checked memory, a parallel resumable runner, and 104 offline tests.',
+        },
+        {
+          name: 'Statistics',
+          purpose: 'Paired per-task differences, exact and Monte-Carlo sign-flip tests, bootstrap confidence intervals, pass^k, and a Holm correction across pre-registered tests.',
+        },
+      ],
+      impact: {
+        title: 'What generalises beyond telecom',
+        content: 'The learning method was cheap: practice, judging and consolidation cost $3.52. Most of the work, and most of the value, was measurement. That meant a checker I could trust, a sealed test set, an audited judge, and a control arm that tests the boring explanation. The same framework applies to RAG assistants, coding agents and workflow automation. For each new domain you rebuild a checker and a sandbox, and the rest carries over.',
+      },
+      limitations: {
+        title: 'Honest caveats',
+        items: [
+          'A pilot: one agent model (Claude Haiku 5.5) and one domain (mobile-data faults).',
+          'Both simulated customers are Claude models; a non-Claude simulator was not tested.',
+          'The memory bank came from just two practice sessions; a larger bank was not tested.',
+          'The judge audit is small (16 attempts).',
+          'Six of 270 conversations still failed with heuristics, mostly one gap: not realising the customer can switch a 2G network mode.',
+        ],
+      },
+    },
+  },
+  {
     id: 'saas-scout',
     title: 'SaaSScout: A Grounded RAG Copilot for SaaS Evaluation',
     category: 'AI & Data',
