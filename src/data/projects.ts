@@ -83,7 +83,7 @@ export const projects: Project[] = [
       pullQuote: 'Generating improvements is the easy part. Knowing they work is most of the work.',
       overview: {
         title: 'Can an agent teach itself to be a better support rep?',
-        content: 'DAEDALUS (arXiv:2610.08048) builds an agent\'s procedural memory from tasks the agent invents for itself, graded by an AI judge, with no training data or answer key. Its authors left telecom unsupported: in τ²-bench\'s telecom domain the customer controls half the tools, so the agent has to talk them through phone-side fixes. I adapted the method to that setting and tested it with a small model, Claude Haiku 5.5, against a sealed set of 90 fault combinations it never practised on.',
+        content: 'DAEDALUS (arXiv:2610.08048) builds an agent\'s procedural memory from tasks the agent invents for itself, graded by an AI judge, with no training data or answer key. Its authors left telecom unsupported: in τ²-bench\'s telecom domain the customer controls half the tools, so the agent has to talk them through phone-side fixes. I adapted the method to that setting and tested it with a small model, Claude Haiku 5.5, against a sealed set of 90 fault combinations it never practiced on.',
       },
       motivation: {
         title: 'Test the gap the paper named, with measurement I could trust',
@@ -110,7 +110,7 @@ export const projects: Project[] = [
         {
           decision: 'Pre-register the robustness checks',
           framework: 'Holm correction for multiple comparisons',
-          reasoning: 'Before running the follow-up experiments I committed the hypotheses, measures and decision rules. That covered one tool call per turn, a different customer simulator, and transfer to faults never practised. All five confirmatory tests survived a Holm correction (p < 0.0001).',
+          reasoning: 'Before running the follow-up experiments I committed the hypotheses, measures and decision rules. That covered one tool call per turn, a different customer simulator, and transfer to faults never practiced. All five confirmatory tests survived a Holm correction (p < 0.0001).',
         },
       ],
       keyFindings: [
@@ -122,16 +122,16 @@ export const projects: Project[] = [
         {
           stat: '96.3%',
           title: 'Fixed and compliant',
-          description: 'Heuristics nearly eliminated needless escalations but increased parallel tool calls. With the API enforcing one tool call per turn, 96.3% of conversations were both fixed and policy-compliant, against 76.7% without memory.',
+          description: 'Heuristics nearly eliminated needless escalations but increased parallel tool calls. With the API enforcing one tool call per turn, 96.3% of conversations were both fixed and policy-compliant, against 76.7% without memory under the same rule.',
         },
         {
           stat: '42 / 0',
           title: 'Holds with a different customer',
-          description: 'With Opus 5.5 playing the customer instead of Sonnet 5.5, the gain was the same size (97.8% vs 69.4%), and no task got worse.',
+          description: 'With Opus 5.5 playing the customer instead of Sonnet 5.5, the gain was the same size (97.8% vs 69.4%): 42 tasks got better and none got worse.',
         },
         {
           stat: '99% vs 82%',
-          title: 'Transfers to faults never practised',
+          title: 'Transfers to faults never practiced',
           description: 'Practice never injected a data-limit fault or a 2G network mode, yet heuristics lifted success on those tasks too (data limit 99% vs 82%; 2G mode 96% vs 69%).',
         },
       ],
@@ -154,7 +154,7 @@ export const projects: Project[] = [
         },
       ],
       impact: {
-        title: 'What generalises beyond telecom',
+        title: 'What generalizes beyond telecom',
         content: 'The learning method was cheap: practice, judging and consolidation cost $3.52. Most of the work, and most of the value, was measurement. That meant a checker I could trust, a sealed test set, an audited judge, and a control arm that tests the boring explanation. The same framework applies to RAG assistants, coding agents and workflow automation. For each new domain you rebuild a checker and a sandbox, and the rest carries over.',
       },
       limitations: {
@@ -164,7 +164,7 @@ export const projects: Project[] = [
           'Both simulated customers are Claude models; a non-Claude simulator was not tested.',
           'The memory bank came from just two practice sessions; a larger bank was not tested.',
           'The judge audit is small (16 attempts).',
-          'Six of 270 conversations still failed with heuristics, mostly one gap: not realising the customer can switch a 2G network mode.',
+          'Six of 270 conversations still failed with heuristics, mostly one gap: not realizing the customer can switch a 2G network mode.',
         ],
       },
       references: {

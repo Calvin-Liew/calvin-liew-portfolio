@@ -14,7 +14,7 @@ export default function QuickContact() {
         <div
           ref={ref as React.RefObject<HTMLDivElement>}
           className={`transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            isVisible ? '' : 'reveal-hidden'
           }`}
         >
           <ContactCard />

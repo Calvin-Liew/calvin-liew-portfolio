@@ -32,7 +32,7 @@ export default function FeaturedProjects() {
         <div
           ref={ref as React.RefObject<HTMLDivElement>}
           className={`mb-14 transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            isVisible ? '' : 'reveal-hidden'
           }`}
         >
           <h2 className="font-display italic text-4xl sm:text-5xl text-ink mb-3 inline-flex items-baseline gap-3 flex-wrap">
@@ -57,6 +57,7 @@ export default function FeaturedProjects() {
             <Link key={project.id} href={`/projects/${project.id}`} className="block">
               <Card
                 corner={corners[i % corners.length]}
+                tone="paper"
                 className="h-full flex flex-col"
               >
                 {/* Date in Kalam */}

@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 /**
  * InkPenCursor — replaces the default cursor with a small fountain-pen tip
@@ -12,17 +13,11 @@ import { useEffect, useRef, useState } from 'react';
  *   - the user prefers reduced motion
  */
 export default function InkPenCursor() {
-  const [enabled, setEnabled] = useState(false);
+  const fineCursor = useMediaQuery('(hover: hover) and (pointer: fine)');
+  const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
+  const enabled = fineCursor && !reducedMotion;
   const penRef = useRef<HTMLDivElement>(null);
   const hoveringRef = useRef(false);
-
-  // Decide whether to enable on mount
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const fineCursor = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    setEnabled(fineCursor && !reducedMotion);
-  }, []);
 
   // Toggle a body class so global CSS hides the native cursor
   useEffect(() => {

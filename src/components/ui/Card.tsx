@@ -9,6 +9,8 @@ interface CardProps {
   tilt?: number;
   /** Optional corner doodle (top-right) */
   corner?: 'lightbulb' | 'coffee' | 'magnifier' | 'pencil' | 'paperplane' | 'sparkle';
+  /** 'paper' lifts the card off a surface-coloured section */
+  tone?: 'deeper' | 'paper';
 }
 
 export default function Card({
@@ -17,7 +19,10 @@ export default function Card({
   hover = true,
   tilt,
   corner,
+  tone = 'deeper',
 }: CardProps) {
+  const toneClasses =
+    tone === 'paper' ? 'bg-paper border-border-strong' : 'bg-paper-deeper border-border';
   const hoverClasses = hover
     ? 'hover:-translate-y-1 hover:shadow-lg hover:border-ink/30'
     : '';
@@ -27,8 +32,7 @@ export default function Card({
       style={tilt ? { transform: `rotate(${tilt}deg)` } : undefined}
       className={`
         group relative
-        bg-paper-deeper
-        border border-border
+        border ${toneClasses}
         rounded-xl p-6
         shadow-paper
         overflow-hidden

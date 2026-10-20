@@ -33,7 +33,7 @@ export default function SkillsOverview() {
         <div
           ref={ref as React.RefObject<HTMLDivElement>}
           className={`mb-14 transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            isVisible ? '' : 'reveal-hidden'
           }`}
         >
           <h2 className="font-display italic text-4xl sm:text-5xl text-ink mb-3 inline-flex items-baseline gap-3 flex-wrap">
@@ -56,7 +56,7 @@ export default function SkillsOverview() {
 
         <div
           className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 transition-all duration-1000 delay-200 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            isVisible ? '' : 'reveal-hidden'
           }`}
         >
           {aboutData.skills.map((skillGroup) => {

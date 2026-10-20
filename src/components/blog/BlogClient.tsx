@@ -71,7 +71,7 @@ export default function BlogClient({ posts }: BlogClientProps) {
                   aria-pressed={isSelected}
                 >
                   {tag}
-                  <span className={`text-xs ${isSelected ? 'text-terracotta' : 'text-muted'}`}>
+                  <span className={`text-xs ${isSelected ? 'text-terracotta-deep' : 'text-muted'}`}>
                     {count}
                   </span>
                 </button>
@@ -89,7 +89,7 @@ export default function BlogClient({ posts }: BlogClientProps) {
           </div>
 
           {selectedTags.length > 0 && (
-            <p className="text-sm text-ink-soft mt-3">
+            <p className="text-sm text-ink-soft mt-3" role="status" aria-live="polite">
               {filteredPosts.length} post{filteredPosts.length !== 1 ? 's' : ''} matching{' '}
               <span className="font-medium text-ink">
                 {selectedTags.join(', ')}

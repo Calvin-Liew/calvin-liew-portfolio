@@ -6,6 +6,18 @@ html {
   scroll-padding-top: 6rem;
 }
 
+/* Scroll-reveal: only hide content when JS is running to reveal it again. */
+html.js .reveal-hidden {
+  opacity: 0;
+  transform: translateY(2.5rem);
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal-hidden {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 :root {
   /* Paper & Ink — primary palette */
   --paper: #f8f4ee;
