@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Container from '../layout/Container';
 import Button from '../ui/Button';
+import { HandUnderline } from '../ui/HandDrawn';
 import HeroAsk from '../ama/HeroAsk';
 
 /** Thin progress line at the bottom of the hero. Kept separate so scrolling only re-renders this. */
@@ -60,8 +61,10 @@ export default function Hero() {
             <span className="inline-block -rotate-[1.5deg] font-hand text-7xl font-bold text-ink sm:text-8xl lg:text-[9rem]">
               Calvin
             </span>
-            <span className="inline-block font-display text-7xl italic text-ink sm:text-8xl lg:text-[8.5rem]">
+            {/* Underline anchored to this span so it tracks "Liew." at every breakpoint */}
+            <span className="relative inline-block font-display text-7xl italic text-ink sm:text-8xl lg:text-[8.5rem]">
               Liew<span className="not-italic text-terracotta">.</span>
+              <HandUnderline className="absolute -bottom-1 left-0 h-2.5 w-full sm:-bottom-2 sm:h-3" animate />
             </span>
           </h1>
 
