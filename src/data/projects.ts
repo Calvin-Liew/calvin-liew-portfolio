@@ -177,6 +177,57 @@ export const projects: Project[] = [
     }
   },
   {
+    "id": "ai-workflow-developer-tooling",
+    "title": "AI Workflow Developer Tooling",
+    "category": "AI & Data",
+    "dates": "2026",
+    "updatedAt": "2026-10-20",
+    "organization": "Sanofi",
+    "description": "Reusable discovery and inspection tools, plus workflow guidance, contributed to a shared platform for developing AI applications.",
+    "skills": [
+      "Developer Experience",
+      "Workflow Design",
+      "AI Tooling",
+      "Technical Documentation",
+      "Cross-Functional Collaboration"
+    ],
+    "tags": [
+      "Developer Tools",
+      "AI Workflows"
+    ],
+    "featured": false,
+    "extendedContent": {
+      "overview": {
+        "title": "My contribution",
+        "content": "I contributed reusable tools for finding and inspecting information, along with workflow guidance that helped connect development tasks to the wider platform. My work built on a shared foundation created by the team."
+      },
+      "motivation": {
+        "title": "The problem",
+        "content": "Building AI workflows requires developers to understand the information and capabilities available to them. Repeated discovery work can distract from the business problem the workflow is meant to solve."
+      },
+      "decisions": [
+        {
+          "decision": "Make recurring discovery work reusable",
+          "reasoning": "I turned recurring discovery tasks into reusable tools, making relevant information easier to find and inspect before building."
+        },
+        {
+          "decision": "Build on the team’s existing guidance",
+          "reasoning": "I adapted existing team guidance for additional development workflows, connecting my contributions to the shared foundation rather than treating them as a separate platform."
+        }
+      ],
+      "impact": {
+        "title": "Outcome",
+        "content": "The contribution added practical discovery and inspection capabilities to the team’s development toolkit. It broadened my work from delivering individual AI applications to supporting the tools used to build them."
+      },
+      "limitations": {
+        "title": "Scope",
+        "items": [
+          "This case study covers my supporting contributions to a shared team platform."
+        ]
+      }
+    }
+  },
+  {
     id: 'self-taught-telecom-agent',
     title: 'Self-Taught Support Agent: Memory from Practice',
     category: 'AI & Data',
