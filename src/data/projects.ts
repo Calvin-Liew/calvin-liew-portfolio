@@ -5,7 +5,7 @@ export const projects: Project[] = [
     id: 'suprm-intelligence',
     title: 'SupRM Intelligence: AI for Supplier Decisions',
     category: 'AI & Data',
-    dates: '2026 - Present',
+    dates: 'Sep 2025 - Present',
     updatedAt: '2026-09-27',
     organization: 'Sanofi',
     description: 'An enterprise AI assistant I led at Sanofi, SupRM Intelligence reached 80 unique production users and 572 conversations in its first six months. It supports decisions across 61 strategic suppliers and 34 Key Supplier Managers. I built its evaluation framework, reusable agent tools, and supplier performance reporting.',
@@ -49,7 +49,7 @@ export const projects: Project[] = [
         title: 'What these results show',
         items: [
           'The adoption totals cover the first six months, not lifetime use.',
-          'The 97.9% pass rate measures defined evaluation scenarios, not every possible supplier question.',
+          'The 97.9% pass rate is 47 of 48 evaluation runs over defined scenarios, not every possible supplier question.',
           'This public case study uses aggregate outcomes and does not show supplier records or internal screens.',
         ],
       },
@@ -399,7 +399,7 @@ export const projects: Project[] = [
       },
       motivation: {
         title: 'The household food waste problem that apps have not solved',
-        content: 'Food waste in Canada is documented and financially significant. A key driver is confusion over best-before dates, which maps directly to the Use-Next and expiry-risk prioritization features in PantryPilot.\n\nThe 50-person survey conducted for this project confirmed that existing apps do not solve the planning problem where most waste actually happens. 74% of respondents rely on instinct to manage groceries, 16% use nothing at all, and 68% identified food planning — not the grocery run itself — as their biggest pain point. The strategic insight: the problem is not memory or willpower. It is the absence of a system that connects what you have, what is about to expire, and what you can cook, in one place, in under 30 seconds.',
+        content: 'Food waste in Canada is documented and financially significant. Second Harvest estimates 46.5% of all food produced in Canada is wasted, with an avoidable cost of $58 billion per year. At the household level, Love Food Hate Waste Canada puts the average annual cost at over $1,300 per household — nearly equivalent to a month of rent for many urban renters. Statistics Canada reports that 23% of avoidable waste is driven by best-before date confusion, which directly maps to the Use-Next and expiry-risk prioritization features in PantryPilot.\n\nThe 50-person survey conducted for this project confirmed that existing apps do not solve the planning problem where most waste actually happens. 74% of respondents rely on instinct to manage groceries, 16% use nothing at all, and 68% identified food planning — not the grocery run itself — as their biggest pain point. The strategic insight: the problem is not memory or willpower. It is the absence of a system that connects what you have, what is about to expire, and what you can cook, in one place, in under 30 seconds.',
       },
       decisions: [
         {
@@ -417,7 +417,7 @@ export const projects: Project[] = [
         },
         {
           decision: 'Show savings in dollars, not weight or "meals saved"',
-          reasoning: 'Concrete financial outcomes are easier to act on than abstract waste metrics. The Insights dashboard shows total rescued value, items at financial risk, monthly savings goal progress, and a spending breakdown in dollars. The decision to show dollar amounts rather than environmental metrics was deliberate: budget-conscious users in the core segment, students and young professionals in Toronto, respond to money saved more than CO2 equivalent. A user who sees "$65 saved this month" has a quantified, personal reason to keep logging.',
+          reasoning: 'Product hypothesis: users trust the app most when they can see concrete financial outcomes. The Insights dashboard shows total rescued value, items at financial risk, monthly savings goal progress, and a spending breakdown in dollars. The decision to show dollar amounts rather than environmental metrics was deliberate: budget-conscious users in the core segment, students and young professionals in Toronto, respond to money saved more than CO2 equivalent. A user who sees "$65 saved this month" has a quantified, personal reason to keep logging.',
         },
         {
           decision: 'Build a mock-data prototype before any backend investment',
@@ -454,14 +454,14 @@ export const projects: Project[] = [
         {
           title: 'Today dashboard',
           description: 'The command center: pantry health score, food-at-risk dollar value, total saved, ready recipe count, weekly budget tracker, a rescue priority card naming the highest-risk item with a direct Cook path, and the full at-risk queue sorted by days remaining. Everything a user needs to know about their pantry in one scroll, oriented around one question: what should I do right now?',
-          insight: 'The rescue priority card is designed to be the first thing a user sees. Naming one specific item ("Baby Spinach — 1 day left — $3.99 at risk") converts abstract waste anxiety into a concrete, actionable task. The dashboard is designed to make that the first thing a user sees.',
+          insight: 'Product hypothesis: the rescue priority card becomes the most-used element on the dashboard. Naming one specific item ("Baby Spinach — 1 day left — $3.99 at risk") converts abstract waste anxiety into a concrete, actionable task. The dashboard is designed to make that the first thing a user sees.',
           image: '/projects/pantry-pilot/00-dashboard.png',
           imageFit: 'contain',
         },
         {
           title: 'Use-Next: expiry-first triage queue',
           description: 'Every item nearing or past its safe-use window, surfaced in one view sorted by urgency. Each row shows days remaining, risk level (High / Medium), and the estimated dollar value at risk. Three inline actions — Cook with this, Used it, Tossed — resolve the item without leaving the view. The total at-risk dollar figure ($36.43 in the demo) sits at the top as the motivating number, broken into "3 Today" and "4 This Week" groupings for prioritization.',
-          insight: 'The decision to show dollar value at risk rather than item count came from survey feedback. Showing the dollar value at risk, rather than an item count, is meant to make the urgency concrete.',
+          insight: 'The decision to show dollar value at risk rather than item count came from survey feedback. Product hypothesis: showing "$36 at risk" prompts faster action than "7 items expiring", because money is a more urgent signal than a count.',
           image: '/projects/pantry-pilot/06-use-next.png',
           imageFit: 'contain',
         },
@@ -887,14 +887,14 @@ export const projects: Project[] = [
         {
           title: 'Syllabus-to-Schedule Pack',
           description: 'Parses a course syllabus and generates a week-by-week folder structure, populates Google Calendar with every deadline, and stages a structured to-do list. If the instructor shifts a date, Companion rebalances the entire semester and notifies the student.',
-          insight: 'Designed to ease the "first week of the semester" overwhelm; the effect on stress was not measured.',
+          insight: 'Product hypothesis: easing the "first week of the semester" overwhelm lowers planning stress (not yet measured).',
           image: '/projects/drive-companion/01-syllabus-to-schedule.png',
           imageFit: 'contain'
         },
         {
           title: 'Smart Reading Pack',
           description: 'Converts dense PDFs into the format the student actually wants: a one-page summary, a slide deck for skim review, or a flashcard set staged in Sheets. Pick a modality; Companion stages it inside the same folder.',
-          insight: 'In the prototype demo, a 60-page reading becomes a one-page summary card with the source kept alongside. Time savings were not measured.',
+          insight: 'In the prototype demo, a 60-page reading becomes a one-page summary card with the source kept alongside. Product hypothesis: this cuts reading-prep time (not yet measured).',
           image: '/projects/drive-companion/02-smart-reading.png',
           imageFit: 'contain'
         },
@@ -922,7 +922,7 @@ export const projects: Project[] = [
         {
           title: 'Work Rhythm Optimiser',
           description: 'Reads calendar patterns to find overloaded days, blocks protected focus time for deep work, and suggests micro-shifts before burnout shows up. Flags compressed deadlines and meeting fatigue to managers as a signal, not an interruption.',
-          insight: 'Treats sustainable rhythm as a first-class product surface. Stress impact was not measured.',
+          insight: 'Treats sustainable rhythm as a first-class product surface. Product hypothesis: a sustainable rhythm lowers stress (not yet measured).',
           image: '/projects/drive-companion/06-work-rhythm.png',
           imageFit: 'contain'
         }
@@ -1172,7 +1172,7 @@ export const projects: Project[] = [
     category: 'AI & Data',
     dates: 'Oct 2025 - Nov 2025',
     organization: 'University of Toronto',
-    description: 'An interactive D3.js data story that pushes back on a simple assumption: that your job is what determines your sleep. Three visualizations, one dataset of 374 people across 11 occupations, and a guided narrative that argues individual behavior and health context matter more than profession. A bubble landscape exposes stress variance within the same job. A Sankey diagram traces the path from physical activity to sleep quality. The Dream Lab animates BMI, heart rate, and sleep disorders with dots that pulse at each individual\'s resting heart rate.',
+    description: 'An interactive D3.js data story that pushes back on a simple assumption: that your job is what determines your sleep. Three visualizations, one dataset of 374 people across 11 occupations, and a guided narrative that argues job title is only part of the story: individual behavior and health context matter too. A bubble landscape exposes stress variance within the same job. A Sankey diagram traces the path from physical activity to sleep quality. The Dream Lab animates BMI, heart rate, and sleep disorders with dots that pulse at each individual\'s resting heart rate.',
     skills: ['D3.js', 'JavaScript', 'HTML5', 'Interaction Design', 'Data Visualization', 'Statistical Analysis'],
     tags: ['Data Visualization', 'Data Analysis'],
     image: '/projects/night-shift/00-hero.png',
@@ -1196,19 +1196,19 @@ export const projects: Project[] = [
         { value: '3', label: 'visualization scenes' },
         { value: '32.2pp', label: 'high vs low activity sleep gap' },
       ],
-      pullQuote: 'Your job title does not define your sleep. Individual behavior and health context matter more than profession.',
+      pullQuote: 'Your job title does not define your sleep. Individual behavior and health context matter too.',
       overview: {
         title: 'Reframing a familiar question',
-        content: 'Every night, millions of us close our eyes hoping for rest, and a lot of us miss it. The easy story is that some jobs sleep well and other jobs do not. The data tells a more interesting one. The Night Shift walks through three perspectives, profession and stress, activity and sleep quality, and physiological health, and lets the user see that the strongest signals are not job titles at all. They are physical activity level, BMI category, resting heart rate, and sleep disorder status. The piece is built to be read like a magazine essay and explored like a tool.'
+        content: 'Every night, millions of us close our eyes hoping for rest, and a lot of us miss it. The easy story is that some jobs sleep well and other jobs do not. The data tells a more interesting one. The Night Shift walks through three perspectives, profession and stress, activity and sleep quality, and physiological health, and lets the user see that job titles do not tell the whole story: activity level, BMI category, resting heart rate, and sleep disorder status all show clear patterns too. The piece is built to be read like a magazine essay and explored like a tool.'
       },
       motivation: {
         title: 'From ranking jobs to reading individuals',
-        content: 'A typical sleep dashboard ranks occupations and stops there. That framing is comforting (your job is the problem) but it is also wrong, or at least incomplete. The same profession can stretch across two hours of sleep duration and five full stress points. The redesign of the narrative was the most important design decision: instead of asking "which job sleeps best," the story asks "what actually moves your sleep," and then shows that movement, body composition, and heart rate explain more than the label on a business card. Every chart and every annotation is in service of that reframe.'
+        content: 'A typical sleep dashboard ranks occupations and stops there. That framing is comforting (your job is the problem) but incomplete. The same profession can stretch across two hours of sleep duration and five full stress points. The redesign of the narrative was the most important design decision: instead of asking "which job sleeps best," the story asks "what actually moves your sleep," and then shows that movement, body composition, and heart rate explain more than the label on a business card. Every chart and every annotation is in service of that reframe.'
       },
       decisions: [
         {
           decision: 'Lead with the reframe, not a ranking',
-          reasoning: 'The default move with an occupation-coded dataset is to sort professions by average sleep and call it a story. That framing flatters the dataset but lies to the user, because within-profession variance is enormous. The Night Shift opens with the question "does your job define your sleep?" and answers no on the very first scene. The whole reading experience is shaped by that bet: the bubble chart is structured so the user notices spread first and averages second.'
+          reasoning: 'The default move with an occupation-coded dataset is to sort professions by average sleep and call it a story. That framing flatters the dataset but hides a lot, because within-profession variance is large. The Night Shift opens with the question "does your job define your sleep?" and answers "not entirely" on the very first scene. The whole reading experience is shaped by that bet: the bubble chart is structured so the user notices spread first and averages second.'
         },
         {
           decision: 'Three chart types for three different arguments',
@@ -1345,7 +1345,7 @@ export const projects: Project[] = [
     category: 'Design',
     dates: 'Apr 2025 - Aug 2025',
     organization: 'The Marketing Group (TMG) — University of Toronto Scarborough',
-    description: 'A 90-day mobile-first redesign of the UTSC Marketing Group\'s website that cut bounce rate from 62% to 23%, grew sessions by 67%, and reached an average session duration of 3m 36s. Rebuilt the information architecture around five distinct user journeys — students, event attendees, applicants, sponsors, and social visitors — and applied a full suite of HCI principles (Nielsen heuristics, Shneiderman\'s golden rules, Fitts\'s Law, Hick\'s Law, Gestalt) across every page.',
+    description: 'A mobile-first redesign of the UTSC Marketing Group\'s website that, over a 90-day measurement window, cut bounce rate from 62% to 23%, grew sessions by 67%, and reached an average session duration of 3m 36s. Rebuilt the information architecture around five distinct user journeys — students, event attendees, applicants, sponsors, and social visitors — and applied a full suite of HCI principles (Nielsen heuristics, Shneiderman\'s golden rules, Fitts\'s Law, Hick\'s Law, Gestalt) across every page.',
     skills: ['UX Design', 'Information Architecture', 'Wix', 'Responsive Design', 'Google Analytics', 'Visual Hierarchy', 'HCI Principles', 'Conversion Optimization', 'UX Research', 'Design Systems'],
     tags: ['UX Design', 'Design Systems', 'Information Architecture'],
     image: '/projects/tmg-website/new-home-desktop-viewport.png',
@@ -1641,7 +1641,7 @@ export const projects: Project[] = [
         },
       ],
       impact: {
-        title: 'What a 90-day UX redesign actually moves — and what it does not',
+        title: 'What a UX redesign moves in 90 days — and what it does not',
         content: 'The analytics results are the most legible part of the outcome: 67% more sessions, 45% more unique visitors, bounce rate from 62% to 23%, average session duration of 3m 36s. Those numbers confirm that the redesign moved the metrics it was optimizing for — first-impression clarity, mobile usability, navigation depth, and conversion path strength.\n\nThe less visible outcome is the design system. A Wix site without documented design principles drifts: well-meaning maintainers add a section here, change a CTA color there, and six months later the visual language is inconsistent. The case study paired with the live site gives future contributors a documented rationale: here is why the navigation is structured this way, here is the color system, here is what "Hick\'s Law" meant for how we grouped the dropdown items. That documentation is the difference between a redesign that lasts and one that gets gradually overwritten.\n\nThe remaining UX opportunity is conversion measurement beyond sessions. Sessions and duration tell you that users are engaging more; they do not tell you how many joined TMG, applied to become a CBA, or reached out as a sponsor as a result. Wiring analytics events to every CTA click and tracking the event-page-to-registration path would close that loop and give the next redesign cycle a behavioral basis for prioritization rather than an analytics-and-judgment one.',
       },
       limitations: {
@@ -2064,7 +2064,7 @@ export const projects: Project[] = [
             results: [
               { metric: '92.3%', statement: 'found subject filtering at least easy to use.' },
               { metric: '15.4%', statement: 'found switching from default to custom subject sets unclear (flagged for iteration).' },
-              { metric: '70%', statement: 'rated tutor profile information at least clear (30% neutral, also flagged).' },
+              { metric: '69.2%', statement: 'rated tutor profile information at least clear (30.8% neutral, also flagged).' },
               { metric: '23.1%', statement: 'rated the calendar interface only neutral, the highest-priority polish target in this task.' },
               { metric: '84.6%', statement: 'confirmed the booking confirmation alert provided all expected information.' },
               { metric: '84.6%', statement: 'were satisfied with the overall search-and-book journey.' },
