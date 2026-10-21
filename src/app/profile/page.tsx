@@ -65,19 +65,22 @@ export default function ProfilePage() {
         <article className="max-w-3xl mx-auto">
           {/* ─────────────────────────  Intro  ───────────────────────── */}
           <header className="mb-20">
-            <p
-              className="text-2xl text-terracotta mb-2 inline-block"
-              style={{
-                fontFamily: 'var(--font-kalam), cursive',
-                transform: 'rotate(-3deg)',
-              }}
-            >
-              i&apos;m —
-            </p>
             <div className="flex items-end justify-between gap-6 mb-8">
-              <h1 className="font-display italic text-5xl sm:text-6xl text-ink leading-[1.05]">
-                About me<span className="text-terracotta not-italic">.</span>
-              </h1>
+              {/* Kicker and heading stay together so the taller photo can't split them */}
+              <div>
+                <p
+                  className="text-2xl text-terracotta mb-2 inline-block"
+                  style={{
+                    fontFamily: 'var(--font-kalam), cursive',
+                    transform: 'rotate(-3deg)',
+                  }}
+                >
+                  i&apos;m —
+                </p>
+                <h1 className="font-display italic text-5xl sm:text-6xl text-ink leading-[1.05]">
+                  About me<span className="text-terracotta not-italic">.</span>
+                </h1>
+              </div>
               {/* Polaroid-style portrait; source is 288px, so cap at 144px for 2x screens */}
               <div
                 className="flex-shrink-0 bg-paper-deeper border border-border rounded-lg p-1.5 shadow-paper"
