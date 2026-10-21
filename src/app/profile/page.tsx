@@ -85,7 +85,7 @@ export default function ProfilePage() {
                 <MarkerHighlight className="font-medium text-ink">
                   SupRM Intelligence
                 </MarkerHighlight>
-                , an assistant supporting decisions across 61 strategic suppliers and
+                , an assistant supporting decisions across 59 strategic suppliers and
                 34 Key Supplier Managers. It reached 80 unique production users
                 and 572 conversations in its first six months.
               </p>
