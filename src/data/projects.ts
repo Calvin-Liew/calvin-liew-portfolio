@@ -8,7 +8,7 @@ export const projects: Project[] = [
     dates: 'Sep 2025 - Present',
     updatedAt: '2026-10-20',
     organization: 'Sanofi',
-    description: 'An enterprise AI assistant I led at Sanofi, SupRM Intelligence reached 80 unique production users and 572 conversations in its first six months. It supports decisions across 61 strategic suppliers and 34 Key Supplier Managers. I connect information intake, AI-assisted analysis, performance reporting, and reusable review materials, with evaluation and stakeholder feedback guiding development.',
+    description: 'An enterprise AI assistant I led at Sanofi, SupRM Intelligence reached 80 unique production users and 572 conversations in its first six months. It supports decisions across 59 strategic suppliers and 34 Key Supplier Managers. I connect information intake, AI-assisted analysis, performance reporting, and reusable review materials, with evaluation, production monitoring, and stakeholder feedback guiding development.',
     skills: ['AI Product Strategy', 'AI Agent Development', 'Evaluation Design', 'LLM Orchestration', 'Data Engineering', 'Workflow Design', 'Product Analytics'],
     tags: ['AI Agents', 'Enterprise AI', 'Product Strategy', 'Supplier Management'],
     featured: true,
@@ -21,211 +21,325 @@ export const projects: Project[] = [
       ],
       overview: {
         title: 'An assistant for supplier decisions',
-        content: 'SupRM Intelligence supports supplier decision-making across 61 strategic suppliers and 34 Key Supplier Managers. I lead development of the assistant and its surrounding workflows, translating business needs into information intake, document-based answers, performance reporting, and review materials. My contribution spans product requirements, implementation, evaluation, and stakeholder feedback.',
+        content: 'SupRM brings together what Sanofi knows about a strategic supplier (profile, performance metrics, spend, meetings, actions, relationship map, surveys, and files) and answers questions about it through the SupRM Intelligence assistant. I lead development of the assistant and its surrounding workflows, translating business needs into information intake, document-based answers, performance reporting, and review materials. My contribution spans product requirements, implementation, evaluation, release management, and stakeholder feedback.\n\nOver the past year the product moved from separate foundation modules (supplier overview, opportunities, surveys, innovation fund, spend) to a connected product. Files and meeting invites now arrive by email, metric owners are reminded on their own cadence and can reply with a spreadsheet, and the current assistant generation has been live in production since September 2026.',
       },
       motivation: {
         title: 'Make the answers useful and accountable',
-        content: 'Supplier information is spread across documents, metrics, and meetings. Bringing it into one place is only part of the challenge: people also need a reason to keep it current and outputs they can use in their work. I focused on connecting reliable information with useful answers and review materials, while giving the team a repeatable way to assess answer quality and tool use.',
+        content: 'Supplier information is spread across documents, metrics, and meetings. Bringing it into one place is only part of the challenge. Discovery showed that the people who feed the product got little back, while the people who wanted answers found the data incomplete. I focused on closing that loop: making contributions effortless, giving contributors something useful in return, and giving the team a repeatable way to assess answer quality and tool use.',
       },
       decisions: [
         {
           decision: 'Connect information intake to the next business task',
-          reasoning: 'I developed email and spreadsheet-based intake workflows alongside reporting outputs and review materials. The goal is to make information easier to contribute and give users something reusable beyond a chat response.',
+          reasoning: 'I developed email and spreadsheet-based intake workflows alongside reporting outputs and review materials. A supplier is decided once, from the email subject, sender, or uploader, and file content never holds a file back. After this change, 39 of 43 emails from people outside the build team (91%) were filed to the right supplier with no manual step.',
         },
         {
           decision: 'Evaluate business questions systematically',
-          reasoning: 'I created an evaluation framework across 18 business scenarios and 25 deterministic checks. It achieved a 97.9% scenario-based evaluation pass rate and 100% tool compliance. Redesigning the responses also cut representative answer length by 65%.',
+          reasoning: 'I created an evaluation framework across 18 business scenarios and 25 deterministic checks. It achieved a 97.9% scenario-based evaluation pass rate and 100% tool compliance. Redesigning the responses also cut representative answer length by 65%. I then added a human review of real conversations, so the team measures whether users got their problem solved, not only whether tests pass.',
         },
         {
           decision: 'Build capabilities other AI products can reuse',
           reasoning: 'I architected shared agent tools and orchestration capabilities used by 6+ AI products across budgeting, risk, compliance, procurement, and supplier management.',
         },
         {
+          decision: 'Let the tool do the arithmetic, not the model',
+          reasoning: 'In testing, an assistant-made spend total came out EUR 3,000 off. I moved aggregation into deterministic tools and reconciled the spend reader against 72,026 production rows exactly. Answers also label figures as document-reported or source-reported, so users can tell where a number comes from.',
+        },
+        {
           decision: 'Build reliable reporting across cadences',
-          reasoning: 'I developed supplier performance reporting across weekly, monthly, quarterly, and annual workflows, reconciled 1,822 historical metric records, and backfilled 211 missing reporting periods.',
+          reasoning: 'I developed supplier performance reporting across weekly, bi-weekly, monthly, quarterly, and annual workflows, reconciled 1,822 historical metric records, and backfilled 211 missing reporting periods.',
         },
         {
           decision: 'Keep proposed actions under human review',
-          reasoning: 'I piloted a governed workflow that turns supplier files into action proposals for people to confirm, revise, or dismiss before an action is created.',
+          reasoning: 'I piloted a governed workflow that turns supplier files into action proposals for people to confirm, revise, or dismiss before an action is created. Unanswered proposals close after 14 days without reminder emails, keeping the queue honest without nagging.',
+        },
+        {
+          decision: 'Give contributors a payoff',
+          reasoning: 'I shipped on-demand supplier ID cards (PDF), QBR packs (PowerPoint and PDF), and a 10-tab metric workbook, all changed through chat. These turn the data people contribute into the review material they need, which is the main lever for keeping supplier data current.',
+        },
+        {
+          decision: 'Catch defects the same day',
+          reasoning: 'A manual review found a date tool silently returning nothing in 28 conversations over about 10 days. I built an independent, production-only monitor that checks assistant answers, the file pipeline, and metric reminders daily. On its first day it alerted on four faults, which were fixed the same day.',
+        },
+      ],
+      keyFindings: [
+        {
+          stat: '89',
+          title: 'People outside the build team',
+          description: 'Distinct people outside the core build team who used the assistant in production between March and October 2026, using the conservative count. October 2026 was the highest month on record.',
+        },
+        {
+          stat: '≈2.6×',
+          title: 'Weekly usage after the latest release',
+          description: 'Weekly conversations from people outside the build team on the current assistant generation, compared with the previous generation from May to August 2026.',
+        },
+        {
+          stat: '132 / 132',
+          title: 'Correct supplier matches',
+          description: 'Production test of the supplier matcher on real email subjects, aliases, brand names, typos, and negative cases, with zero wrong-supplier matches.',
+        },
+        {
+          stat: '115',
+          title: 'Relationship-map contacts corrected',
+          description: 'Production contacts that had been wrongly stored as inactive, which made compliance checks report a missing relationship map where one existed.',
         },
       ],
       impact: {
         title: 'What I learned about useful AI products',
-        content: 'I pair usage metrics with scenario tests, conversation reviews, and stakeholder feedback to understand whether the assistant helps users complete their next business task. That keeps iteration focused on reliable inputs, useful answers, and reusable outputs.',
+        content: 'I pair usage metrics with scenario tests, conversation reviews, production monitoring, and stakeholder feedback to understand whether the assistant helps users complete their next business task. In a hand review of 78 real business conversations, 37% fully solved the user’s problem and a further 38% partly did. That is the number I now work to move, alongside supplier coverage. The main open problem is not tooling but data, so recent work targets reliable inputs, useful answers, and reusable outputs.',
       },
       limitations: {
         title: 'What these results show',
         items: [
-          'The adoption totals cover the first six months, not lifetime use.',
+          'The 80-user and 572-conversation totals cover the first six months, not lifetime use. The 89-person figure excludes the core build team and others the team counts as product or working team.',
           'The 97.9% pass rate is 47 of 48 evaluation runs over defined scenarios, not every possible supplier question.',
+          'Coverage is still thin: 26 of 59 suppliers received new files, metric values, or meetings in the 90 days to October 2026.',
+          'No time-saved figure has been measured. Any time savings would be estimates that need confirming with users.',
           'This public case study uses aggregate outcomes and does not show supplier records or internal screens.',
         ],
       },
     },
   },
   {
-    "id": "license-patrol",
-    "title": "License Patrol: Turning Software Data into Cost Avoidance",
-    "category": "Product",
-    "dates": "Sep 2024 - Aug 2025",
-    "updatedAt": "2026-10-20",
-    "organization": "Sanofi",
-    "description": "I drove application and contract workflow redesign for License Patrol, directly contributing to the programme’s €15M+ in cost avoidance. My work connected requirements, AI-assisted classification, onboarding automation, and benefit tracking so teams could act on software-optimization opportunities.",
-    "skills": [
-      "Product Management",
-      "Requirements Analysis",
-      "Workflow Design",
-      "AI-Assisted Automation",
-      "Stakeholder Management"
+    id: 'license-patrol',
+    title: 'License Patrol: Turning Software Data into Cost Avoidance',
+    category: 'Product',
+    dates: 'Sep 2024 - Aug 2025',
+    updatedAt: '2026-10-20',
+    organization: 'Sanofi',
+    description: 'On Sanofi’s software licence optimisation programme, I led the redesign of the central application and contract hubs, recorded and evidenced EUR 4.03M of 2024 actualised savings across 14 apps, and wrote the benefit formula that calculates EUR 12.12M of expected benefit across 235 renewals. My work connected requirements, AI-assisted classification, touchless onboarding, and benefit tracking so teams could act on software-optimization opportunities.',
+    skills: [
+      'Product Management',
+      'Requirements Analysis',
+      'Workflow Design',
+      'AI-Assisted Automation',
+      'Stakeholder Management',
     ],
-    "tags": [
-      "Enterprise Products",
-      "Workflow Automation",
-      "Software Optimization"
+    tags: [
+      'Enterprise Products',
+      'Workflow Automation',
+      'Software Optimization',
     ],
-    "featured": false,
-    "extendedContent": {
-      "overview": {
-        "title": "My contribution",
-        "content": "I owned requirements for central application and contract hubs and drove their workflow redesign. I implemented parts of the solution and translated other requirements into delivery stories for teammates. I also worked on onboarding, benefit-calculation logic, operational dashboards, and documentation, connecting application owners, Procurement, and delivery teams."
-      },
-      "motivation": {
-        "title": "The product problem",
-        "content": "Software-optimization decisions depend on application, contract, ownership, and usage information coming together at the right time. Fragmented information and manual onboarding make it harder for teams to identify an opportunity, agree on an action, and capture the resulting benefit. The redesign focused on making that operational workflow more consistent."
-      },
-      "decisions": [
-        {
-          "decision": "Organize the product around applications and contracts",
-          "reasoning": "I defined requirements for central hubs that connected the information teams needed to review software use and renewals, rather than treating each operational step as a separate task."
-        },
-        {
-          "decision": "Remove manual inputs where automation could help",
-          "reasoning": "I helped replace manual application classification and onboarding inputs with AI-assisted classification and automated workflows. Scheduled refreshes helped keep information current without relying on repeated manual updates."
-        },
-        {
-          "decision": "Make benefit capture part of the workflow",
-          "reasoning": "I developed calculation logic, reporting, and documentation to help teams capture and review software-optimization benefits alongside the operational work."
-        }
+    featured: false,
+    extendedContent: {
+      stats: [
+        { value: 'EUR 4.03M', label: '2024 actualised savings I recorded and evidenced' },
+        { value: 'EUR 12.12M', label: 'expected benefit calculated by my formula' },
+        { value: '11,000+', label: 'software files classified by an AI step' },
+        { value: '158', label: 'delivered work items (of 170 assigned)' },
       ],
-      "impact": {
-        "title": "Outcome and product lesson",
-        "content": "My workflow redesign and automation work directly contributed to the programme’s €15M+ in cost avoidance. The product lesson was that better information only becomes useful when it supports a clear decision and a practical next step for the people doing the work."
+      overview: {
+        title: 'My contribution',
+        content: 'License Patrol joins up application, purchase-order, contract, owner, and usage information so that software licences can be right-sized or retired before they renew. I joined the BizOps and platform configuration team as an intern and grew into a product analyst and developer role. I owned requirements for the central application and contract hubs and drove their workflow redesign, implementing parts of the solution and writing the rest as delivery stories for three developers.\n\nAlongside the redesign, I designed the process for buyers to record realised savings, kept the 2024 savings ledger, stewarded the contract renewal records (247 of 533 created, and more activity than anyone else on the team), created 142 application onboarding records, and built three operational dashboards. I was the fourth-largest named assignee on the programme, with 170 work items assigned and 158 delivered.',
       },
-      "limitations": {
-        "title": "Scope",
-        "items": [
-          "€15M+ represents programme-level cost avoidance, rather than realized cash savings.",
-          "My contribution covers the application and contract workflow redesign, requirements, and automation work described here."
-        ]
-      }
-    }
+      motivation: {
+        title: 'The product problem',
+        content: 'Software-optimization decisions depend on application, contract, ownership, and usage information coming together at the right time. Fragmented point-solution apps and manual onboarding made it harder for teams to identify an opportunity, agree on an action, and capture the resulting benefit. App owners were asked to supply program file names by hand, purchase-request numbers were typed in, and data was refreshed manually. The redesign focused on making that operational workflow consistent and as close to touchless as possible.',
+      },
+      decisions: [
+        {
+          decision: 'Organize the product around applications and contracts',
+          reasoning: 'I owned the epics for a central application hub and a central software-spend hub, replacing separate point-solution apps with one connected flow: contracts, applications, usage, licence management, and renewal. The consolidation retired about 26 automations, 6 apps, and around 25 elements.',
+        },
+        {
+          decision: 'Remove manual inputs where automation could help',
+          reasoning: 'An AI step classified 9,000+ Nexthink and 2,000 Jamf executables, so app owners no longer had to supply program file names. Purchase-request numbers are read from the uploaded file name instead of being typed, scheduled data refreshes replaced manual updates, and touchless onboarding replaced the onboarding forms.',
+        },
+        {
+          decision: 'Calculate benefit instead of typing it',
+          reasoning: 'I made expected benefit a calculated field with its own test cases. It now computes EUR 12.12M of expected benefit across 235 contract renewal records, so the number is consistent and traceable rather than entered by hand.',
+        },
+        {
+          decision: 'Make benefit capture part of the workflow',
+          reasoning: 'I designed the process for buyers to record realised savings in the platform and kept the ledger that evidenced the 2024 results: EUR 4.03M actualised across 14 apps, 64.5% of the year’s commitment, mostly from decommissioning. The savings themselves came from app owners, Procurement, and the wider team; my part was making them recorded and verifiable.',
+        },
+      ],
+      keyFindings: [
+        {
+          stat: '56%',
+          title: 'Contract reduction on one renewal',
+          description: 'A EUR 293,589 analytics-software contract was cut by 56% by removing inactive users, a renewal I was assigned to.',
+        },
+        {
+          stat: 'EUR 10.76M',
+          title: '2024 cost avoidance across 25 apps',
+          description: 'Team-recorded cost avoidance for 2024. It overlaps the actualised savings figure, so the two are not added together.',
+        },
+        {
+          stat: '500 → 2,000+',
+          title: 'Apps in view',
+          description: 'A team result: apps visible to the programme grew from about 500 to more than 2,000, and spend in view from EUR 60M to EUR 1.1B by July 2025. My hub epics were part of that foundation.',
+        },
+      ],
+      impact: {
+        title: 'Outcome and product lesson',
+        content: 'The redesign gave the programme one connected path from contract to application to renewal, with less manual input at each step and benefit captured as part of the work. The product lesson was that better information only becomes useful when it supports a clear decision and a practical next step for the people doing the work, and that a benefit number is only as credible as the process that records it.',
+      },
+      limitations: {
+        title: 'Scope',
+        items: [
+          'Savings figures are team-recorded (actualised, confirmed by Procurement or app owners), not Finance-certified.',
+          'Licence revocations, spend visibility, and 2025 and later programme results are team results, not mine alone.',
+          'No timing measurement exists for the effort saved by the redesign.',
+        ],
+      },
+    },
   },
   {
-    "id": "document-to-workflow-intake",
-    "title": "Document-to-Workflow Intake",
-    "category": "Product",
-    "dates": "Jul - Oct 2025",
-    "updatedAt": "2026-10-20",
-    "organization": "Sanofi",
-    "description": "I built early digital-demand intake components that let requesters start from a business document instead of re-entering the same information. The work combined an initial form, AI-assisted pre-fill, and intake automation; the wider team retained or extended components in later workflows.",
-    "skills": [
-      "Workflow Design",
-      "Requirements Analysis",
-      "AI-Assisted Automation",
-      "Product Development",
-      "Cross-Functional Collaboration"
+    id: 'document-to-workflow-intake',
+    title: 'Document-to-Workflow Intake',
+    category: 'Product',
+    dates: 'Jul - Oct 2025',
+    updatedAt: '2026-10-20',
+    organization: 'Sanofi',
+    description: 'As the developer on Sanofi’s digital-demand front door team, I built the first version of the intake form on the new platform, including AI document pre-fill and the first automation ever created on the intake app. A year later, its record-creation automations still run for every new demand, its document intake was carried forward with all 37 original steps, and its web research tools have run more than 2,000 times for another team’s agent.',
+    skills: [
+      'Workflow Design',
+      'Requirements Analysis',
+      'AI-Assisted Automation',
+      'Product Development',
+      'Cross-Functional Collaboration',
     ],
-    "tags": [
-      "Enterprise Products",
-      "Document Intake",
-      "Workflow Automation"
+    tags: [
+      'Enterprise Products',
+      'Document Intake',
+      'Workflow Automation',
     ],
-    "featured": false,
-    "extendedContent": {
-      "overview": {
-        "title": "My contribution",
-        "content": "As part of the wider product team, I built the initial intake form and early automation for capturing a digital request. I added AI-assisted document pre-fill so information already written in a business document could become a starting point for the form, alongside components supporting request creation and routing."
-      },
-      "motivation": {
-        "title": "Start with information the requester already has",
-        "content": "A business need may already be explained in a document, but submitting it for review can still mean entering the same information into a structured form. The product challenge was to reduce that repetition while capturing a request in a form that the receiving team could assess and route."
-      },
-      "decisions": [
-        {
-          "decision": "Use a document as the starting point",
-          "reasoning": "I built document pre-fill into the intake flow so requesters could reuse existing context rather than begin with an empty form. The aim was to make structured intake easier without replacing the wider review process."
-        },
-        {
-          "decision": "Connect capture with the next workflow step",
-          "reasoning": "I worked on request-creation and routing components alongside the form, treating intake as the beginning of a business workflow rather than an isolated data-entry screen."
-        },
-        {
-          "decision": "Deliver an initial version the team could extend",
-          "reasoning": "The scope was an early intake implementation within a team-owned product. Its form and automation components provided a base for the team to retain, adapt, or replace as requirements evolved."
-        }
+    featured: false,
+    extendedContent: {
+      stats: [
+        { value: '37 / 37', label: 'original document-intake steps kept by the team' },
+        { value: '2,131', label: 'production runs of my web research tools' },
+        { value: '1,764', label: 'runs of my portfolio-survey creation automation' },
+        { value: '19', label: 'automations I built across the intake apps' },
       ],
-      "impact": {
-        "title": "A foundation for later workflows",
-        "content": "The wider team retained or extended parts of my initial implementation in later workflows, including document pre-fill and intake automation. Subsequent product iterations were delivered by the wider team. The experience reinforced the value of connecting a useful first interaction with a workflow the team can keep developing."
+      overview: {
+        title: 'My contribution',
+        content: 'The demand front door is Sanofi’s single entry point for digital demand: a person describes a need, the request is captured, routed to the right portfolio and demand manager, and moved through review to a decision. As the team’s developer, I built the first version of the intake form on the new platform. It included record-creation automations, a portfolio-specific survey created with each demand, AI document pre-fill, and on-demand web research tools.\n\nThe pre-fill story was simple: a requester should be able to drop a business document into the form and have the questions filled in, instead of retyping what they already wrote. My first automation on the intake app was also the first automation anyone created there.',
       },
-      "limitations": {
-        "title": "Scope",
-        "items": [
-          "This case study focuses on the initial intake, document pre-fill, and routing components I built."
-        ]
-      }
-    }
+      motivation: {
+        title: 'Start with information the requester already has',
+        content: 'A requester faces a long form, more than 120 fields, with some choices drawn from thousands of projects and business applications. A business need is often already explained in a document, but submitting it still meant entering the same information again. The product challenge was to reduce that repetition while capturing a request in a structured form the receiving team could assess and route.',
+      },
+      decisions: [
+        {
+          decision: 'Use a document as the starting point',
+          reasoning: 'I built AI document intake for PDF, Word, and Excel files into the intake flow, so requesters could reuse existing context rather than begin with an empty form. That idea, upload a business case and the form fills itself, carried through every later generation of the product, including the current conversational intake agent.',
+        },
+        {
+          decision: 'Create the routing record with every demand',
+          reasoning: 'I set up a portfolio-specific survey record to be created alongside each demand, along with the split between strategic and operational requests. Later agents write to that same record, and the strategic/operational split became the main branch in the current agent’s instructions.',
+        },
+        {
+          decision: 'Deliver an initial version the team could extend',
+          reasoning: 'The scope was an early implementation within a team-owned product. I prototyped quickly and let go of pieces that did not hold up: two pre-fill prototypes were disabled within days and their role passed to the document intake automation, which is the version that survived.',
+        },
+      ],
+      keyFindings: [
+        {
+          stat: 'v36',
+          title: 'Still running for every demand',
+          description: 'My record-creation automation on the intake app is active in production, now at version 36, and fires for every new demand, including those created by the current conversational agent.',
+        },
+        {
+          stat: '+4',
+          title: 'Extended, not replaced',
+          description: 'When the team created its official document intake a year later, it kept all 37 of my original steps and added four.',
+        },
+        {
+          stat: '7 / 10',
+          title: 'Portfolio routing carried forward',
+          description: 'The successors to my portfolio-questions automation kept 7 of its 10 steps and added branches for new business units.',
+        },
+      ],
+      impact: {
+        title: 'A foundation for later workflows',
+        content: 'The wider team kept, re-homed, or extended much of the first version. The record-creation backbone still runs, the document intake was carried forward intact, and my web research tools were adopted by a delivery-model recommendation agent built by a teammate, where they have run 1,518 and 613 times in production. Subsequent generations of the conversational experience were built by the wider team. The experience reinforced the value of shipping a useful first interaction that others can keep building on.',
+      },
+      limitations: {
+        title: 'Scope',
+        items: [
+          'This case study covers the first version I built. Later conversational agents were built by other team members.',
+          'Run counts come from a platform snapshot and indicate activity, not unique demands.',
+          'Requester time saved by document pre-fill has not been measured.',
+        ],
+      },
+    },
   },
   {
-    "id": "ai-workflow-developer-tooling",
-    "title": "AI Workflow Developer Tooling",
-    "category": "AI & Data",
-    "dates": "2026",
-    "updatedAt": "2026-10-20",
-    "organization": "Sanofi",
-    "description": "Reusable discovery and inspection tools, plus workflow guidance, contributed to a shared platform for developing AI applications.",
-    "skills": [
-      "Developer Experience",
-      "Workflow Design",
-      "AI Tooling",
-      "Technical Documentation",
-      "Cross-Functional Collaboration"
+    id: 'ai-workflow-developer-tooling',
+    title: 'AI Workflow Developer Tooling',
+    category: 'AI & Data',
+    dates: 'Mar 2026 - Jul 2026',
+    updatedAt: '2026-10-20',
+    organization: 'Sanofi',
+    description: 'Tools that let developers, and the AI coding assistants working for them, understand a large enterprise workflow platform before changing it: a tenant inventory, two MCP servers for AI tools, and a port of the team’s assistant skills to Claude Code. Contributed to a shared toolkit used by about 40 people.',
+    skills: [
+      'Developer Experience',
+      'AI Tooling',
+      'MCP Servers',
+      'Workflow Design',
+      'Technical Documentation',
+      'Cross-Functional Collaboration',
     ],
-    "tags": [
-      "Developer Tools",
-      "AI Workflows"
+    tags: [
+      'Developer Tools',
+      'AI Workflows',
+      'AI Agents',
     ],
-    "featured": false,
-    "extendedContent": {
-      "overview": {
-        "title": "My contribution",
-        "content": "I contributed reusable tools for finding and inspecting information, along with workflow guidance that helped connect development tasks to the wider platform. My work built on a shared foundation created by the team."
+    featured: false,
+    extendedContent: {
+      stats: [
+        { value: '~40', label: 'people using the shared toolkit' },
+        { value: '1,280', label: 'automation specs captured in the inventory' },
+        { value: '45', label: 'read-only tools in the hosted MCP server' },
+        { value: '19', label: 'assistant skills ported to Claude Code' },
+      ],
+      overview: {
+        title: 'My contribution',
+        content: 'The toolkit is a team product, led by a colleague, that helps developers and AI coding assistants answer questions such as "what uses this field?" or "which automations call this API?" about our enterprise workflow platform. I built specific parts of it on top of the team’s shared workspace: a tenant inventory, two MCP servers that gave AI tools a map of the platform, a port of the team’s assistant skills to Claude Code, and a proposal for a managed data-warehouse integration.',
       },
-      "motivation": {
-        "title": "The problem",
-        "content": "Building AI workflows requires developers to understand the information and capabilities available to them. Repeated discovery work can distract from the business problem the workflow is meant to solve."
+      motivation: {
+        title: 'The problem',
+        content: 'Enterprise tenants are large: a single product can hold around 150 apps and more than 3,500 automations. Before changing something, a developer needs to know what depends on it. No one can keep that in their head, and AI coding assistants guess when they lack facts. Repeated discovery work distracts from the business problem a workflow is meant to solve.',
       },
-      "decisions": [
+      decisions: [
         {
-          "decision": "Make recurring discovery work reusable",
-          "reasoning": "I turned recurring discovery tasks into reusable tools, making relevant information easier to find and inspect before building."
+          decision: 'Make recurring discovery work reusable',
+          reasoning: 'I turned recurring discovery tasks into a reusable inventory and search tools, so relevant information could be found and inspected before building, rather than rediscovered in every project.',
         },
         {
-          "decision": "Build on the team’s existing guidance",
-          "reasoning": "I adapted existing team guidance for additional development workflows, connecting my contributions to the shared foundation rather than treating them as a separate platform."
-        }
+          decision: 'Give AI assistants facts through a standard interface',
+          reasoning: 'I exposed the inventory through MCP so any AI tool could read it the same way. Reading and writing were split into separate servers, keeping the widely used, read-only path safe by default.',
+        },
+        {
+          decision: 'Build on the team’s existing guidance',
+          reasoning: 'I adapted the team’s existing assistant skills for Claude Code rather than writing a parallel set, so my contributions extended the shared foundation instead of becoming a separate platform.',
+        },
+        {
+          decision: 'Retire what the team outgrew',
+          reasoning: 'Once the team’s own CLI covered inspection and a dedicated development kit covered building, both MCP servers were retired. The working order became: the CLI for reading, the kit for building, and raw API calls only as a fallback.',
+        },
       ],
-      "impact": {
-        "title": "Outcome",
-        "content": "The contribution added practical discovery and inspection capabilities to the team’s development toolkit. It broadened my work from delivering individual AI applications to supporting the tools used to build them."
+      tools: [
+        { name: 'Tenant inventory', purpose: 'A platform atlas with 1,280 automation specs, 5,749 table columns, 167 orchestration links, and a "product wizard" for reusing existing building blocks.' },
+        { name: 'Read-only MCP server', purpose: 'A hosted, daily-refreshed map of the tenant for AI tools, exposed through 45 read-only tools. Its main live client was the team’s assistant.' },
+        { name: 'Builder MCP server', purpose: 'Write tools for creating and updating platform objects through the REST API, kept separate from the read-only path.' },
+        { name: 'Claude Code skills', purpose: '19 team skills ported from Cursor to Claude Code, including new inventory-refresh, tenant-search, and product-wizard skills.' },
+        { name: 'Managed MCP proposal', purpose: 'A proposal and leadership ask for a managed MCP integration with the data warehouse.' },
+      ],
+      impact: {
+        title: 'Outcome',
+        content: 'The work added practical discovery and inspection capabilities to the team’s development toolkit, which is used by about 40 people. It broadened my work from delivering individual AI applications to supporting the tools used to build them, and it shaped how I approach AI-assisted development: give the assistant reliable facts, keep reads and writes separate, and make the safe path the default.',
       },
-      "limitations": {
-        "title": "Scope",
-        "items": [
-          "This case study covers my supporting contributions to a shared team platform."
-        ]
-      }
-    }
+      limitations: {
+        title: 'Scope',
+        items: [
+          'This case study covers my contributions to a shared team platform. The toolkit’s concept, CLI, and assistant are the team’s work.',
+          'The "about 40 people" figure is the team’s own rounded count across all of its surfaces, not a measured count of my components.',
+          'AI answer quality and time saved per session have not been measured end to end.',
+        ],
+      },
+    },
   },
   {
     id: 'self-taught-telecom-agent',
