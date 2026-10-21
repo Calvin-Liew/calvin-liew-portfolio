@@ -65,33 +65,55 @@ export default function ProfilePage() {
         <article className="max-w-3xl mx-auto">
           {/* ─────────────────────────  Intro  ───────────────────────── */}
           <header className="mb-20">
-            <p
-              className="text-2xl text-terracotta mb-2 inline-block"
-              style={{
-                fontFamily: 'var(--font-kalam), cursive',
-                transform: 'rotate(-3deg)',
-              }}
-            >
-              i&apos;m —
-            </p>
             <div className="flex items-end justify-between gap-6 mb-8">
-              <h1 className="font-display italic text-5xl sm:text-6xl text-ink leading-[1.05]">
-                About me<span className="text-terracotta not-italic">.</span>
-              </h1>
-              {/* Polaroid-style portrait; source is 288px, so cap at 144px for 2x screens */}
-              <div
-                className="flex-shrink-0 bg-paper-deeper border border-border rounded-lg p-1.5 shadow-paper"
-                style={{ transform: 'rotate(3deg)' }}
+              {/* Kicker and heading stay together so the taller photo can't split them */}
+              <div>
+                <p
+                  className="text-2xl text-terracotta mb-2 inline-block"
+                  style={{
+                    fontFamily: 'var(--font-kalam), cursive',
+                    transform: 'rotate(-3deg)',
+                  }}
+                >
+                  i&apos;m —
+                </p>
+                <h1 className="font-display italic text-5xl sm:text-6xl text-ink leading-[1.05]">
+                  About me<span className="text-terracotta not-italic">.</span>
+                </h1>
+              </div>
+              {/* Taped polaroid: white card + deep shadow so it lifts off the paper background.
+                  Tape matches the ContactCard note. 640px source stays sharp at 2x+. */}
+              <figure
+                className="relative flex-shrink-0 bg-white rounded-sm p-2 pb-1 sm:p-2.5 sm:pb-1.5"
+                style={{
+                  transform: 'rotate(3deg)',
+                  boxShadow:
+                    '0 1px 2px rgba(31, 26, 23, 0.12), 0 10px 24px -6px rgba(31, 26, 23, 0.28)',
+                }}
               >
+                <div
+                  className="absolute -top-3 left-1/2 w-16 h-5 rounded-sm shadow-sm"
+                  style={{
+                    background: 'rgba(254, 215, 170, 0.85)',
+                    transform: 'translate(-50%, 0) rotate(-4deg)',
+                  }}
+                  aria-hidden
+                />
                 <Image
                   src="/profile/calvin-liew.jpg"
                   alt="Calvin Liew"
-                  width={288}
-                  height={288}
+                  width={640}
+                  height={640}
                   priority
-                  className="w-24 h-24 sm:w-36 sm:h-36 rounded-md object-cover"
+                  className="w-28 h-28 sm:w-44 sm:h-44 object-cover"
                 />
-              </div>
+                <figcaption
+                  className="text-center text-sm sm:text-base text-terracotta leading-none py-1.5 sm:py-2"
+                  style={{ fontFamily: 'var(--font-kalam), cursive' }}
+                >
+                  that&apos;s me!
+                </figcaption>
+              </figure>
             </div>
 
             <div className="space-y-5 text-lg text-ink-soft leading-relaxed">

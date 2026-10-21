@@ -95,6 +95,8 @@ export default function RootLayout({
       <head>
         {/* Marks JS as available before first paint, so scroll-reveal hiding never applies without it. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+        {/* Plain-text site summary for AI assistants (llmstxt.org) */}
+        <link rel="alternate" type="text/plain" title="LLM-readable summary" href="/llms.txt" />
       </head>
       <body
         className={`${inter.variable} ${fraunces.variable} ${kalam.variable} antialiased`}

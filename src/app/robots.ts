@@ -11,7 +11,13 @@ export default function robots(): MetadataRoute.Robots {
       // Friendly to mainstream AI training crawlers — explicit allow so the
       // portfolio shows up in AI search surfaces (ChatGPT, Perplexity, Claude).
       {
-        userAgent: ['GPTBot', 'ChatGPT-User', 'OAI-SearchBot', 'PerplexityBot', 'ClaudeBot', 'anthropic-ai', 'Google-Extended', 'CCBot'],
+        userAgent: [
+          'GPTBot', 'ChatGPT-User', 'OAI-SearchBot',
+          'ClaudeBot', 'Claude-User', 'Claude-SearchBot', 'anthropic-ai',
+          'PerplexityBot', 'Perplexity-User',
+          'Google-Extended', 'Applebot-Extended', 'Meta-ExternalAgent',
+          'Amazonbot', 'DuckAssistBot', 'MistralAI-User', 'CCBot',
+        ],
         allow: '/',
       },
     ],
