@@ -55,7 +55,7 @@ export default function HeroAsk() {
           autoComplete="off"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder={turns.length ? 'Ask a follow-up…' : 'Ask me anything about my work…'}
+          placeholder={turns.length ? 'Ask a follow-up…' : 'Ask about my work…'}
           className="min-w-0 flex-1 bg-transparent py-3 text-base text-ink placeholder:text-muted focus:outline-none sm:text-lg"
         />
         <button

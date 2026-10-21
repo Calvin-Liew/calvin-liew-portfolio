@@ -42,7 +42,7 @@ export const projects: Project[] = [
         },
         {
           decision: 'Let the tool do the arithmetic, not the model',
-          reasoning: 'In testing, an assistant-made spend total came out EUR 3,000 off. I moved aggregation into deterministic tools and reconciled the spend reader against 72,026 production rows exactly. Answers also label figures as document-reported or source-reported, so users can tell where a number comes from.',
+          reasoning: 'In testing, an assistant-made spend total came out €3,000 off. I moved aggregation into deterministic tools and reconciled the spend reader against 72,026 production rows exactly. Answers also label figures as document-reported or source-reported, so users can tell where a number comes from.',
         },
         {
           decision: 'Build reliable reporting across cadences',
@@ -106,7 +106,7 @@ export const projects: Project[] = [
     dates: 'Sep 2024 - Aug 2025',
     updatedAt: '2026-10-20',
     organization: 'Sanofi',
-    description: 'On Sanofi’s software licence optimisation programme, I led the redesign of the central application and contract hubs, recorded and evidenced EUR 4.03M of 2024 actualised savings across 14 apps, and wrote the benefit formula that calculates EUR 12.12M of expected benefit across 235 renewals. My work connected requirements, AI-assisted classification, touchless onboarding, and benefit tracking so teams could act on software-optimization opportunities.',
+    description: 'On Sanofi’s software licence optimisation programme, I led the redesign of the central application and contract hubs, recorded and evidenced €4.03M of 2024 actualised savings across 14 apps, and wrote the benefit formula that calculates €12.12M of expected benefit across 235 renewals. My work connected requirements, AI-assisted classification, touchless onboarding, and benefit tracking so teams could act on software-optimization opportunities.',
     skills: [
       'Product Management',
       'Requirements Analysis',
@@ -122,8 +122,8 @@ export const projects: Project[] = [
     featured: false,
     extendedContent: {
       stats: [
-        { value: 'EUR 4.03M', label: '2024 actualised savings I recorded and evidenced' },
-        { value: 'EUR 12.12M', label: 'expected benefit calculated by my formula' },
+        { value: '€4.03M', label: '2024 actualised savings I recorded and evidenced' },
+        { value: '€12.12M', label: 'expected benefit calculated by my formula' },
         { value: '11,000+', label: 'software files classified by an AI step' },
         { value: '158', label: 'delivered work items (of 170 assigned)' },
       ],
@@ -146,28 +146,28 @@ export const projects: Project[] = [
         },
         {
           decision: 'Calculate benefit instead of typing it',
-          reasoning: 'I made expected benefit a calculated field with its own test cases. It now computes EUR 12.12M of expected benefit across 235 contract renewal records, so the number is consistent and traceable rather than entered by hand.',
+          reasoning: 'I made expected benefit a calculated field with its own test cases. It now computes €12.12M of expected benefit across 235 contract renewal records, so the number is consistent and traceable rather than entered by hand.',
         },
         {
           decision: 'Make benefit capture part of the workflow',
-          reasoning: 'I designed the process for buyers to record realised savings in the platform and kept the ledger that evidenced the 2024 results: EUR 4.03M actualised across 14 apps, 64.5% of the year’s commitment, mostly from decommissioning. The savings themselves came from app owners, Procurement, and the wider team; my part was making them recorded and verifiable.',
+          reasoning: 'I designed the process for buyers to record realised savings in the platform and kept the ledger that evidenced the 2024 results: €4.03M actualised across 14 apps, 64.5% of the year’s commitment, mostly from decommissioning. The savings themselves came from app owners, Procurement, and the wider team; my part was making them recorded and verifiable.',
         },
       ],
       keyFindings: [
         {
           stat: '56%',
           title: 'Contract reduction on one renewal',
-          description: 'A EUR 293,589 analytics-software contract was cut by 56% by removing inactive users, a renewal I was assigned to.',
+          description: 'A €293,589 analytics-software contract was cut by 56% by removing inactive users, a renewal I was assigned to.',
         },
         {
-          stat: 'EUR 10.76M',
+          stat: '€10.76M',
           title: '2024 cost avoidance across 25 apps',
           description: 'Team-recorded cost avoidance for 2024. It overlaps the actualised savings figure, so the two are not added together.',
         },
         {
           stat: '500 → 2,000+',
           title: 'Apps in view',
-          description: 'A team result: apps visible to the programme grew from about 500 to more than 2,000, and spend in view from EUR 60M to EUR 1.1B by July 2025. My hub epics were part of that foundation.',
+          description: 'A team result: apps visible to the programme grew from about 500 to more than 2,000, and spend in view from €60M to €1.1B by July 2025. My hub epics were part of that foundation.',
         },
       ],
       impact: {
