@@ -9,7 +9,7 @@ export const experiences: Experience[] = [
     dates: 'Sep 2025 - Present',
     type: 'Contract Part-time',
     description: [
-      'Led development of SupRM Intelligence, an enterprise AI assistant supporting decisions across 61 strategic suppliers and 34 Key Supplier Managers; reached 80 unique production users and 572 conversations in its first six months.',
+      'Led development of SupRM Intelligence, an enterprise AI assistant supporting decisions across 59 strategic suppliers and 34 Key Supplier Managers; reached 80 unique production users and 572 conversations in its first six months.',
       'Created an evaluation framework spanning 18 business scenarios and 25 deterministic checks, achieving a 97.9% scenario-based evaluation pass rate and 100% tool compliance while shortening representative responses by 65%.',
       'Built reusable agent tools and orchestration capabilities used by 6+ AI products across budgeting, risk, compliance, procurement, and supplier management.',
       'Built supplier performance reporting across weekly, monthly, quarterly, and annual workflows, reconciling 1,822 historical metric records and backfilling 211 missing reporting periods without duplicates.',
@@ -35,7 +35,7 @@ export const experiences: Experience[] = [
     dates: 'Sep 2024 - Aug 2025',
     type: 'Co-op',
     description: [
-      'Drove License Patrol’s application and contract workflow redesign for 500+ applications, using AI and automation to directly contribute to the programme’s €15M+ in cost avoidance.',
+      'Drove License Patrol’s application and contract workflow redesign, recorded and evidenced €4.03M in 2024 actualised savings across 14 apps, and wrote the benefit formula that calculates €12.12M of expected benefit across 235 renewals.',
       'Owned requirements for central application and contract hubs, mapped processes, and aligned features with Finance, Procurement, and Software Asset Management teams.',
       'Helped replace manual onboarding inputs with AI-assisted application classification and scheduled refreshes, and designed processes for capturing software-optimization benefits.',
       'Delivered 5+ demos, gathered stakeholder feedback, and used it to refine the product.'

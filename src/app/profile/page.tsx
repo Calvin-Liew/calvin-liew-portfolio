@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import Container from '@/components/layout/Container';
 import Section from '@/components/layout/Section';
@@ -73,9 +74,25 @@ export default function ProfilePage() {
             >
               i&apos;m —
             </p>
-            <h1 className="font-display italic text-5xl sm:text-6xl text-ink mb-8 leading-[1.05]">
-              About me<span className="text-terracotta not-italic">.</span>
-            </h1>
+            <div className="flex items-end justify-between gap-6 mb-8">
+              <h1 className="font-display italic text-5xl sm:text-6xl text-ink leading-[1.05]">
+                About me<span className="text-terracotta not-italic">.</span>
+              </h1>
+              {/* Polaroid-style portrait; source is 288px, so cap at 144px for 2x screens */}
+              <div
+                className="flex-shrink-0 bg-paper-deeper border border-border rounded-lg p-1.5 shadow-paper"
+                style={{ transform: 'rotate(3deg)' }}
+              >
+                <Image
+                  src="/profile/calvin-liew.jpg"
+                  alt="Calvin Liew"
+                  width={288}
+                  height={288}
+                  priority
+                  className="w-24 h-24 sm:w-36 sm:h-36 rounded-md object-cover"
+                />
+              </div>
+            </div>
 
             <div className="space-y-5 text-lg text-ink-soft leading-relaxed">
               <p>{aboutData.introduction}</p>
@@ -85,7 +102,7 @@ export default function ProfilePage() {
                 <MarkerHighlight className="font-medium text-ink">
                   SupRM Intelligence
                 </MarkerHighlight>
-                , an assistant supporting decisions across 61 strategic suppliers and
+                , an assistant supporting decisions across 59 strategic suppliers and
                 34 Key Supplier Managers. It reached 80 unique production users
                 and 572 conversations in its first six months.
               </p>
