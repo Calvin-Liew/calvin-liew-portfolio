@@ -81,7 +81,7 @@ export default function ProfilePage() {
                   About me<span className="text-terracotta not-italic">.</span>
                 </h1>
               </div>
-              {/* Polaroid-style portrait; source is 288px, so cap at 144px for 2x screens */}
+              {/* Polaroid-style portrait; 640px source stays sharp at 2x+ */}
               <div
                 className="flex-shrink-0 bg-paper-deeper border border-border rounded-lg p-1.5 shadow-paper"
                 style={{ transform: 'rotate(3deg)' }}
@@ -89,10 +89,10 @@ export default function ProfilePage() {
                 <Image
                   src="/profile/calvin-liew.jpg"
                   alt="Calvin Liew"
-                  width={288}
-                  height={288}
+                  width={640}
+                  height={640}
                   priority
-                  className="w-24 h-24 sm:w-36 sm:h-36 rounded-md object-cover"
+                  className="w-28 h-28 sm:w-44 sm:h-44 rounded-md object-cover"
                 />
               </div>
             </div>
