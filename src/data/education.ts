@@ -4,11 +4,11 @@ export const education: Education = {
   institution: 'University of Toronto',
   degree: 'Bachelor of Business Administration (Co-op)',
   field: 'Management & Information Technology',
-  dates: 'Sep 2022 - Aug 2026',
+  dates: 'Sep 2022 - Oct 2026',
   gpa: '3.94/4.00',
   honors: [
+    'High Distinction',
     'Dean\'s List, 2023–2026',
-    'Studies completed August 2026',
     'Specialist in Management & Information Technology',
     'Minor in Computer Science'
   ],
