@@ -1,4 +1,5 @@
 import Hero from "@/components/sections/Hero";
+import StatsTicker from "@/components/sections/StatsTicker";
 import FeaturedProjects from "@/components/sections/FeaturedProjects";
 import SkillsOverview from "@/components/sections/SkillsOverview";
 import QuickContact from "@/components/sections/QuickContact";
@@ -17,6 +18,7 @@ export default function Home() {
       <PersonSchema />
       <WebSiteSchema />
       <Hero />
+      <StatsTicker />
       <FeaturedProjects />
       <SkillsOverview />
       <QuickContact />

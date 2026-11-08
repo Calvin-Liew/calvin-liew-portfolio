@@ -1,11 +1,46 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import Container from '../layout/Container';
 import Button from '../ui/Button';
-import { HandUnderline } from '../ui/HandDrawn';
+import { Asterisk, HandArrow, HandUnderline, SparkleStar } from '../ui/HandDrawn';
 import HeroAsk from '../ama/HeroAsk';
+
+const TAPE = 'rgba(254, 215, 170, 0.85)';
+
+/** Taped polaroid of Calvin. Same white card + tape treatment as the About page. */
+function Polaroid({ className = '', size }: { className?: string; size: 'sm' | 'lg' }) {
+  const lg = size === 'lg';
+  return (
+    <figure
+      className={`relative bg-white rounded-sm ${lg ? 'p-3 pb-1.5' : 'p-1.5 pb-0.5'} ${className}`}
+      style={{
+        boxShadow: '0 1px 2px rgba(31, 26, 23, 0.12), 0 14px 30px -8px rgba(31, 26, 23, 0.3)',
+      }}
+    >
+      <div
+        className={`absolute left-1/2 rounded-sm shadow-sm ${lg ? '-top-3.5 w-20 h-6' : '-top-2 w-10 h-3.5'}`}
+        style={{ background: TAPE, transform: 'translate(-50%, 0) rotate(-4deg)' }}
+        aria-hidden
+      />
+      <Image
+        src="/profile/calvin-liew.jpg"
+        alt="Calvin Liew"
+        width={640}
+        height={640}
+        priority
+        className={`object-cover ${lg ? 'w-52 h-52' : 'w-20 h-20'}`}
+      />
+      {lg && (
+        <figcaption className="text-center text-lg text-terracotta leading-none py-2.5 font-hand">
+          hi, that&apos;s me!
+        </figcaption>
+      )}
+    </figure>
+  );
+}
 
 /** Thin progress line at the bottom of the hero. Kept separate so scrolling only re-renders this. */
 function ScrollIndicator() {
@@ -48,8 +83,42 @@ export default function Hero() {
         className="pointer-events-none absolute left-1/2 top-[40%] h-[30rem] w-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/70 blur-3xl sm:h-[42rem] sm:w-[42rem]"
       />
 
+      {/* Desk clutter in the wide-screen margins: sticky note left, polaroid right */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 hidden xl:block">
+        <SparkleStar className="absolute left-[9%] top-[22%] w-9 h-9 animate-float-soft" />
+        <Asterisk className="absolute right-[10%] bottom-[20%] w-7 h-7 animate-float-soft animation-delay-600" color="var(--sketch)" />
+        <SparkleStar className="absolute right-[24%] top-[19%] w-5 h-5 animate-float-soft animation-delay-1000" color="var(--sketch)" />
+      </div>
+
+      <div className="absolute left-[5%] 2xl:left-[9%] top-[46%] z-10 hidden xl:block -rotate-[4deg]">
+        <div className="animate-fade-in-up animation-delay-1000">
+          <div
+            className="relative w-52 px-5 pt-6 pb-5 font-hand text-ink leading-snug animate-paper-wobble"
+            style={{
+              background: 'linear-gradient(180deg, #fef3a0 0%, #fdeb7f 100%)',
+              boxShadow: '0 1px 2px rgba(31, 26, 23, 0.1), 0 12px 22px -10px rgba(31, 26, 23, 0.35)',
+            }}
+          >
+            <div
+              className="absolute -top-3 left-1/2 w-16 h-5 rounded-sm"
+              style={{ background: 'rgba(255, 255, 255, 0.55)', transform: 'translateX(-50%) rotate(3deg)' }}
+              aria-hidden
+            />
+            <p className="text-sm text-terracotta-deep mb-1">currently —</p>
+            <p className="text-lg">building AI agents people actually use at Sanofi</p>
+            <p className="mt-3 text-sm text-ink-soft">UofT &apos;26 · High Distinction</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="absolute right-[5%] 2xl:right-[9%] top-[24%] z-10 hidden xl:block animate-fade-in-up animation-delay-800">
+        <Polaroid size="lg" className="rotate-[4deg] transition-transform duration-500 hover:rotate-[-1deg] hover:scale-[1.03]" />
+        <HandArrow direction="down-left" className="absolute -left-20 top-[62%] w-20 h-20 -scale-y-100" animate />
+      </div>
+
       <Container className="relative z-10">
         <div className="mx-auto max-w-4xl text-center">
+          <Polaroid size="sm" className="mx-auto mb-6 w-fit -rotate-3 xl:hidden animate-fade-in-up" />
           <Link
             href="/profile"
             className="inline-flex items-center gap-2 rounded-full border border-border bg-paper/80 px-3.5 py-1.5 text-sm text-ink-soft backdrop-blur transition-colors hover:border-ink/30 hover:text-ink animate-fade-in-up"
