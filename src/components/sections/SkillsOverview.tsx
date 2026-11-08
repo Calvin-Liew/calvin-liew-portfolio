@@ -78,8 +78,16 @@ export default function SkillsOverview() {
             return (
               <div
                 key={skillGroup.category}
-                className="relative bg-paper-deeper border border-border rounded-xl p-5 shadow-paper transition-transform duration-300 hover:-translate-y-1"
+                className="texture-grid relative bg-paper-deeper border border-border rounded-xl p-5 shadow-paper transition-transform duration-300 hover:-translate-y-1"
               >
+                <span
+                  aria-hidden
+                  className="tape -top-2.5 left-6 w-16!"
+                  style={{
+                    background: groupIndex % 2 ? 'rgba(254, 240, 138, 0.8)' : 'rgba(254, 215, 170, 0.85)',
+                    transform: `rotate(${groupIndex % 2 ? 3 : -4}deg)`,
+                  }}
+                />
                 <Doodle
                   name={meta.doodle}
                   className="absolute top-4 right-4 w-7 h-7 text-ink-soft"

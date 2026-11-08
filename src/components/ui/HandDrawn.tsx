@@ -191,6 +191,32 @@ export function SparkleStar({
   );
 }
 
+/** Ragged paper edge for section seams. Fill with the colour of the neighbouring section. */
+export function TornEdge({
+  className = '',
+  color = 'var(--paper)',
+  flip = false,
+}: {
+  className?: string;
+  color?: string;
+  /** true = tear points up (use on a section's bottom edge) */
+  flip?: boolean;
+}) {
+  return (
+    <svg
+      viewBox="0 0 1200 28"
+      preserveAspectRatio="none"
+      className={`pointer-events-none block w-full ${flip ? 'rotate-180' : ''} ${className}`}
+      aria-hidden
+    >
+      <path
+        d="M0 0 H1200 V14 L1176 19 L1150 11 L1122 21 L1094 13 L1070 22 L1041 12 L1012 18 L988 9 L960 20 L931 14 L905 23 L877 11 L850 17 L822 8 L796 21 L768 13 L740 19 L712 10 L688 22 L660 15 L633 20 L604 9 L578 18 L550 12 L522 23 L496 14 L468 19 L440 8 L414 20 L386 13 L360 22 L331 11 L304 18 L276 10 L250 21 L222 14 L195 19 L168 9 L140 22 L113 12 L86 20 L58 11 L30 18 L0 12 Z"
+        fill={color}
+      />
+    </svg>
+  );
+}
+
 /* ────────────────────────────────────────────────────────────────────
    Doodles — corner ornaments for cards
    ──────────────────────────────────────────────────────────────────── */

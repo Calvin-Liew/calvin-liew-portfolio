@@ -1,44 +1,156 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import Container from '../layout/Container';
 import Button from '../ui/Button';
-import { Asterisk, HandArrow, HandUnderline, SparkleStar } from '../ui/HandDrawn';
+import { Asterisk, HandUnderline, ScribbleCircle, SparkleStar } from '../ui/HandDrawn';
 import HeroAsk from '../ama/HeroAsk';
 
-const TAPE = 'rgba(254, 215, 170, 0.85)';
+/** Stroke-draw a path after `delay` ms. `both` fill keeps it hidden until its turn. */
+function draw(length: number, delay: number, duration = 1.6): React.CSSProperties {
+  return {
+    ['--stroke-length' as string]: String(length),
+    animationDelay: `${delay}ms`,
+    animationDuration: `${duration}s`,
+    animationFillMode: 'both',
+  };
+}
 
-/** Taped polaroid of Calvin. Same white card + tape treatment as the About page. */
-function Polaroid({ className = '', size }: { className?: string; size: 'sm' | 'lg' }) {
-  const lg = size === 'lg';
+/** Pencil sketches in the wide-screen margins that draw themselves in after the hero settles. */
+function MarginSketches() {
   return (
-    <figure
-      className={`relative bg-white rounded-sm ${lg ? 'p-3 pb-1.5' : 'p-1.5 pb-0.5'} ${className}`}
-      style={{
-        boxShadow: '0 1px 2px rgba(31, 26, 23, 0.12), 0 14px 30px -8px rgba(31, 26, 23, 0.3)',
-      }}
+    <div aria-hidden className="pointer-events-none absolute inset-0 hidden xl:block">
+      {/* Paper plane looping in from the left */}
+      <svg
+        viewBox="0 0 220 140"
+        className="absolute left-[11%] top-[12%] w-56 h-36"
+        fill="none"
+        stroke="var(--sketch)"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path
+          d="M 8 132 C 40 104, 26 62, 68 70 C 108 78, 96 120, 74 110 C 54 100, 80 52, 128 46 C 162 42, 176 32, 188 24"
+          strokeWidth="1.5"
+          opacity="0.55"
+          className="animate-draw-stroke"
+          style={draw(330, 900, 2.2)}
+        />
+        <g transform="translate(184 2) scale(0.75)" strokeWidth="2.2">
+          <path d="M 4 18 L 36 6 L 24 36 L 18 24 Z" className="animate-draw-stroke" style={draw(110, 2900, 0.9)} />
+          <path d="M 18 24 L 36 6" className="animate-draw-stroke" style={draw(30, 3500, 0.4)} />
+        </g>
+      </svg>
+
+      {/* Pencil hatching, like shading pressed in behind the stamp */}
+      <svg
+        viewBox="0 0 120 80"
+        className="absolute right-[3.5%] 2xl:right-[7.5%] top-[49%] w-28 h-20"
+        fill="none"
+        stroke="var(--sketch)"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        opacity="0.35"
+      >
+        {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+          <path
+            key={i}
+            d={`M ${8 + i * 12} 74 L ${30 + i * 12} ${8 + (i % 3) * 4}`}
+            className="animate-draw-stroke"
+            style={draw(75, 1400 + i * 90, 0.45)}
+          />
+        ))}
+      </svg>
+    </div>
+  );
+}
+
+/** Faint coffee-cup ring: two roughened, uneven strokes. */
+function CoffeeRing({ className = '' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 200 200" className={className} aria-hidden fill="none">
+      <defs>
+        <filter id="coffee-rough">
+          <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" seed="7" result="warp" />
+          <feDisplacementMap in="SourceGraphic" in2="warp" scale="9" />
+          <feGaussianBlur stdDeviation="0.6" />
+        </filter>
+      </defs>
+      <g filter="url(#coffee-rough)" stroke="#8a5a32">
+        <circle cx="100" cy="100" r="78" strokeWidth="5" opacity="0.5" strokeDasharray="300 18 110 9" />
+        <circle cx="103" cy="98" r="73" strokeWidth="1.5" opacity="0.35" />
+      </g>
+    </svg>
+  );
+}
+
+/** Handwritten nudge toward the ask box, drawn in once everything else has landed. */
+function AskNudge() {
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none absolute left-[calc(50%+21rem+0.75rem)] -top-10 hidden w-48 xl:block"
     >
-      <div
-        className={`absolute left-1/2 rounded-sm shadow-sm ${lg ? '-top-3.5 w-20 h-6' : '-top-2 w-10 h-3.5'}`}
-        style={{ background: TAPE, transform: 'translate(-50%, 0) rotate(-4deg)' }}
-        aria-hidden
-      />
-      <Image
-        src="/profile/calvin-liew.jpg"
-        alt="Calvin Liew"
-        width={640}
-        height={640}
-        priority
-        className={`object-cover ${lg ? 'w-52 h-52' : 'w-20 h-20'}`}
-      />
-      {lg && (
-        <figcaption className="text-center text-lg text-terracotta leading-none py-2.5 font-hand">
-          hi, that&apos;s me!
-        </figcaption>
-      )}
-    </figure>
+      <p
+        className="font-hand text-lg leading-tight text-terracotta -rotate-[5deg] animate-fade-in-up"
+        style={{ animationDelay: '1500ms' }}
+      >
+        go on, ask me anything!
+      </p>
+      <svg viewBox="0 0 80 60" className="ml-2 mt-1 w-16 h-12" fill="none" stroke="var(--terracotta)" strokeWidth="2.2" strokeLinecap="round">
+        <path d="M 60 4 Q 58 34, 12 46" className="animate-draw-stroke" style={draw(75, 1800, 0.7)} />
+        <path d="M 12 46 L 24 36 M 12 46 L 25 53" className="animate-draw-stroke" style={draw(35, 2400, 0.35)} />
+      </svg>
+    </div>
+  );
+}
+
+/** Rubber-stamp seal: roughened ink edges, slowly turning ring of words. */
+function InkStamp({ className = '' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 200 200" className={className} aria-hidden fill="none">
+      <defs>
+        <filter id="stamp-rough" x="-5%" y="-5%" width="110%" height="110%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="3" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" result="rough" />
+          {/* Knock speckles out of the ink so it reads as pressed, not printed */}
+          <feComponentTransfer in="noise" result="speckle">
+            <feFuncA type="discrete" tableValues="1 1 1 1 0 1 1 1" />
+          </feComponentTransfer>
+          <feComposite in="rough" in2="speckle" operator="in" />
+        </filter>
+        <path id="stamp-ring" d="M 100,100 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0" />
+      </defs>
+      <g filter="url(#stamp-rough)" stroke="var(--terracotta)" fill="var(--terracotta)">
+        <circle cx="100" cy="100" r="94" strokeWidth="3.5" fill="none" />
+        <circle cx="100" cy="100" r="87" strokeWidth="1.2" fill="none" />
+        <circle cx="100" cy="100" r="50" strokeWidth="1.2" fill="none" />
+        <g className="animate-spin-slow">
+          <text
+            stroke="none"
+            fontSize="15"
+            fontWeight="700"
+            style={{ fontFamily: 'var(--font-inter), sans-serif', letterSpacing: '0.2em' }}
+          >
+            <textPath href="#stamp-ring" textLength="430" lengthAdjust="spacing">
+              AI ✦ PRODUCT ✦ DATA ✦ DESIGN ✦
+            </textPath>
+          </text>
+        </g>
+        <text
+          x="100"
+          y="112"
+          textAnchor="middle"
+          stroke="none"
+          fontSize="34"
+          fontStyle="italic"
+          style={{ fontFamily: 'var(--font-fraunces), serif' }}
+        >
+          C.L.
+        </text>
+      </g>
+    </svg>
   );
 }
 
@@ -83,9 +195,12 @@ export default function Hero() {
         className="pointer-events-none absolute left-1/2 top-[40%] h-[30rem] w-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/70 blur-3xl sm:h-[42rem] sm:w-[42rem]"
       />
 
-      {/* Desk clutter in the wide-screen margins: sticky note left, polaroid right */}
+      <CoffeeRing className="pointer-events-none absolute -right-36 top-10 w-64 h-64 opacity-40 sm:w-80 sm:h-80 xl:right-auto xl:top-auto xl:left-[15%] xl:bottom-[3%] xl:w-72 xl:h-72" />
+
+      {/* Desk clutter in the wide-screen margins: sticky note left, ink stamp right */}
+      <MarginSketches />
       <div aria-hidden className="pointer-events-none absolute inset-0 hidden xl:block">
-        <SparkleStar className="absolute left-[9%] top-[22%] w-9 h-9 animate-float-soft" />
+        <SparkleStar className="absolute left-[18%] top-[40%] w-9 h-9 animate-float-soft" />
         <Asterisk className="absolute right-[10%] bottom-[20%] w-7 h-7 animate-float-soft animation-delay-600" color="var(--sketch)" />
         <SparkleStar className="absolute right-[24%] top-[19%] w-5 h-5 animate-float-soft animation-delay-1000" color="var(--sketch)" />
       </div>
@@ -111,14 +226,12 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="absolute right-[5%] 2xl:right-[9%] top-[24%] z-10 hidden xl:block animate-fade-in-up animation-delay-800">
-        <Polaroid size="lg" className="rotate-[4deg] transition-transform duration-500 hover:rotate-[-1deg] hover:scale-[1.03]" />
-        <HandArrow direction="down-left" className="absolute -left-20 top-[62%] w-20 h-20 -scale-y-100" animate />
+      <div className="absolute right-[5%] 2xl:right-[9%] top-[26%] z-10 hidden xl:block animate-fade-in-up animation-delay-800">
+        <InkStamp className="w-52 h-52 rotate-[10deg] opacity-85 mix-blend-multiply" />
       </div>
 
       <Container className="relative z-10">
         <div className="mx-auto max-w-4xl text-center">
-          <Polaroid size="sm" className="mx-auto mb-6 w-fit -rotate-3 xl:hidden animate-fade-in-up" />
           <Link
             href="/profile"
             className="inline-flex items-center gap-2 rounded-full border border-border bg-paper/80 px-3.5 py-1.5 text-sm text-ink-soft backdrop-blur transition-colors hover:border-ink/30 hover:text-ink animate-fade-in-up"
@@ -138,11 +251,16 @@ export default function Hero() {
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-balance text-xl leading-snug text-ink-soft sm:text-2xl animate-fade-in-up animation-delay-400">
-            I turn business needs into <span className="font-medium text-ink">useful AI products</span>.
+            I turn business needs into{' '}
+            <span className="relative inline-block font-medium text-ink">
+              useful AI products
+              <ScribbleCircle className="draw-late pointer-events-none absolute -left-8 -top-4 h-[calc(100%+2rem)] w-[calc(100%+4rem)]" strokeWidth={2} animate />
+            </span>.
           </p>
 
-          <div className="mt-10 animate-fade-in-up animation-delay-600">
+          <div className="relative mt-10 animate-fade-in-up animation-delay-600">
             <HeroAsk />
+            <AskNudge />
           </div>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4 animate-fade-in-up animation-delay-800">

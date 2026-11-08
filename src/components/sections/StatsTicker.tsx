@@ -46,7 +46,7 @@ function Track({ hidden = false }: { hidden?: boolean }) {
 export default function StatsTicker() {
   return (
     <section aria-label="Results by the numbers" className="relative z-10 overflow-hidden py-8 sm:py-10">
-      <div className="ticker relative -left-[5%] w-[110%] -rotate-[1.5deg] bg-ink py-4 shadow-xl">
+      <div className="ticker texture-grain -left-[5%] w-[110%] -rotate-[1.5deg] bg-ink py-4 shadow-xl">
         <div className="ticker-track flex w-max">
           <Track />
           <Track hidden />
