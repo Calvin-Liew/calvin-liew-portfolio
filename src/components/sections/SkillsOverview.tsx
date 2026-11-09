@@ -24,6 +24,17 @@ const categoryMeta: Record<
   Design: { label: 'design', doodle: 'lightbulb' },
 };
 
+// Sticker sheet: deterministic tilt + tone + shape per index, so it looks hand-placed
+// but renders identically on server and client.
+const stickerTilts = [-2, 1.5, -1, 2.5, -2.5, 1, 0.5, -1.5, 2];
+const stickerTones = [
+  'bg-white border-border-strong text-ink-soft',
+  'bg-terracotta-wash border-terracotta-soft text-terracotta-deep',
+  'bg-[#fef3a0] border-[#f1df6a] text-ink',
+  'bg-white border-border-strong text-ink-soft',
+  'bg-ink border-ink text-paper',
+];
+
 export default function SkillsOverview() {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
 
@@ -59,7 +70,7 @@ export default function SkillsOverview() {
             isVisible ? '' : 'reveal-hidden'
           }`}
         >
-          {aboutData.skills.map((skillGroup) => {
+          {aboutData.skills.map((skillGroup, groupIndex) => {
             const meta = categoryMeta[skillGroup.category] || {
               label: skillGroup.category.toLowerCase(),
               doodle: 'sparkle' as DoodleName,
@@ -67,8 +78,16 @@ export default function SkillsOverview() {
             return (
               <div
                 key={skillGroup.category}
-                className="relative bg-paper-deeper border border-border rounded-xl p-5 shadow-paper transition-transform duration-300 hover:-translate-y-1"
+                className="texture-grid relative bg-paper-deeper border border-border rounded-xl p-5 shadow-paper transition-transform duration-300 hover:-translate-y-1"
               >
+                <span
+                  aria-hidden
+                  className="tape -top-2.5 left-6 w-16!"
+                  style={{
+                    background: groupIndex % 2 ? 'rgba(254, 240, 138, 0.8)' : 'rgba(254, 215, 170, 0.85)',
+                    transform: `rotate(${groupIndex % 2 ? 3 : -4}deg)`,
+                  }}
+                />
                 <Doodle
                   name={meta.doodle}
                   className="absolute top-4 right-4 w-7 h-7 text-ink-soft"
@@ -87,14 +106,18 @@ export default function SkillsOverview() {
                   <span className="text-terracotta">.</span>
                 </h3>
 
-                <ul className="space-y-1.5">
-                  {skillGroup.items.map((skill) => (
+                <ul className="flex flex-wrap gap-2">
+                  {skillGroup.items.map((skill, i) => (
                     <li
                       key={skill}
-                      className="flex items-center gap-2 text-sm text-ink-soft"
+                      className={`sticker border px-3 py-1 text-sm shadow-sm ${
+                        i % 3 === 1 ? 'rounded-full' : 'rounded-md'
+                      } ${stickerTones[(i + groupIndex) % stickerTones.length]}`}
+                      style={{
+                        ['--tilt' as string]: `${stickerTilts[(i + groupIndex * 2) % stickerTilts.length]}deg`,
+                      } as React.CSSProperties}
                     >
-                      <span className="w-1 h-1 rounded-full bg-terracotta flex-shrink-0" />
-                      <span>{skill}</span>
+                      {skill}
                     </li>
                   ))}
                 </ul>

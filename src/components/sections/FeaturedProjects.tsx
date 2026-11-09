@@ -5,7 +5,7 @@ import Container from '../layout/Container';
 import Section from '../layout/Section';
 import Card from '../ui/Card';
 import Badge from '../ui/Badge';
-import { HandUnderline } from '../ui/HandDrawn';
+import { Doodle, HandUnderline, TornEdge } from '../ui/HandDrawn';
 import { projects } from '@/data/projects';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { abbreviateCourseCode } from '@/utils/abbreviateCourseCode';
@@ -14,6 +14,14 @@ const corners: Array<'lightbulb' | 'magnifier' | 'sparkle'> = [
   'lightbulb',
   'magnifier',
   'sparkle',
+];
+
+// Resting tilt + tape per card, like index cards taped to a board
+const tilts = ['-1deg', '0.8deg', '-0.6deg'];
+const tapes = [
+  { background: 'rgba(254, 215, 170, 0.85)', transform: 'translateX(-50%) rotate(-3deg)' },
+  { background: 'rgba(254, 240, 138, 0.8)', transform: 'translateX(-50%) rotate(2deg)' },
+  { background: 'rgba(255, 255, 255, 0.7)', transform: 'translateX(-50%) rotate(-1.5deg)' },
 ];
 
 // Reformat a date range string for display: lowercase + replace separators with arrow.
@@ -27,7 +35,9 @@ export default function FeaturedProjects() {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <Section background="surface" className="relative overflow-hidden">
+    <Section background="surface" className="texture-dots relative overflow-hidden">
+      <TornEdge className="absolute inset-x-0 top-0 h-4 sm:h-5" />
+      <TornEdge flip className="absolute inset-x-0 bottom-0 h-4 sm:h-5" />
       <Container className="relative z-10">
         <div
           ref={ref as React.RefObject<HTMLDivElement>}
@@ -54,80 +64,93 @@ export default function FeaturedProjects() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mb-12">
           {featuredProjects.map((project, i) => (
-            <Link key={project.id} href={`/projects/${project.id}`} className="block">
+            <Link
+              key={project.id}
+              href={`/projects/${project.id}`}
+              className="pinned-card relative block rounded-xl"
+              style={{ ['--tilt' as string]: tilts[i % tilts.length] } as React.CSSProperties}
+            >
+              <span aria-hidden className="tape left-1/2 -top-2.5 z-10" style={tapes[i % tapes.length]} />
               <Card
-                corner={corners[i % corners.length]}
                 tone="paper"
-                className="h-full flex flex-col"
+                hover={false}
+                className="texture-lined h-full flex flex-col pt-8! hover:shadow-xl hover:border-ink/30"
               >
-                {/* Date in Kalam */}
-                <time
-                  className="text-base text-terracotta inline-block mb-3"
-                  style={{
-                    fontFamily: 'var(--font-kalam), cursive',
-                    transform: 'rotate(-1.5deg)',
-                  }}
-                  dateTime={project.dates}
-                >
-                  {formatDates(project.dates)}
-                </time>
+                <div className="flex flex-1 flex-col relative">
+                  <Doodle
+                    name={corners[i % corners.length]}
+                    className="absolute top-0 right-0 w-7 h-7 text-ink-soft group-hover:text-terracotta transition-colors duration-300"
+                    color="currentColor"
+                  />
+                  {/* Date in Kalam */}
+                  <time
+                    className="text-base text-terracotta inline-block mb-3"
+                    style={{
+                      fontFamily: 'var(--font-kalam), cursive',
+                      transform: 'rotate(-1.5deg)',
+                    }}
+                    dateTime={project.dates}
+                  >
+                    {formatDates(project.dates)}
+                  </time>
 
-                {/* Category as marker-highlight */}
-                <div className="mb-4">
-                  <Badge variant="category">{project.category}</Badge>
-                </div>
-
-                {/* Title — Fraunces italic, hand-drawn underline on hover */}
-                <h3 className="font-display italic text-xl sm:text-2xl text-ink mb-3 leading-snug relative line-clamp-2">
-                  <span className="relative z-10">{project.title}</span>
-                  <HandUnderline className="absolute -bottom-1 left-0 w-full h-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                </h3>
-
-                {/* Org / course code */}
-                <div className="text-sm text-muted mb-4 truncate">
-                  <span>{project.organization}</span>
-                  {project.courseCode &&
-                    (() => {
-                      const { code } = abbreviateCourseCode(project.courseCode);
-                      return (
-                        <>
-                          {' '}
-                          <span className="text-terracotta">·</span>{' '}
-                          <span>{code}</span>
-                        </>
-                      );
-                    })()}
-                </div>
-
-                {/* Two concrete outcomes from each case study */}
-                {project.extendedContent?.stats && (
-                  <div className="grid grid-cols-2 gap-4 border-y border-border/70 py-3 mb-4">
-                    {project.extendedContent.stats.slice(0, 2).map((stat) => (
-                      <div key={stat.label} className="min-w-0">
-                        <p className="font-display italic text-2xl text-terracotta leading-none mb-1">
-                          {stat.value}
-                        </p>
-                        <p className="text-xs text-muted leading-snug">
-                          {stat.label}
-                        </p>
-                      </div>
-                    ))}
+                  {/* Category as marker-highlight */}
+                  <div className="mb-4">
+                    <Badge variant="category">{project.category}</Badge>
                   </div>
-                )}
 
-                {/* Description */}
-                <p className="text-sm text-ink-soft leading-relaxed line-clamp-3 mb-5 overflow-hidden">
-                  {project.description}
-                </p>
+                  {/* Title — Fraunces italic, hand-drawn underline on hover */}
+                  <h3 className="font-display italic text-xl sm:text-2xl text-ink mb-3 leading-snug relative line-clamp-2">
+                    <span className="relative z-10">{project.title}</span>
+                    <HandUnderline className="absolute -bottom-1 left-0 w-full h-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                  </h3>
 
-                {/* Skills */}
-                <div className="flex flex-wrap gap-1.5 mt-auto">
-                  {project.skills.slice(0, 3).map((skill) => (
-                    <Badge key={skill}>{skill}</Badge>
-                  ))}
-                  {project.skills.length > 3 && (
-                    <Badge>+{project.skills.length - 3} more</Badge>
+                  {/* Org / course code */}
+                  <div className="text-sm text-muted mb-4 truncate">
+                    <span>{project.organization}</span>
+                    {project.courseCode &&
+                      (() => {
+                        const { code } = abbreviateCourseCode(project.courseCode);
+                        return (
+                          <>
+                            {' '}
+                            <span className="text-terracotta">·</span>{' '}
+                            <span>{code}</span>
+                          </>
+                        );
+                      })()}
+                  </div>
+
+                  {/* Two concrete outcomes from each case study */}
+                  {project.extendedContent?.stats && (
+                    <div className="grid grid-cols-2 gap-4 border-y border-border/70 py-3 mb-4">
+                      {project.extendedContent.stats.slice(0, 2).map((stat) => (
+                        <div key={stat.label} className="min-w-0">
+                          <p className="font-display italic text-2xl text-terracotta leading-none mb-1">
+                            {stat.value}
+                          </p>
+                          <p className="text-xs text-muted leading-snug">
+                            {stat.label}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
                   )}
+
+                  {/* Description */}
+                  <p className="text-sm text-ink-soft leading-relaxed line-clamp-3 mb-5 overflow-hidden">
+                    {project.description}
+                  </p>
+
+                  {/* Skills */}
+                  <div className="flex flex-wrap gap-1.5 mt-auto">
+                    {project.skills.slice(0, 3).map((skill) => (
+                      <Badge key={skill}>{skill}</Badge>
+                    ))}
+                    {project.skills.length > 3 && (
+                      <Badge>+{project.skills.length - 3} more</Badge>
+                    )}
+                  </div>
                 </div>
               </Card>
             </Link>
